@@ -13,6 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "@emotion/react": "^11.5.0",
+    "@prisma/client": "^3.2.1",
     "destyle.css": "^3.0.0",
     "electron": "^15.2.0",
     "react": "^17.0.2",

@@ -1,0 +1,6 @@
+-- CreateTable
+CREATE TABLE "Todo" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "text" TEXT NOT NULL,
+    "isChecked" BOOLEAN NOT NULL
+);
