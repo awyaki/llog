@@ -33,6 +33,7 @@
     "babel-loader": "^8.2.2",
     "copy-webpack-plugin": "^9.0.1",
     "css-loader": "^6.4.0",
+    "electron-builder": "^22.13.1",
     "html-webpack-plugin": "^5.4.0",
     "prisma": "^3.2.1",
     "style-loader": "^3.3.0",
