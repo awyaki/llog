@@ -27,6 +27,7 @@
     "@babel/runtime": "^7.15.4",
     "@types/react": "^17.0.30",
     "@types/react-dom": "^17.0.9",
+    "babel-loader": "^8.2.2",
     "copy-webpack-plugin": "^9.0.1",
     "css-loader": "^6.4.0",
     "html-webpack-plugin": "^5.4.0",
