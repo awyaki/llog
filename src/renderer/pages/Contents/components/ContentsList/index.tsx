@@ -1,4 +1,6 @@
 import { VFC } from 'react';
+import { container } from './style/container';
+import { buttons } from './style/buttons';
 import { CreateContentButton } from './components/CreateContentButton';
 import { SearchContentsButton } from './components/SearchContentsButton';
 export const ContentsList: VFC = () => {
@@ -14,9 +16,9 @@ export const ContentsList: VFC = () => {
   ];
 
   return (
-    <div>
+    <div css={container}>
       <h1>Contents</h1>
-      <div>
+      <div css={buttons}>
         <CreateContentButton active={true} />
         <SearchContentsButton active={true} />
       </div>
