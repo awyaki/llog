@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { container } from './style';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { HashRouter, Route, Switch } from 'react-router-dom';
 import Menu from '../Menu/Menu';
 import Review from '../Review/Review';
 import Settings from '../Settings/Settings';
@@ -16,7 +16,7 @@ const App = () => {
 
   return (
     <div css={container}>
-      <BrowserRouter>
+      <HashRouter>
         <Switch>
           <Route path="/timeline">
             <TimeLine />
@@ -43,7 +43,7 @@ const App = () => {
             <Menu />
           </Route>
         </Switch>
-      </BrowserRouter>
+      </HashRouter>
     </div>
   );
 };
