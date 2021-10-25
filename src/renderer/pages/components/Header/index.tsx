@@ -1,9 +1,10 @@
+import { VFC } from 'react';
 import { container } from './style/container';
 import { buttons } from './style/buttons';
 import { BackArrowIcon } from './BackArrowIcon';
 import { ForwardArrowIcon } from './ForwardArrowIcon';
 
-export const Header = () => {
+export const Header: VFC = () => {
   return (
     <header css={container}>
       <div css={buttons}>
