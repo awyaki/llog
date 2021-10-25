@@ -2,11 +2,11 @@ import { VFC } from 'react';
 import { colors } from '~/styleConfig/colors';
 
 type Props = {
-  disable: boolean;
+  active: boolean;
 };
 
-export const CreateContentIcon: VFC<Props> = ({ disable }) => {
-  const color = disable ? colors.gray.LIGHT : colors.cyan.DEFAULT;
+export const CreateContentIcon: VFC<Props> = ({ active }) => {
+  const color = active ? colors.cyan.DEFAULT : colors.gray.LIGHT;
   return (
     <svg width="52px" height="51px" viewBox="0 0 52 51" version="1.1" xmlns="http://www.w3.org/2000/svg">
         <g id="コンテンツ" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">

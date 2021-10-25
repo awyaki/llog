@@ -16,7 +16,7 @@ export const ContentsList: VFC = () => {
     <div>
       <h1>Contents</h1>
       <div>
-        <CreateContentButton disable={true} />
+        <CreateContentButton active={true} />
       </div>
       <ul>
         {contentsName.map(({ id, name }) => <li key={id}>{name}</li>)}

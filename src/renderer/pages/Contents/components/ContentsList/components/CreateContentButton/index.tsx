@@ -2,13 +2,13 @@ import { VFC } from 'react';
 import { CreateContentIcon } from './components/CreateContentIcon';
 
 type Props = {
-  disable: boolean;
+  active: boolean;
 };
 
-export const CreateContentButton: VFC<Props> = ({ disable }) => {
+export const CreateContentButton: VFC<Props> = ({ active }) => {
   return (
     <button>
-      <CreateContentIcon disable={disable} />
+      <CreateContentIcon active={active} />
     </button>
   );
 };
