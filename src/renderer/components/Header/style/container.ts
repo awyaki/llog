@@ -8,4 +8,5 @@ export const container: CSSObject = {
   padding: '16px 5%',
   justifyContent: 'space-between',
   borderBottom: `1px solid ${colors.gray.LIGHT}`,
+  marginBottom: '32px',
 };
