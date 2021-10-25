@@ -1,5 +1,6 @@
 import { VFC } from 'react';
 import { CreateContentButton } from './components/CreateContentButton';
+import { SearchContentsButton } from './components/SearchContentsButton';
 export const ContentsList: VFC = () => {
   // stub data
   const contentsName = [
@@ -17,6 +18,7 @@ export const ContentsList: VFC = () => {
       <h1>Contents</h1>
       <div>
         <CreateContentButton active={true} />
+        <SearchContentsButton active={true} />
       </div>
       <ul>
         {contentsName.map(({ id, name }) => <li key={id}>{name}</li>)}
