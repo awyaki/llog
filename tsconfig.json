@@ -20,7 +20,11 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "react-jsx",
-    "jsxImportSource": "@emotion/react"
+    "jsxImportSource": "@emotion/react",
+    "baseUrl": "./src/renderer",
+    "paths": {
+      "~/*": ["./*"]
+    }
   },
   "include": [
     "src",
