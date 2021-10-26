@@ -7,4 +7,5 @@ export const tagInput: CSSObject = {
   borderRadius: '5px',
   padding: '5px',
   marginRight: '10px',
+  marginBottom: '10px',
 };
