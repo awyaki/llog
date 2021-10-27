@@ -1,12 +1,12 @@
 import { VFC, useState, ChangeEventHandler } from 'react';
 
-import { tagInput } from './style/tagInput';
+import { keywordsBox } from './style/keywordsBox';
 import { container } from './style/container';
 import { SearchButton } from './components/SearchButton';
 
-export const SearchTagsBox: VFC = () => {
+export const SearchKeywordsBox: VFC = () => {
   const [text, setText] = useState('');
-
+  
   const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     setText(e.target.value);
   };
@@ -14,7 +14,7 @@ export const SearchTagsBox: VFC = () => {
   return (
     <form css={container}>
       <input 
-        css={tagInput}
+        css={keywordsBox}
         type="text" 
         value={text}
         onChange={handleChange} />
