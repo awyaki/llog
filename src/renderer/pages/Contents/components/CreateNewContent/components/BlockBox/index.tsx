@@ -1,5 +1,6 @@
 import { VFC, useState, ChangeEventHandler } from 'react';
 
+import { container } from './style/container';
 import { title } from './style/title';
 import { blockInput } from './style/blockInput';
 
@@ -11,7 +12,7 @@ export const BlockBox: VFC = () => {
   };
 
   return (
-    <div>
+    <div css={container}>
       <h2 css={title}>Blocks</h2>
       <input 
         css={blockInput}
