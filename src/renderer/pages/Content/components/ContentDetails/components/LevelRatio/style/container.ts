@@ -5,6 +5,7 @@ export const container: CSSObject = {
   display: 'flex',
   justifyContent: 'space-between',
   flexWrap: 'wrap',
+  marginBottom: '64px',
   '> li': {
     marginBottom: '8px',
   },
