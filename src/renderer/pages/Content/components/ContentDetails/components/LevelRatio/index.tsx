@@ -5,13 +5,13 @@ import { container } from './style/container';
 
 export const LevelRatio: VFC = () => {
   return (
-    <div css={container}>
-      <LevelInfo level={0} ratio="245（50％）" />
-      <LevelInfo level={1} ratio="49（10％）" />
-      <LevelInfo level={2} ratio="49（10％）" />
-      <LevelInfo level={3} ratio="49（10％）" />
-      <LevelInfo level={4} ratio="49（10％）" />
-      <LevelInfo level={5} ratio="49（10％）" />
-    </div>
+    <ul css={container}>
+      <li><LevelInfo level={0} ratio="245（50％）" /></li>
+      <li><LevelInfo level={1} ratio="49（10％）" /></li>
+      <li><LevelInfo level={2} ratio="49（10％）" /></li>
+      <li><LevelInfo level={3} ratio="49（10％）" /></li>
+      <li><LevelInfo level={4} ratio="49（10％）" /></li>
+      <li><LevelInfo level={5} ratio="49（10％）" /></li>
+    </ul>
   );
 };
