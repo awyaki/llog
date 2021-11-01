@@ -4,7 +4,7 @@ import { OverviewBlocksButtonIcon } from './components/OverviewBlocksButtonIcon'
 
 type Props = {
   active: boolean;
-  onClick: MouseEventHandler<HTMLButtonElement>;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
 };
 
 export const OverviewBlocksButton: VFC<Props> = ({ active, onClick }) => {
