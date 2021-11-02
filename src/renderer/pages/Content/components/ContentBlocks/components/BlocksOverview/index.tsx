@@ -6,7 +6,7 @@ import { title } from './style/title';
 import { makeBlocks } from '~/stub/blocks';
 
 
-const blocks = makeBlocks(220);
+const blocks = makeBlocks(420);
 export const BlocksOverview: VFC = () => {
   return (
     <div>

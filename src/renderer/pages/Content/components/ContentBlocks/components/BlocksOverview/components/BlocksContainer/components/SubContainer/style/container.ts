@@ -1,7 +1,7 @@
 import { CSSObject } from '@emotion/react';
 
 export const container: CSSObject = {
-  width: '210px',
+  width: '648px',
   display: 'flex',
   flexWrap: 'wrap',
   '> li': {
@@ -9,6 +9,9 @@ export const container: CSSObject = {
     marginBottom: '3px',
   },
   '> li:nth-of-type(10n)': {
-    marginRight: '0',
+    marginRight: '13px',
+  },
+  '> li:nth-of-type(30n)': {
+    marginRight: '0px',
   },
 };

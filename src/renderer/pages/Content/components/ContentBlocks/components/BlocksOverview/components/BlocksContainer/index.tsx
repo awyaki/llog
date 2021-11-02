@@ -11,7 +11,7 @@ type Props = {
 };
 
 export const BlocksContainer: VFC<Props> = ({ blocks }) => {
-  const divBlocks = divideArray(blocks, 100);
+  const divBlocks = divideArray(blocks, 300);
 
   return (
     <ul css={container}>
