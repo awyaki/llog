@@ -1,11 +1,11 @@
-import { VFC } from 'react';
+import { VFC, Dispatch, SetStateAction } from 'react';
 
 import { TagsList } from './components/TagsList';
 import { CreateNoteButton } from './components/CreateNoteButton';
 import { NoteViewButton } from './components/NoteViewButton';
 import { BasicInfo } from './components/BasicInfo';
 import { LevelRatio } from './components/LevelRatio';
-import { DetailBlocksButton } from './components/DetailBlocksButton';
+import { DetailViewBlocksButton } from './components/DetailViewBlocksButton';
 import { OverviewBlocksButton } from './components/OverviewBlocksButton';
 
 import { container } from './style/container';
@@ -13,7 +13,21 @@ import { buttons } from './style/buttons';
 import { title } from './style/title';
 import { blocksViewButtons } from './style/blocksViewButtons';
 
-export const ContentDetails: VFC = () => {
+type Props = {
+  mode: 'detailview' | 'overview';
+  setMode: Dispatch<SetStateAction<'detailview' | 'overview'>>; 
+};
+
+export const ContentDetails: VFC<Props> = ({ mode, setMode }) => {
+
+  const handleSetDetailviewMode = () => {
+    setMode('detailview');
+  };
+
+  const handleSetOverviewMode = () => {
+    setMode('overview');
+  };
+
   return (
     <div css={container}>
       <h2 css={title}>Content</h2>
@@ -29,8 +43,17 @@ export const ContentDetails: VFC = () => {
         streak={10} />
       <LevelRatio />
       <ul css={blocksViewButtons}>
-        <li><DetailBlocksButton active={true} /></li>
-        <li><OverviewBlocksButton active={false} /></li>
+        <li>
+          <OverviewBlocksButton 
+            active={mode === 'overview'}
+            onClick={handleSetOverviewMode}
+          />
+        </li>
+        <li>
+          <DetailViewBlocksButton 
+            active={mode === 'detailview'} 
+            onClick={handleSetDetailviewMode} />
+        </li>
       </ul>
     </div>
   );
