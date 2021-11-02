@@ -5,7 +5,7 @@ export const makeBlocks = (n: number): Block[] => {
   return [...range(0, n)].map((i) => {
     return {
       id: i,
-      level: 3,
+      level: i%6,
       unitNumber: i+1,
     };
   });
