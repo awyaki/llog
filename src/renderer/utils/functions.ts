@@ -12,4 +12,4 @@ function* range(start: number, end: number) {
   }
 }
 
-export { head, tail, random, makeTimeString, range };
+export { head, tail, random, range };
