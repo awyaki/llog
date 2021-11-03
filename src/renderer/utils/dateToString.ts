@@ -1,4 +1,4 @@
-export const makeTimeString = (d: Date): string => {
+export const dateToString = (d: Date): string => {
     const year = d.getFullYear();
     const month = d.getMonth();
     const date = d.getDate();
