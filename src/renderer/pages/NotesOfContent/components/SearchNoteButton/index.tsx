@@ -1,10 +1,14 @@
-import { VFC } from 'react';
+import { VFC, MouseEventHandler } from 'react';
 
 import { SearchNoteButtonIcon } from './components/SearchNoteButtonIcon';
 
-export const SearchNoteButton = () => {
+type Props = {
+  onClick?: MouseEventHandler<HTMLButtonElement>;
+};
+
+export const SearchNoteButton: VFC<Props> = ({ onClick }) => {
   return (
-    <button>
+    <button onClick={onClick}>
       <SearchNoteButtonIcon />
     </button>
   );
