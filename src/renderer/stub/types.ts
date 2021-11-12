@@ -11,3 +11,10 @@ export type Note = {
   tags: { id: number, name: string }[];
   html: string;
 };
+
+export type SearchCondition = {
+  type: 'IS' | 'INCLUDE' | 'SINCE' | 'UNTIL';
+  op: 'and' | 'or';
+  not: boolean;
+  text: string;
+};
