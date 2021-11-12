@@ -30,7 +30,7 @@ const mainConfig = {
       patterns: [
         { from: 'node_modules/@prisma/engines/libquery_engine-darwin.dylib.node', to: path.resolve(__dirname, 'dist') },
         { from: 'prisma/schema.prisma', to: path.resolve(__dirname, 'dist') },
-        { from: 'prisma/dev.db', to: path.resolve(__dirname, 'dist') },
+        { from: 'prisma/dev.db', to: path.resolve(__dirname, 'dist') }, // TODO: use https://www.npmjs.com/package/webpack-node-externals
       ]
     }),
   ],
