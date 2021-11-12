@@ -1,12 +1,12 @@
 import { Header } from './components/Header';
 import { container } from './style/container';
-import { Content } from './pages/Content';
+import { NotesOfContent } from './pages/NotesOfContent';
 
 export const App = () => {
   return (
     <div css={container}>
       <Header />
-      <Content />
+      <NotesOfContent />
     </div>
   );
 };
