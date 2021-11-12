@@ -12,4 +12,5 @@ export const container: CSSObject = {
   border: `1px solid ${colors.cyan.DEFAULT}`,
   fontSize: font.size.SS,
   color: colors.cyan.DEFAULT,
+  marginRight: '10px',
 };
