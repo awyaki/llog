@@ -13,9 +13,10 @@ export type Note = {
 };
 
 export type SearchCondition = {
+  isVaild: boolean;
   kind: 'NOTE' | 'TAG' | 'CONTENT' | 'DATE';
   type: 'IS' | 'INCLUDE' | 'SINCE' | 'UNTIL';
-  op: 'and' | 'or';
+  op: 'AND' | 'OR';
   not: boolean;
   text: string;
 };
