@@ -12,16 +12,24 @@ import { SearchCondition } from '~/stub/types';
 type Props = {
   conditions: SearchCondition[];
   handleSearchNoteButtonClick: MouseEventHandler<HTMLButtonElement>;
+  handleCreateConditionButtonClick: MouseEventHandler<HTMLButtonElement>;
 };
 
-export const SearchConditions: VFC<Props> = ({ conditions, handleSearchNoteButtonClick }) => {
+export const SearchConditions: VFC<Props> = (
+  { 
+    conditions, 
+    handleSearchNoteButtonClick,
+    handleCreateConditionButtonClick
+  }
+) => {
   return (
     <aside css={container}>
       <CloseButton onClick={handleSearchNoteButtonClick}/>
       <ul>
         {conditions.map((condition) => <li><ConditionCard condition={condition} /></li>)}
       </ul>
-      <CreateConditionButton />
+      <CreateConditionButton 
+        onClick={handleCreateConditionButtonClick} />
     </aside>
   );
 };

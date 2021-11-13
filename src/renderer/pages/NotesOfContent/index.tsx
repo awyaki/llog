@@ -1,4 +1,4 @@
-import { VFC, useState, MouseEventHandler } from 'react';
+import { VFC, useState, MouseEventHandler, useContext } from 'react';
 
 import { container } from './style/container'
 import { title } from './style/title';
@@ -12,7 +12,10 @@ import { CreateNoteButton } from './components/CreateNoteButton'
 import { SearchNoteButton } from './components/SearchNoteButton';
 import { NoteList } from './components/NoteList';
 import { SearchConditions } from './components/SearchConditions';
+import { CreateSearchConditions } from './components/CreateSearchConditions';
 
+
+import { IsExpandModalContext } from '~/components/IsExpandModalProvider';
 
 import { notes } from '~/stub/notes';
 import { SearchCondition } from '~/stub/types';
@@ -22,7 +25,10 @@ const searchConditions: SearchCondition[] = [
   { isVaild: true, kind: 'TAG', type: 'IS', op: 'OR', not: true, text: 'インタープリタ' },
 ];
 
+
 export const NotesOfContent: VFC = () => {
+  const { setIsExpandModal } = useContext(IsExpandModalContext);
+  const [isCreateCondition, setIsCreateCondition] = useState(false);
   const [showConditions, setShowConditions] = useState(false);
 
   const contentName = 'コンパイラ原理と構造';
@@ -32,8 +38,14 @@ export const NotesOfContent: VFC = () => {
     setShowConditions((prev) => !prev);
   };
 
+  const handleCreateConditionsButtonClick: MouseEventHandler<HTMLButtonElement> = () => {
+    setIsExpandModal(true);
+    setIsCreateCondition(true);
+  };
+
   return (
     <div css={container}>
+      {isCreateCondition ? <CreateSearchConditions /> : undefined}
       <main css={showConditions ? mainStyle : {}}>
         <h1 css={title}>{contentName}</h1>
         <TagList tags={tags} />
@@ -48,6 +60,7 @@ export const NotesOfContent: VFC = () => {
         </ul>
       </main>
       {showConditions ? <SearchConditions 
+                          handleCreateConditionButtonClick={handleCreateConditionsButtonClick}
                           conditions={searchConditions} 
                           handleSearchNoteButtonClick={handleSearchNoteButtonClick}/> : undefined}
     </div>
