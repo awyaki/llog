@@ -20,3 +20,8 @@ export type SearchCondition = {
   not: boolean;
   text: string;
 };
+
+export type Tag = {
+  id: number;
+  name: string;
+};
