@@ -1,4 +1,5 @@
 import { VFC, useState, MouseEventHandler, useContext } from 'react';
+import { useDisclosure } from '@chakra-ui/react';
 
 import { container } from './style/container'
 import { title } from './style/title';
@@ -15,7 +16,6 @@ import { SearchConditions } from './components/SearchConditions';
 import { CreateSearchConditions } from './components/CreateSearchConditions';
 
 
-import { IsExpandModalContext } from '~/components/IsExpandModalProvider';
 
 import { notes } from '~/stub/notes';
 import { SearchCondition } from '~/stub/types';
@@ -27,8 +27,7 @@ const searchConditions: SearchCondition[] = [
 
 
 export const NotesOfContent: VFC = () => {
-  const { setIsExpandModal } = useContext(IsExpandModalContext);
-  const [isCreateCondition, setIsCreateCondition] = useState(false);
+  const { isOpen, onClose, onOpen } = useDisclosure();
   const [showConditions, setShowConditions] = useState(false);
 
   const contentName = 'コンパイラ原理と構造';
@@ -38,14 +37,9 @@ export const NotesOfContent: VFC = () => {
     setShowConditions((prev) => !prev);
   };
 
-  const handleCreateConditionsButtonClick: MouseEventHandler<HTMLButtonElement> = () => {
-    setIsExpandModal(true);
-    setIsCreateCondition(true);
-  };
-
   return (
     <div css={container}>
-      {isCreateCondition ? <CreateSearchConditions /> : undefined}
+      <CreateSearchConditions isOpen={isOpen} onClose={onClose} onOverlayClick={onClose} />
       <main css={showConditions ? mainStyle : {}}>
         <h1 css={title}>{contentName}</h1>
         <TagList tags={tags} />
@@ -60,9 +54,9 @@ export const NotesOfContent: VFC = () => {
         </ul>
       </main>
       {showConditions ? <SearchConditions 
-                          handleCreateConditionButtonClick={handleCreateConditionsButtonClick}
+                          handleCreateConditionButtonClick={onOpen}
                           conditions={searchConditions} 
-                          handleSearchNoteButtonClick={handleSearchNoteButtonClick}/> : undefined}
+                          handleSearchNoteButtonClick={handleSearchNoteButtonClick} /> : undefined}
     </div>
   );
 };

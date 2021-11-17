@@ -1,12 +1,35 @@
 import { VFC } from 'react';
 
-import { container } from './style/container';
+import {
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  ModalProps,
+} from "@chakra-ui/react"
 
-import { Backgournd } from './components/Background'
-export const CreateSearchConditions: VFC = () => {
+type Props = Pick<ModalProps, 'isOpen' | 'onClose' | 'onOverlayClick'>;
+
+export const CreateSearchConditions: VFC<Props> = ({ isOpen, onClose }) => {
   return (
-    <div css={container}>
-      <Backgournd />
-    </div>
+    <Modal isOpen={isOpen} onClose={onClose} onOverlayClick={onClose}>
+      <ModalOverlay />
+      <ModalContent>
+        <ModalHeader>
+          This is Modal header
+        </ModalHeader>
+        <ModalBody>
+          <p>Hello world</p>
+        </ModalBody>
+        <ModalFooter>
+          <ModalCloseButton />
+        </ModalFooter>
+      </ModalContent>
+    </Modal>
   );
 };
+
+
