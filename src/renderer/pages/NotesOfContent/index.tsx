@@ -1,4 +1,4 @@
-import { VFC, useState, MouseEventHandler, useContext } from 'react';
+import { VFC, useState, MouseEventHandler } from 'react';
 import { useDisclosure } from '@chakra-ui/react';
 
 import { container } from './style/container'
