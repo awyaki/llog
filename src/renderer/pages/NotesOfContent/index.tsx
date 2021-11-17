@@ -27,36 +27,36 @@ const searchConditions: SearchCondition[] = [
 
 
 export const NotesOfContent: VFC = () => {
-  const { isOpen, onClose, onOpen } = useDisclosure();
-  const [showConditions, setShowConditions] = useState(false);
+  const { isOpen: isModalOpen , onClose: onModalClose, onOpen: onModalOpen } = useDisclosure();
+  const { isOpen: isDrawerOpen, onClose: onDrawerClose, onOpen: onDrawerOpen } = useDisclosure();
 
   const contentName = 'コンパイラ原理と構造';
   const tags = [{ id: 1, name: 'Computer Science' }, { id: 2, name: '計算機科学' }];
-  
-  const handleSearchNoteButtonClick: MouseEventHandler<HTMLButtonElement> = () => {
-    setShowConditions((prev) => !prev);
-  };
 
   return (
     <div css={container}>
-      <CreateSearchConditions isOpen={isOpen} onClose={onClose} onOverlayClick={onClose} />
-      <main css={showConditions ? mainStyle : {}}>
+      <CreateSearchConditions 
+        isOpen={isModalOpen} 
+        onClose={onModalClose} 
+        onOverlayClick={onModalClose} />
+      <main>
         <h1 css={title}>{contentName}</h1>
         <TagList tags={tags} />
         <ul css={buttons}>
           <li><InfoButton /></li>
           <li><CreateNoteButton /></li>
-          <li><SearchNoteButton onClick={handleSearchNoteButtonClick} /></li>
+          <li><SearchNoteButton onClick={onDrawerOpen} /></li>
         </ul>
         <ul css={noteLists}>
           <li><NoteList notes={notes} /></li>
           <li><NoteList notes={notes} /></li>
         </ul>
       </main>
-      {showConditions ? <SearchConditions 
-                          handleCreateConditionButtonClick={onOpen}
-                          conditions={searchConditions} 
-                          handleSearchNoteButtonClick={handleSearchNoteButtonClick} /> : undefined}
+      <SearchConditions 
+        isOpen={isDrawerOpen}
+        onClose={onDrawerClose}
+        handleCreateConditionButtonClick={onModalOpen}
+        conditions={searchConditions} />
     </div>
   );
 };

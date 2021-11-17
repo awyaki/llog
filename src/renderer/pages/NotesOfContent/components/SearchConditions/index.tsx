@@ -1,35 +1,46 @@
 import { VFC, MouseEventHandler } from 'react';
 
-import { container } from './style/container';
+import {
+  Drawer,
+  DrawerBody,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerOverlay,
+  DrawerContent,
+  DrawerCloseButton,
+  DrawerProps,
+} from "@chakra-ui/react"
 
-import { CloseButton } from './components/CloseButton';
+
 import { ConditionCard } from './components/ConditionCard';
 import { CreateConditionButton } from './components/CreateConditionButton';
 
 
 import { SearchCondition } from '~/stub/types';
 
-type Props = {
+type Props = Pick<DrawerProps, 'isOpen' | 'onClose'> & {
   conditions: SearchCondition[];
-  handleSearchNoteButtonClick: MouseEventHandler<HTMLButtonElement>;
   handleCreateConditionButtonClick: MouseEventHandler<HTMLButtonElement>;
 };
 
 export const SearchConditions: VFC<Props> = (
   { 
     conditions, 
-    handleSearchNoteButtonClick,
-    handleCreateConditionButtonClick
+    handleCreateConditionButtonClick,
+    isOpen,
+    onClose,
   }
 ) => {
   return (
-    <aside css={container}>
-      <CloseButton onClick={handleSearchNoteButtonClick}/>
-      <ul>
-        {conditions.map((condition) => <li><ConditionCard condition={condition} /></li>)}
-      </ul>
-      <CreateConditionButton 
-        onClick={handleCreateConditionButtonClick} />
-    </aside>
+    <Drawer isOpen={isOpen} onClose={onClose} blockScrollOnMount={false}>
+      <DrawerCloseButton />
+      <DrawerContent>
+        <ul>
+          {conditions.map((condition) => <li><ConditionCard condition={condition} /></li>)}
+        </ul>
+        <CreateConditionButton 
+          onClick={handleCreateConditionButtonClick} />
+      </DrawerContent>
+    </Drawer>
   );
 };
