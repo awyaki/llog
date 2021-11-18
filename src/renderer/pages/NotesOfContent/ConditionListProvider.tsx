@@ -8,7 +8,7 @@ type Context = {
   dispatch: Dispatch<Action>;
 };
 const ConditionListStateContext = createContext<Context>({ conditionList: [], dispatch: () => {} });
-export const ConditionListProvider: FC = ({ children }) => {
+const ConditionListProvider: FC = ({ children }) => {
   const [conditionList, dispatch] = useConditionList();
   return (
     <ConditionListStateContext.Provider value={{ conditionList: conditionList, dispatch: dispatch }}>
@@ -16,3 +16,5 @@ export const ConditionListProvider: FC = ({ children }) => {
     </ConditionListStateContext.Provider>
   );
 };
+
+export { ConditionListStateContext, ConditionListProvider };
