@@ -3,13 +3,13 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import 'destyle.css';
 import { App } from './App';
-import { IsExpandModalProvider } from './components/IsExpandModalProvider';
+import { ChakraProvider } from '@chakra-ui/react';
 
 ReactDOM.render(
   <React.StrictMode>
-    <IsExpandModalProvider>
+    <ChakraProvider>
       <App />
-    </IsExpandModalProvider>
+    </ChakraProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
