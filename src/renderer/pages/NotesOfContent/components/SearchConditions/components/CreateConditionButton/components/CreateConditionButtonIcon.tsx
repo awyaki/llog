@@ -11,7 +11,7 @@ export const CreateConditionButtonIcon: VFC = () => {
                             <circle id="Oval" stroke="#0590A7" cx="25.5" cy="25.5" r="25"></circle>
                             <g id="add_black_24dp" transform="translate(14.000000, 14.000000)">
                                 <polygon id="Path" points="0 0 24 0 24 24 0 24"></polygon>
-                                <polygon id="Path" fill="#0590A7" fill-rule="nonzero" points="19 13 13 13 13 19 11 19 11 13 5 13 5 11 11 11 11 5 13 5 13 11 19 11"></polygon>
+                                <polygon id="Path" fill="#0590A7" fillRule="nonzero" points="19 13 13 13 13 19 11 19 11 13 5 13 5 11 11 11 11 5 13 5 13 11 19 11"></polygon>
                             </g>
                         </g>
                     </g>
