@@ -8,6 +8,10 @@ type State = {
 
 export type Action = {
   type: 'MODAL/CREATE';
+} | {
+  type: 'MODAL/CHAGE_SUBJECT',
+  id: number,
+  newSubject: Condition['subject'],
 };
 
 
@@ -17,8 +21,23 @@ const reducer: Reducer<State, Action> = (state, action) => {
       const newId = state.createConditions.map((cond) => cond.id).reduce((acc, cur) => Math.max(acc, cur), 0) + 1;
       
       return {
-        createConditions: state.createConditions.concat({ id: newId, operator: 'AND', subject: '', predicate: '', input: '' }),
+        createConditions: state.createConditions.concat({ id: newId, operator: 'AND', subject: '', not: false, predicate: '', input: '' }),
         currentConditions: state.currentConditions, 
+      };
+    }
+
+    case 'MODAL/CHAGE_SUBJECT': {
+      const { createConditions, currentConditions } = state;
+      const newCurrentConditions = [...currentConditions];
+      const index = createConditions.findIndex(({ id }) => action.id === id);
+      const { subject, ...rest } = createConditions[index];
+      const newCreateCondtion = createConditions
+                                  .slice(0, index)
+                                  .concat({ subject: action.newSubject, ...rest })
+                                  .concat(createConditions.slice(index+1));
+      return {
+        createConditions: newCreateCondtion,
+        currentConditions: newCurrentConditions,
       };
     }
   }

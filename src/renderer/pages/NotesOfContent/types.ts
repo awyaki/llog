@@ -5,6 +5,7 @@ type Operators = 'AND' | 'OR';
 type Condition = {
   id: number; // ConditionListコンポーネント内のみで使用するid。自動採番しやすいようにnumber型を採用
   operator: Operators;
+  not: boolean;
   subject: Subject;
   predicate: Predicate;
   input: Input;
