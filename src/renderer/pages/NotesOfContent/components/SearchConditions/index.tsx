@@ -32,7 +32,7 @@ export const SearchConditions: VFC<Props> = (
       <DrawerCloseButton />
       <DrawerContent>
         <ul>
-          {conditions.map((condition) => <li key={Date.now()}><ConditionCard condition={condition} /></li>)}
+          {conditions.map((condition) => <li key={condition.id}><ConditionCard condition={condition} /></li>)}
         </ul>
         <CreateConditionButton 
           onClick={handleCreateConditionButtonClick} />

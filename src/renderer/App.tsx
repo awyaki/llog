@@ -1,15 +1,13 @@
-import { VFC, useContext } from 'react';
-import { IsExpandModalContext } from './components/IsExpandModalProvider';
+import { VFC } from 'react';
 import { Header } from './components/Header';
-import { container } from './style/container';
 import { NotesOfContent } from './pages/NotesOfContent';
+import { Box } from '@chakra-ui/react';
 
 export const App: VFC = () => {
-  const { isExpandModal } = useContext(IsExpandModalContext);
   return (
-    <div css={{ ...container, overflow: isExpandModal ? 'hidden' : 'visible' }}>
+    <Box>
       <Header />
       <NotesOfContent />
-    </div>
+    </Box>
   );
 };
