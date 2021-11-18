@@ -13,6 +13,7 @@ export type Note = {
 };
 
 export type SearchCondition = {
+  id: string;
   isVaild: boolean;
   kind: 'NOTE' | 'TAG' | 'CONTENT' | 'DATE';
   type: 'IS' | 'INCLUDE' | 'SINCE' | 'UNTIL';
