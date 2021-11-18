@@ -13,7 +13,7 @@ type Props = {
 export const NoteList: VFC<Props> = ({ notes }) => { 
   return (
     <ul css={container}>
-      {notes.map((note) => <li key={Date.now()}><Note note={note} /></li>)}
+      {notes.map((note) => <li key={note.id}><Note note={note} /></li>)}
     </ul>
   );
 };
