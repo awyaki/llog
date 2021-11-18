@@ -3,7 +3,7 @@ import { VFC, Dispatch } from 'react';
 import { VStack } from '@chakra-ui/react';
 
 import { Condition } from '~/pages/NotesOfContent/types';
-import { Action } from '../../hooks/useConditionList';
+import { Action } from '~/pages/NotesOfContent/hooks/useConditions'
 
 import { ConditionItem } from './components/ConditionItem';
 

@@ -1,5 +1,7 @@
 import { VFC } from 'react';
 import { useDisclosure } from '@chakra-ui/react';
+import { useConditions } from './hooks/useConditions';
+
 import { Box } from '@chakra-ui/react';
 
 import { container } from './style/container'
@@ -31,6 +33,7 @@ const searchConditions: SearchCondition[] = [
 
 
 export const NotesOfContent: VFC = () => {
+  const [{ createConditions, currentConditions }, dispatch] = useConditions();
   const { isOpen: isModalOpen , onClose: onModalClose, onOpen: onModalOpen } = useDisclosure();
   const { isOpen: isDrawerOpen, onClose: onDrawerClose, onOpen: onDrawerOpen } = useDisclosure();
 
@@ -42,7 +45,10 @@ export const NotesOfContent: VFC = () => {
           <CreateSearchConditions 
             isOpen={isModalOpen} 
             onClose={onModalClose} 
-            onOverlayClick={onModalClose} />
+            onOverlayClick={onModalClose}
+            createCondtions={createConditions}
+            dispatch={dispatch}
+            />
           <Box>
             <h1 css={title}>{contentName}</h1>
             <TagList tags={tags} />

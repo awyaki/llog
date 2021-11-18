@@ -1,6 +1,6 @@
 import { VFC, ChangeEventHandler, Dispatch } from 'react';
 
-import { Action } from '../../../../hooks/useConditionList';
+import { Action } from '~/pages/NotesOfContent/hooks/useConditions';
 
 import {
   Select,
@@ -75,16 +75,13 @@ type Props = {
 export const ConditionItem: VFC<Props> = ({ condition, dispatch }) => {
   const { id, operator, subject, predicate, input } = condition;
   
-  const handleSubjectChange: ChangeEventHandler<HTMLSelectElement> = (e) => {
-    dispatch({ type: 'CONDITION_CREATE_MODAL/CHANGE_SUBJECT', id: id, subject: (e.target.value as Subject)});
-  };
 
   return (
     <HStack>
       {operator === 'AND' 
         ? <Button>AND</Button>
         : <Button>OR</Button>}
-      <Select placeholder="select subject" value={subject} onChange={handleSubjectChange}>
+      <Select placeholder="select subject" value={subject} onChange={() => {}}>
         <option>Note</option>
         <option>Tag</option>
         <option>Date</option>

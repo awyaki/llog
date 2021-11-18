@@ -1,7 +1,7 @@
-import { VFC, useContext } from 'react';
+import { VFC, Dispatch } from 'react';
 
-
-import { useConditionList } from './hooks/useConditionList';
+import { Condition } from '../../types';
+import { Action } from '~/pages/NotesOfContent/hooks/useConditions';
 
 import { ConditionList } from './components/ConditionList';
 
@@ -20,31 +20,40 @@ import {
 } from "@chakra-ui/react"
 
 
-type Props = Pick<ModalProps, 'isOpen' | 'onClose' | 'onOverlayClick'>;
+type Props = Pick<ModalProps, 'isOpen' | 'onClose' | 'onOverlayClick'> & { createCondtions: Condition[], dispatch: Dispatch<Action> };
 
-export const CreateSearchConditions: VFC<Props> = ({ isOpen, onClose }) => {
-  const [conditionList, dispatch] = useConditionList();
+export const CreateSearchConditions: VFC<Props> = ({ 
+  isOpen, 
+  onClose, 
+  createCondtions,
+  dispatch
+}) => {
+
+  const createCondition = () => {
+    dispatch({ type: 'MODAL/CREATE' });
+  };
+
   return (
-        <Modal isOpen={isOpen} onClose={onClose} onOverlayClick={onClose}>
-          <ModalOverlay />
-          <ModalContent>
-            <ModalHeader>
-              Create conditions
-            </ModalHeader>
-            <ModalBody>
-              <FormControl>
-                <VStack>
-                  <ConditionList conditionList={conditionList} dispatch={dispatch} />
-                </VStack>
-              </FormControl>
-            </ModalBody>
-            <ModalFooter>
-              <Button mr="16px" onClick={() => { dispatch({ type: 'CONDITION_CREATE_MODAL/CREATE' }); console.log('click'); }}>New</Button>
-              <Button>OK</Button>
-              <ModalCloseButton />
-            </ModalFooter>
-          </ModalContent>
-        </Modal>
+      <Modal isOpen={isOpen} onClose={onClose} onOverlayClick={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>
+            Create conditions
+          </ModalHeader>
+          <ModalBody>
+            <FormControl>
+              <VStack>
+                <ConditionList conditionList={createCondtions} dispatch={dispatch} />
+              </VStack>
+            </FormControl>
+          </ModalBody>
+          <ModalFooter>
+            <Button mr="16px" onClick={createCondition}>New</Button>
+            <Button>OK</Button>
+            <ModalCloseButton />
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
   );
 };
 
