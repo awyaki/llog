@@ -3,7 +3,7 @@ type Predicate = '' | 'IS' | 'INCLUDE' | 'IS SINCE' | 'IS UNTIL';
 type Input = string;
 type Operators = 'AND' | 'OR';
 type Condition = {
-  id: string;
+  id: number; // ConditionListコンポーネント内のみで使用するid。自動採番しやすいようにnumber型を採用
   operator: Operators;
   subject: Subject;
   predicate: Predicate;
