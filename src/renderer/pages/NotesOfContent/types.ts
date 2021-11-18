@@ -3,6 +3,7 @@ type Predicate = '' | 'IS' | 'INCLUDE' | 'IS SINCE' | 'IS UNTIL';
 type Input = string;
 type Operators = 'AND' | 'OR';
 type Condition = {
+  id: string;
   operator: Operators;
   subject: Subject;
   predicate: Predicate;
