@@ -9,6 +9,7 @@ import {
   Button,
 } from "@chakra-ui/react"
 
+
 import { Subject, Predicate, Condition } from '~/pages/NotesOfContent/types';
 import { Tag } from '~/stub/types';
 type GetPredicate = {
@@ -75,13 +76,16 @@ type Props = {
 export const ConditionItem: VFC<Props> = ({ condition, dispatch }) => {
   const { id, operator, subject, predicate, input } = condition;
   
+  const handleChangeSubject: ChangeEventHandler<HTMLSelectElement> = (e) => {
+    dispatch({ type: 'MODAL/CHAGE_SUBJECT', id: id, newSubject: (e.target.value as Condition['subject']) });
+  };
 
   return (
     <HStack>
       {operator === 'AND' 
         ? <Button>AND</Button>
         : <Button>OR</Button>}
-      <Select placeholder="select subject" value={subject} onChange={() => {}}>
+      <Select placeholder="select subject" value={subject} onChange={handleChangeSubject}>
         <option>Note</option>
         <option>Tag</option>
         <option>Date</option>
