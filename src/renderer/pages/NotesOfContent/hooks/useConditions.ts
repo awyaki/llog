@@ -26,6 +26,8 @@ export type Action = {
   type: 'MODAL/CHANGE_PREDICATE',
   id: number;
   newPredicate: Condition['predicate'];
+} | {
+  type: 'MODAL/DELETE_ALL';
 };
 
 
@@ -111,6 +113,15 @@ const reducer: Reducer<State, Action> = (state, action) => {
         createConditions: newCreateCondition,
         currentConditions: newCurrentConditions,
       };
+    }
+
+    case 'MODAL/DELETE_ALL': {
+      const { currentConditions } = state;
+      const newCurrentConditions = [...currentConditions];
+      return {
+        createConditions: [],
+        currentConditions: newCurrentConditions,
+      }
     }
   }
 };
