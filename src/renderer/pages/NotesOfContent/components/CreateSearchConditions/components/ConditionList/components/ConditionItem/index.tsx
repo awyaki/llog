@@ -99,6 +99,7 @@ export const ConditionItem: VFC<Props> = ({ condition, dispatch }) => {
     dispatch({ type: 'MODAL/CHANGE_INPUT', id: id, newInput: e.target.value });
   };
 
+  
   return (
     <HStack width="100%">
       <Button onClick={handleToggleOperator}>{operator}</Button>

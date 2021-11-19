@@ -33,11 +33,16 @@ export const CreateSearchConditions: VFC<Props> = ({
     dispatch({ type: 'MODAL/CREATE' });
   };
 
+  const handleCloseAndDeleteAllCondition = () => {
+    onClose();
+    dispatch({ type: 'MODAL/DELETE_ALL' });
+  };
+
   return (
       <Modal 
         isOpen={isOpen} 
-        onClose={onClose} 
-        onOverlayClick={onClose}>
+        onClose={handleCloseAndDeleteAllCondition} 
+        onOverlayClick={handleCloseAndDeleteAllCondition}>
         <ModalOverlay />
         <ModalContent minW="800px">
           <ModalHeader>
@@ -53,7 +58,7 @@ export const CreateSearchConditions: VFC<Props> = ({
           <ModalFooter>
             <Button mr="16px" onClick={createCondition}>New</Button>
             <Button>OK</Button>
-            <ModalCloseButton />
+            <ModalCloseButton onClick={handleCloseAndDeleteAllCondition}/>
           </ModalFooter>
         </ModalContent>
       </Modal>
