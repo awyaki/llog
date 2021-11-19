@@ -74,7 +74,7 @@ type Props = {
   dispatch: Dispatch<Action>;
 };
 export const ConditionItem: VFC<Props> = ({ condition, dispatch }) => {
-  const { id, operator, subject, predicate, input } = condition;
+  const { id, operator, subject, not, predicate, input } = condition;
   
   const handleChangeSubject: ChangeEventHandler<HTMLSelectElement> = (e) => {
     dispatch({ type: 'MODAL/CHAGE_SUBJECT', id: id, newSubject: (e.target.value as Condition['subject']) });
@@ -82,14 +82,13 @@ export const ConditionItem: VFC<Props> = ({ condition, dispatch }) => {
 
   return (
     <HStack>
-      {operator === 'AND' 
-        ? <Button>AND</Button>
-        : <Button>OR</Button>}
+      <Button>{operator}</Button>
       <Select placeholder="select subject" value={subject} onChange={handleChangeSubject}>
         <option>Note</option>
         <option>Tag</option>
         <option>Date</option>
       </Select>
+      <Button>not</Button>
       <GetPredicate 
         subject={subject}
         predicate={predicate}
