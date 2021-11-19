@@ -94,6 +94,10 @@ export const ConditionItem: VFC<Props> = ({ condition, dispatch }) => {
     dispatch({ type: 'MODAL/CHANGE_PREDICATE', id: id, newPredicate: (e.target.value as Condition['predicate']) });
   };
 
+  const handleChangeInput: ChangeEventHandler<HTMLInputElement> = (e) => {
+    dispatch({ type: 'MODAL/CHANGE_INPUT', id: id, newInput: e.target.value });
+  };
+
   return (
     <HStack>
       <Button onClick={handleToggleOperator}>{operator}</Button>
@@ -112,7 +116,7 @@ export const ConditionItem: VFC<Props> = ({ condition, dispatch }) => {
         subject={subject} 
         tags={tags} 
         input={input} 
-        onChange={() => {}}
+        onChange={handleChangeInput}
       />
       <Button onClick={handleDelete}>
         <CloseIcon />

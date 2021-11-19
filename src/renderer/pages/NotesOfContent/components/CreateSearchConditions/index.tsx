@@ -34,7 +34,10 @@ export const CreateSearchConditions: VFC<Props> = ({
   };
 
   return (
-      <Modal isOpen={isOpen} onClose={onClose} onOverlayClick={onClose}>
+      <Modal 
+        isOpen={isOpen} 
+        onClose={onClose} 
+        onOverlayClick={onClose}>
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>
