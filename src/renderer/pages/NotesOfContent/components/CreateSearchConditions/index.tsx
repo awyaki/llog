@@ -39,7 +39,7 @@ export const CreateSearchConditions: VFC<Props> = ({
         onClose={onClose} 
         onOverlayClick={onClose}>
         <ModalOverlay />
-        <ModalContent>
+        <ModalContent minW="800px">
           <ModalHeader>
             Create conditions
           </ModalHeader>

@@ -95,11 +95,12 @@ export const ConditionItem: VFC<Props> = ({ condition, dispatch }) => {
   };
 
   const handleChangeInput: ChangeEventHandler<HTMLInputElement> = (e) => {
+    console.log(e.target.value);
     dispatch({ type: 'MODAL/CHANGE_INPUT', id: id, newInput: e.target.value });
   };
 
   return (
-    <HStack>
+    <HStack width="100%">
       <Button onClick={handleToggleOperator}>{operator}</Button>
       <Select placeholder="select subject" value={subject} onChange={handleChangeSubject}>
         <option>Note</option>
