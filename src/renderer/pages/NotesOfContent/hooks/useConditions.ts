@@ -127,7 +127,7 @@ const reducer: Reducer<State, Action> = (state, action) => {
 };
 
 const initialState: State = {
-  createConditions: [{ id: 0, operator: 'AND', subject: '', not: false, predicate: '', input: '' }],
+  createConditions: [],
   currentConditions: [],
 };
 export const useConditions = () => useReducer(reducer, initialState);
