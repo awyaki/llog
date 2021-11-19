@@ -9,9 +9,12 @@ type State = {
 export type Action = {
   type: 'MODAL/CREATE';
 } | {
-  type: 'MODAL/CHAGE_SUBJECT',
+  type: 'MODAL/CHAGE_SUBJECT';
   id: number,
-  newSubject: Condition['subject'],
+  newSubject: Condition['subject'];
+} | {
+  type: 'MODAL/TOGGLE_OPERATOR';
+  id: number;
 };
 
 
@@ -37,6 +40,21 @@ const reducer: Reducer<State, Action> = (state, action) => {
                                   .concat(createConditions.slice(index+1));
       return {
         createConditions: newCreateCondtion,
+        currentConditions: newCurrentConditions,
+      };
+    }
+    case 'MODAL/TOGGLE_OPERATOR': {
+      const { createConditions, currentConditions } = state;
+      const newCurrentConditions = [...currentConditions];
+      const index = createConditions.findIndex(({ id }) => action.id === id);
+      const { operator, ...rest } = createConditions[index];
+      const newOperator = operator === 'AND' ? 'OR' : 'AND';
+      const newCreateConditions = createConditions
+                                    .slice(0, index)
+                                    .concat({ operator: newOperator, ...rest })
+                                    .concat(createConditions.slice(index + 1));
+      return {
+        createConditions: newCreateConditions,
         currentConditions: newCurrentConditions,
       };
     }

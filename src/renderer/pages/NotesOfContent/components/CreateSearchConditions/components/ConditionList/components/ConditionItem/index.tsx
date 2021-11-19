@@ -1,4 +1,4 @@
-import { VFC, ChangeEventHandler, Dispatch } from 'react';
+import { VFC, ChangeEventHandler, Dispatch, MouseEventHandler } from 'react';
 
 import { Action } from '~/pages/NotesOfContent/hooks/useConditions';
 
@@ -76,13 +76,17 @@ type Props = {
 export const ConditionItem: VFC<Props> = ({ condition, dispatch }) => {
   const { id, operator, subject, not, predicate, input } = condition;
   
+  const handleToggleOperator: MouseEventHandler<HTMLButtonElement> = () => {
+    dispatch({ type: 'MODAL/TOGGLE_OPERATOR', id: id });
+  };
+
   const handleChangeSubject: ChangeEventHandler<HTMLSelectElement> = (e) => {
     dispatch({ type: 'MODAL/CHAGE_SUBJECT', id: id, newSubject: (e.target.value as Condition['subject']) });
   };
 
   return (
     <HStack>
-      <Button>{operator}</Button>
+      <Button onClick={handleToggleOperator}>{operator}</Button>
       <Select placeholder="select subject" value={subject} onChange={handleChangeSubject}>
         <option>Note</option>
         <option>Tag</option>
