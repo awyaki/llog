@@ -3,7 +3,7 @@ import { Condition } from '../types';
 
 type State = {
   createConditions: Condition[];
-  currentConditions: (Condition & { isVaild: boolean })[];
+  currentConditions: (Condition & { isValid: boolean })[];
 };
 
 export type Action = {
