@@ -1,5 +1,7 @@
 import { VFC, ChangeEventHandler, Dispatch, MouseEventHandler } from 'react';
 
+import { CloseIcon } from '~/components/CloseIcon';
+
 import { Action } from '~/pages/NotesOfContent/hooks/useConditions';
 
 import {
@@ -84,6 +86,14 @@ export const ConditionItem: VFC<Props> = ({ condition, dispatch }) => {
     dispatch({ type: 'MODAL/CHAGE_SUBJECT', id: id, newSubject: (e.target.value as Condition['subject']) });
   };
 
+  const handleDelete = () => {
+    dispatch({ type: 'MODAL/DELETE_CONDITION', id: id });
+  };
+
+  const handleChangePredicate: ChangeEventHandler<HTMLSelectElement> = (e) => {
+    dispatch({ type: 'MODAL/CHANGE_PREDICATE', id: id, newPredicate: (e.target.value as Condition['predicate']) });
+  };
+
   return (
     <HStack>
       <Button onClick={handleToggleOperator}>{operator}</Button>
@@ -96,7 +106,7 @@ export const ConditionItem: VFC<Props> = ({ condition, dispatch }) => {
       <GetPredicate 
         subject={subject}
         predicate={predicate}
-        onChange={() => {}}
+        onChange={handleChangePredicate}
       />
       <GetInput 
         subject={subject} 
@@ -104,6 +114,9 @@ export const ConditionItem: VFC<Props> = ({ condition, dispatch }) => {
         input={input} 
         onChange={() => {}}
       />
+      <Button onClick={handleDelete}>
+        <CloseIcon />
+      </Button>
     </HStack>
   );
 };

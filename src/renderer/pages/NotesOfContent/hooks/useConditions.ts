@@ -15,6 +15,17 @@ export type Action = {
 } | {
   type: 'MODAL/TOGGLE_OPERATOR';
   id: number;
+} | {
+  type: 'MODAL/DELETE_CONDITION';
+  id: number;
+} | {
+  type: 'MODAL/CHANGE_INPUT';
+  id: number;
+  newInput: string;
+} | {
+  type: 'MODAL/CHANGE_PREDICATE',
+  id: number;
+  newPredicate: Condition['predicate'];
 };
 
 
@@ -55,6 +66,49 @@ const reducer: Reducer<State, Action> = (state, action) => {
                                     .concat(createConditions.slice(index + 1));
       return {
         createConditions: newCreateConditions,
+        currentConditions: newCurrentConditions,
+      };
+    }
+
+    case 'MODAL/DELETE_CONDITION': {
+      const { createConditions, currentConditions } = state;
+      const newCurrentConditions = [...currentConditions];
+      const index = createConditions.findIndex(({ id }) => action.id === id);
+      const newCreateCondition = createConditions
+                                  .slice(0, index)
+                                  .concat(createConditions.slice(index+1));
+      return {
+        createConditions: newCreateCondition,
+        currentConditions: newCurrentConditions,
+      };
+    }
+
+    case 'MODAL/CHANGE_INPUT': {
+      const { createConditions, currentConditions } = state;
+      const newCurrentConditions = [...currentConditions];
+      const index = createConditions.findIndex(({ id }) => action.id === id);
+      const { input, ...rest } = createConditions[index];
+      const newCreateCondition = createConditions
+                                  .slice(0, index)
+                                  .concat({ input: action.newInput, ...rest })
+                                  .concat(createConditions.slice(index+1));
+      return {
+        createConditions: newCreateCondition,
+        currentConditions: newCurrentConditions,
+      };
+    }
+
+    case 'MODAL/CHANGE_PREDICATE': {
+      const { createConditions, currentConditions } = state;
+      const newCurrentConditions = [...currentConditions];
+      const index = createConditions.findIndex(({ id }) => action.id === id);
+      const { predicate, ...rest } = createConditions[index];
+      const newCreateCondition = createConditions
+                                  .slice(0, index)
+                                  .concat({ predicate: action.newPredicate, ...rest })
+                                  .concat(createConditions.slice(index+1));
+      return {
+        createConditions: newCreateCondition,
         currentConditions: newCurrentConditions,
       };
     }
