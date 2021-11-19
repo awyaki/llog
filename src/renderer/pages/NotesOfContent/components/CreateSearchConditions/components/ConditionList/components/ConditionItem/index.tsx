@@ -62,7 +62,7 @@ const GetInput: VFC<GetInput> = ({ subject, tags, input, onChange }) => {
     case 'Note':
       return <Input value={input} onChange={onChange} />;
     case 'Date':
-      return <Input value={input} onChange={onChange} />;
+      return <Input type="date" value={input} onChange={onChange} />;
     default:
       return <Input value="" disabled />;
   }
