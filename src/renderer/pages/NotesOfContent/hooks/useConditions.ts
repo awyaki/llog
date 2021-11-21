@@ -16,6 +16,9 @@ export type Action = {
   type: 'MODAL/TOGGLE_OPERATOR';
   id: number;
 } | {
+  type: 'MODAL/TOGGLE_NOT';
+  id: number;
+} | {
   type: 'MODAL/DELETE_CONDITION';
   id: number;
 } | {
@@ -122,6 +125,21 @@ const reducer: Reducer<State, Action> = (state, action) => {
         createConditions: [],
         currentConditions: newCurrentConditions,
       }
+    }
+
+    case 'MODAL/TOGGLE_NOT': {
+      const { currentConditions, createConditions } = state;
+      const newCurrentConditions = [...currentConditions];
+      const index = createConditions.findIndex(({ id }) => action.id === id);
+      const { not, ...rest } = createConditions[index];
+      const newCreateConditions = createConditions
+                                    .slice(0, index)
+                                    .concat({ not: !not, ...rest })
+                                    .concat(createConditions.slice(index+1));
+      return {
+        createConditions: newCreateConditions, 
+        currentConditions: newCurrentConditions,
+      };
     }
   }
 };
