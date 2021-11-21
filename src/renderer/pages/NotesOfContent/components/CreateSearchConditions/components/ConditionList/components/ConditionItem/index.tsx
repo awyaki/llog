@@ -98,7 +98,10 @@ export const ConditionItem: VFC<Props> = ({ condition, dispatch }) => {
     console.log(e.target.value);
     dispatch({ type: 'MODAL/CHANGE_INPUT', id: id, newInput: e.target.value });
   };
-
+  
+  const handleToggleNot = () => {
+    dispatch({ type: 'MODAL/TOGGLE_NOT', id: id });
+  };
   
   return (
     <HStack width="100%">
@@ -108,7 +111,12 @@ export const ConditionItem: VFC<Props> = ({ condition, dispatch }) => {
         <option>Tag</option>
         <option>Date</option>
       </Select>
-      <Button>not</Button>
+      <Button 
+        variant={not ? 'active-not-operator' : 'non-active-not-operator'}
+        onClick={handleToggleNot}
+      >
+        NOT
+      </Button>
       <GetPredicate 
         subject={subject}
         predicate={predicate}

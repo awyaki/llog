@@ -1,9 +1,9 @@
 import { useReducer, Reducer } from 'react';
-import { Condition } from '../types';
+import { Condition, ConditionWithIsValid } from '../types';
 
 type State = {
   createConditions: Condition[];
-  currentConditions: (Condition & { isValid: boolean })[];
+  currentConditions: ConditionWithIsValid[];
 };
 
 export type Action = {
@@ -31,6 +31,8 @@ export type Action = {
   newPredicate: Condition['predicate'];
 } | {
   type: 'MODAL/DELETE_ALL';
+} | {
+  type: 'DRAWER/CREATE',
 };
 
 
@@ -138,6 +140,21 @@ const reducer: Reducer<State, Action> = (state, action) => {
                                     .concat(createConditions.slice(index+1));
       return {
         createConditions: newCreateConditions, 
+        currentConditions: newCurrentConditions,
+      };
+    }
+
+    case 'DRAWER/CREATE': {
+      const { currentConditions, createConditions } = state;
+      const newCurrentConditions = currentConditions.concat([...createConditions]
+                                      .map((condition) => { 
+                                            return { 
+                                              isValid: true, 
+                                              ...condition }
+                                      }));
+
+      return {
+        createConditions: [],
         currentConditions: newCurrentConditions,
       };
     }

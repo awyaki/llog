@@ -38,6 +38,11 @@ export const CreateSearchConditions: VFC<Props> = ({
     dispatch({ type: 'MODAL/DELETE_ALL' });
   };
 
+  const handleCreateSearchCondtion = () => {
+    onClose();
+    dispatch({ type: 'DRAWER/CREATE' });
+  };
+
   return (
       <Modal 
         isOpen={isOpen} 
@@ -57,7 +62,7 @@ export const CreateSearchConditions: VFC<Props> = ({
           </ModalBody>
           <ModalFooter>
             <Button mr="16px" onClick={createCondition}>New</Button>
-            <Button>OK</Button>
+            <Button onClick={handleCreateSearchCondtion}>OK</Button>
             <ModalCloseButton onClick={handleCloseAndDeleteAllCondition}/>
           </ModalFooter>
         </ModalContent>

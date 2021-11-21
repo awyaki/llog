@@ -11,4 +11,6 @@ type Condition = {
   input: Input;
 };
 
-export type { Subject, Predicate, Input, Operators, Condition };
+type ConditionWithIsValid = Condition & { isValid: boolean };
+
+export type { Subject, Predicate, Input, Operators, Condition, ConditionWithIsValid };

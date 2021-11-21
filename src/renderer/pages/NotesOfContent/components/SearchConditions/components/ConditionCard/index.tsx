@@ -10,10 +10,10 @@ import { NotSwitch } from './components/NotSwitch';
 import { ConditionSwitch } from './components/ConditionSwitch';
 import { ConditionBody } from './components/ConditionBody';
 
-import { SearchCondition } from '~/stub/types';
+import { ConditionWithIsValid } from '~/pages/NotesOfContent/types';
 
 type Props = {
-  condition: SearchCondition;
+  condition: ConditionWithIsValid;
 };
 
 export const ConditionCard: VFC<Props> = ({ condition }) => {
@@ -21,7 +21,7 @@ export const ConditionCard: VFC<Props> = ({ condition }) => {
     <div css={container}>
       <div css={buttons}>
         <div>
-          <OpSwitch op={condition.op} />
+          <OpSwitch op={condition.operator} />
           <NotSwitch isOn={condition.not} />
         </div>
         <DeleteButton />

@@ -3,6 +3,8 @@ import { VFC, MouseEventHandler } from 'react';
 import {
   Drawer,
   DrawerContent,
+  DrawerFooter,
+  DrawerHeader,
   DrawerCloseButton,
   DrawerProps,
 } from "@chakra-ui/react"
@@ -12,10 +14,10 @@ import { ConditionCard } from './components/ConditionCard';
 import { CreateConditionButton } from './components/CreateConditionButton';
 
 
-import { SearchCondition } from '~/stub/types';
+import { ConditionWithIsValid } from '~/pages/NotesOfContent/types';
 
 type Props = Pick<DrawerProps, 'isOpen' | 'onClose'> & {
-  conditions: SearchCondition[];
+  conditions: ConditionWithIsValid[];
   handleCreateConditionButtonClick: MouseEventHandler<HTMLButtonElement>;
 };
 
@@ -31,11 +33,16 @@ export const SearchConditions: VFC<Props> = (
     <Drawer isOpen={isOpen} onClose={onClose} blockScrollOnMount={false}>
       <DrawerCloseButton />
       <DrawerContent>
+        <DrawerHeader>
+          Search Conditions
+        </DrawerHeader>
         <ul>
           {conditions.map((condition) => <li key={condition.id}><ConditionCard condition={condition} /></li>)}
         </ul>
-        <CreateConditionButton 
-          onClick={handleCreateConditionButtonClick} />
+        <DrawerFooter>
+          <CreateConditionButton 
+            onClick={handleCreateConditionButtonClick} />
+        </DrawerFooter>
       </DrawerContent>
     </Drawer>
   );

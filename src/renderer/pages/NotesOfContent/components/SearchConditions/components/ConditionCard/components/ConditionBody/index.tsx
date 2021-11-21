@@ -2,26 +2,20 @@ import { VFC } from 'react';
 
 import { Tag } from './components/Tag';
 
-import { SearchCondition } from '~/stub/types';
+import { ConditionWithIsValid } from '~/pages/NotesOfContent/types';
 
 type Props = {
-  condition: SearchCondition;
+  condition: ConditionWithIsValid;
 };
 
-const desc: { [k in SearchCondition['type']]: string } = {
-  'IS': 'is',
-  'INCLUDE': 'include',
-  'SINCE': 'since',
-  'UNTIL': 'until',
-};
 
 
 export const ConditionBody: VFC<Props> = ({ condition }) => {
-  const { kind, type, text } = condition;
-  switch (kind) {
-    case 'TAG':
-      return <>{desc[type]}<Tag name={text}/></>;
+  const { subject, predicate, input } = condition;
+  switch (subject) {
+    case 'Tag':
+      return <>{predicate}<Tag name={input}/></>;
     default:
-      return <>{desc[type]} {text}</>;
+      return <>{predicate} {input}</>;
   }
 };

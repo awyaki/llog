@@ -20,15 +20,15 @@ import { CreateSearchConditions } from './components/CreateSearchConditions';
 
 
 import { notes } from '~/stub/notes';
-import { SearchCondition } from '~/stub/types';
+import { ConditionWithIsValid } from './types';
 // stub
 const [{ id: id1, ...rest1 }, { id: id2, ...rest2 }] = notes;
 const notes1 = [...notes]; 
 const notes2 = [{ id: 3, ...rest1 }, { id: 4, ...rest2}];
 
-const searchConditions: SearchCondition[] = [
-  { id: '1', isVaild: true, kind: 'NOTE', type: 'IS', op: 'AND', not: false, text: 'チューリング機械' },
-  { id: '2', isVaild: true, kind: 'TAG', type: 'IS', op: 'OR', not: true, text: 'インタープリタ' },
+const searchConditions: ConditionWithIsValid[] = [
+  { id: 1, isValid: true, subject: 'Note', predicate: 'IS', operator: 'AND', not: false, input: 'チューリング機械' },
+  { id: 2, isValid: true, subject: 'Tag', predicate: 'INCLUDE', operator: 'OR', not: true, input: 'インタープリタ' },
 ];
 
 
@@ -39,6 +39,11 @@ export const NotesOfContent: VFC = () => {
 
   const contentName = 'コンパイラ原理と構造';
   const tags = [{ id: 1, name: 'Computer Science' }, { id: 2, name: '計算機科学' }];
+  
+  const onModalOpenWithCreateCondition = () => {
+    onModalOpen();
+    dispatch({ type: 'MODAL/CREATE' });
+  };
 
   return (
         <div css={container}>
@@ -70,8 +75,8 @@ export const NotesOfContent: VFC = () => {
           <SearchConditions 
             isOpen={isDrawerOpen}
             onClose={onDrawerClose}
-            handleCreateConditionButtonClick={onModalOpen}
-            conditions={searchConditions} />
+            handleCreateConditionButtonClick={onModalOpenWithCreateCondition}
+            conditions={currentConditions} />
         </div>
   );
 };
