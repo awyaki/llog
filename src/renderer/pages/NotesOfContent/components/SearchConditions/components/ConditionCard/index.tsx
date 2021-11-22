@@ -1,5 +1,7 @@
 import { VFC } from 'react';
 
+import { Heading } from '@chakra-ui/react';
+
 import { container } from './style/container';
 import { buttons } from './style/buttons';
 import { subContainer } from './style/subContainer';
@@ -26,6 +28,7 @@ export const ConditionCard: VFC<Props> = ({ condition }) => {
         </div>
         <DeleteButton />
       </div>
+      <Heading mb="3px" size="mg">{condition.subject}</Heading>
       <div css={subContainer}>
         <ConditionSwitch isOn={true} />
         <ConditionBody condition={condition} />
