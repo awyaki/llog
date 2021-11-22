@@ -2,6 +2,7 @@ import { useReducer, Reducer } from 'react';
 import { Condition, ConditionWithIsValid } from '../types';
 
 import { modalCreateReducer } from './modalCreateReducer';
+import { changeSubjectReducer } from './changeSubjectReducer';
 
 export type State = {
   createConditions: Condition[];
@@ -45,18 +46,7 @@ const reducer: Reducer<State, Action> = (state, action) => {
     }
 
     case 'MODAL/CHANGE_SUBJECT': {
-      const { createConditions, currentConditions } = state;
-      const newCurrentConditions = [...currentConditions];
-      const index = createConditions.findIndex(({ id }) => action.id === id);
-      const { subject, ...rest } = createConditions[index];
-      const newCreateCondtion = createConditions
-                                  .slice(0, index)
-                                  .concat({ subject: action.newSubject, ...rest })
-                                  .concat(createConditions.slice(index+1));
-      return {
-        createConditions: newCreateCondtion,
-        currentConditions: newCurrentConditions,
-      };
+      return changeSubjectReducer(state, action);
     }
 
     case 'MODAL/TOGGLE_OPERATOR': {
