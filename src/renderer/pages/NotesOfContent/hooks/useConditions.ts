@@ -8,7 +8,7 @@ import { modalToggleNotReducer } from './modalToggleNotReducer';
 import { modalDeleteReducer } from './modalDeleteReducer';
 import { modalChangeInputReducer } from './modalChangeInputReducer';
 import { modalChangePredicateReducer } from './modalChangePredicateReducer';
-import { modalDeleteAllReducer } from './modalDeleteAllRecucer';
+import { modalDeleteAllReducer } from './modalDeleteAllReducer';
 
 export type State = {
   createConditions: Condition[];
