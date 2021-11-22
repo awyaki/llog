@@ -7,6 +7,7 @@ import { modalToggleOperator } from './modalToggleOperator';
 import { modalToggleNotReducer } from './modalToggleNotReducer';
 import { modalDeleteReducer } from './modalDeleteReducer';
 import { modalChangeInputReducer } from './modalChangeInputReducer';
+import { modalChangePredicateReducer } from './modalChangePredicateReducer';
 
 export type State = {
   createConditions: Condition[];
@@ -66,18 +67,7 @@ const reducer: Reducer<State, Action> = (state, action) => {
     }
 
     case 'MODAL/CHANGE_PREDICATE': {
-      const { createConditions, currentConditions } = state;
-      const newCurrentConditions = [...currentConditions];
-      const index = createConditions.findIndex(({ id }) => action.id === id);
-      const { predicate, ...rest } = createConditions[index];
-      const newCreateCondition = createConditions
-                                  .slice(0, index)
-                                  .concat({ predicate: action.newPredicate, ...rest })
-                                  .concat(createConditions.slice(index+1));
-      return {
-        createConditions: newCreateCondition,
-        currentConditions: newCurrentConditions,
-      };
+      return modalChangePredicateReducer(state, action);
     }
 
     case 'MODAL/DELETE_ALL': {
