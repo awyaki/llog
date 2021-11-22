@@ -83,7 +83,7 @@ export const ConditionItem: VFC<Props> = ({ condition, dispatch }) => {
   };
 
   const handleChangeSubject: ChangeEventHandler<HTMLSelectElement> = (e) => {
-    dispatch({ type: 'MODAL/CHAGE_SUBJECT', id: id, newSubject: (e.target.value as Condition['subject']) });
+    dispatch({ type: 'MODAL/CHANGE_SUBJECT', id: id, newSubject: (e.target.value as Condition['subject']) });
   };
 
   const handleDelete = () => {
