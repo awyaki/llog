@@ -30,12 +30,20 @@ export const ConditionCard: VFC<Props> = ({ condition, dispatch }) => {
     dispatch({ type: 'DRAWER/TOGGLE_OPERATOR', id: condition.id } );
   };
 
+  const handleToggleNot = () => {
+    dispatch({ type: 'DRAWER/TOGGLE_NOT', id: condition.id } );
+  };
+
   return (
     <div css={container}>
       <div css={buttons}>
         <div>
-          <OpSwitch op={condition.operator} onClick={handleToggleOperator}/>
-          <NotSwitch isOn={condition.not} />
+          <OpSwitch 
+            op={condition.operator} 
+            onClick={handleToggleOperator}/>
+          <NotSwitch 
+            isOn={condition.not} 
+            onClick={handleToggleNot} />
         </div>
         <DeleteButton />
       </div>

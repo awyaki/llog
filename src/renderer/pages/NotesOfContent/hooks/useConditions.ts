@@ -13,6 +13,7 @@ import { modalDeleteAllReducer } from './modalDeleteAllReducer';
 import { drawerCreateReducer } from './drawerCreateReducer';
 import { drawerToggleIsValidRecucer } from './drawerToggleIsValidReducer';
 import { drawerToggleOperatorReducer } from './drawerToggleOperaterReducer';
+import { drawerToggleNotReducer } from './drawerToggleNotReducer';
 
 export type State = {
   createConditions: Condition[];
@@ -52,6 +53,9 @@ export type Action = {
 } | {
   type: 'DRAWER/TOGGLE_OPERATOR',
   id: number;
+} | {
+  type: 'DRAWER/TOGGLE_NOT';
+  id: number;
 };
 
 const reducer: Reducer<State, Action> = (state, action) => {
@@ -88,6 +92,10 @@ const reducer: Reducer<State, Action> = (state, action) => {
 
     case 'DRAWER/TOGGLE_OPERATOR':
       return drawerToggleOperatorReducer(state, action);
+
+    case 'DRAWER/TOGGLE_NOT': 
+      return drawerToggleNotReducer(state, action);
+
     default:
       return state;
   }
