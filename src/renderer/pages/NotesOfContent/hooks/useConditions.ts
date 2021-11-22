@@ -11,6 +11,7 @@ import { modalChangePredicateReducer } from './modalChangePredicateReducer';
 import { modalDeleteAllReducer } from './modalDeleteAllReducer';
 
 import { drawerCreateReducer } from './drawerCreateReducer';
+import { drawerToggleIsValidRecucer } from './drawerToggleIsValidReducer';
 
 export type State = {
   createConditions: Condition[];
@@ -44,6 +45,9 @@ export type Action = {
   type: 'MODAL/DELETE_ALL';
 } | {
   type: 'DRAWER/CREATE';
+} | {
+  type: 'DRAWER/TOGGLE_ISVALID';
+  id: number;
 };
 
 const reducer: Reducer<State, Action> = (state, action) => {
@@ -74,6 +78,9 @@ const reducer: Reducer<State, Action> = (state, action) => {
 
     case 'DRAWER/CREATE': 
       return drawerCreateReducer(state);
+    
+    case 'DRAWER/TOGGLE_ISVALID':
+      return drawerToggleIsValidRecucer(state, action);
 
     default:
       return state;
