@@ -4,6 +4,7 @@ import { Condition, ConditionWithIsValid } from '../types';
 import { modalCreateReducer } from './modalCreateReducer';
 import { modalChangeSubjectReducer } from './modalChangeSubjectReducer';
 import { modalToggleOperator } from './modalToggleOperator';
+import { modalToggleNotReducer } from './modalToggleNotReducer';
 
 export type State = {
   createConditions: Condition[];
@@ -107,18 +108,7 @@ const reducer: Reducer<State, Action> = (state, action) => {
     }
 
     case 'MODAL/TOGGLE_NOT': {
-      const { currentConditions, createConditions } = state;
-      const newCurrentConditions = [...currentConditions];
-      const index = createConditions.findIndex(({ id }) => action.id === id);
-      const { not, ...rest } = createConditions[index];
-      const newCreateConditions = createConditions
-                                    .slice(0, index)
-                                    .concat({ not: !not, ...rest })
-                                    .concat(createConditions.slice(index+1));
-      return {
-        createConditions: newCreateConditions, 
-        currentConditions: newCurrentConditions,
-      };
+      return modalToggleNotReducer(state, action);
     }
 
     case 'DRAWER/CREATE': {
