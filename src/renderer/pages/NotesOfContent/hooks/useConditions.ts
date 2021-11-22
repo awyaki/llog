@@ -1,7 +1,9 @@
 import { useReducer, Reducer } from 'react';
 import { Condition, ConditionWithIsValid } from '../types';
 
-type State = {
+import { modalCreateReducer } from './modalCreateReducer';
+
+export type State = {
   createConditions: Condition[];
   currentConditions: ConditionWithIsValid[];
 };
@@ -9,7 +11,7 @@ type State = {
 export type Action = {
   type: 'MODAL/CREATE';
 } | {
-  type: 'MODAL/CHAGE_SUBJECT';
+  type: 'MODAL/CHANGE_SUBJECT';
   id: number,
   newSubject: Condition['subject'];
 } | {
@@ -39,15 +41,10 @@ export type Action = {
 const reducer: Reducer<State, Action> = (state, action) => {
   switch(action.type) {
     case 'MODAL/CREATE': {
-      const newId = state.createConditions.map((cond) => cond.id).reduce((acc, cur) => Math.max(acc, cur), 0) + 1;
-      
-      return {
-        createConditions: state.createConditions.concat({ id: newId, operator: 'AND', subject: '', not: false, predicate: '', input: '' }),
-        currentConditions: state.currentConditions, 
-      };
+      return modalCreateReducer(state);
     }
 
-    case 'MODAL/CHAGE_SUBJECT': {
+    case 'MODAL/CHANGE_SUBJECT': {
       const { createConditions, currentConditions } = state;
       const newCurrentConditions = [...currentConditions];
       const index = createConditions.findIndex(({ id }) => action.id === id);
@@ -61,6 +58,7 @@ const reducer: Reducer<State, Action> = (state, action) => {
         currentConditions: newCurrentConditions,
       };
     }
+
     case 'MODAL/TOGGLE_OPERATOR': {
       const { createConditions, currentConditions } = state;
       const newCurrentConditions = [...currentConditions];
