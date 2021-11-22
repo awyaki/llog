@@ -34,6 +34,10 @@ export const ConditionCard: VFC<Props> = ({ condition, dispatch }) => {
     dispatch({ type: 'DRAWER/TOGGLE_NOT', id: condition.id } );
   };
 
+  const handleDelete = () => {
+    dispatch({ type: 'DRAWER/DELETE', id: condition.id } );
+  };
+
   return (
     <div css={container}>
       <div css={buttons}>
@@ -45,7 +49,8 @@ export const ConditionCard: VFC<Props> = ({ condition, dispatch }) => {
             isOn={condition.not} 
             onClick={handleToggleNot} />
         </div>
-        <DeleteButton />
+        <DeleteButton
+          onClick={handleDelete} />
       </div>
       <Heading mb="3px" size="mg">{condition.subject}</Heading>
       <div css={subContainer}>

@@ -1,10 +1,14 @@
-import { VFC } from 'react';
+import { VFC, MouseEventHandler } from 'react';
 
 import { DeleteButtonIcon } from './components/DeleteButtonIcon';
 
-export const DeleteButton: VFC = () => {
+type Props = {
+  onClick: MouseEventHandler<HTMLButtonElement>;
+};
+
+export const DeleteButton: VFC<Props> = ({ onClick }) => {
   return (
-    <button>
+    <button onClick={onClick}>
       <DeleteButtonIcon />
     </button>
   );

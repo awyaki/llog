@@ -14,6 +14,7 @@ import { drawerCreateReducer } from './drawerCreateReducer';
 import { drawerToggleIsValidRecucer } from './drawerToggleIsValidReducer';
 import { drawerToggleOperatorReducer } from './drawerToggleOperaterReducer';
 import { drawerToggleNotReducer } from './drawerToggleNotReducer';
+import { drawerDeleteReducer } from './drawerDeleteReducer';
 
 export type State = {
   createConditions: Condition[];
@@ -56,6 +57,9 @@ export type Action = {
 } | {
   type: 'DRAWER/TOGGLE_NOT';
   id: number;
+} | {
+  type: 'DRAWER/DELETE',
+  id: number;
 };
 
 const reducer: Reducer<State, Action> = (state, action) => {
@@ -96,6 +100,8 @@ const reducer: Reducer<State, Action> = (state, action) => {
     case 'DRAWER/TOGGLE_NOT': 
       return drawerToggleNotReducer(state, action);
 
+    case 'DRAWER/DELETE':
+      return drawerDeleteReducer(state, action);
     default:
       return state;
   }
