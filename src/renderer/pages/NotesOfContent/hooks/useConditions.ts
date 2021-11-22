@@ -8,6 +8,7 @@ import { modalToggleNotReducer } from './modalToggleNotReducer';
 import { modalDeleteReducer } from './modalDeleteReducer';
 import { modalChangeInputReducer } from './modalChangeInputReducer';
 import { modalChangePredicateReducer } from './modalChangePredicateReducer';
+import { modalDeleteAllReducer } from './modalDeleteAllRecucer';
 
 export type State = {
   createConditions: Condition[];
@@ -71,12 +72,7 @@ const reducer: Reducer<State, Action> = (state, action) => {
     }
 
     case 'MODAL/DELETE_ALL': {
-      const { currentConditions } = state;
-      const newCurrentConditions = [...currentConditions];
-      return {
-        createConditions: [],
-        currentConditions: newCurrentConditions,
-      }
+      return modalDeleteAllReducer(state);
     }
 
     case 'MODAL/TOGGLE_NOT': {
