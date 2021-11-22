@@ -2,7 +2,7 @@ import { useReducer, Reducer } from 'react';
 import { Condition, ConditionWithIsValid } from '../types';
 
 import { modalCreateReducer } from './modalCreateReducer';
-import { changeSubjectReducer } from './changeSubjectReducer';
+import { modalChangeSubjectReducer } from './modalChangeSubjectReducer';
 
 export type State = {
   createConditions: Condition[];
@@ -46,7 +46,7 @@ const reducer: Reducer<State, Action> = (state, action) => {
     }
 
     case 'MODAL/CHANGE_SUBJECT': {
-      return changeSubjectReducer(state, action);
+      return modalChangeSubjectReducer(state, action);
     }
 
     case 'MODAL/TOGGLE_OPERATOR': {

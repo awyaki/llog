@@ -7,7 +7,7 @@ type Action = {
   newSubject: Condition['subject'];
 };
 
-export const changeSubjectReducer: Reducer<State, Action> = (state, action) => {
+export const modalChangeSubjectReducer: Reducer<State, Action> = (state, action) => {
   const { createConditions, currentConditions } = state;
   const newCurrentConditions = [...currentConditions];
   const index = createConditions.findIndex(({ id }) => action.id === id);
