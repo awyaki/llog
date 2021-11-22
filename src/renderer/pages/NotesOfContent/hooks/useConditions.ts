@@ -10,6 +10,8 @@ import { modalChangeInputReducer } from './modalChangeInputReducer';
 import { modalChangePredicateReducer } from './modalChangePredicateReducer';
 import { modalDeleteAllReducer } from './modalDeleteAllReducer';
 
+import { drawerCreateReducer } from './drawerCreateReducer';
+
 export type State = {
   createConditions: Condition[];
   currentConditions: ConditionWithIsValid[];
@@ -35,64 +37,46 @@ export type Action = {
   id: number;
   newInput: string;
 } | {
-  type: 'MODAL/CHANGE_PREDICATE',
+  type: 'MODAL/CHANGE_PREDICATE';
   id: number;
   newPredicate: Condition['predicate'];
 } | {
   type: 'MODAL/DELETE_ALL';
 } | {
-  type: 'DRAWER/CREATE',
+  type: 'DRAWER/CREATE';
 };
-
 
 const reducer: Reducer<State, Action> = (state, action) => {
   switch(action.type) {
-    case 'MODAL/CREATE': {
+    case 'MODAL/CREATE':
       return modalCreateReducer(state);
-    }
 
-    case 'MODAL/CHANGE_SUBJECT': {
+    case 'MODAL/CHANGE_SUBJECT': 
       return modalChangeSubjectReducer(state, action);
-    }
 
-    case 'MODAL/TOGGLE_OPERATOR': {
+    case 'MODAL/TOGGLE_OPERATOR':
       return modalToggleOperator(state, action);
-    }
 
-    case 'MODAL/DELETE_CONDITION': {
+    case 'MODAL/DELETE_CONDITION':
       return modalDeleteReducer(state, action);
-    }
 
-    case 'MODAL/CHANGE_INPUT': {
+    case 'MODAL/CHANGE_INPUT': 
       return modalChangeInputReducer(state, action);
-    }
 
-    case 'MODAL/CHANGE_PREDICATE': {
+    case 'MODAL/CHANGE_PREDICATE': 
       return modalChangePredicateReducer(state, action);
-    }
 
-    case 'MODAL/DELETE_ALL': {
+    case 'MODAL/DELETE_ALL': 
       return modalDeleteAllReducer(state);
-    }
 
-    case 'MODAL/TOGGLE_NOT': {
+    case 'MODAL/TOGGLE_NOT': 
       return modalToggleNotReducer(state, action);
-    }
 
-    case 'DRAWER/CREATE': {
-      const { currentConditions, createConditions } = state;
-      const newCurrentConditions = currentConditions.concat([...createConditions]
-                                      .map((condition) => { 
-                                            return { 
-                                              isValid: true, 
-                                              ...condition }
-                                      }));
+    case 'DRAWER/CREATE': 
+      return drawerCreateReducer(state);
 
-      return {
-        createConditions: [],
-        currentConditions: newCurrentConditions,
-      };
-    }
+    default:
+      return state;
   }
 };
 
