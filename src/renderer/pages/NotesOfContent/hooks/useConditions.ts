@@ -5,6 +5,7 @@ import { modalCreateReducer } from './modalCreateReducer';
 import { modalChangeSubjectReducer } from './modalChangeSubjectReducer';
 import { modalToggleOperator } from './modalToggleOperator';
 import { modalToggleNotReducer } from './modalToggleNotReducer';
+import { modalDeleteReducer } from './modalDeleteReducer';
 
 export type State = {
   createConditions: Condition[];
@@ -56,16 +57,7 @@ const reducer: Reducer<State, Action> = (state, action) => {
     }
 
     case 'MODAL/DELETE_CONDITION': {
-      const { createConditions, currentConditions } = state;
-      const newCurrentConditions = [...currentConditions];
-      const index = createConditions.findIndex(({ id }) => action.id === id);
-      const newCreateCondition = createConditions
-                                  .slice(0, index)
-                                  .concat(createConditions.slice(index+1));
-      return {
-        createConditions: newCreateCondition,
-        currentConditions: newCurrentConditions,
-      };
+      return modalDeleteReducer(state, action);
     }
 
     case 'MODAL/CHANGE_INPUT': {
