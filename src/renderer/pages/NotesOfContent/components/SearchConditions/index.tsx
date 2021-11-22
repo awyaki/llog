@@ -1,4 +1,5 @@
-import { VFC, MouseEventHandler } from 'react';
+import { VFC, MouseEventHandler, Dispatch } from 'react';
+import { Action } from '../../hooks/useConditions';
 
 import {
   Drawer,
@@ -19,6 +20,7 @@ import { ConditionWithIsValid } from '~/pages/NotesOfContent/types';
 type Props = Pick<DrawerProps, 'isOpen' | 'onClose'> & {
   conditions: ConditionWithIsValid[];
   handleCreateConditionButtonClick: MouseEventHandler<HTMLButtonElement>;
+  dispatch: Dispatch<Action>;
 };
 
 export const SearchConditions: VFC<Props> = (
@@ -27,6 +29,7 @@ export const SearchConditions: VFC<Props> = (
     handleCreateConditionButtonClick,
     isOpen,
     onClose,
+    dispatch
   }
 ) => {
   return (
@@ -37,7 +40,7 @@ export const SearchConditions: VFC<Props> = (
           Search Conditions
         </DrawerHeader>
         <ul>
-          {conditions.map((condition) => <li key={condition.id}><ConditionCard condition={condition} /></li>)}
+          {conditions.map((condition) => <li key={condition.id}><ConditionCard condition={condition} dispatch={dispatch} /></li>)}
         </ul>
         <DrawerFooter>
           <CreateConditionButton 

@@ -1,4 +1,5 @@
-import { VFC } from 'react';
+import { VFC, Dispatch } from 'react';
+import { Action } from '../../../../hooks/useConditions';
 
 import { Heading } from '@chakra-ui/react';
 
@@ -16,21 +17,31 @@ import { ConditionWithIsValid } from '~/pages/NotesOfContent/types';
 
 type Props = {
   condition: ConditionWithIsValid;
+  dispatch: Dispatch<Action>;
 };
 
-export const ConditionCard: VFC<Props> = ({ condition }) => {
+export const ConditionCard: VFC<Props> = ({ condition, dispatch }) => {
+
+  const handleToggleIsValid = () => {
+    dispatch({ type: 'DRAWER/TOGGLE_ISVALID', id: condition.id });
+  };
+
+  const handleToggleOperator = () => {
+    dispatch({ type: 'DRAWER/TOGGLE_OPERATOR', id: condition.id } );
+  };
+
   return (
     <div css={container}>
       <div css={buttons}>
         <div>
-          <OpSwitch op={condition.operator} />
+          <OpSwitch op={condition.operator} onClick={handleToggleOperator}/>
           <NotSwitch isOn={condition.not} />
         </div>
         <DeleteButton />
       </div>
       <Heading mb="3px" size="mg">{condition.subject}</Heading>
       <div css={subContainer}>
-        <ConditionSwitch isOn={true} />
+        <ConditionSwitch isOn={condition.isValid} onClick={handleToggleIsValid} />
         <ConditionBody condition={condition} />
       </div>
     </div>

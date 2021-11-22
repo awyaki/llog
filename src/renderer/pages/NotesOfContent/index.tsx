@@ -76,7 +76,8 @@ export const NotesOfContent: VFC = () => {
             isOpen={isDrawerOpen}
             onClose={onDrawerClose}
             handleCreateConditionButtonClick={onModalOpenWithCreateCondition}
-            conditions={currentConditions} />
+            conditions={currentConditions} 
+            dispatch={dispatch} />
         </div>
   );
 };
