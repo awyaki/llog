@@ -10,9 +10,45 @@ generator client {
   provider = "prisma-client-js"
 }
 
-model Todo {
+model Content {
+  id Int @id @default(autoincrement())
+  name String
+  createdAt DateTime @default(now())
+  tags Tag[]
+  notes Note[]
+  blocks Block[]
+}
+
+// origin field has markdown style data
+// transformed field has html syle data to reduce calculation of tramsformation
+model Note {
+  id Int @id @default(autoincrement())
+  name String
+  createdAt DateTime @default(now())
+  blocks Block[]
+  tags Tag[]
+  origin String
+  transformed String
+  content Content @relation(fields: [contentId], references: [id])
+  contentId Int
+}
+
+model Tag {
   id  Int @id @default(autoincrement())
-  text String
-  isChecked Boolean 
+  name String
+  content Content @relation(fields: [contentId], references: [id])
+  contentId Int
+  note Note @relation(fields: [noteId], references: [id])
+  noteId Int
+}
+
+model Block {
+  id Int @id @default(autoincrement())
+  unitNumber Int
+  createdAt DateTime @default(now())
+  commitedAt DateTime
+  content Content @relation(fields: [contentId], references: [id])
+  contentId Int
+  notes Note[]
 }
 
