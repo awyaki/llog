@@ -1,4 +1,4 @@
-import { VFC } from 'react';
+import { VFC, MouseEventHandler } from 'react';
 
 import { container } from './style/container';
 import { subContainer } from './style/subContainer';
@@ -11,14 +11,17 @@ import { BlockBox } from './components/BlockBox';
 
 import { pageTitle } from '~/pages/style/pageTitle';
 
+type Props = {
+  onClick: MouseEventHandler<HTMLButtonElement>;
+};
 
-export const CreateNewContent: VFC = () => {
+export const CreateNewContent: VFC<Props> = ({ onClick }) => {
   return (
     <div css={container}>
       <h2 css={pageTitle}>Create New Content</h2>
       <div css={subContainer}>
         <NameBox />
-        <SelectTags />
+        <SelectTags onClick={onClick} />
         <BlockBox />
       </div>
       <button css={buttonStyle}>

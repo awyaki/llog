@@ -1,11 +1,16 @@
-import { VFC } from 'react';
+import { VFC, MouseEventHandler } from 'react';
+
 
 import { CreateTagIcon } from './components/CreateTagIcon';
 import { createTagButton } from './style/createTagButton';
 
-export const CreateTagButton: VFC = () => {
+type Props = {
+  onClick: MouseEventHandler<HTMLButtonElement>;
+}; 
+
+export const CreateTagButton: VFC<Props> = ({ onClick }) => {
   return (
-    <button css={createTagButton}>
+    <button css={createTagButton} onClick={onClick}>
       <CreateTagIcon />
     </button>
   );
