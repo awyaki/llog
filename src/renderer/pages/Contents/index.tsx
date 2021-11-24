@@ -1,10 +1,14 @@
 import { VFC, useState } from 'react';
 
+import { HStack, VStack } from '@chakra-ui/react';
+
 import { Mode } from './types';
 import { ContentsList } from './components/ContentsList';
 
 import { Conditions } from './components/Conditions';
 import { CreateNewContent as NewContent } from './components/CreateNewContent';
+import { CreateContentButton } from './components/CreateContentButton';
+import { SearchContentsButton } from './components/SearchContentsButton';
 
 import { container } from './style/container';
 
@@ -23,7 +27,13 @@ export const Contents: VFC = () => {
 
   return (
     <div css={container}>
-      <ContentsList />
+      <VStack>
+        <HStack>
+          <CreateContentButton active={true} />
+          <SearchContentsButton active={true} />
+        </HStack>
+        <ContentsList />
+      </VStack>
       <RightView mode={mode} />
     </div>
   );
