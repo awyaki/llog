@@ -24,14 +24,26 @@ const RightView: VFC<RightViewProps> = ({ mode }) => {
 
 export const Contents: VFC = () => {
   const [mode, setMode] = useState<Mode>('NewContent');
+  
+  const handleClickNewContent = () => {
+    setMode('NewContent');
+  };
+
+  const handleClickConditions = () => {
+    setMode('Conditions');
+  };
 
   return (
       <Box css={container}>
         <Box>
-          <Heading as="h2" size="lg" mb="16px">Contents</Heading>
+          <Heading as="h2" size="lg" mb="32px">Contents</Heading>
           <Flex justify="space-between" w="130px" mb="16px">
-            <CreateContentButton active={true} />
-            <SearchContentsButton active={true} />
+            <CreateContentButton 
+              active={mode === 'NewContent'}  
+              onClick={handleClickNewContent}/>
+            <SearchContentsButton 
+              active={mode === 'Conditions'} 
+              onClick={handleClickConditions} />
           </Flex>
           <ContentsList />
         </Box>
