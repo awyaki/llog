@@ -1,6 +1,5 @@
 import { VFC } from 'react';
 
-import { container } from './style/container';
 import { list } from './style/list';
 
 export const ContentsList: VFC = () => {
@@ -16,11 +15,9 @@ export const ContentsList: VFC = () => {
   ];
 
   return (
-    <div css={container}>
-      <ul css={list}>
-        {contentsName.map(({ id, name }) => <li key={id}>{name}</li>)}
-      </ul>
-    </div>
+    <ul css={list}>
+      {contentsName.map(({ id, name }) => <li key={id}>{name}</li>)}
+    </ul>
   );
 };
 

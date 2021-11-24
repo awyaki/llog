@@ -1,6 +1,6 @@
 import { VFC, useState } from 'react';
 
-import { HStack, VStack } from '@chakra-ui/react';
+import { HStack, VStack, Box, Flex, Heading } from '@chakra-ui/react';
 
 import { Mode } from './types';
 import { ContentsList } from './components/ContentsList';
@@ -26,15 +26,16 @@ export const Contents: VFC = () => {
   const [mode, setMode] = useState<Mode>('NewContent');
 
   return (
-    <div css={container}>
-      <VStack>
-        <HStack>
-          <CreateContentButton active={true} />
-          <SearchContentsButton active={true} />
-        </HStack>
-        <ContentsList />
-      </VStack>
-      <RightView mode={mode} />
-    </div>
+      <Box css={container}>
+        <Box>
+          <Heading as="h2" size="lg" mb="16px">Contents</Heading>
+          <Flex justify="space-between" w="130px" mb="16px">
+            <CreateContentButton active={true} />
+            <SearchContentsButton active={true} />
+          </Flex>
+          <ContentsList />
+        </Box>
+        <RightView mode={mode} />
+      </Box>
   );
 };
