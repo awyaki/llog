@@ -1,4 +1,4 @@
-import { VFC} from 'react';
+import { VFC } from 'react';
 
 import { container } from './style/container';
 import { subContainer } from './style/subContainer';
@@ -8,7 +8,9 @@ import { NameBox } from './components/NameBox';
 import { SelectTags } from './components/SelectTags';
 import { BlockBox } from './components/BlockBox';
 
+
 import { pageTitle } from '~/pages/style/pageTitle';
+
 
 export const CreateNewContent: VFC = () => {
   return (

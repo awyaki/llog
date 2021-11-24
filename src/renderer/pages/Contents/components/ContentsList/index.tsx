@@ -1,12 +1,8 @@
 import { VFC } from 'react';
 
 import { container } from './style/container';
-import { buttons } from './style/buttons';
 import { list } from './style/list';
-import { CreateContentButton } from './components/CreateContentButton';
-import { SearchContentsButton } from './components/SearchContentsButton';
 
-import { pageTitle } from '~/pages/style/pageTitle';
 export const ContentsList: VFC = () => {
   // stub data
   const contentsName = [
@@ -21,11 +17,6 @@ export const ContentsList: VFC = () => {
 
   return (
     <div css={container}>
-      <h1 css={pageTitle}>Contents</h1>
-      <div css={buttons}>
-        <CreateContentButton active={true} />
-        <SearchContentsButton active={true} />
-      </div>
       <ul css={list}>
         {contentsName.map(({ id, name }) => <li key={id}>{name}</li>)}
       </ul>
