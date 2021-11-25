@@ -8,6 +8,10 @@ import {
   ModalBody,
   ModalOverlay,
   ModalFooter,
+  FormLabel,
+  FormControl,
+  Input,
+  Button,
   } from '@chakra-ui/react';
 
 
@@ -18,10 +22,16 @@ export const CreateTagModal: VFC<Omit<ModalProps, 'children'>> = ({ isOpen, onCl
       <ModalContent>
         <ModalHeader>Create Tag</ModalHeader>
         <ModalCloseButton />
-        <ModalBody>
-        </ModalBody>
-        <ModalFooter>
-        </ModalFooter>
+          <ModalBody>
+            <FormControl>
+              <FormLabel>Name</FormLabel>
+              <Input />
+            </FormControl>
+          </ModalBody>
+          <ModalFooter>
+            <Button mr="16px">OK</Button>
+            <Button>Cancel</Button>
+          </ModalFooter>
       </ModalContent>
     </Modal>
   );
