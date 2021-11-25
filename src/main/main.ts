@@ -1,6 +1,8 @@
 import path from 'path'
 import { app, BrowserWindow }  from 'electron';
+import { useDBQueryOnClient } from './db';
 
+useDBQueryOnClient();
 
 function createWindow() {
   const win = new BrowserWindow({
