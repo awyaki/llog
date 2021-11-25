@@ -36,10 +36,10 @@ model Note {
 model Tag {
   id  Int @id @default(autoincrement())
   name String
-  content Content @relation(fields: [contentId], references: [id])
-  contentId Int
-  note Note @relation(fields: [noteId], references: [id])
-  noteId Int
+  content Content? @relation(fields: [contentId], references: [id])
+  contentId Int?
+  note Note? @relation(fields: [noteId], references: [id])
+  noteId Int?
 }
 
 model Block {
