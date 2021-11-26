@@ -1,4 +1,6 @@
-import { VFC, useContext } from 'react';
+import { VFC, useContext, useEffect } from 'react';
+
+import { getAllTag } from '~/api';
 
 import { TagContext } from '~/StateProviders';
 
@@ -18,7 +20,15 @@ import { tagsList } from './style/tagsList';
 ];*/
 
 export const TagsList: VFC = () => {
-  const { tags } = useContext(TagContext);
+  const { tags, dispatch } = useContext(TagContext);
+  
+  useEffect(() => {
+    (async () => {
+      const tags = await getAllTag();
+      dispatch({ type: 'APP/SET_TAG', tags: tags });
+    })();
+  }, []);
+
   return (
     <ul css={tagsList}>
       {tags.map(({ id, name }) => <li key={id}><Tag name={name} isSelected={true}/></li>)}
