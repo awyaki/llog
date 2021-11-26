@@ -12,7 +12,7 @@ type TagContextType = {
 export const TagContext = createContext<TagContextType>({ tags: [], dispatch: () => {} });
 
 export const TagContextProvider: FC = ({ children }) => {
-  const [{ tags }, dispatch] = useTag();
+  const [tags, dispatch] = useTag();
   return (
     <TagContext.Provider value={{ tags: tags, dispatch: dispatch }}>
       {children}
