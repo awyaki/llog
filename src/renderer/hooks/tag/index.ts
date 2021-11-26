@@ -16,7 +16,7 @@ const reducer: Reducer<State, Action> = (state, action) => {
 };
 
 const initialState: State = {
-  tags: [],
+  tags: [{ id: 1, name: '日英語表現辞典', contentId: null, noteId: null }],
 };
 
 export type { State as TagState, Action as TagAction };
