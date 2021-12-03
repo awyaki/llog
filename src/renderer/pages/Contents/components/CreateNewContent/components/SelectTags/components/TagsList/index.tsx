@@ -21,17 +21,17 @@ import { tagsList } from './style/tagsList';
 
 export const TagsList: VFC = () => {
   const { tags, dispatch } = useContext(TagContext);
-  
+  console.log('hello'); 
   useEffect(() => {
     (async () => {
-      const tags = await getAllTag();
-      dispatch({ type: 'APP/SET_TAG', tags: tags });
+      const result = await getAllTag();
+      dispatch({ type: 'APP/SET_TAG', tags: result });
     })();
   }, []);
 
   return (
     <ul css={tagsList}>
-      {tags.map(({ id, name }) => <li key={id}><Tag name={name} isSelected={true}/></li>)}
+      {tags.map((tag) => <li key={tag.id}><Tag tag={tag} /></li>)}
     </ul>
   );
 };

@@ -1,5 +1,7 @@
 import { VFC, MouseEventHandler } from 'react';
 
+import { SelectedTagsProvider } from './SelectedTagsContextProvider';
+
 import { container } from './style/container';
 import { title } from './style/title';
 
@@ -13,7 +15,9 @@ type Props = {
 };
 
 export const SelectTags: VFC<Props> = ({ onClick }) => {
+
   return (
+    <SelectedTagsProvider>
     <div css={container}>
       <h2 css={title}>Tags</h2>
       <SearchTagsBox />
@@ -21,5 +25,6 @@ export const SelectTags: VFC<Props> = ({ onClick }) => {
       <CreateTagButton onClick={onClick} />
       <TagsList />
     </div>
+    </SelectedTagsProvider>
   );
 };
