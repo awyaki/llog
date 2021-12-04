@@ -1,15 +1,9 @@
 import { VFC, MouseEventHandler } from 'react';
+import { CreateNewContent as SubCreateNewContent } from './CreateNewContent'; 
 
-import { container } from './style/container';
-import { subContainer } from './style/subContainer';
-import { buttonStyle } from './style/buttonStyle';
-
-import { NameBox } from './components/NameBox';
-import { SelectTags } from './components/SelectTags';
-import { BlockBox } from './components/BlockBox';
-
-
-import { pageTitle } from '~/pages/style/pageTitle';
+import { SelectedTagsProvider } from './SelectedTagsContextProvider';
+import { NameContextProvider } from './NameContextProvider';
+import { BlockContextProvider } from './BlockContextProvider';
 
 type Props = {
   onClick: MouseEventHandler<HTMLButtonElement>;
@@ -17,16 +11,12 @@ type Props = {
 
 export const CreateNewContent: VFC<Props> = ({ onClick }) => {
   return (
-    <div css={container}>
-      <h2 css={pageTitle}>Create New Content</h2>
-      <div css={subContainer}>
-        <NameBox />
-        <SelectTags onClick={onClick} />
-        <BlockBox />
-      </div>
-      <button css={buttonStyle}>
-        OK
-      </button>
-    </div>
+    <SelectedTagsProvider>
+      <NameContextProvider>
+        <BlockContextProvider>
+          <SubCreateNewContent onClick={onClick} />
+        </BlockContextProvider>
+      </NameContextProvider>
+    </SelectedTagsProvider>
   );
 };

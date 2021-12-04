@@ -1,14 +1,16 @@
-import { VFC, useState, ChangeEventHandler } from 'react';
+import { VFC, useContext, ChangeEventHandler } from 'react';
+
+import { BlockContext } from '../../BlockContextProvider';
 
 import { container } from './style/container';
 import { title } from './style/title';
 import { blockInput } from './style/blockInput';
 
 export const BlockBox: VFC = () => {
-  const [text, setText] = useState('');
+  const { block, setBlock } = useContext(BlockContext);
 
   const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
-    setText(e.target.value);
+    setBlock(e.target.value);
   };
 
   return (
@@ -17,7 +19,7 @@ export const BlockBox: VFC = () => {
       <input 
         css={blockInput}
         type="text"
-        value={text}
+        value={block}
         onChange={handleChange}
       />
     </div>

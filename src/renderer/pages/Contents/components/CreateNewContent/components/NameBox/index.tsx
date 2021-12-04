@@ -1,14 +1,16 @@
-import { VFC, useState, ChangeEventHandler } from 'react';
+import { VFC, ChangeEventHandler, useContext } from 'react';
+
+import { NameContext } from '../../NameContextProvider';
 
 import { container } from './style/container';
 import { nameInputBox } from './style/nameInputBox';
 import { title } from './style/title';
 
 export const NameBox: VFC = () => {
-  const [text, setText] = useState('');
+  const { name, setName } = useContext(NameContext);
   
   const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
-    setText(e.target.value);
+    setName(e.target.value);
   };
   
   return (
@@ -17,7 +19,7 @@ export const NameBox: VFC = () => {
       <input 
         css={nameInputBox}
         type="text" 
-        value={text}
+        value={name}
         onChange={handleChange} />
     </div>
   );
