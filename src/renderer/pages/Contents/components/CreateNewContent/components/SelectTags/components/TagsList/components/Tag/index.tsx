@@ -1,6 +1,6 @@
 import { VFC, useContext } from 'react';
 
-import { SelectedTagsContext } from '../../../../SelectedTagsContextProvider';
+import { SelectedTagsContext } from '~/pages/Contents/components/CreateNewContent/SelectedTagsContextProvider';
 
 import { Tag as TTag } from '@prisma/client';
 

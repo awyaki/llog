@@ -1,6 +1,6 @@
 import { VFC, MouseEventHandler } from 'react';
 
-import { SelectedTagsProvider } from './SelectedTagsContextProvider';
+import { SelectedTagsProvider } from '~/pages/Contents/components/CreateNewContent/SelectedTagsContextProvider';
 
 import { container } from './style/container';
 import { title } from './style/title';
