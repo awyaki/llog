@@ -6,7 +6,7 @@ export const create = async (
   tags: Tag[], 
   blocks: Block[],
 ) => {
-  const result = prisma.content.create({
+  const result = await prisma.content.create({
     data: {
       name: name,
       tags: {
