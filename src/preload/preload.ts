@@ -5,7 +5,7 @@ import { Tag } from '@prisma/client';
 contextBridge.exposeInMainWorld('electronAPI', {
   createTag: (name: string) => ipcRenderer.invoke('createTag', name),
   getAllTag: () => ipcRenderer.invoke('getAllTag'),
-  createContnet: (name: string, tags: Tag[], blocksNumber: number) => ipcRenderer.invoke('createContent', name, tags, blocksNumber),
+  createContent: (name: string, tags: Tag[], blocksNumber: number) => ipcRenderer.invoke('createContent', name, tags, blocksNumber),
   getAllContent: () => ipcRenderer.invoke('getAllContent'),
 });
 
