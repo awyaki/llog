@@ -1,6 +1,8 @@
 import { VFC, useState, MouseEventHandler } from 'react';
 
-import { HStack, VStack, Box, Flex, Heading, useDisclosure } from '@chakra-ui/react';
+import { ContentsContextProvider } from './ContentsContextProvider';
+
+import { HStack, Box, Flex, Heading, useDisclosure } from '@chakra-ui/react';
 
 import { Mode } from './types';
 import { ContentsList } from './components/ContentsList';
@@ -37,23 +39,25 @@ export const Contents: VFC = () => {
   };
 
   return (
-      <Box css={container}>
-        <CreateTagModal isOpen={isOpen} onClose={onClose} />
-        <Box>
-          <Heading as="h2" size="lg" mb="32px">Contents</Heading>
-          <Flex justify="space-between" w="130px" mb="16px">
-            <CreateContentButton 
-              active={mode === 'NewContent'}  
-              onClick={handleClickNewContent}/>
-            <SearchContentsButton 
-              active={mode === 'Conditions'} 
-              onClick={handleClickConditions} />
-          </Flex>
-          <ContentsList />
+      <ContentsContextProvider>
+        <Box css={container}>
+          <CreateTagModal isOpen={isOpen} onClose={onClose} />
+          <Box>
+            <Heading as="h2" size="lg" mb="32px">Contents</Heading>
+            <Flex justify="space-between" w="130px" mb="16px">
+              <CreateContentButton 
+                active={mode === 'NewContent'}  
+                onClick={handleClickNewContent}/>
+              <SearchContentsButton 
+                active={mode === 'Conditions'} 
+                onClick={handleClickConditions} />
+            </Flex>
+            <ContentsList />
+          </Box>
+          <RightView 
+            mode={mode}
+            onClick={onOpen} />
         </Box>
-        <RightView 
-          mode={mode}
-          onClick={onOpen} />
-      </Box>
+      </ContentsContextProvider>
   );
 };

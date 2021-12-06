@@ -1,5 +1,7 @@
 import { VFC, MouseEventHandler, useContext } from 'react';
 
+import { ContentsContext } from '../../ContentsContextProvider';
+
 import { SelectedTagsContext } from './SelectedTagsContextProvider';
 import { BlockContext } from './BlockContextProvider';
 import { NameContext } from './NameContextProvider';
@@ -20,11 +22,18 @@ type Props = {
 };
 
 export const CreateNewContent: VFC<Props> = ({ onClick }) => {
+  const { dispatch } = useContext(ContentsContext);
+
   const { selectedTags } = useContext(SelectedTagsContext);
   const { name } = useContext(NameContext);
   const { block } = useContext(BlockContext);
   
-  const handleClick = () => {
+  const handleClick: MouseEventHandler<HTMLButtonElement> = async (e) => {
+    e.preventDefault();
+    const newConent = await window.electronAPI.createContent(name, selectedTags, Number(block));
+    console.log('CreateNewContent', newConent);
+    const newContents = await window.electronAPI.getAllContent();
+    dispatch({ type: 'CONTENTS/UPDATE', contents: newContents });
   };
 
   return (
