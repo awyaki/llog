@@ -21,7 +21,6 @@ import { tagsList } from './style/tagsList';
 
 export const TagsList: VFC = () => {
   const { tags, dispatch } = useContext(TagContext);
-  console.log('hello'); 
   useEffect(() => {
     (async () => {
       const result = await getAllTag();
