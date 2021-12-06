@@ -46,7 +46,7 @@ model Block {
   id Int @id @default(autoincrement())
   unitNumber Int
   createdAt DateTime @default(now())
-  commitedAt DateTime
+  commitedAt DateTime?
   content Content @relation(fields: [contentId], references: [id])
   contentId Int
   notes Note[]
