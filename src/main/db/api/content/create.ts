@@ -1,21 +1,23 @@
-import { Tag, Block } from '@prisma/client';
+import { Tag } from '@prisma/client';
+import { range } from '../../../utils';
 import { prisma } from '../../db';
 
 export const create = async (
   name: string,
   tags: Tag[], 
-  blocks: Block[],
+  blocksNumber: number
 ) => {
   const result = await prisma.content.create({
     data: {
       name: name,
       tags: {
-        connect: [...tags.map(({ id }) => { return { id: id } })],
+        connect: [...tags.map(({ id }) => ({ id: id }))],
       },
       blocks: {
-        create: [...blocks], 
+        create: [...range(0, blocksNumber)].map((n) => ({ unitNumber: n+1 })), 
       },
     },
   });
+
   return result;
 };
