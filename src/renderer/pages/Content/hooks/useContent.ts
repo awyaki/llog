@@ -11,6 +11,7 @@ export const useContent = () => {
   useEffect(() => {
     (async () => {
       const content = await window.electronAPI.getContent(Number(contentId));
+      console.log('useContent: content data was fetched.');
       setContent(content);
     })();
   }, []);
