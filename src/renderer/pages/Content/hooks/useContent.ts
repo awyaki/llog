@@ -13,7 +13,7 @@ export const useContent = () => {
       const content = await window.electronAPI.getContent(Number(contentId));
       setContent(content);
     })();
-  });
+  }, []);
 
   return content;
 };
