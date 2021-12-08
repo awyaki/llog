@@ -1,19 +1,10 @@
-import { VFC, useState } from 'react';
+import { Content as SubContent } from './Content';
+import { ContentContextProvider } from './ContentContextProvider';
 
-import { ContentDetails } from './components/ContentDetails';
-import { ContentBlocks } from './components/ContentBlocks';
-
-import { container } from './style/container';
-
-export const Content: VFC = () => {
-  const [mode, setMode] = useState<'detailview' | 'overview'>('overview');
+export const Content = () => {
   return (
-    <div css={container}>
-      <ContentDetails 
-        mode={mode}
-        setMode={setMode} />
-      <ContentBlocks 
-        mode={mode} />
-    </div>
+    <ContentContextProvider>
+      <SubContent />
+    </ContentContextProvider>
   );
-}; 
+};
