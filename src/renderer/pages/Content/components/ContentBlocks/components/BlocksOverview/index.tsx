@@ -1,13 +1,15 @@
 import { VFC } from 'react';
 
+import { Block } from '@prisma/client';
+
 import { BlocksContainer } from './components/BlocksContainer';
 import { title } from './style/title';
 
-import { makeBlocks } from '~/stub/blocks';
+type Props = {
+  blocks: Block[];
+};
 
-
-const blocks = makeBlocks(420);
-export const BlocksOverview: VFC = () => {
+export const BlocksOverview: VFC<Props> = ({ blocks }) => {
   return (
     <div>
       <h2 css={title}>Overview</h2>

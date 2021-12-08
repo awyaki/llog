@@ -17,7 +17,7 @@ export const ContentBlocks: VFC<Props> = ({ mode, blocks }) => {
   return (
     <div css={container}>
       <h2 css={title}>Blocks</h2>
-      {mode === 'overview' ? <BlocksOverview /> : <BlocksDetailView blocks={blocks} />}
+      {mode === 'overview' ? <BlocksOverview blocks={blocks} /> : <BlocksDetailView blocks={blocks} />}
     </div>
   );
 };
