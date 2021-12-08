@@ -7,5 +7,6 @@ contextBridge.exposeInMainWorld('electronAPI', {
   getAllTag: () => ipcRenderer.invoke('getAllTag'),
   createContent: (name: string, tags: Tag[], blocksNumber: number) => ipcRenderer.invoke('createContent', name, tags, blocksNumber),
   getAllContent: () => ipcRenderer.invoke('getAllContent'),
+  getContent: (id: number) => ipcRenderer.invoke('getContent', id),
 });
 

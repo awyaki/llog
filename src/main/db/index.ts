@@ -7,6 +7,7 @@ import { getAll as getAllTag } from './api/tag/getAll';
 
 import { create as createContent } from './api/content/create';
 import { getAll as getAllContent } from './api/content/getAll';
+import { get as getContent } from './api/content/get';
 
 export const useDBQueryOnClient = () => {
   ipcMain.handle('createTag', async (_, name: string) => {
@@ -26,6 +27,11 @@ export const useDBQueryOnClient = () => {
 
   ipcMain.handle('getAllContent', async () => {
     const result = await getAllContent();
+    return result;
+  });
+
+  ipcMain.handle('getContent', async (_, id: number) => {
+    const result = await getContent(id);
     return result;
   });
 };
