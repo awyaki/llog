@@ -14,7 +14,7 @@ export const create = async (
         connect: [...tags.map(({ id }) => ({ id: id }))],
       },
       blocks: {
-        create: [...range(0, blocksNumber)].map((n) => ({ unitNumber: n+1 })), 
+        create: [...range(0, blocksNumber)].map((n) => ({ unitNumber: n+1, level: 0 })), 
       },
     },
   });
