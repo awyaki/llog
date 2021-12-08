@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 
-import { Content } from '@prisma/client';
+import { ContentWithRelation } from '../../type';
 
 import { useParams } from 'react-router-dom';
 
 export const useContent = () => {
-  const [content, setContent] = useState<Content | null>(null);
+  const [content, setContent] = useState<ContentWithRelation | null>(null);
   const { contentId } = useParams<{ contentId: string }>();
   
   useEffect(() => {

@@ -1,12 +1,12 @@
 import { createContext, FC } from 'react';
 
-import { Content } from '@prisma/client';
+import { ContentWithRelation } from '../../type';
 
 import { useContent } from '../hooks/useContent';
 
 
 
-export const ContentContext = createContext<Content | null>(null);
+export const ContentContext = createContext<ContentWithRelation | null>(null);
 
 export const ContentContextProvider: FC = ({ children }) => {
   const content = useContent();
