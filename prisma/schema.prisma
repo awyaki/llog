@@ -26,6 +26,7 @@ model Note {
   id Int @id @default(autoincrement())
   name String
   createdAt DateTime @default(now())
+  commitedAt DateTime?
   blocks Block[]
   tags Tag[]
   origin String
