@@ -4,7 +4,7 @@ import { container } from './style/container';
 import { SubContainer } from './components/SubContainer';
 
 import { Block } from '~/stub/types';
-import { divideArray } from '~/utils/divideArray';
+import { divideArray } from '~/utils';
 
 type Props = {
   blocks: Block[];
