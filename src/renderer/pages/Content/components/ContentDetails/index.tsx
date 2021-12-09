@@ -1,5 +1,9 @@
 import { VFC, Dispatch, SetStateAction } from 'react';
 
+import { ContentWithRelation } from '~/pages/type';
+
+import { dateToString } from '~/utils';
+
 import { TagsList } from './components/TagsList';
 import { CreateNoteButton } from './components/CreateNoteButton';
 import { NoteViewButton } from './components/NoteViewButton';
@@ -16,9 +20,10 @@ import { blocksViewButtons } from './style/blocksViewButtons';
 type Props = {
   mode: 'detailview' | 'overview';
   setMode: Dispatch<SetStateAction<'detailview' | 'overview'>>; 
+  content: ContentWithRelation | null;
 };
 
-export const ContentDetails: VFC<Props> = ({ mode, setMode }) => {
+export const ContentDetails: VFC<Props> = ({ mode, setMode, content }) => {
 
   const handleSetDetailviewMode = () => {
     setMode('detailview');
@@ -37,7 +42,7 @@ export const ContentDetails: VFC<Props> = ({ mode, setMode }) => {
         <li><NoteViewButton /></li>
       </ul>
       <BasicInfo 
-        created="2021/08/01 9：00"
+        created={content !== null ? dateToString(content.createdAt) : 'No data'}
         latest="2021/08/01 10：00"
         blocks={490}
         streak={10} />

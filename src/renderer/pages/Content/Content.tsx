@@ -14,6 +14,7 @@ export const Content: VFC = () => {
   return (
     <div css={container}>
       <ContentDetails 
+        content={content}
         mode={mode}
         setMode={setMode} />
       <ContentBlocks 
