@@ -1,5 +1,7 @@
 import { VFC, Dispatch, SetStateAction } from 'react';
 
+import { Link } from 'react-router-dom';
+
 import { ContentWithRelation } from '~/pages/type';
 
 import { dateToString } from '~/utils';
@@ -45,7 +47,7 @@ export const ContentDetails: VFC<Props> = ({ mode, setMode, content }) => {
       <TagsList tags={content?.tags ?? []} />
       <ul css={buttons}>
         <li><CreateNoteButton /></li>
-        <li><NoteViewButton /></li>
+        <li><Link to={ content !== null ? `/content/${content.id}/notes` : ''}><NoteViewButton /></Link></li>
       </ul>
       <BasicInfo 
         created={content !== null ? dateToString(content.createdAt) : 'No data'}

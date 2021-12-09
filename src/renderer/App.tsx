@@ -5,6 +5,8 @@ import { HashRouter, Route, Switch } from 'react-router-dom';
 import { Contents } from './pages/Contents';
 import { Content } from './pages/Content';
 
+import { NotesOfContent } from './pages/NotesOfContent';
+
 import { Box } from '@chakra-ui/react';
 
 export const App: VFC = () => {
@@ -13,6 +15,9 @@ export const App: VFC = () => {
       <Box>
         <Header />
         <Switch>
+          <Route path="/content/:contentId/notes">
+            <NotesOfContent />
+          </Route>
           <Route path="/content/:contentId">
             <Content />
           </Route>
