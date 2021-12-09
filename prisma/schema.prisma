@@ -24,7 +24,6 @@ model Content {
 // transformed field has html syle data to reduce calculation of tramsformation
 model Note {
   id Int @id @default(autoincrement())
-  name String
   createdAt DateTime @default(now())
   commitedAt DateTime?
   blocks Block[]
