@@ -41,7 +41,7 @@ export const ContentDetails: VFC<Props> = ({ mode, setMode, content }) => {
 
   return (
     <div css={container}>
-      <h2 css={title}>Content</h2>
+      <h2 css={title}>{content?.name ?? ''}</h2>
       <TagsList tags={content?.tags ?? []} />
       <ul css={buttons}>
         <li><CreateNoteButton /></li>
