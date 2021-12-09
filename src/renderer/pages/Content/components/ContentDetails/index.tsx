@@ -23,6 +23,12 @@ type Props = {
   content: ContentWithRelation | null;
 };
 
+const makeLatestString = (content: ContentWithRelation | null) => {
+  if (content == null) return 'No data';
+  if (content.commitedAt == null) return 'No commits for this content.';
+  return dateToString(content.commitedAt);
+};
+
 export const ContentDetails: VFC<Props> = ({ mode, setMode, content }) => {
 
   const handleSetDetailviewMode = () => {
@@ -43,8 +49,8 @@ export const ContentDetails: VFC<Props> = ({ mode, setMode, content }) => {
       </ul>
       <BasicInfo 
         created={content !== null ? dateToString(content.createdAt) : 'No data'}
-        latest="2021/08/01 10：00"
-        blocks={490}
+        latest={makeLatestString(content)}
+        blocks={content !== null ? content.blocks.length : 0}
         streak={10} />
       <LevelRatio />
       <ul css={blocksViewButtons}>
