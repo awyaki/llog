@@ -15,7 +15,9 @@ export const Header: VFC = () => {
         <button onClick={history.goBack}>
           <BackArrowIcon />
         </button>
-        <ForwardArrowIcon />
+        <button onClick={history.goForward}>
+          <ForwardArrowIcon />
+        </button>
       </div>
       <ul css={titles}>
         <li>Contents</li>
