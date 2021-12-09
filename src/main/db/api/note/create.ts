@@ -20,7 +20,6 @@ export const create = async (
         blocks: {
           connect: [...blocks.map(({ id }) => ({ id: id }))],
         },
-        commitedAt: new Date(),
         content: {
           connect: { id: contentId },
         },

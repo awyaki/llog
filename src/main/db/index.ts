@@ -1,6 +1,6 @@
 import { ipcMain } from 'electron';
 
-import { Tag } from '@prisma/client';
+import { Tag, Block } from '@prisma/client';
 
 import { create as createTag } from './api/tag/create';
 import { getAll as getAllTag } from './api/tag/getAll';
@@ -8,6 +8,8 @@ import { getAll as getAllTag } from './api/tag/getAll';
 import { create as createContent } from './api/content/create';
 import { getAll as getAllContent } from './api/content/getAll';
 import { get as getContent } from './api/content/get';
+
+import { create as createNote } from './api/note/create';
 
 export const useDBQueryOnClient = () => {
   ipcMain.handle('createTag', async (_, name: string) => {
@@ -32,6 +34,18 @@ export const useDBQueryOnClient = () => {
 
   ipcMain.handle('getContent', async (_, id: number) => {
     const result = await getContent(id);
+    return result;
+  });
+
+  ipcMain.handle('createNote', async (
+    _, 
+    mkd: string,
+    transformed: string,
+    tags: Tag[],
+    blocks: Block[],
+    contentId: number
+    ) => {
+    const result = await createNote(mkd, transformed, tags, blocks, contentId);
     return result;
   });
 };
