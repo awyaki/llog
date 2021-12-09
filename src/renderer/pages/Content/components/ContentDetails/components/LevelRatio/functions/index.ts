@@ -1,1 +1,1 @@
-export { ratioOfLevelOfBlocks } from './ratioOfLevelOfBlocks';;
+export { makeStringForShowRatio } from './makeStrigForShowRatio';

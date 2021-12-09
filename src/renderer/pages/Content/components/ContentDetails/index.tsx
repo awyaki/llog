@@ -52,7 +52,7 @@ export const ContentDetails: VFC<Props> = ({ mode, setMode, content }) => {
         latest={makeLatestString(content)}
         blocks={content !== null ? content.blocks.length : 0}
         streak={10} />
-      <LevelRatio />
+      <LevelRatio blocks={content?.blocks ?? []} />
       <ul css={blocksViewButtons}>
         <li>
           <OverviewBlocksButton 
