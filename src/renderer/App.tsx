@@ -7,6 +7,8 @@ import { Content } from './pages/Content';
 
 import { NotesOfContent } from './pages/NotesOfContent';
 
+import { CreateNote } from './pages/CreateNote';
+
 import { Box } from '@chakra-ui/react';
 
 export const App: VFC = () => {
@@ -15,6 +17,9 @@ export const App: VFC = () => {
       <Box>
         <Header />
         <Switch>
+          <Route path="/">
+            <CreateNote />
+          <Route>
           <Route path="/content/:contentId/notes">
             <NotesOfContent />
           </Route>
