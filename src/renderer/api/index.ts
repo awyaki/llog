@@ -5,3 +5,7 @@ export const createTag = async (name: string) => {
 export const getAllTag = async () => {
   return await window.electronAPI.getAllTag();
 };
+
+export const getContent = async (id: number) => {
+  return await window.electronAPI.getContent(id);
+};
