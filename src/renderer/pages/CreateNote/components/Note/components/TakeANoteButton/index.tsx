@@ -11,7 +11,7 @@ export const TakeANoteButton: VFC<Props> = ({ isActive, onClick }) => {
   return ( 
     <button 
       onClick={onClick} 
-      disabled={!isActive}>
+      disabled={isActive}>
       <TakeANoteButtonIcon isActive={isActive} />
     </button>
   );

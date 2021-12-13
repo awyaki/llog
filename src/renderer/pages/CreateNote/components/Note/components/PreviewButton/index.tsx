@@ -11,7 +11,7 @@ export const PreviewButton: VFC<Props> = ({ isActive, onClick }) => {
   return (
     <button 
       onClick={onClick} 
-      disabled={!isActive}>
+      disabled={isActive}>
       <PreviewButtonIcon isActive={isActive} />
     </button>
 
