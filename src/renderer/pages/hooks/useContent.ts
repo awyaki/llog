@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import { ContentWithRelation } from '../../type';
+import { ContentWithRelation } from '../type';
 
 import { useParams } from 'react-router-dom';
 

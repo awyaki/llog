@@ -1,6 +1,6 @@
 import { createContext, FC } from 'react';
 
-import { ContentWithRelation } from '../../type';
+import { ContentWithRelation } from '../type';
 
 import { useContent } from '../hooks/useContent';
 

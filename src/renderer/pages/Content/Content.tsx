@@ -1,6 +1,6 @@
 import { VFC, useState, useContext } from 'react';
 
-import { ContentContext } from './ContentContextProvider';
+import { ContentContext } from '../ContentContextProvider';
 
 import { ContentDetails } from './components/ContentDetails';
 import { ContentBlocks } from './components/ContentBlocks';
