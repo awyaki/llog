@@ -9,6 +9,7 @@ import { InfoButton } from './components/InfoButton';
 import { ShowNoteButton } from './components/ShowNotesButton';
 import { SelectTags } from './components/SelectTags';
 import { SelectBlocks } from './components/SelectBlocks';
+import { Note } from './components/Note';
 
 import { container } from '~/pages/style/container';
 
@@ -29,6 +30,7 @@ export const CreateNote: VFC = () => {
       <ShowNoteButton />
       <SelectTags tags={tagsStub}/>
       <SelectBlocks blocks={blocksStub}/>
+      <Note />
     </Box>
   );
 };
