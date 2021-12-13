@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 
+import { getContent } from '~/api';
+
 import { ContentWithRelation } from '../type';
 
 import { useParams } from 'react-router-dom';
@@ -10,7 +12,7 @@ export const useContent = () => {
   
   useEffect(() => {
     (async () => {
-      const content = await window.electronAPI.getContent(Number(contentId));
+      const content = await getContent(Number(contentId));
       setContent(content);
     })();
   }, []);
