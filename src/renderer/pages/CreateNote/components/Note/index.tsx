@@ -7,6 +7,7 @@ import { CommitButton } from './components/CommitButton';
 import { OneMoreNoteButton } from './components/OneMoreNoteButton';
 import { TakeANoteButton } from './components/TakeANoteButton';
 import { PreviewButton } from './components/PreviewButton';
+import { MarkdownEditor } from './components/MarkdownEditor';
 
 export const Note: VFC = () => {
   return (
@@ -16,6 +17,7 @@ export const Note: VFC = () => {
       <OneMoreNoteButton />
       <TakeANoteButton isActive={false} />
       <PreviewButton isActive={true} />
+      <MarkdownEditor />
     </Box>
   );
 };
