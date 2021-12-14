@@ -45,8 +45,7 @@ export const Note: VFC = () => {
       </HStack>
       <MarkdownEditor 
         markdown={markdown}
-        setMarkdown={setMarkdown}
-        width="100%" />
+        setMarkdown={setMarkdown} />
     </Box>
   );
 };

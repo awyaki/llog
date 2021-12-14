@@ -10,13 +10,11 @@ import "ace-builds/src-noconflict/mode-markdown";
 import "ace-builds/src-noconflict/theme-github";
 
 type Props = {
-  width?: string;
-  height?: string;
   markdown: string;
   setMarkdown: Dispatch<SetStateAction<string>>;
 };
 
-export const MarkdownEditor: VFC<Props> = ({ width, height, markdown, setMarkdown }) => {
+export const MarkdownEditor: VFC<Props> = ({ markdown, setMarkdown }) => {
   const editorRef = useRef<AceEditor>(null);
   
 
@@ -46,7 +44,7 @@ export const MarkdownEditor: VFC<Props> = ({ width, height, markdown, setMarkdow
   }, [markdown]);
 
   return (
-      <Box __css={{ ...container, height: height, width: width }}>
+      <Box __css={container}>
         <AceEditor
           ref={editorRef}
           mode="markdown"
