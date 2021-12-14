@@ -16,25 +16,28 @@ type Props = {
 
 export const MarkdownEditor: VFC<Props> = ({ width, height }) => {
   const [markdown, setMarkdown] = useState('');
-  const [mode, setMode] = useState<'vim' | ''>('');
   const editorRef = useRef<AceEditor>(null);
+  
 
   const handleChange = (value: string) => {
-    console.log("value was changed");
     setMarkdown(value);
   };
 
   useEffect(() => {
     const aceEditor = editorRef.current;
     if (aceEditor != null) {
+      const defaultHeight = 300;
+
       const lines = aceEditor.editor.getSession().getScreenLength();
       const lineHeight = (document.querySelector('.ace_line') as HTMLDivElement)
                           .style
                           .height
                           .replace('px', '');
-      console.log('MarkdownEditor', lines, lineHeight);
-      const newHeight = lines * Number(lineHeight);
-      console.log('newHeight', newHeight);
+
+      const _newHeight = lines * Number(lineHeight);
+      
+      const newHeight = _newHeight > defaultHeight ? _newHeight : defaultHeight;
+
       aceEditor.editor.container.style.height = `${newHeight}px`;
       aceEditor.editor.resize();
     }
@@ -49,7 +52,7 @@ export const MarkdownEditor: VFC<Props> = ({ width, height }) => {
           theme="github"
           onChange={handleChange}
           width="100%"
-          height="100px"
+          height="500px"
           tabSize={2}
           fontSize={16}
           showPrintMargin={true}
@@ -57,7 +60,6 @@ export const MarkdownEditor: VFC<Props> = ({ width, height }) => {
           highlightActiveLine={false}
           value={markdown}
           wrapEnabled={true}
-          keyboardHandler={mode}
         />
       </Box>
   );
