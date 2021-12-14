@@ -14,9 +14,11 @@ import { PreviewButton } from './components/PreviewButton';
 import { MarkdownEditor } from './components/MarkdownEditor';
 import { SelectedTags } from './components/SelectedTags';
 import { SelectedBlocks } from './components/SelectedBlocks';
+import { MarkdownPreview } from './components/MarkdownPreview';
 
 export const Note: VFC = () => {
   const [markdown, setMarkdown] = useState(''); 
+  const [mode, setMode] = useState<'edit' | 'preview'>('edit'); 
 
   const tagsStub: Tag[] = [{ id: 1, name: 'compiler', noteId: null, contentId: null }, { id: 2, name: 'computer science', noteId: null, contentId: null }];
   const blocksStub: Block[] = [
@@ -27,6 +29,14 @@ export const Note: VFC = () => {
     { id: 5, unitNumber: 5, contentId: 1, level: 4, createdAt: new Date(), commitedAt: new Date() },
     { id: 6, unitNumber: 6, contentId: 1, level: 5, createdAt: new Date(), commitedAt: new Date() },
   ];
+
+  const handleTakeANoteButtonClick = () => {
+    setMode('edit');
+  };
+
+  const handlePreviewButtonClick = () => {
+    setMode('preview');
+  };
 
   return (
     <Box>
@@ -39,13 +49,21 @@ export const Note: VFC = () => {
           <OneMoreNoteButton />
         </HStack>
         <HStack>
-          <TakeANoteButton isActive={false} />
-          <PreviewButton isActive={true} />
+          <TakeANoteButton 
+            isActive={mode === 'edit'} 
+            onClick={handleTakeANoteButtonClick} />
+          <PreviewButton 
+            isActive={mode === 'preview'}
+            onClick={handlePreviewButtonClick} />
         </HStack>
       </HStack>
-      <MarkdownEditor 
-        markdown={markdown}
-        setMarkdown={setMarkdown} />
+      {mode === 'edit' 
+          ? <MarkdownEditor 
+              markdown={markdown}
+              setMarkdown={setMarkdown} />
+          : <MarkdownPreview 
+              markdown={markdown}
+            />}
     </Box>
   );
 };
