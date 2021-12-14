@@ -26,7 +26,7 @@ export const MarkdownEditor: VFC = () => {
           theme="github"
           onChange={handleChange}
           width="100%"
-          height="50vh"
+          height="45vh"
           tabSize={2}
           fontSize={18}
           showPrintMargin={true}
