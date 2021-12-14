@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const nodeExternals = require('webpack-node-externals');
 const CopyPlugin = require('copy-webpack-plugin');
 
 const mainConfig = {
@@ -21,10 +22,7 @@ const mainConfig = {
       },
     ],
   },
-  externals: {
-    'sqlite3': 'commonjs sqlite3',
-    '_http_common': 'commonjs _http_common',
-  },
+  externals: [nodeExternals()],
   plugins: [
     new CopyPlugin({
       patterns: [
