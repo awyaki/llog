@@ -1,5 +1,7 @@
 import { VFC } from 'react';
 
+import { Box, CSSObject } from '@chakra-ui/react';
+
 import { Tag as TagType } from '@prisma/client';
 
 import { container } from './style/container';
@@ -9,13 +11,15 @@ import { EditTagsButton } from './components/EditTagsButton';
 
 type Props = {
   tags: TagType[];
-};
+} & CSSObject;
 
-export const SelectedTags: VFC<Props> = ({ tags }) => {
+export const SelectedTags: VFC<Props> = ({ tags, ...CSSObject }) => {
   return (
-    <ul css={container}>
-      {tags.map(({ id, name }) => <li key={id}><Tag name={name} /></li>)}
-      <li><EditTagsButton /></li>
-    </ul>
+    <Box __css={{ ...CSSObject }}>
+      <ul css={container}>
+        {tags.map(({ id, name }) => <li key={id}><Tag name={name} /></li>)}
+        <li><EditTagsButton /></li>
+      </ul>
+    </Box>
   );
 };
