@@ -9,8 +9,12 @@ import { container } from './style/container';
 import "ace-builds/src-noconflict/mode-markdown";
 import "ace-builds/src-noconflict/theme-github";
 
+type Props = {
+  width?: string;
+  height?: string;
+};
 
-export const MarkdownEditor: VFC = () => {
+export const MarkdownEditor: VFC<Props> = ({ width, height }) => {
   const [markdown, setMarkdown] = useState('');
   const [mode, setMode] = useState<'vim' | ''>('');
   const editorRef = useRef<AceEditor>(null);
@@ -25,8 +29,8 @@ export const MarkdownEditor: VFC = () => {
           mode="markdown"
           theme="github"
           onChange={handleChange}
-          width="100%"
-          height="45vh"
+          width={ width ?? "100%"}
+          height={ height ?? "43vh"}
           tabSize={2}
           fontSize={18}
           showPrintMargin={true}
