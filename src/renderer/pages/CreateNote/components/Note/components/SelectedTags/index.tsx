@@ -11,7 +11,7 @@ type Props = {
   tags: TagType[];
 };
 
-export const SelectTags: VFC<Props> = ({ tags }) => {
+export const SelectedTags: VFC<Props> = ({ tags }) => {
   return (
     <ul css={container}>
       {tags.map(({ id, name }) => <li key={id}><Tag name={name} /></li>)}

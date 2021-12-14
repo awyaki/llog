@@ -10,7 +10,7 @@ type Props = {
   blocks: BlockType[];
 };
 
-export const SelectBlocks: VFC<Props> = ({ blocks }) => {
+export const SelectedBlocks: VFC<Props> = ({ blocks }) => {
   return (
     <ul css={container}>
       {blocks.map(({ id, level, unitNumber }) => <li key={id}><Block level={level} unitNumber={unitNumber} /></li>)}
