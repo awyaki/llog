@@ -28,7 +28,7 @@ export const Note: VFC = () => {
   return (
     <Box>
       <SelectedTags tags={tagsStub} mb="10px" />
-      <SelectedBlocks blocks={blocksStub} />
+      <SelectedBlocks blocks={blocksStub} mb="10px" />
       <HStack justifyContent="space-between" mb="16px">
         <HStack>
           <SaveButton />
