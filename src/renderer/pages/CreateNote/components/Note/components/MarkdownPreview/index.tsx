@@ -1,7 +1,7 @@
 import { VFC, createElement } from 'react';
-import markdownToHTML from 'zenn-markdown-html';
 
 import { Box } from '@chakra-ui/react';
+import { container } from './style/container';
 
 import 'zenn-content-css';
 
@@ -10,11 +10,10 @@ type Props = {
 };
 
 export const MarkdownPreview: VFC<Props> = ({ markdown }) => {
-  const html = markdownToHTML(markdown);
 
   return (
-    <Box className="znc">
-      {createElement('article', { dangerouslySetInnerHTML: { __html: html } })}
+    <Box __css={container} className="znc">
+      <h1>Hoge</h1>
     </Box>
   );
 };
