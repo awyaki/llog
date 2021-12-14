@@ -57,7 +57,6 @@ export const MarkdownEditor: VFC<Props> = ({ width, height }) => {
           highlightActiveLine={false}
           value={markdown}
           wrapEnabled={true}
-          setOptions={{ animatedScroll: false, highlightActiveLine: true }}
           keyboardHandler={mode}
         />
       </Box>
