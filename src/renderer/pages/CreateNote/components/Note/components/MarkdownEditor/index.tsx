@@ -23,14 +23,13 @@ export const MarkdownEditor: VFC<Props> = ({ width, height }) => {
   };
   
   return (
-      <Box css={container}>
+      <Box css={{ ...container, height: height, width: width }}>
         <AceEditor
           ref={editorRef}
           mode="markdown"
           theme="github"
           onChange={handleChange}
-          width={ width ?? "100%"}
-          height={ height ?? "43vh"}
+          width={"100%"}
           tabSize={2}
           fontSize={18}
           showPrintMargin={true}

@@ -40,7 +40,7 @@ export const Note: VFC = () => {
           <PreviewButton isActive={true} />
         </HStack>
       </HStack>
-      <MarkdownEditor width="45vh" />
+      <MarkdownEditor width="100%" />
     </Box>
   );
 };
