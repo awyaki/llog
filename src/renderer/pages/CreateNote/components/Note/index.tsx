@@ -1,4 +1,4 @@
-import { VFC } from 'react';
+import { VFC, useState } from 'react';
 
 import { Tag } from '@prisma/client';
 import { Block } from '@prisma/client';
@@ -16,6 +16,8 @@ import { SelectedTags } from './components/SelectedTags';
 import { SelectedBlocks } from './components/SelectedBlocks';
 
 export const Note: VFC = () => {
+  const [markdown, setMarkdown] = useState(''); 
+
   const tagsStub: Tag[] = [{ id: 1, name: 'compiler', noteId: null, contentId: null }, { id: 2, name: 'computer science', noteId: null, contentId: null }];
   const blocksStub: Block[] = [
     { id: 1, unitNumber: 1, contentId: 1, level: 0, createdAt: new Date(), commitedAt: new Date() },
@@ -25,6 +27,7 @@ export const Note: VFC = () => {
     { id: 5, unitNumber: 5, contentId: 1, level: 4, createdAt: new Date(), commitedAt: new Date() },
     { id: 6, unitNumber: 6, contentId: 1, level: 5, createdAt: new Date(), commitedAt: new Date() },
   ];
+
   return (
     <Box>
       <SelectedTags tags={tagsStub} mb="10px" />
@@ -40,7 +43,10 @@ export const Note: VFC = () => {
           <PreviewButton isActive={true} />
         </HStack>
       </HStack>
-      <MarkdownEditor width="100%" />
+      <MarkdownEditor 
+        markdown={markdown}
+        setMarkdown={setMarkdown}
+        width="100%" />
     </Box>
   );
 };

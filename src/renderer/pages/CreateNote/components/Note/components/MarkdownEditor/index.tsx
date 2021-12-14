@@ -1,4 +1,4 @@
-import { VFC, useRef, useState, useEffect } from 'react';
+import { VFC, useRef, useEffect, Dispatch, SetStateAction } from 'react';
 import AceEditor from 'react-ace';
 
 
@@ -12,10 +12,11 @@ import "ace-builds/src-noconflict/theme-github";
 type Props = {
   width?: string;
   height?: string;
+  markdown: string;
+  setMarkdown: Dispatch<SetStateAction<string>>;
 };
 
-export const MarkdownEditor: VFC<Props> = ({ width, height }) => {
-  const [markdown, setMarkdown] = useState('');
+export const MarkdownEditor: VFC<Props> = ({ width, height, markdown, setMarkdown }) => {
   const editorRef = useRef<AceEditor>(null);
   
 
