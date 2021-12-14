@@ -18,9 +18,11 @@ export const CreateNote: VFC = () => {
     <Box css={container}>
       <HStack>
         <Box width="55vw">
-          <Heading as="h2" size="lg">{contentNameStub}</Heading>
-          <InfoButton />
-          <ShowNoteButton />
+          <Heading as="h2" size="lg" mb="16px">{contentNameStub}</Heading>
+          <HStack width="120px" mb="16px">
+            <InfoButton />
+            <ShowNoteButton />
+          </HStack>
           <Note />
         </Box>
       </HStack>
