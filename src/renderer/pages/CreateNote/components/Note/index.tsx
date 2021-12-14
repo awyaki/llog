@@ -4,7 +4,7 @@ import { Tag } from '@prisma/client';
 import { Block } from '@prisma/client';
 
 
-import { Box } from '@chakra-ui/react';
+import { Box, HStack } from '@chakra-ui/react';
 
 import { SaveButton } from './components/SaveButton';
 import { CommitButton } from './components/CommitButton';
@@ -29,12 +29,18 @@ export const Note: VFC = () => {
     <Box>
       <SelectedTags tags={tagsStub} />
       <SelectedBlocks blocks={blocksStub} />
-      <SaveButton />
-      <CommitButton />
-      <OneMoreNoteButton />
-      <TakeANoteButton isActive={false} />
-      <PreviewButton isActive={true} />
-      <MarkdownEditor />
+      <HStack justifyContent="space-between" mb="16px">
+        <HStack>
+          <SaveButton />
+          <CommitButton />
+          <OneMoreNoteButton />
+        </HStack>
+        <HStack>
+          <TakeANoteButton isActive={false} />
+          <PreviewButton isActive={true} />
+        </HStack>
+      </HStack>
+      <MarkdownEditor width="45vh" />
     </Box>
   );
 };
