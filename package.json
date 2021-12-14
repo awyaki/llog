@@ -26,7 +26,9 @@
     "react-icons": "^4.3.1",
     "react-router": "^5.2.1",
     "react-router-dom": "^5.3.0",
-    "sqlite3": "^4.2.0"
+    "sqlite3": "^4.2.0",
+    "zenn-content-css": "^0.1.99",
+    "zenn-markdown-html": "^0.1.99"
   },
   "devDependencies": {
     "@babel/core": "^7.15.8",
