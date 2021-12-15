@@ -5,6 +5,7 @@ import { Box, CSSObject } from '@chakra-ui/react';
 import { Block as BlockType } from '@prisma/client';
 
 import { Block } from './components/Block';
+import { SelectBlockButton } from './components/SelectBlockButton';
 
 import { container } from './style/container';
 
@@ -17,6 +18,7 @@ export const SelectedBlocks: VFC<Props> = ({ blocks, ...CSSObject }) => {
     <Box __css={CSSObject}>
       <ul css={container}>
         {blocks.map(({ id, level, unitNumber }) => <li key={id}><Block level={level} unitNumber={unitNumber} /></li>)}
+        <li><SelectBlockButton /></li>
       </ul>
     </Box>
   );
