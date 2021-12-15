@@ -4,6 +4,8 @@ import { useConditions } from './hooks/useConditions';
 
 import { Box } from '@chakra-ui/react';
 
+import { Header } from '../Header';
+
 import { container } from './style/container'
 import { title } from './style/title';
 import { buttons } from './style/buttons';
@@ -46,38 +48,41 @@ export const NotesOfContent: VFC = () => {
   };
 
   return (
-        <div css={container}>
-          <CreateSearchConditions 
-            isOpen={isModalOpen} 
-            onClose={onModalClose} 
-            onOverlayClick={onModalClose}
-            createCondtions={createConditions}
-            dispatch={dispatch}
-            />
-          <Box>
-            <h1 css={title}>{contentName}</h1>
-            <TagList tags={tags} />
-            <ul css={buttons}>
-              <li><InfoButton /></li>
-              <li><CreateNoteButton /></li>
-              <li><SearchNoteButton onClick={onDrawerOpen} /></li>
-            </ul>
-            <ul css={makeNoteListsStyle(isDrawerOpen)}>
-              {isDrawerOpen 
-                ? <li><NoteList notes={[...notes1, ...notes2]} /></li> 
-                : <>
-                    <li><NoteList notes={notes1} /></li>
-                    <li><NoteList notes={notes2} /></li>
-                  </>
-              }
-            </ul>
-          </Box>
-          <SearchConditions 
-            isOpen={isDrawerOpen}
-            onClose={onDrawerClose}
-            handleCreateConditionButtonClick={onModalOpenWithCreateCondition}
-            conditions={currentConditions} 
-            dispatch={dispatch} />
-        </div>
+        <>
+          <Header />
+          <div css={container}>
+            <CreateSearchConditions 
+              isOpen={isModalOpen} 
+              onClose={onModalClose} 
+              onOverlayClick={onModalClose}
+              createCondtions={createConditions}
+              dispatch={dispatch}
+              />
+            <Box>
+              <h1 css={title}>{contentName}</h1>
+              <TagList tags={tags} />
+              <ul css={buttons}>
+                <li><InfoButton /></li>
+                <li><CreateNoteButton /></li>
+                <li><SearchNoteButton onClick={onDrawerOpen} /></li>
+              </ul>
+              <ul css={makeNoteListsStyle(isDrawerOpen)}>
+                {isDrawerOpen 
+                  ? <li><NoteList notes={[...notes1, ...notes2]} /></li> 
+                  : <>
+                      <li><NoteList notes={notes1} /></li>
+                      <li><NoteList notes={notes2} /></li>
+                    </>
+                }
+              </ul>
+            </Box>
+            <SearchConditions 
+              isOpen={isDrawerOpen}
+              onClose={onDrawerClose}
+              handleCreateConditionButtonClick={onModalOpenWithCreateCondition}
+              conditions={currentConditions} 
+              dispatch={dispatch} />
+          </div>
+        </>
   );
 };
