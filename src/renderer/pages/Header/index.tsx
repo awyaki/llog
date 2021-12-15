@@ -8,69 +8,104 @@ import { BackArrowIcon } from './BackArrowIcon';
 import { ForwardArrowIcon } from './ForwardArrowIcon';
 
 type Props = {
-  canceler?: () => void;
+  confirmer?: () => boolean;
 };
 
-export const Header: VFC<Props> = ({ canceler }) => {
+export const Header: VFC<Props> = ({ confirmer }) => {
   
   const history = useHistory();
 
   const handleBackClick = useCallback(() => {
-    if (canceler !== undefined) {
-      canceler();
+    if (confirmer === undefined) {
+      history.goBack();
+      return;
     }
-
-    history.goBack();
-  }, [canceler, history]);
+    
+    if (confirmer()) {
+      history.goBack();
+    }
+    
+    return;
+  }, [confirmer, history]);
     
   const handleForwardClick = useCallback(() => {
-    if (canceler !== undefined) {
-      canceler();
+    if (confirmer === undefined) {
+      history.goForward();
+      return;
     }
-
-    history.goForward();
-  }, [canceler, history]); 
+    
+    if (confirmer()) {
+      history.goBack();
+    }
+    
+    return;
+  }, [confirmer, history]); 
 
   const handleContentsClick = useCallback(() => {
-    if (canceler !== undefined) {
-      canceler();
+    if (confirmer === undefined) {
+      history.goForward();
+      return;
     }
-
-    history.push('/contents');
-  }, [canceler, history]);
+    
+    if (confirmer()) {
+      history.push('/contents');
+    }
+    
+    return;
+  }, [confirmer, history]);
 
   const handleTimelineClick = useCallback(() => {
-    if (canceler !== undefined) {
-      canceler();
+    if (confirmer === undefined) {
+      history.goForward();
+      return;
     }
-
-    history.push('/timeline');
-  }, [canceler, history]);
+    
+    if (confirmer()) {
+      history.push('/timeline');
+    }
+    
+    return;
+  }, [confirmer, history]);
 
   const handleReviewsClick = useCallback(() => {
-    if (canceler !== undefined) {
-      canceler();
+    if (confirmer === undefined) {
+      history.goForward();
+      return;
     }
-
-    history.push('/reviews');
-  }, [canceler, history]); 
+    
+    if (confirmer()) {
+      history.push('/reviews');
+    }
+    
+    return;
+  }, [confirmer, history]); 
 
 
   const handleNotesClick = useCallback(() => {
-    if (canceler !== undefined) {
-      canceler();
+    if (confirmer === undefined) {
+      history.goForward();
+      return;
     }
-
-    history.push('/notes');
-  }, [canceler, history]); 
+    
+    if (confirmer()) {
+      history.push('/notes');
+    }
+    
+    return;
+  }, [confirmer, history]); 
 
   const handleSettingsClick = useCallback(() => {
-    if (canceler !== undefined) {
-      canceler();
+    if (confirmer === undefined) {
+      history.goForward();
+      return;
     }
-
-    history.push('/settings');
-  }, [canceler, history]); 
+    
+    if (confirmer()) {
+      history.push('/settings');
+    }
+    
+    return;
+  }, [confirmer, history]); 
 
 
   return (
