@@ -1,4 +1,6 @@
-import { VFC } from 'react';
+import { VFC, useContext } from 'react';
+
+import { ContentContext } from '../ContentContextProvider';
 
 import { Box, Heading, HStack } from '@chakra-ui/react';
 
@@ -12,8 +14,7 @@ import { container } from '~/pages/style/container';
 
 
 export const CreateNote: VFC = () => {
-
-  const contentNameStub = 'コンパイラ原理と構造';
+  const content = useContext(ContentContext);
 
   return (
     <>
@@ -21,12 +22,14 @@ export const CreateNote: VFC = () => {
       <Box css={container}>
         <HStack>
           <Box width="55vw">
-            <Heading as="h2" size="lg" mb="16px">{contentNameStub}</Heading>
+            <Heading as="h2" size="lg" mb="16px">{content?.name}</Heading>
             <HStack width="120px" mb="16px">
               <InfoButton />
               <ShowNoteButton />
             </HStack>
-            <Note />
+            <Note  
+              blocks={content?.blocks ?? []}
+              tags={content?.tags ?? []} />
           </Box>
         </HStack>
       </Box>
