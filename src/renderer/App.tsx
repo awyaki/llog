@@ -15,7 +15,6 @@ export const App: VFC = () => {
   return (
     <HashRouter>
       <Box>
-        <Header />
         <Switch>
           <Route path="/">
             <CreateNote />
