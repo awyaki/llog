@@ -2,6 +2,7 @@ import { VFC, useState, useContext } from 'react';
 
 import { ContentContext } from '../ContentContextProvider';
 
+import { Header } from '../Header';
 import { ContentDetails } from './components/ContentDetails';
 import { ContentBlocks } from './components/ContentBlocks';
 
@@ -12,14 +13,17 @@ export const Content: VFC = () => {
   const content = useContext(ContentContext);
   
   return (
-    <div css={container}>
-      <ContentDetails 
-        content={content}
-        mode={mode}
-        setMode={setMode} />
-      <ContentBlocks 
-        blocks={content?.blocks ?? []}
-        mode={mode} />
-    </div>
+    <>
+    <Header />
+      <div css={container}>
+        <ContentDetails 
+          content={content}
+          mode={mode}
+          setMode={setMode} />
+        <ContentBlocks 
+          blocks={content?.blocks ?? []}
+          mode={mode} />
+      </div>
+    </>
   );
 }; 
