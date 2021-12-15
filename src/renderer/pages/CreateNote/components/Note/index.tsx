@@ -15,6 +15,7 @@ import { MarkdownEditor } from './components/MarkdownEditor';
 import { SelectedTags } from './components/SelectedTags';
 import { SelectedBlocks } from './components/SelectedBlocks';
 import { MarkdownPreview } from './components/MarkdownPreview';
+import { ShowSaveDate } from './components/ShowSaveDate';
 
 export const Note: VFC = () => {
   const [markdown, setMarkdown] = useState(''); 
@@ -48,6 +49,7 @@ export const Note: VFC = () => {
           <CommitButton />
           <OneMoreNoteButton />
         </HStack>
+        <ShowSaveDate notSaved={true} date={new Date()}/>
         <HStack>
           <TakeANoteButton 
             isActive={mode === 'edit'} 
