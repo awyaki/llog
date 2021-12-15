@@ -7,7 +7,7 @@ import { Content } from './pages/Content';
 
 import { NotesOfContent } from './pages/NotesOfContent';
 
-import { CreateNote } from './pages/CreateNote';
+import { CreateNote } from './pages/HandleNote';
 
 import { Box } from '@chakra-ui/react';
 
