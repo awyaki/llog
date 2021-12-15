@@ -1,8 +1,10 @@
 import path from 'path'
 import { app, BrowserWindow }  from 'electron';
 import { useDBQueryOnClient } from './db';
+import { useMarkdownToHTML } from './useMarkdownToHTML';
 
 useDBQueryOnClient();
+useMarkdownToHTML();
 
 function createWindow() {
   const win = new BrowserWindow({
