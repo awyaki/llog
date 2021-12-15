@@ -17,19 +17,14 @@ import { SelectedBlocks } from './components/SelectedBlocks';
 import { MarkdownPreview } from './components/MarkdownPreview';
 import { ShowSaveDate } from './components/ShowSaveDate';
 
-export const Note: VFC = () => {
+type Props = {
+  tags: Tag[];
+  blocks: Block[];
+};
+
+export const Note: VFC<Props> = ({ tags, blocks }) => {
   const [markdown, setMarkdown] = useState(''); 
   const [mode, setMode] = useState<'edit' | 'preview'>('edit'); 
-
-  const tagsStub: Tag[] = [{ id: 1, name: 'compiler', noteId: null, contentId: null }, { id: 2, name: 'computer science', noteId: null, contentId: null }];
-  const blocksStub: Block[] = [
-    { id: 1, unitNumber: 1, contentId: 1, level: 0, createdAt: new Date(), commitedAt: new Date() },
-    { id: 2, unitNumber: 2, contentId: 1, level: 1, createdAt: new Date(), commitedAt: new Date() },
-    { id: 3, unitNumber: 3, contentId: 1, level: 2, createdAt: new Date(), commitedAt: new Date() },
-    { id: 4, unitNumber: 4, contentId: 1, level: 3, createdAt: new Date(), commitedAt: new Date() },
-    { id: 5, unitNumber: 5, contentId: 1, level: 4, createdAt: new Date(), commitedAt: new Date() },
-    { id: 6, unitNumber: 6, contentId: 1, level: 5, createdAt: new Date(), commitedAt: new Date() },
-  ];
 
   const handleTakeANoteButtonClick = () => {
     setMode('edit');
@@ -41,8 +36,8 @@ export const Note: VFC = () => {
 
   return (
     <Box>
-      <SelectedTags tags={tagsStub} mb="10px" />
-      <SelectedBlocks blocks={blocksStub} mb="10px" />
+      <SelectedTags tags={tags} mb="10px" />
+      <SelectedBlocks blocks={blocks} mb="10px" />
       <HStack justifyContent="space-between" mb="16px">
         <HStack>
           <SaveButton />
