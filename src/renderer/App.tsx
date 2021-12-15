@@ -16,11 +16,11 @@ export const App: VFC = () => {
     <HashRouter>
       <Box>
         <Switch>
-          <Route path="/">
-            <CreateNote />
-          </Route>
           <Route path="/content/:contentId/notes">
             <NotesOfContent />
+          </Route>
+          <Route path="/content/:contentId/createnote">
+            <CreateNote />
           </Route>
           <Route path="/content/:contentId">
             <Content />
