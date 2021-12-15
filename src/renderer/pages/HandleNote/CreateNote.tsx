@@ -10,6 +10,7 @@ import { Header } from './components/Header';
 import { InfoButton } from './components/InfoButton';
 import { ShowNoteButton } from './components/ShowNotesButton';
 import { Note } from './components/Note';
+import { SelectBlocks } from './components/SelectBlocks';
 
 
 import { container } from '~/pages/style/container';
@@ -24,7 +25,7 @@ export const CreateNote: VFC = () => {
   return (
     <>
       <Header isNoteChange={true} />
-      <Box css={container}>
+      <HStack __css={container} alignItems="start">
         <HStack>
           <Box width="55vw">
             <Heading as="h2" size="lg" mb="16px">{content?.name}</Heading>
@@ -37,7 +38,8 @@ export const CreateNote: VFC = () => {
               tags={selectedTags} />
           </Box>
         </HStack>
-      </Box>
+        <SelectBlocks blocks={content?.blocks ?? []} />
+      </HStack>
     </>
   );
 };
