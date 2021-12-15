@@ -8,8 +8,8 @@ type Props = Pick<BlockType, 'level' | 'unitNumber'>;
 
 export const Block: VFC<Props> = ({ level, unitNumber }) => {
   return (
-    <button css={makeContainer(level)}>
+    <div css={makeContainer(level)}>
       {unitNumber}
-    </button>
+    </div>
   );
 };
