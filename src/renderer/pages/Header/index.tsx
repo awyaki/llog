@@ -42,39 +42,45 @@ export const Header: VFC<Props> = ({ confirmer }) => {
   }, [confirmer, history]); 
 
   const handleContentsClick = useCallback(() => {
+    const path = '/contents';
+
     if (confirmer === undefined) {
-      history.goForward();
+      history.push(path);
       return;
     }
     
     if (confirmer()) {
-      history.push('/contents');
+      history.push(path);
     }
     
     return;
   }, [confirmer, history]);
 
   const handleTimelineClick = useCallback(() => {
+    const path = 'timeline';
+
     if (confirmer === undefined) {
-      history.goForward();
+      history.push(path);
       return;
     }
     
     if (confirmer()) {
-      history.push('/timeline');
+      history.push(path);
     }
     
     return;
   }, [confirmer, history]);
 
   const handleReviewsClick = useCallback(() => {
+    const path = '/reviews';
+
     if (confirmer === undefined) {
-      history.goForward();
+      history.push(path);
       return;
     }
     
     if (confirmer()) {
-      history.push('/reviews');
+      history.push(path);
     }
     
     return;
@@ -82,26 +88,30 @@ export const Header: VFC<Props> = ({ confirmer }) => {
 
 
   const handleNotesClick = useCallback(() => {
+    const path = '/notes';
+
     if (confirmer === undefined) {
-      history.goForward();
+      history.push(path);
       return;
     }
     
     if (confirmer()) {
-      history.push('/notes');
+      history.push(path);
     }
     
     return;
   }, [confirmer, history]); 
 
   const handleSettingsClick = useCallback(() => {
+    const path = '/settings';
+
     if (confirmer === undefined) {
-      history.goForward();
+      history.push(path);
       return;
     }
     
     if (confirmer()) {
-      history.push('/settings');
+      history.push(path);
     }
     
     return;
