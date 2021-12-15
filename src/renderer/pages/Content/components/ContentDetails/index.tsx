@@ -46,7 +46,7 @@ export const ContentDetails: VFC<Props> = ({ mode, setMode, content }) => {
       <h2 css={title}>{content?.name ?? ''}</h2>
       <TagsList tags={content?.tags ?? []} />
       <ul css={buttons}>
-        <li><CreateNoteButton /></li>
+        <li><Link to={ content !== null ? `/content/${content.id}/createnote` : ''}><CreateNoteButton /></Link></li>
         <li><Link to={ content !== null ? `/content/${content.id}/notes` : ''}><NoteViewButton /></Link></li>
       </ul>
       <BasicInfo 
