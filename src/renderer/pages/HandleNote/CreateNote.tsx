@@ -38,7 +38,10 @@ export const CreateNote: VFC = () => {
               tags={selectedTags} />
           </Box>
         </HStack>
-        <SelectBlocks blocks={content?.blocks ?? []} />
+        <Box>
+          <Heading size="lg">Blocks</Heading>
+          <SelectBlocks blocks={content?.blocks ?? []} />
+        </Box>
       </HStack>
     </>
   );
