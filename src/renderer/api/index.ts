@@ -9,3 +9,7 @@ export const getAllTag = async () => {
 export const getContent = async (id: number) => {
   return await window.electronAPI.getContent(id);
 };
+
+export const markdownToHTML = async (markdown: string) => {
+  return await window.electronAPI.markdownToHTML(markdown);
+};
