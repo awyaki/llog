@@ -2,11 +2,12 @@ import { VFC, useState, MouseEventHandler } from 'react';
 
 import { ContentsContextProvider } from './ContentsContextProvider';
 
-import { HStack, Box, Flex, Heading, useDisclosure } from '@chakra-ui/react';
+import { Box, Flex, Heading, useDisclosure } from '@chakra-ui/react';
 
 import { Mode } from './types';
 import { ContentsList } from './components/ContentsList';
 
+import { Header } from '../Header';
 import { Conditions } from './components/Conditions';
 import { CreateNewContent as NewContent } from './components/CreateNewContent';
 import { CreateContentButton } from './components/CreateContentButton';
@@ -40,6 +41,7 @@ export const Contents: VFC = () => {
 
   return (
       <ContentsContextProvider>
+        <Header />
         <Box css={container}>
           <CreateTagModal isOpen={isOpen} onClose={onClose} />
           <Box>
