@@ -11,7 +11,8 @@ import {
   InfoButton, 
   ShowNoteButton, 
   Note, 
-  ModalToSelectBlocks } from './components';
+  ModalToSelectBlocks
+} from './components';
 
 
 import { container } from '~/pages/style/container';
