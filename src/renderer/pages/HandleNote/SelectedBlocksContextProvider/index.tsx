@@ -10,10 +10,11 @@ type SelectedBlocksContextType = {
 
 export const SelectedBlocksContext = createContext<SelectedBlocksContextType>({ selectedBlocks: [], dispatch: () => {} });
 
-export const SelectedBlocksContextProvider: FC = () => {
+export const SelectedBlocksContextProvider: FC = ({ children }) => {
   const [selectedBlocks, dispatch] = useSlectedBlocks();
   return (
     <SelectedBlocksContext.Provider value={{ selectedBlocks, dispatch }}>
+      {children}
     </SelectedBlocksContext.Provider>
   );
 };
