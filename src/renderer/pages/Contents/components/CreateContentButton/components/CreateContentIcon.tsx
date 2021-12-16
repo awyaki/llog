@@ -6,7 +6,7 @@ type Props = {
 };
 
 export const CreateContentIcon: VFC<Props> = ({ active }) => {
-  const color = active ? colors.cyan.DEFAULT : colors.gray.LIGHT;
+  const color = active ? colors.cyan.DEFAULT : colors.text;
   return (
     <svg width="52px" height="51px" viewBox="0 0 52 51" version="1.1" xmlns="http://www.w3.org/2000/svg">
         <g id="コンテンツ" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
