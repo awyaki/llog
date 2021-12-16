@@ -9,7 +9,7 @@ export const selected: CSSObject = {
     justifyContent: 'center',
     width: '36px',
     height: '36px',
-    border: `1px solid ${colors.blue.DEFAULT}`,
+    border: `2px solid ${colors.blue.DEFAULT}`,
     fontSize: font.size.S,
     alignItems: 'center',
   };
