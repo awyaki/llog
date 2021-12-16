@@ -1,5 +1,8 @@
 import { VFC, useState, useContext, useCallback } from 'react';
 
+import { useHistory } from 'react-router-dom';
+import { confirmer } from './functions';
+
 import { Mode } from './types';
 
 import { ContentContext } from '../ContentContextProvider';
@@ -21,6 +24,7 @@ import { container } from '~/pages/style/container';
 
 export const CreateNote: VFC = () => {
   const [mode, setMode] = useState<Mode>('edit');
+  const history = useHistory();
   const content = useContext(ContentContext);
   const { isOpen: isOpenSelectBlocks, 
           onOpen: onOpenSelectBlocks,
@@ -33,6 +37,19 @@ export const CreateNote: VFC = () => {
   const setToPreview = useCallback(() => {
     setMode('preview');
   }, []);
+  
+  const handleLink = useCallback((path: string, isNoteChange: boolean) => () => {
+    if (isNoteChange) {
+      if (confirmer()) {
+        history.push(path);
+        return;
+      }
+      return;
+    }
+    
+    history.push(path);
+
+  }, [history]);
 
   return (
     <>
@@ -40,8 +57,8 @@ export const CreateNote: VFC = () => {
       <Box __css={container}>
         <Heading as="h2" size="lg" mb="16px">{content?.name}</Heading>
         <HStack width="120px" mb="16px">
-          <InfoButton />
-          <ShowNoteButton />
+          <InfoButton onClick={handleLink(`/content/${content?.id}`, false)} />
+          <ShowNoteButton onClick={handleLink(`/content/${content?.id}/notes`, true)}/>
         </HStack>
         <HStack>
           <Note 
