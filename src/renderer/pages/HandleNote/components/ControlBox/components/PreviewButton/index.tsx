@@ -14,7 +14,7 @@ export const PreviewButton: VFC<Props> = ({ mode, onClick }) => {
     <button 
       onClick={onClick} 
       disabled={mode === 'preview'}>
-      <PreviewButtonIcon isActive={mode !== 'edit'} />
+      <PreviewButtonIcon isActive={mode !== 'preview'} />
     </button>
 
   );
