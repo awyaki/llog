@@ -6,11 +6,12 @@ import { ContentContext } from '../ContentContextProvider';
 
 import { Box, Heading, HStack, useDisclosure } from '@chakra-ui/react';
 
-import { Header } from './components/Header';
-import { InfoButton } from './components/InfoButton';
-import { ShowNoteButton } from './components/ShowNotesButton';
-import { Note } from './components/Note';
-import { ModalToSelectBlocks } from './components/ModalToSelectBlocks';
+import { 
+  Header, 
+  InfoButton, 
+  ShowNoteButton, 
+  Note, 
+  ModalToSelectBlocks } from './components';
 
 
 import { container } from '~/pages/style/container';
