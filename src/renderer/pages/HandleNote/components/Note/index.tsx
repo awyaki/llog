@@ -1,18 +1,13 @@
 import { VFC, useState } from 'react';
 
-import { Tag } from '@prisma/client';
-
 import { Box, HStack } from '@chakra-ui/react';
 
 import { MarkdownEditor } from './components/MarkdownEditor';
 import { MarkdownPreview } from './components/MarkdownPreview';
 import { ShowSaveDate } from './components/ShowSaveDate';
 
-type Props = {
-  tags: Tag[];
-};
 
-export const Note: VFC<Props> = ({ tags }) => {
+export const Note: VFC = () => {
   const [markdown, setMarkdown] = useState(''); 
   const [mode, setMode] = useState<'edit' | 'preview'>('edit'); 
 
