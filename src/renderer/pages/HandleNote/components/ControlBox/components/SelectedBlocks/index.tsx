@@ -9,15 +9,17 @@ import { SelectBlockButton } from './components/SelectBlockButton';
 
 import { container } from './style/container';
 
-type Props = CSSObject;
+type Props = {
+  onOpenSelectBlocks: () => void;
+} & CSSObject;
 
-export const SelectedBlocks: VFC<Props> = ({ ...CSSObject }) => {
+export const SelectedBlocks: VFC<Props> = ({ onOpenSelectBlocks, ...rest }) => {
   const { selectedBlocks } = useContext(SelectedBlocksContext);
   return (
-    <Box __css={CSSObject}>
+    <Box __css={rest}>
       <ul css={container}>
         {selectedBlocks.map(({ id, level, unitNumber }) => <li key={id}><Block level={level} unitNumber={unitNumber} /></li>)}
-        <li><SelectBlockButton /></li>
+        <li><SelectBlockButton onClick={onOpenSelectBlocks}/></li>
       </ul>
     </Box>
   );

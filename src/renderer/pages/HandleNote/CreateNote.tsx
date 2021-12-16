@@ -23,6 +23,7 @@ export const CreateNote: VFC = () => {
   const [mode, setMode] = useState<Mode>('edit');
   const content = useContext(ContentContext);
   const { isOpen: isOpenSelectBlocks, 
+          onOpen: onOpenSelectBlocks,
           onClose: onCloseSelectBlocks } = useDisclosure();
   
   const setToEdit = useCallback(() => {
@@ -53,6 +54,7 @@ export const CreateNote: VFC = () => {
             mode={mode}
             setToEdit={setToEdit}
             setToPreview={setToPreview}
+            onOpenSelectBlocks={onOpenSelectBlocks}
           />
         </HStack>
       </Box>

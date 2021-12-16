@@ -20,9 +20,10 @@ type Props = {
   mode: Mode;
   setToEdit: () => void;
   setToPreview: () => void;
+  onOpenSelectBlocks: () => void;
 };
 
-export const ControlBox: VFC<Props> = ({ mode, setToEdit, setToPreview }) => {
+export const ControlBox: VFC<Props> = ({ mode, setToEdit, setToPreview, onOpenSelectBlocks }) => {
   return (
     <Box pos="fixed" top="220px" left="65%">
       <VStack alignItems="flex-start">
@@ -32,7 +33,7 @@ export const ControlBox: VFC<Props> = ({ mode, setToEdit, setToPreview }) => {
           </Box>
           <Box pb="12px">
             <h2 css={title}>Selected Blocks</h2>
-            <SelectedBlocks />
+            <SelectedBlocks onOpenSelectBlocks={onOpenSelectBlocks} />
           </Box>
         <HStack w="120px" pb="25px">
           <TakeANoteButton mode={mode} onClick={setToEdit} />
