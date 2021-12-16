@@ -4,10 +4,8 @@ import {
   ModalOverlay,
   ModalContent,
   ModalHeader,
-  ModalFooter,
   ModalBody,
-  ModalCloseButton,
-  useDisclosure,
+  ModalProps,
 } from '@chakra-ui/react'
 
 import { Block as BlockType } from '@prisma/client';
@@ -18,12 +16,15 @@ import { Block } from './components/Block';
 
 type Props = {
   blocks: BlockType[];
-};
+} & Omit<ModalProps, 'children'>;
 
-export const ModalToSelectBlocks: VFC<Props> = ({ blocks }) => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+export const ModalToSelectBlocks: VFC<Props> = ({ 
+  blocks,
+  isOpen,
+  onClose,
+  }) => {
   return (
-      <Modal isOpen={true} onClose={onClose}>
+      <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>Select Blocks</ModalHeader>

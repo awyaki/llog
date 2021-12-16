@@ -4,7 +4,7 @@ import { Tag } from '@prisma/client';
 
 import { ContentContext } from '../ContentContextProvider';
 
-import { Box, Heading, HStack } from '@chakra-ui/react';
+import { Box, Heading, HStack, useDisclosure } from '@chakra-ui/react';
 
 import { Header } from './components/Header';
 import { InfoButton } from './components/InfoButton';
@@ -18,7 +18,9 @@ import { container } from '~/pages/style/container';
 
 export const CreateNote: VFC = () => {
   const content = useContext(ContentContext);
-  
+  const { isOpen: isOpenSelectBlocks, 
+          onClose: onCloseSelectBlocks } = useDisclosure();
+
   const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
   
   return (
@@ -37,7 +39,10 @@ export const CreateNote: VFC = () => {
           </Box>
         </HStack>
       </HStack>
-      <ModalToSelectBlocks blocks={content?.blocks ?? []} />
+      <ModalToSelectBlocks 
+        isOpen={isOpenSelectBlocks}
+        onClose={onCloseSelectBlocks}
+        blocks={content?.blocks ?? []} />
     </>
   );
 };
