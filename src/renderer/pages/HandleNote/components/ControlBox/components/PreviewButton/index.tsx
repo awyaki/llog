@@ -1,18 +1,20 @@
 import { VFC, MouseEventHandler } from 'react';
 
+import { Mode } from '../../../../types';
+
 import { PreviewButtonIcon } from './components/PreviewButtonIcon';
 
 type Props = {
-  isActive: boolean;
+  mode: Mode;
   onClick?: MouseEventHandler<HTMLButtonElement>;
 };
 
-export const PreviewButton: VFC<Props> = ({ isActive, onClick }) => {
+export const PreviewButton: VFC<Props> = ({ mode, onClick }) => {
   return (
     <button 
       onClick={onClick} 
-      disabled={isActive}>
-      <PreviewButtonIcon isActive={isActive} />
+      disabled={mode === 'preview'}>
+      <PreviewButtonIcon isActive={mode !== 'edit'} />
     </button>
 
   );
