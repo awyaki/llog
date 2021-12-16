@@ -45,7 +45,7 @@ export const Contents: VFC = () => {
         <Box css={container}>
           <CreateTagModal isOpen={isOpen} onClose={onClose} />
           <Box>
-            <Heading as="h2" size="lg" mb="32px">Contents</Heading>
+            <Heading as="h2" variant="h2" mb="32px">Contents</Heading>
             <Flex justify="space-between" w="130px" mb="16px">
               <CreateContentButton 
                 active={mode === 'NewContent'}  
