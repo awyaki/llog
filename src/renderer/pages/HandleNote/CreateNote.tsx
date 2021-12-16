@@ -1,6 +1,6 @@
-import { VFC, useState, useContext } from 'react';
+import { VFC, useState, useContext, useCallback } from 'react';
 
-import { Tag } from '@prisma/client';
+import { Mode } from './types';
 
 import { ContentContext } from '../ContentContextProvider';
 
@@ -20,12 +20,19 @@ import { container } from '~/pages/style/container';
 
 
 export const CreateNote: VFC = () => {
+  const [mode, setMode] = useState<Mode>('edit');
   const content = useContext(ContentContext);
   const { isOpen: isOpenSelectBlocks, 
           onClose: onCloseSelectBlocks } = useDisclosure();
-
-  const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
   
+  const setToEdit = useCallback(() => {
+    setMode('edit');
+  }, []);
+  
+  const setToPreview = useCallback(() => {
+    setMode('preview');
+  }, []);
+
   return (
     <>
       <Header isNoteChange={true} />
@@ -36,8 +43,17 @@ export const CreateNote: VFC = () => {
           <ShowNoteButton />
         </HStack>
         <HStack>
-          <Note minWidth="300px" maxWidth="800px" w="70%" pr="6%" />
-          <ControlBox />
+          <Note 
+            mode={mode}
+            minWidth="300px" 
+            maxWidth="800px" 
+            w="70%" 
+            pr="6%" />
+          <ControlBox 
+            mode={mode}
+            setToEdit={setToEdit}
+            setToPreview={setToPreview}
+          />
         </HStack>
       </Box>
       <ModalToSelectBlocks 
