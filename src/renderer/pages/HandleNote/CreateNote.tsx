@@ -53,7 +53,7 @@ export const CreateNote: VFC = () => {
 
   return (
     <>
-      <Header isNoteChange={true} />
+      <Header isNoteChange={true} confirmer={confirmer} />
       <Box __css={container}>
         <Heading as="h2" size="lg" mb="16px">{content?.name}</Heading>
         <HStack width="120px" mb="16px">

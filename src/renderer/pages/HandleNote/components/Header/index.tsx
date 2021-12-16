@@ -3,13 +3,9 @@ import { Header as DefaultHeader } from '~/pages/Header';
 
 type Props = {
   isNoteChange: boolean;
+  confirmer: () => boolean;
 };
 
-export const Header: VFC<Props> = ({ isNoteChange }) => {
-  const confirmer = () => {
-    const message = `Do you really want to leave the page? Every data of the note which aren't saved will be completely clear.`
-    return confirm(message);
-  };
-
+export const Header: VFC<Props> = ({ isNoteChange, confirmer }) => {
   return <DefaultHeader confirmer={isNoteChange ? confirmer : undefined}/>;
 };
