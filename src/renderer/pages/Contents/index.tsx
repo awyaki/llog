@@ -46,7 +46,7 @@ export const Contents: VFC = () => {
           <CreateTagModal isOpen={isOpen} onClose={onClose} />
           <Box>
             <Heading as="h2" variant="h2" mb="32px">Contents</Heading>
-            <Flex justify="space-between" w="130px" mb="16px">
+            <Flex justify="space-between" w="120px" mb="16px">
               <CreateContentButton 
                 active={mode === 'NewContent'}  
                 onClick={handleClickNewContent}/>
