@@ -1,13 +1,16 @@
 import { VFC } from 'react';
 
 import { ContentContextProvider } from '../ContentContextProvider';
+import { SelectedBlocksContextProvider } from './SelectedBlocksContextProvider';
 
 import { CreateNote as SubCreateNote } from './CreateNote';
 
 export const CreateNote: VFC = () => {
   return (
       <ContentContextProvider>
-        <SubCreateNote />
+        <SelectedBlocksContextProvider>
+          <SubCreateNote />
+        </SelectedBlocksContextProvider>
       </ContentContextProvider>
   );
 };
