@@ -35,8 +35,8 @@ export const ControlBox: VFC<Props> = ({ mode, setToEdit, setToPreview }) => {
             <SelectedBlocks />
           </Box>
         <HStack w="120px" pb="25px">
-          <TakeANoteButton isActive={mode === 'preview'} onClick={setToEdit} />
-          <PreviewButton isActive={mode === 'edit'} onClick={setToPreview}/>
+          <TakeANoteButton mode={mode} onClick={setToEdit} />
+          <PreviewButton mode={mode} onClick={setToPreview}/>
         </HStack>
         <CommitButton />
         <SaveButton />
