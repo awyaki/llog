@@ -8,7 +8,7 @@ type SlectedBlocksContextType = {
   dispatch: Dispatch<Action>;
 };
 
-const SlectedBlocksContext = createContext<SlectedBlocksContextType>({ blocks: [], dispatch: () => {} });
+export const SlectedBlocksContext = createContext<SlectedBlocksContextType>({ blocks: [], dispatch: () => {} });
 
 export const SelectedBlocksContextProvider: FC = () => {
   const [selectedBlocks, dispatch] = useSlectedBlocks();
