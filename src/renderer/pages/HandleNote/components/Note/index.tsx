@@ -19,10 +19,9 @@ import { ShowSaveDate } from './components/ShowSaveDate';
 
 type Props = {
   tags: Tag[];
-  blocks: Block[];
 };
 
-export const Note: VFC<Props> = ({ tags, blocks }) => {
+export const Note: VFC<Props> = ({ tags }) => {
   const [markdown, setMarkdown] = useState(''); 
   const [mode, setMode] = useState<'edit' | 'preview'>('edit'); 
 
@@ -37,7 +36,7 @@ export const Note: VFC<Props> = ({ tags, blocks }) => {
   return (
     <Box>
       <SelectedTags tags={tags} mb="10px" />
-      <SelectedBlocks blocks={blocks} mb="10px" />
+      <SelectedBlocks mb="10px" />
       <HStack justifyContent="space-between" mb="16px">
         <HStack>
           <SaveButton />

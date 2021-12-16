@@ -1,15 +1,26 @@
-import { VFC } from 'react';
+import { VFC, useContext, useCallback, memo } from 'react';
 
 import { Block as BlockType } from '@prisma/client';
 
+import { SelectedBlocksContext } from '~/pages/HandleNote/SelectedBlocksContextProvider';
+
 import { makeContainer } from '~/pages/style/block';
 
-type Props = Pick<BlockType, 'level' | 'unitNumber'>;
+type Props = { 
+  block: BlockType
+};
 
-export const Block: VFC<Props> = ({ level, unitNumber }) => {
+export const Block: VFC<Props> = memo(({ block }) => {
+  const { dispatch } = useContext(SelectedBlocksContext);
+  const { level, unitNumber } = block; 
+
+  const handleToggleSelectBlock = useCallback(() => {
+    dispatch({ type: 'SELECTED_BLOCKS/TOGGLE', block: block });
+  }, [block]);
+
   return (
-    <div css={makeContainer(level)}>
+    <div css={makeContainer(level)} onClick={handleToggleSelectBlock}>
       {unitNumber}
     </div>
   );
-};
+});

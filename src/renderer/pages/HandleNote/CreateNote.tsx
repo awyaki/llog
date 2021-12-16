@@ -1,6 +1,6 @@
 import { VFC, useState, useContext } from 'react';
 
-import { Tag, Block } from '@prisma/client';
+import { Tag } from '@prisma/client';
 
 import { ContentContext } from '../ContentContextProvider';
 
@@ -19,9 +19,8 @@ import { container } from '~/pages/style/container';
 export const CreateNote: VFC = () => {
   const content = useContext(ContentContext);
   
-  const [selectedBlocks, setSelectedBlocks] = useState<Block[]>([]);
   const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
-
+  
   return (
     <>
       <Header isNoteChange={true} />
@@ -34,7 +33,6 @@ export const CreateNote: VFC = () => {
               <ShowNoteButton />
             </HStack>
             <Note  
-              blocks={selectedBlocks}
               tags={selectedTags} />
           </Box>
         </HStack>

@@ -12,7 +12,7 @@ type Props = {
 export const SelectBlocks: VFC<Props> = ({ blocks }) => {
   return (
       <ul css={container}>
-        {blocks.map(({ id, level, unitNumber }) => <li key={id}><Block level={level} unitNumber={unitNumber}/></li>)}
+        {blocks.map((block) => <li key={block.id}><Block block={block} /></li>)}
       </ul>
   );
 };
