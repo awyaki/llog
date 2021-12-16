@@ -10,7 +10,7 @@ import { Header } from './components/Header';
 import { InfoButton } from './components/InfoButton';
 import { ShowNoteButton } from './components/ShowNotesButton';
 import { Note } from './components/Note';
-import { SelectBlocks } from './components/SelectBlocks';
+import { ModalToSelectBlocks } from './components/ModalToSelectBlocks';
 
 
 import { container } from '~/pages/style/container';
@@ -36,11 +36,8 @@ export const CreateNote: VFC = () => {
               tags={selectedTags} />
           </Box>
         </HStack>
-        <Box ml="32px">
-          <Heading size="lg" mb="16px">Blocks</Heading>
-          <SelectBlocks blocks={content?.blocks ?? []} />
-        </Box>
       </HStack>
+      <ModalToSelectBlocks blocks={content?.blocks ?? []} />
     </>
   );
 };
