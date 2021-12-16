@@ -1,18 +1,19 @@
 import { VFC, MouseEventHandler } from 'react';
 
+import { Mode } from '../../../../types';
 import { TakeANoteButtonIcon } from './components/TakeANoteButtonIcon';
 
 type Props = {
-  isActive: boolean;
+  mode: Mode; 
   onClick?: MouseEventHandler<HTMLButtonElement>;
 };
 
-export const TakeANoteButton: VFC<Props> = ({ isActive, onClick }) => {
+export const TakeANoteButton: VFC<Props> = ({ mode, onClick }) => {
   return ( 
     <button 
       onClick={onClick} 
-      disabled={isActive}>
-      <TakeANoteButtonIcon isActive={isActive} />
+      disabled={mode === 'edit'}>
+      <TakeANoteButtonIcon isActive={mode !== 'edit'} />
     </button>
   );
 };
