@@ -21,7 +21,7 @@ export const makeContainer = (level: number): CSSObject => {
     ...base,
     borderWidth: '3px',
     borderStyle: 'dashed',
-    borderColor: colors.gray.DEFAULT,
+    borderColor: colors.text,
   };
 
   const one: CSSObject = {
