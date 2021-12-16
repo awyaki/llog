@@ -19,8 +19,8 @@ export const Block: VFC<Props> = memo(({ block }) => {
   }, [block]);
 
   return (
-    <div css={makeContainer(level)} onClick={handleToggleSelectBlock}>
+    <button css={makeContainer(level)} onClick={handleToggleSelectBlock}>
       {unitNumber}
-    </div>
+    </button>
   );
 });
