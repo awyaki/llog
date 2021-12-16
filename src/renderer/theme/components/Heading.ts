@@ -4,7 +4,7 @@ import { font } from '~/styleConfig/font';
 
 const h2: SystemStyleObject = {
   color: colors.text,
-  fontSize: font.size.M,
+  fontSize: font.size.L,
 };
 
 export const Heading = {
