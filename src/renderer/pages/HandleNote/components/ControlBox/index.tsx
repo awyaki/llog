@@ -16,7 +16,7 @@ import { title } from './style';
 
 export const ControlBox: VFC = () => {
   return (
-    <Box ml="48px">
+    <Box>
       <VStack alignItems="flex-start">
           <Box pb="12px">
             <h2 css={title}>Selected Tags</h2>

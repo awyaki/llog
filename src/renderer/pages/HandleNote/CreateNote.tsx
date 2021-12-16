@@ -11,7 +11,8 @@ import {
   InfoButton, 
   ShowNoteButton, 
   Note, 
-  ModalToSelectBlocks
+  ModalToSelectBlocks,
+  ControlBox
 } from './components';
 
 
@@ -28,19 +29,17 @@ export const CreateNote: VFC = () => {
   return (
     <>
       <Header isNoteChange={true} />
-      <HStack __css={container} alignItems="start">
-        <HStack>
-          <Box width="55vw">
-            <Heading as="h2" size="lg" mb="16px">{content?.name}</Heading>
-            <HStack width="120px" mb="16px">
-              <InfoButton />
-              <ShowNoteButton />
-            </HStack>
-            <Note  
-              tags={selectedTags} />
-          </Box>
+      <Box __css={container}>
+        <Heading as="h2" size="lg" mb="16px">{content?.name}</Heading>
+        <HStack width="120px" mb="16px">
+          <InfoButton />
+          <ShowNoteButton />
         </HStack>
-      </HStack>
+        <HStack>
+          <Note minWidth="300px" maxWidth="800px" w="70%" pr="6%" />
+          <ControlBox />
+        </HStack>
+      </Box>
       <ModalToSelectBlocks 
         isOpen={isOpenSelectBlocks}
         onClose={onCloseSelectBlocks}
