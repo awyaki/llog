@@ -12,9 +12,10 @@ export const makeContainer = (level: number): CSSObject => {
 
   const zero: CSSObject = {
     ...base,
-    borderWidth: '3px',
-    borderStyle: 'dashed',
-    borderColor: colors.gray.DEFAULT,
+    borderWidth: '1px',
+    backgroundColor: colors.white,
+    borderStyle: 'solid',
+    borderColor: colors.text,
   };
 
   const one: CSSObject = {
