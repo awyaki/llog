@@ -14,7 +14,7 @@ export const makeContainer = (level: number): CSSObject => {
     height: '36px',
     borderWidth: '1px',
     fontSize: font.size.S,
-    textAlign: 'center',
+    alignItems: 'center',
   };
 
   const zero: CSSObject = {
