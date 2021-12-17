@@ -31,7 +31,6 @@ export const CreateNote: VFC = () => {
   const [mode, setMode] = useState<Mode>('edit');
   const history = useHistory();
   const content = useContext(ContentContext);
-  const { tags } = useContext(TagContext); 
 
   const { isOpen: isOpenSelectBlocks, 
           onOpen: onOpenSelectBlocks,
