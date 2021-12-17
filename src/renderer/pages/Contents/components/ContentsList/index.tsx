@@ -1,13 +1,12 @@
 import { VFC } from 'react';
 
-import { contentName } from './style';
+import { contentName, list } from './style';
 
 import { Link } from 'react-router-dom';
 
 
 import { useContentsList } from './hooks/useContentsList';
 
-import { list } from './style/list';
 
 export const ContentsList: VFC = () => {
   const contents = useContentsList();
