@@ -90,8 +90,7 @@ export const CreateNote: VFC = () => {
         blocks={content?.blocks ?? []} />
       <ModalToSelectTags 
         isOpen={isOpenSelectTags}
-        onClose={onCloseSelectTags}
-        tags={tags} />
+        onClose={onCloseSelectTags} />
     </>
   );
 };

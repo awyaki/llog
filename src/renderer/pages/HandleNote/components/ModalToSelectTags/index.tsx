@@ -1,4 +1,9 @@
-import { VFC } from 'react';
+import { VFC, useContext, MouseEventHandler } from 'react';
+
+import { Tag as TagType } from '@prisma/client';
+
+import { TagContext } from '~/DBContextProviders';
+import { SelectedTagsContext } from '../../SelectedTagsContextProvider';
 
 import {
   Modal,
@@ -11,20 +16,17 @@ import {
 
 import { Tag } from './components';
 
-import { Tag as TagType } from '@prisma/client';
-
 import { container } from './style';
 
 
-type Props = {
-  tags: TagType[];
-} & Omit<ModalProps, 'children'>;
+type Props = Omit<ModalProps, 'children'>;
 
 export const ModalToSelectTags: VFC<Props> = ({ 
-  tags,
   isOpen,
   onClose,
   }) => {
+  const { tags } = useContext(TagContext);
+  
   return (
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
@@ -32,7 +34,7 @@ export const ModalToSelectTags: VFC<Props> = ({
           <ModalHeader>Select Tags</ModalHeader>
             <ModalBody>
               <ul css={container}>
-                {tags.map(({ id, name }) => <li key={id}><Tag name={name}></Tag></li>)}
+                {tags.map((tag) => <li key={tag.id}><Tag tag={tag} /></li>)}
               </ul>
             </ModalBody>
         </ModalContent>

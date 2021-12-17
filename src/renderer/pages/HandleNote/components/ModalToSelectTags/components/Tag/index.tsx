@@ -1,14 +1,25 @@
-import { VFC, MouseEventHandler } from 'react';
+import { VFC, useContext } from 'react';
 
-import { container } from './style';
+import { Tag as TagType } from '@prisma/client';
+
+import { SelectedTagsContext } from '../../../../SelectedTagsContextProvider';
+
+import { makeContainer } from './style';
 
 type Props = {
-  name: string;
-  onClick?: MouseEventHandler<HTMLButtonElement>;
+  tag: TagType;
 };
 
-export const Tag: VFC<Props> = ({ name, onClick }) => {
+export const Tag: VFC<Props> = ({ tag }) => {
+
+  const { selectedTags, dispatch } = useContext(SelectedTagsContext);
+  const isSelected = selectedTags.includes(tag);
+  
+  const handleToggleSelectedTag = () => {
+    dispatch({ type: 'SELECTED_TAGS/TOGGLE', tag: tag });
+  };
+
   return (
-    <button onClick={onClick} css={container}>{name}</button>
+    <button onClick={handleToggleSelectedTag} css={makeContainer(isSelected)}>{tag.name}</button>
   );
 };
