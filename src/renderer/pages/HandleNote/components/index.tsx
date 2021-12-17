@@ -1,6 +1,7 @@
-export { Note } from './Note';
-export { Header } from './Header';
-export { InfoButton } from './InfoButton';
-export { ShowNoteButton } from './ShowNotesButton';
-export { ModalToSelectBlocks } from './ModalToSelectBlocks';
-export { ControlBox } from './ControlBox';
+export * from './Note';
+export * from './Header';
+export * from './InfoButton';
+export * from './ShowNotesButton';
+export * from './ModalToSelectBlocks';
+export * from './ModalToSelectTags';
+export * from './ControlBox';
