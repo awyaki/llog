@@ -4,7 +4,7 @@ import { container } from './style';
 
 type Props = {
   name: string;
-  onClick: MouseEventHandler<HTMLButtonElement>;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
 };
 
 export const Tag: VFC<Props> = ({ name, onClick }) => {
