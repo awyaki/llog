@@ -1,5 +1,7 @@
 import { VFC, useState, useContext, useCallback } from 'react';
 
+import { pageTitle } from '~/pages/style';
+
 import { useHistory } from 'react-router-dom';
 import { confirmer } from './functions';
 
@@ -8,7 +10,7 @@ import { Mode } from './types';
 import { ContentContext } from '../ContentContextProvider';
 import { TagContext } from '~/DBContextProviders';
 
-import { Box, Heading, HStack, useDisclosure } from '@chakra-ui/react';
+import { Box, HStack, useDisclosure } from '@chakra-ui/react';
 
 import { 
   Header, 
@@ -68,7 +70,7 @@ export const CreateNote: VFC = () => {
     <>
       <Header isNoteChange={true} confirmer={confirmer} />
       <Box __css={container}>
-        <Heading as="h2" size="lg" mb="16px">{content?.name}</Heading>
+        <h2 css={pageTitle}>{content?.name}</h2>
         <HStack width="120px" mb="16px">
           <InfoButton onClick={handleLink(`/content/${content?.id}`, false)} />
           <ShowNoteButton onClick={handleLink(`/content/${content?.id}/notes`, true)}/>
