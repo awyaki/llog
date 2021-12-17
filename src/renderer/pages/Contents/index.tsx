@@ -1,8 +1,10 @@
 import { VFC, useState, MouseEventHandler } from 'react';
 
+import { pageTitle } from '~/pages/style/pageTitle';
+
 import { ContentsContextProvider } from './ContentsContextProvider';
 
-import { Box, Flex, Heading, useDisclosure } from '@chakra-ui/react';
+import { Box, Flex, useDisclosure } from '@chakra-ui/react';
 
 import { Mode } from './types';
 import { ContentsList } from './components/ContentsList';
@@ -45,7 +47,7 @@ export const Contents: VFC = () => {
         <Box css={container}>
           <CreateTagModal isOpen={isOpen} onClose={onClose} />
           <Box>
-            <Heading as="h2" variant="h2" mb="32px">Contents</Heading>
+            <h2 css={pageTitle}>Contents</h2>
             <Flex justify="space-between" w="120px" mb="16px">
               <CreateContentButton 
                 active={mode === 'NewContent'}  
