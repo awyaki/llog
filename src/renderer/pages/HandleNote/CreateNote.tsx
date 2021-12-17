@@ -6,6 +6,7 @@ import { confirmer } from './functions';
 import { Mode } from './types';
 
 import { ContentContext } from '../ContentContextProvider';
+import { TagContext } from '~/DBContextProviders';
 
 import { Box, Heading, HStack, useDisclosure } from '@chakra-ui/react';
 
@@ -27,6 +28,7 @@ export const CreateNote: VFC = () => {
   const [mode, setMode] = useState<Mode>('edit');
   const history = useHistory();
   const content = useContext(ContentContext);
+  const { tags } = useContext(TagContext); 
 
   const { isOpen: isOpenSelectBlocks, 
           onOpen: onOpenSelectBlocks,
@@ -89,7 +91,7 @@ export const CreateNote: VFC = () => {
       <ModalToSelectTags 
         isOpen={isOpenSelectTags}
         onClose={onCloseSelectTags}
-        tags={[]} />
+        tags={tags} />
     </>
   );
 };
