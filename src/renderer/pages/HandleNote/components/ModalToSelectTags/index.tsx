@@ -1,9 +1,7 @@
-import { VFC, useContext, MouseEventHandler } from 'react';
+import { VFC, useContext } from 'react';
 
-import { Tag as TagType } from '@prisma/client';
 
 import { TagContext } from '~/DBContextProviders';
-import { SelectedTagsContext } from '../../SelectedTagsContextProvider';
 
 import {
   Modal,
