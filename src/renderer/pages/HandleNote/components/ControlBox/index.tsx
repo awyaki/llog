@@ -36,7 +36,7 @@ export const ControlBox: VFC<Props> = ({
       <VStack alignItems="flex-start">
           <Box pb="12px">
             <h2 css={title}>Selected Tags</h2>
-            <SelectedTags onOpenSelectTags={onOpenSelectTags} tags={[]} />
+            <SelectedTags onOpenSelectTags={onOpenSelectTags} />
           </Box>
           <Box pb="12px">
             <h2 css={title}>Selected Blocks</h2>
