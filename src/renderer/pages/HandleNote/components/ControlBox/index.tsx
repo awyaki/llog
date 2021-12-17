@@ -12,6 +12,7 @@ import {
   PreviewButton,
   SelectedTags,
   SelectedBlocks,
+  CreateNewTag
   } from './components';
 
 import { title } from './style';
@@ -22,6 +23,7 @@ type Props = {
   setToPreview: () => void;
   onOpenSelectBlocks: () => void;
   onOpenSelectTags: () => void;
+  onOpenCreateNewTag: () => void;
 };
 
 export const ControlBox: VFC<Props> = ({ 
@@ -29,13 +31,15 @@ export const ControlBox: VFC<Props> = ({
   setToEdit, 
   setToPreview, 
   onOpenSelectBlocks,
-  onOpenSelectTags
+  onOpenSelectTags,
+  onOpenCreateNewTag
   }) => {
   return (
     <Box pos="fixed" top="220px" left="65%">
       <VStack alignItems="flex-start">
           <Box pb="12px">
             <h2 css={title}>Selected Tags</h2>
+            <CreateNewTag onOpen={onOpenCreateNewTag}/>
             <SelectedTags onOpenSelectTags={onOpenSelectTags} />
           </Box>
           <Box pb="12px">

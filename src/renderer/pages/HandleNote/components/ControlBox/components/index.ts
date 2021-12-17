@@ -5,3 +5,4 @@ export * from './SaveButton';
 export * from './SelectedBlocks';
 export * from './SelectedTags';
 export * from './TakeANoteButton';
+export * from './CreateNewTag';
