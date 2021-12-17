@@ -1,6 +1,8 @@
-import { createContext, FC, Dispatch } from 'react';
+import { createContext, FC, Dispatch, useEffect } from 'react';
 
-import { useTag, TagAction as Action } from '~/hooks';
+import { getAllTag } from '~/api';
+
+import { useTag, TagAction as Action } from './hooks';
 
 import { Tag } from '@prisma/client';
 
@@ -13,6 +15,14 @@ export const TagContext = createContext<TagContextType>({ tags: [], dispatch: ()
 
 export const TagContextProvider: FC = ({ children }) => {
   const [tags, dispatch] = useTag();
+  
+  useEffect(() => {
+    (async () => {
+      const result = await getAllTag();
+      dispatch({ type: 'APP/SET_TAG', tags: result });
+    })();
+  }, []);
+
   return (
     <TagContext.Provider value={{ tags: tags, dispatch: dispatch }}>
       {children}

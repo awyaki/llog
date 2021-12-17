@@ -1,6 +1,6 @@
 import { VFC, useContext } from 'react';
 
-import { TagContext } from '~/StateProviders';
+import { TagContext } from '~/DBContextProviders';
 
 import { Tag } from './components/Tag';
 import { tagsList } from './style/tagsList';
