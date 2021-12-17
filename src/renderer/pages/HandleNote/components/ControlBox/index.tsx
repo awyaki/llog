@@ -21,15 +21,22 @@ type Props = {
   setToEdit: () => void;
   setToPreview: () => void;
   onOpenSelectBlocks: () => void;
+  onOpenSelectTags: () => void;
 };
 
-export const ControlBox: VFC<Props> = ({ mode, setToEdit, setToPreview, onOpenSelectBlocks }) => {
+export const ControlBox: VFC<Props> = ({ 
+  mode, 
+  setToEdit, 
+  setToPreview, 
+  onOpenSelectBlocks,
+  onOpenSelectTags
+  }) => {
   return (
     <Box pos="fixed" top="220px" left="65%">
       <VStack alignItems="flex-start">
           <Box pb="12px">
             <h2 css={title}>Selected Tags</h2>
-            <SelectedTags tags={[]} />
+            <SelectedTags onOpenSelectTags={onOpenSelectTags} tags={[]} />
           </Box>
           <Box pb="12px">
             <h2 css={title}>Selected Blocks</h2>

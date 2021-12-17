@@ -29,7 +29,7 @@ export const ModalToSelectTags: VFC<Props> = ({
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Select Blocks</ModalHeader>
+          <ModalHeader>Select Tags</ModalHeader>
             <ModalBody>
               <ul css={container}>
                 {tags.map(({ id, name }) => <li key={id}><Tag name={name}></Tag></li>)}

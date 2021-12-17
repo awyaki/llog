@@ -15,6 +15,7 @@ import {
   ShowNoteButton, 
   Note, 
   ModalToSelectBlocks,
+  ModalToSelectTags,
   ControlBox
 } from './components';
 
@@ -26,9 +27,14 @@ export const CreateNote: VFC = () => {
   const [mode, setMode] = useState<Mode>('edit');
   const history = useHistory();
   const content = useContext(ContentContext);
+
   const { isOpen: isOpenSelectBlocks, 
           onOpen: onOpenSelectBlocks,
           onClose: onCloseSelectBlocks } = useDisclosure();
+  
+  const { isOpen: isOpenSelectTags, 
+          onOpen: onOpenSelectTags,
+          onClose: onCloseSelectTags } = useDisclosure();
   
   const setToEdit = useCallback(() => {
     setMode('edit');
@@ -72,6 +78,7 @@ export const CreateNote: VFC = () => {
             setToEdit={setToEdit}
             setToPreview={setToPreview}
             onOpenSelectBlocks={onOpenSelectBlocks}
+            onOpenSelectTags={onOpenSelectTags}
           />
         </HStack>
       </Box>
@@ -79,6 +86,10 @@ export const CreateNote: VFC = () => {
         isOpen={isOpenSelectBlocks}
         onClose={onCloseSelectBlocks}
         blocks={content?.blocks ?? []} />
+      <ModalToSelectTags 
+        isOpen={isOpenSelectTags}
+        onClose={onCloseSelectTags}
+        tags={[]} />
     </>
   );
 };
