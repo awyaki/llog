@@ -38,12 +38,12 @@ export const ControlBox: VFC<Props> = ({
     <Box pos="fixed" top="220px" left="65%">
       <VStack alignItems="flex-start">
           <Box pb="12px">
-            <h2 css={title}>Selected Tags</h2>
+            <h2 css={title}>Tags</h2>
             <CreateNewTag onOpen={onOpenCreateNewTag}/>
             <SelectedTags onOpenSelectTags={onOpenSelectTags} />
           </Box>
           <Box pb="12px">
-            <h2 css={title}>Selected Blocks</h2>
+            <h2 css={title}>Blocks</h2>
             <SelectedBlocks onOpenSelectBlocks={onOpenSelectBlocks} />
           </Box>
         <HStack w="120px" pb="25px">
