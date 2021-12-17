@@ -5,11 +5,14 @@ import { Tag } from '@prisma/client';
 type State = Tag[];
 
 export type Action = {
-  type: 'SELECTED_TAGS/TOGGLE',
+  type: 'SELECTED_TAGS/TOGGLE';
   tag: Tag;
 } | {
-  type: 'SELECTED_TAGS/ADD',
-  tag: Tag,
+  type: 'SELECTED_TAGS/ADD';
+  tag: Tag;
+} | {
+  type: 'SELECTED_TAGS/CONCAT';
+  tags: Tag[];
 };
 
 const reducer: Reducer<State, Action> = (state, action) => {
@@ -23,6 +26,9 @@ const reducer: Reducer<State, Action> = (state, action) => {
     }
     case 'SELECTED_TAGS/ADD': {
       return state.concat(action.tag);
+    }
+    case 'SELECTED_TAGS/CONCAT': {
+      return state.concat(action.tags);
     }
     default:
       return state;
