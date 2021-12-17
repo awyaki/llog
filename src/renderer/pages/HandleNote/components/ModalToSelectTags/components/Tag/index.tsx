@@ -11,10 +11,10 @@ type Props = {
 };
 
 export const Tag: VFC<Props> = ({ tag }) => {
-
   const { selectedTags, dispatch } = useContext(SelectedTagsContext);
-  const isSelected = selectedTags.includes(tag);
-  
+  const isSelected = selectedTags.findIndex(({ id }) => id === tag.id) !== -1;
+  console.log('ModalToSelectedTags selectedTags isSelected tag.id', selectedTags, isSelected, tag.id);
+
   const handleToggleSelectedTag = () => {
     dispatch({ type: 'SELECTED_TAGS/TOGGLE', tag: tag });
   };
