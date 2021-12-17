@@ -1,7 +1,7 @@
-export { CommitButton } from './CommitButton';
-export { OneMoreNoteButton } from './OneMoreNoteButton';
-export { PreviewButton } from './PreviewButton';
-export { SaveButton } from './SaveButton';
-export { SelectedBlocks } from './SelectedBlocks';
-export { SelectedTags } from './SelectedTags';
-export { TakeANoteButton } from './TakeANoteButton';
+export * from './CommitButton';
+export * from './OneMoreNoteButton';
+export * from './PreviewButton';
+export * from './SaveButton';
+export * from './SelectedBlocks';
+export * from './SelectedTags';
+export * from './TakeANoteButton';
