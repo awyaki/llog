@@ -1,5 +1,7 @@
 import { VFC } from 'react';
 
+import { Tag } from '@prisma/client';
+
 import { Mode } from '../../types';
 
 import { Box, VStack, HStack } from '@chakra-ui/react';
@@ -19,6 +21,7 @@ import { title } from './style';
 
 type Props = {
   mode: Mode;
+  defaultTags: Tag[];
   setToEdit: () => void;
   setToPreview: () => void;
   onOpenSelectBlocks: () => void;
@@ -28,6 +31,7 @@ type Props = {
 
 export const ControlBox: VFC<Props> = ({ 
   mode, 
+  defaultTags,
   setToEdit, 
   setToPreview, 
   onOpenSelectBlocks,
@@ -40,7 +44,7 @@ export const ControlBox: VFC<Props> = ({
           <Box pb="12px">
             <h2 css={title}>Tags</h2>
             <CreateNewTag onOpen={onOpenCreateNewTag}/>
-            <SelectedTags onOpenSelectTags={onOpenSelectTags} />
+            <SelectedTags defaultTags={defaultTags} onOpenSelectTags={onOpenSelectTags} />
           </Box>
           <Box pb="12px">
             <h2 css={title}>Blocks</h2>

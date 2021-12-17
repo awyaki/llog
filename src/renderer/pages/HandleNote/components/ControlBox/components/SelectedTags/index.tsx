@@ -1,4 +1,6 @@
-import { VFC, useContext } from 'react';
+import { VFC, useContext, useEffect } from 'react';
+
+import { Tag as TagType } from '@prisma/client';
 
 import { SelectedTagsContext } from '~/pages/HandleNote/SelectedTagsContextProvider';
 
@@ -11,11 +13,17 @@ import { Tag } from './components/Tag'
 import { EditTagsButton } from './components/EditTagsButton';
 
 type Props = {
+  defaultTags: TagType[];
   onOpenSelectTags: () => void;
 } & CSSObject;
 
-export const SelectedTags: VFC<Props> = ({ onOpenSelectTags, ...CSSObject }) => {
-  const { selectedTags } = useContext(SelectedTagsContext);
+export const SelectedTags: VFC<Props> = ({ defaultTags, onOpenSelectTags, ...CSSObject }) => {
+  const { selectedTags, dispatch } = useContext(SelectedTagsContext);
+  
+  useEffect(() => {
+    dispatch({ type: 'SELECTED_TAGS/CONCAT', tags: defaultTags });
+  }, [defaultTags]);
+
   return (
     <Box __css={{ ...CSSObject }}>
       <ul css={container}>

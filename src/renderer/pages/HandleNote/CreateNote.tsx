@@ -83,6 +83,7 @@ export const CreateNote: VFC = () => {
             pr="6%" />
           <ControlBox 
             mode={mode}
+            defaultTags={content?.tags ?? []}
             setToEdit={setToEdit}
             setToPreview={setToPreview}
             onOpenSelectBlocks={onOpenSelectBlocks}
