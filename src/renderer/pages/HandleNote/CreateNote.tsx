@@ -1,11 +1,14 @@
-import { VFC, useState, useContext, useCallback } from 'react';
+import { VFC, useState, useContext, useCallback, useEffect } from 'react';
+
+import { getNote } from '~/api';
 
 import { pageTitle } from '~/pages/style';
 
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { confirmer } from './functions';
 
 import { Mode } from './types';
+import { NoteWithRelation } from '~/pages/type';
 
 import { ContentContext } from '../ContentContextProvider';
 
@@ -27,22 +30,35 @@ import { container } from '~/pages/style/container';
 
 
 export const CreateNote: VFC = () => {
+  const { noteId } = useParams<{ noteId: string | undefined }>();
+  const content = useContext(ContentContext);
+  const [note, setNote] = useState<NoteWithRelation | null>(null);
   const [mode, setMode] = useState<Mode>('edit');
   const [markdown, setMarkdown] = useState('');
+  
   const history = useHistory();
-  const content = useContext(ContentContext);
 
   const { isOpen: isOpenSelectBlocks, 
           onOpen: onOpenSelectBlocks,
           onClose: onCloseSelectBlocks } = useDisclosure();
-  
+
   const { isOpen: isOpenSelectTags, 
           onOpen: onOpenSelectTags,
           onClose: onCloseSelectTags } = useDisclosure();
-  
+
   const { isOpen: isOpenCreateNewTag, 
           onOpen: onOpenCreateNewTag,
           onClose: onCloseCreateNewTag } = useDisclosure();
+
+  useEffect(() => {
+    (async () => {
+      if (noteId !== undefined) {
+        const result = await getNote(Number(noteId));
+        console.log('CreateNote', result);
+        setNote(result);
+      }
+    })();
+  }, [noteId]);
 
   const setToEdit = useCallback(() => {
     setMode('edit');
