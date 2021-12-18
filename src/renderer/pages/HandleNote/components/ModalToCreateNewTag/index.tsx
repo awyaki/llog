@@ -32,6 +32,7 @@ export const ModalToCreateNewTag: VFC<Props> = ({
   const handleOKClick = useCallback(async () => {
     const newTag = await createTag(inputValue);
     dispatch({ type: 'SELECTED_TAGS/ADD', tag: newTag });
+    setInputValue('');
     onClose();
   }, [inputValue]);
 
