@@ -28,6 +28,7 @@ import { container } from '~/pages/style/container';
 
 export const CreateNote: VFC = () => {
   const [mode, setMode] = useState<Mode>('edit');
+  const [markdown, setMarkdown] = useState('');
   const history = useHistory();
   const content = useContext(ContentContext);
 
@@ -76,6 +77,8 @@ export const CreateNote: VFC = () => {
         <HStack>
           <Note 
             mode={mode}
+            markdown={markdown}
+            setMarkdown={setMarkdown}
             minWidth="300px" 
             maxWidth="800px" 
             w="70%" 

@@ -1,4 +1,4 @@
-import { VFC, useState } from 'react';
+import { VFC, Dispatch, SetStateAction } from 'react';
 
 import { Mode } from '../../types';
 
@@ -9,12 +9,17 @@ import { MarkdownPreview } from './components/MarkdownPreview';
 import { ShowSaveDate } from './components/ShowSaveDate';
 
 type Props = {
-  mode: Mode
+  mode: Mode;
+  markdown: string;
+  setMarkdown: Dispatch<SetStateAction<string>>;
 } & CSSObject;
 
-export const Note: VFC<Props> = ({ mode, ...rest }) => {
-  const [markdown, setMarkdown] = useState(''); 
-
+export const Note: VFC<Props> = ({ 
+  mode,
+  markdown,
+  setMarkdown,
+  ...rest
+}) => {
   return (
     <Box __css={rest}>
       <HStack justifyContent="center"  mb="16px">
