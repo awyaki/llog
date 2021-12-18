@@ -1,5 +1,7 @@
 import { VFC, useState, useContext, useCallback, useEffect } from 'react';
 
+import { useEditNote } from './hooks';
+
 import { getNote } from '~/api';
 
 import { pageTitle } from '~/pages/style';
@@ -30,56 +32,24 @@ import { container } from '~/pages/style/container';
 
 
 export const CreateNote: VFC = () => {
-  const { noteId } = useParams<{ noteId: string | undefined }>();
-  const content = useContext(ContentContext);
-  const [note, setNote] = useState<NoteWithRelation | null>(null);
-  const [mode, setMode] = useState<Mode>('edit');
-  const [markdown, setMarkdown] = useState('');
-  
-  const history = useHistory();
-
-  const { isOpen: isOpenSelectBlocks, 
-          onOpen: onOpenSelectBlocks,
-          onClose: onCloseSelectBlocks } = useDisclosure();
-
-  const { isOpen: isOpenSelectTags, 
-          onOpen: onOpenSelectTags,
-          onClose: onCloseSelectTags } = useDisclosure();
-
-  const { isOpen: isOpenCreateNewTag, 
-          onOpen: onOpenCreateNewTag,
-          onClose: onCloseCreateNewTag } = useDisclosure();
-
-  useEffect(() => {
-    (async () => {
-      if (noteId !== undefined) {
-        const result = await getNote(Number(noteId));
-        console.log('CreateNote', result);
-        setNote(result);
-      }
-    })();
-  }, [noteId]);
-
-  const setToEdit = useCallback(() => {
-    setMode('edit');
-  }, []);
-  
-  const setToPreview = useCallback(() => {
-    setMode('preview');
-  }, []);
-  
-  const handleLink = useCallback((path: string, isNoteChange: boolean) => () => {
-    if (isNoteChange) {
-      if (confirmer()) {
-        history.push(path);
-        return;
-      }
-      return;
-    }
-    
-    history.push(path);
-
-  }, [history]);
+  const { content, 
+          note, 
+          mode, 
+          markdown,
+          setMarkdown,
+          isOpenSelectBlocks,
+          onOpenSelectBlocks,
+          onCloseSelectBlocks,
+          isOpenSelectTags,
+          onOpenSelectTags,
+          onCloseSelectTags,
+          isOpenCreateNewTag,
+          onOpenCreateNewTag,
+          onCloseCreateNewTag,
+          setToEdit,
+          setToPreview,
+          handleLink,
+        } = useEditNote();
 
   return (
     <>
