@@ -2,7 +2,8 @@ import {
   useState , 
   useContext, 
   useEffect, 
-  useCallback
+  useCallback,
+  useMemo
 } from 'react';
 
 
@@ -25,8 +26,8 @@ export const useEditNote = () => {
   const [mode, setMode] = useState<Mode>('edit');
   const [markdown, setMarkdown] = useState('');
   
-  const defaultTags = note !== null ? note.tags : content?.tags ?? [];
-
+  const defaultTags = useMemo(() => note !== null ? note.tags : content?.tags ?? [], [note, content]);
+  const isNoteChange = useMemo(() => note?.origin !== markdown, [note, markdown]);
   const history = useHistory();
 
   const { isOpen: isOpenSelectBlocks, 
@@ -80,6 +81,7 @@ export const useEditNote = () => {
     setMarkdown,
     mode,
     defaultTags,
+    isNoteChange,
     isOpenSelectBlocks,
     onOpenSelectBlocks,
     onCloseSelectBlocks,
