@@ -1,5 +1,7 @@
 import { VFC, useState, useCallback, useContext, ChangeEventHandler } from 'react';
+import { getAllTag } from '~/api';
 import { SelectedTagsContext } from '~/pages/HandleNote/SelectedTagsContextProvider';
+import { TagContext } from '~/DBContextProviders/TagContextProvider';
 
 import { createTag } from '~/api';
 
@@ -23,15 +25,18 @@ export const ModalToCreateNewTag: VFC<Props> = ({
   onClose,
 }) => {
   const [inputValue, setInputValue] = useState('');
-  const { dispatch } = useContext(SelectedTagsContext);  
-  
+  const { dispatch: selectedTagsDispatch } = useContext(SelectedTagsContext);  
+  const { dispatch: tagsDispatch } = useContext(TagContext); 
+
   const handleChange: ChangeEventHandler<HTMLInputElement> = useCallback((e) => {
     setInputValue(e.target.value);
   }, []);
 
   const handleOKClick = useCallback(async () => {
     const newTag = await createTag(inputValue);
-    dispatch({ type: 'SELECTED_TAGS/ADD', tag: newTag });
+    selectedTagsDispatch({ type: 'SELECTED_TAGS/ADD', tag: newTag });
+    const allTags = await getAllTag();
+    tagsDispatch({ type: 'APP/SET_TAG', tags: allTags });
     setInputValue('');
     onClose();
   }, [inputValue]);
