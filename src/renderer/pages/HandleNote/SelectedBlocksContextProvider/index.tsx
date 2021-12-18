@@ -1,7 +1,7 @@
 import { FC, createContext, Dispatch } from 'react';
 import { Block } from '@prisma/client';
 
-import { useSlectedBlocks, Action } from '../hooks/useSelectedBlocks';
+import { useSlectedBlocks, Action } from './hooks';
 
 type SelectedBlocksContextType = {
   selectedBlocks: Block[];
