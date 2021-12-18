@@ -8,7 +8,6 @@ import { confirmer } from './functions';
 import { Mode } from './types';
 
 import { ContentContext } from '../ContentContextProvider';
-import { TagContext } from '~/DBContextProviders';
 
 import { Box, HStack, useDisclosure } from '@chakra-ui/react';
 
