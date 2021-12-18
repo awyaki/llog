@@ -10,6 +10,7 @@ import { getAll as getAllContent } from './api/content/getAll';
 import { get as getContent } from './api/content/get';
 
 import { create as createNote } from './api/note/create';
+import { get as getNote } from './api/note';
 
 export const useDBQueryOnClient = () => {
   ipcMain.handle('createTag', async (_, name: string) => {
@@ -46,6 +47,11 @@ export const useDBQueryOnClient = () => {
     contentId: number
     ) => {
     const result = await createNote(mkd, transformed, tags, blocks, contentId);
+    return result;
+  });
+
+  ipcMain.handle('getNote', async (_, id: number) => {
+    const result = await getNote(id);
     return result;
   });
 };
