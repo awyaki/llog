@@ -8,6 +8,12 @@ const contentWithRelation = Prisma.validator<Prisma.ContentArgs>()({
   },
 });
 
+const noteWithRelation = Prisma.validator<Prisma.NoteArgs>()({
+  include: {
+    tags: true,
+    blocks: true,
+  },
+});
 
 interface IElectronAPI {
   createTag: (name: string) => Prisma.Prisma__TagClient<Tag>;
@@ -16,7 +22,7 @@ interface IElectronAPI {
   getAllContent: () => Prisma.Prisma__ContentClient<Content[]>;
   getContent: (id: number) => Prisma.Prisma__ContentClient<Prisma.ContentGetPayload<typeof contentWithRelation> | null>;
   createNote: (mkd: string, transformed: string, tags: Tag[], blocks: Block[], contentId: number) => Prisma.Prisma__NoteClient<Note>;
-  getNote: (id: number) => Prisma.Prisma__NoteClient<Note>;
+  getNote: (id: number) => Prisma.Prisma__NoteClient<Prisma.NoteGetPayload<typeof noteWithRelation> | null>;
   markdownToHTML: (markdown: string) => Promise<string>;
 }
 
