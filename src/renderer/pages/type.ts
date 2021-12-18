@@ -8,4 +8,13 @@ const contentWithRelation = Prisma.validator<Prisma.ContentArgs>()({
   },
 });
 
+const noteWithRelation = Prisma.validator<Prisma.NoteArgs>()({
+  include: {
+    blocks: true,
+    tags: true,
+  },
+});
+
 export type ContentWithRelation = Prisma.ContentGetPayload<typeof contentWithRelation>;
+
+export type NoteWithRelation = Prisma.NoteGetPayload<typeof noteWithRelation>;
