@@ -25,6 +25,8 @@ export const useEditNote = () => {
   const [mode, setMode] = useState<Mode>('edit');
   const [markdown, setMarkdown] = useState('');
   
+  const defaultTags = note !== null ? note.tags : content?.tags ?? [];
+
   const history = useHistory();
 
   const { isOpen: isOpenSelectBlocks, 
@@ -70,12 +72,14 @@ export const useEditNote = () => {
 
   }, [history]);
 
+
   return {
     content,
     note,
     markdown,
     setMarkdown,
     mode,
+    defaultTags,
     isOpenSelectBlocks,
     onOpenSelectBlocks,
     onCloseSelectBlocks,
