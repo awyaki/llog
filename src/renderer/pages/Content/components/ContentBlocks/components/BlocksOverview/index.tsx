@@ -2,10 +2,11 @@ import { VFC } from 'react';
 
 import { Block } from '@prisma/client';
 
+import { Box } from '@chakra-ui/react';
+
 import { BlocksForOverview } from './components/BlocksForOverveiw';
 
 import { container } from './style/container';
-import { title } from './style/title';
 
 type Props = {
   blocks: Block[];
@@ -13,11 +14,10 @@ type Props = {
 
 export const BlocksOverview: VFC<Props> = ({ blocks }) => {
   return (
-    <div>
-      <h2 css={title}>Overview</h2>
+    <Box>
       <ul css={container}>
         {blocks.map(({ id, level }) => <li key={id}><BlocksForOverview level={level} /></li>)}
       </ul>
-    </div>
+    </Box>
   );
 };

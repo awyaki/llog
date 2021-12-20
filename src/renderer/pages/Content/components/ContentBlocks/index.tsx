@@ -29,7 +29,7 @@ export const ContentBlocks: VFC<Props> = ({ blocks }) => {
   return (
     <div css={container}>
       <h2 css={title}>Blocks</h2>
-      <FormControl>
+      <FormControl display="flex" alignItems="center">
         <FormLabel htmlFor="show-details">
          Show Details 
         </FormLabel>
