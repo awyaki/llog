@@ -1,4 +1,4 @@
-import { VFC, Dispatch, SetStateAction } from 'react';
+import { VFC } from 'react';
 
 import { Link } from 'react-router-dom';
 
@@ -11,17 +11,12 @@ import { CreateNoteButton } from './components/CreateNoteButton';
 import { NoteViewButton } from './components/NoteViewButton';
 import { BasicInfo } from './components/BasicInfo';
 import { LevelRatio } from './components/LevelRatio';
-import { DetailViewBlocksButton } from './components/DetailViewBlocksButton';
-import { OverviewBlocksButton } from './components/OverviewBlocksButton';
 
 import { container } from './style/container';
 import { buttons } from './style/buttons';
 import { title } from './style/title';
-import { blocksViewButtons } from './style/blocksViewButtons';
 
 type Props = {
-  mode: 'detailview' | 'overview';
-  setMode: Dispatch<SetStateAction<'detailview' | 'overview'>>; 
   content: ContentWithRelation | null;
 };
 
@@ -31,15 +26,7 @@ const makeLatestString = (content: ContentWithRelation | null) => {
   return dateToString(content.commitedAt);
 };
 
-export const ContentDetails: VFC<Props> = ({ mode, setMode, content }) => {
-
-  const handleSetDetailviewMode = () => {
-    setMode('detailview');
-  };
-
-  const handleSetOverviewMode = () => {
-    setMode('overview');
-  };
+export const ContentDetails: VFC<Props> = ({ content }) => {
 
   return (
     <div css={container}>
@@ -55,19 +42,6 @@ export const ContentDetails: VFC<Props> = ({ mode, setMode, content }) => {
         blocks={content !== null ? content.blocks.length : 0}
         streak={10} />
       <LevelRatio blocks={content?.blocks ?? []} />
-      <ul css={blocksViewButtons}>
-        <li>
-          <OverviewBlocksButton 
-            active={mode === 'overview'}
-            onClick={handleSetOverviewMode}
-          />
-        </li>
-        <li>
-          <DetailViewBlocksButton 
-            active={mode === 'detailview'} 
-            onClick={handleSetDetailviewMode} />
-        </li>
-      </ul>
     </div>
   );
 };

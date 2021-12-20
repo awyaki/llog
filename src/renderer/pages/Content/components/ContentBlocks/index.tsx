@@ -1,4 +1,10 @@
-import { VFC } from 'react';
+import { VFC, useState, useCallback } from 'react';
+
+import {
+  FormControl,
+  FormLabel,
+  Switch
+} from '@chakra-ui/react';
 
 import { Block } from '@prisma/client';
 
@@ -9,15 +15,27 @@ import { BlocksOverview } from './components/BlocksOverview';
 import { BlocksDetailView } from './components/BlocksDetailView';
 
 type Props = {
-  mode: 'detailview' | 'overview';
   blocks: Block[];
 };
 
-export const ContentBlocks: VFC<Props> = ({ mode, blocks }) => {
+export const ContentBlocks: VFC<Props> = ({ blocks }) => {
+  const [isDetails, setIsDetails] = useState(true);
+  
+  const handleChange = useCallback(() => {
+    setIsDetails((cur) => !cur);
+  }, []);
+
+  
   return (
     <div css={container}>
       <h2 css={title}>Blocks</h2>
-      {mode === 'overview' ? <BlocksOverview blocks={blocks} /> : <BlocksDetailView blocks={blocks} />}
+      <FormControl>
+        <FormLabel htmlFor="show-details">
+         Show Details 
+        </FormLabel>
+        <Switch id="show-details" onChange={handleChange} />
+      </FormControl>
+      {isDetails ? <BlocksDetailView blocks={blocks} /> : <BlocksOverview blocks={blocks} />}
     </div>
   );
 };
