@@ -19,7 +19,7 @@ type Props = {
 };
 
 export const ContentBlocks: VFC<Props> = ({ blocks }) => {
-  const [isDetails, setIsDetails] = useState(true);
+  const [isDetails, setIsDetails] = useState(false);
   
   const handleChange = useCallback(() => {
     setIsDetails((cur) => !cur);
