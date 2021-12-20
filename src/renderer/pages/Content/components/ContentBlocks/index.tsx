@@ -30,7 +30,7 @@ export const ContentBlocks: VFC<Props> = ({ blocks }) => {
     <div css={container}>
       <h2 css={title}>Blocks</h2>
       <FormControl display="flex" alignItems="center" mb="16px">
-        <FormLabel htmlFor="show-details">
+        <FormLabel htmlFor="show-details" mb="0">
          Show Details 
         </FormLabel>
         <Switch id="show-details" onChange={handleChange} />
