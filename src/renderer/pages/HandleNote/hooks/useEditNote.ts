@@ -1,17 +1,15 @@
 import { 
   useState , 
   useContext, 
-  useEffect, 
   useCallback,
   useMemo
 } from 'react';
 
+import { NoteContext } from '~/pages/NoteContextProvider';
 
 import { useDisclosure } from '@chakra-ui/react';
-import { useParams, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
-import { getNote } from '~/api';
-import { NoteWithRelation } from '~/pages/type';
 import { Mode } from '../types'
 import { ContentContext } from '~/pages/ContentContextProvider';
 import { confirmer } from '../functions';
@@ -19,10 +17,9 @@ import { confirmer } from '../functions';
 
 
 export const useEditNote = () => {
-  const { noteId } = useParams<{ noteId: string | undefined }>();
 
   const content = useContext(ContentContext);
-  const [note, setNote] = useState<NoteWithRelation | null>(null);
+  const note = useContext(NoteContext);
   const [mode, setMode] = useState<Mode>('edit');
   const [markdown, setMarkdown] = useState('');
   
@@ -46,15 +43,6 @@ export const useEditNote = () => {
           onOpen: onOpenCreateNewTag,
           onClose: onCloseCreateNewTag } = useDisclosure();
 
-  useEffect(() => {
-    (async () => {
-      if (noteId !== undefined) {
-        const result = await getNote(Number(noteId));
-        console.log('CreateNote', result);
-        setNote(result);
-      }
-    })();
-  }, [noteId]);
 
   const setToEdit = useCallback(() => {
     setMode('edit');
