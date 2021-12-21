@@ -47,7 +47,8 @@ export const CreateNote: VFC = () => {
           setToPreview,
           handleLink,
         } = useEditNote();
-
+  
+  console.log('CreateNote: isNoteChange', isNoteChange);
   return (
     <>
       <Header isNoteChange={isNoteChange} confirmer={confirmer} />
