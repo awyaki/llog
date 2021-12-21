@@ -50,7 +50,7 @@ export const CreateNote: VFC = () => {
 
   return (
     <>
-      <Header isNoteChange={true} confirmer={confirmer} />
+      <Header isNoteChange={isNoteChange} confirmer={confirmer} />
       <Box __css={container}>
         <h2 css={pageTitle}>{content?.name}</h2>
         <HStack width="120px" mb="16px">
