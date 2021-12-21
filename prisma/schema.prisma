@@ -25,6 +25,7 @@ model Content {
 model Note {
   id Int @id @default(autoincrement())
   createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
   commitedAt DateTime?
   blocks Block[]
   tags Tag[]
