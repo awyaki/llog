@@ -12,18 +12,20 @@ type Props = {
   mode: Mode;
   markdown: string;
   setMarkdown: Dispatch<SetStateAction<string>>;
+  isNoteChange: boolean;
 } & CSSObject;
 
 export const Note: VFC<Props> = ({ 
   mode,
   markdown,
   setMarkdown,
+  isNoteChange,
   ...rest
 }) => {
   return (
     <Box __css={rest}>
       <HStack justifyContent="center"  mb="16px">
-        <ShowSaveDate notSaved={true} date={new Date()}/>
+        <ShowSaveDate notSaved={isNoteChange} date={new Date()}/>
       </HStack>
       {mode === 'edit' 
           ? <MarkdownEditor 

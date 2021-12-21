@@ -63,6 +63,7 @@ export const CreateNote: VFC = () => {
             mode={mode}
             markdown={markdown}
             setMarkdown={setMarkdown}
+            isNoteChange={isNoteChange}
             minWidth="300px" 
             maxWidth="800px" 
             w="70%" 
