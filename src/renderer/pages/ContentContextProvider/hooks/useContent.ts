@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 
 import { getContent } from '~/api';
 
-import { ContentWithRelation } from '../type';
+import { ContentWithRelation } from '../../type';
 
 import { useParams } from 'react-router-dom';
 

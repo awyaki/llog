@@ -2,7 +2,7 @@ import { createContext, FC } from 'react';
 
 import { ContentWithRelation } from '../type';
 
-import { useContent } from '../hooks/useContent';
+import { useContent } from './hooks';
 
 
 
