@@ -25,10 +25,17 @@ export const useEditNote = () => {
   
   const defaultTags = useMemo(() => note !== null ? note.tags : content?.tags ?? [], [note, content]);
 
-  // if note is undefined, the condition expression as follows is true (after all, isNoteChange is true).
-  // Then, the App warns what you have not saved the note when you move to the other pages
-  // and shows a message like `This version is not saved.`
-  const isNoteChange = useMemo(() => note?.origin !== markdown, [note, markdown]);
+  // if `note` is null and `markdown` is empty string, 
+  // `isNoteChange` should be false because the note have not be written yet.
+  const isNoteChange = useMemo(() => {
+    if (note === null) {
+      if (markdown === '') return false;
+      return true;
+    }
+
+    return note.origin !== markdown;
+
+  }, [note, markdown]);
   const history = useHistory();
 
   const { isOpen: isOpenSelectBlocks, 
