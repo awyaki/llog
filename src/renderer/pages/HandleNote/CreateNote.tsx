@@ -1,20 +1,15 @@
-import { VFC, useState, useContext, useCallback, useEffect } from 'react';
+import { VFC } from 'react';
 
 import { useEditNote } from './hooks';
 
-import { getNote } from '~/api';
 
 import { pageTitle } from '~/pages/style';
 
-import { useHistory, useParams } from 'react-router-dom';
 import { confirmer } from './functions';
 
-import { Mode } from './types';
-import { NoteWithRelation } from '~/pages/type';
 
-import { ContentContext } from '../ContentContextProvider';
 
-import { Box, HStack, useDisclosure } from '@chakra-ui/react';
+import { Box, HStack } from '@chakra-ui/react';
 
 import { 
   Header, 
@@ -38,6 +33,7 @@ export const CreateNote: VFC = () => {
           markdown,
           setMarkdown,
           defaultTags,
+          isNoteChange,
           isOpenSelectBlocks,
           onOpenSelectBlocks,
           onCloseSelectBlocks,
