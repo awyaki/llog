@@ -28,6 +28,9 @@ export const useEditNote = () => {
 
   const content = useContext(ContentContext);
   const note = useContext(NoteContext);
+  
+  console.log('useEditNote note', note);
+
   const { selectedTags } = useContext(SelectedTagsContext);
   const { selectedBlocks } = useContext(SelectedBlocksContext);
 

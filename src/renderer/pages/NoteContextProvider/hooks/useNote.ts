@@ -10,7 +10,7 @@ import { NoteWithRelation } from '../../type';
 export const useNote = () => {
   const [note, setNote] = useState<NoteWithRelation | null>(null);
   const { noteId }  = useParams<{ noteId: string | undefined }>();
-
+  console.log('useNote noteId', noteId);
   useEffect(() => {
     if (noteId !== undefined) {
       (async () => {
