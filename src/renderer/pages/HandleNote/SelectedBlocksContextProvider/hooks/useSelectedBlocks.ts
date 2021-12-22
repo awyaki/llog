@@ -6,6 +6,9 @@ type State = Block[];
 export type Action = {
   type: 'SELECTED_BLOCKS/TOGGLE';
   block: Block;
+} | {
+  type: 'SELECTED_BLOCKS/CONCAT';
+  blocks: Block[];
 };
 
 const reduer: Reducer<State, Action> = (state, action) => {
@@ -16,6 +19,10 @@ const reduer: Reducer<State, Action> = (state, action) => {
               ? state.concat(action.block)
               : state.slice(0, index).concat(state.slice(index + 1));
       return nextState.sort((a, b) => a.unitNumber - b.unitNumber);
+    }
+
+    case 'SELECTED_BLOCKS/CONCAT': {
+      return state.concat(action.blocks);
     }
   }
 };
