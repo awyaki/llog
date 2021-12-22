@@ -15,7 +15,7 @@ export const Block: VFC<Props> = memo(({ block }) => {
   const { selectedBlocks, dispatch } = useContext(SelectedBlocksContext);
   const { level, unitNumber } = block; 
 
-  const isSlected = selectedBlocks.includes(block);
+  const isSlected = selectedBlocks.findIndex(({ id }) => id === block.id) !== -1;
 
   const handleToggleSelectBlock = useCallback(() => {
     dispatch({ type: 'SELECTED_BLOCKS/TOGGLE', block: block });
