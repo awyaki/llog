@@ -5,6 +5,8 @@ import {
   useMemo
 } from 'react';
 
+import { markdownToHTML, createNote } from '~/api';
+
 import { arrayeEqualWithId } from '~/utils';
 
 import { NoteContext } from '~/pages/NoteContextProvider';
@@ -84,6 +86,15 @@ export const useEditNote = () => {
 
   }, [history]);
 
+  const onCreateNote = useCallback(() => {
+    (async () => {
+      if (content !== null) {
+        const html = await markdownToHTML(markdown)
+        const newNote = await createNote(markdown, html, selectedTags, selectedBlocks, content.id);
+        history.push(`/content/${newNote.contentId}/updatenote/${newNote.id}`);
+      }
+    })();
+  }, [markdown, selectedTags, selectedBlocks, content]); 
 
   return {
     content,
@@ -102,6 +113,7 @@ export const useEditNote = () => {
     isOpenCreateNewTag,
     onOpenCreateNewTag,
     onCloseCreateNewTag,
+    onCreateNote,
     setToEdit,
     setToPreview,
     handleLink,
