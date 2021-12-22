@@ -1,11 +1,18 @@
 import { VFC } from 'react';
 
+import { Link } from 'react-router-dom';
+
 import { EditNoteButtonIcon } from './components/EditNoteButtonIcon';
 
-export const EditNoteButton: VFC = () => {
+type Props = {
+  contentId: number;
+  noteId: number;
+};
+
+export const EditNoteButton: VFC<Props> = ({ contentId, noteId }) => {
   return ( 
-    <button>
+    <Link to={`/content/${contentId}/updatenote/${noteId}`}>
       <EditNoteButtonIcon />
-    </button>
+    </Link>
   );
 };

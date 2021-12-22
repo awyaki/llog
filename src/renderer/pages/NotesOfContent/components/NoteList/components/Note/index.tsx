@@ -20,7 +20,7 @@ type Props = {
 };
 
 export const Note: VFC<Props> = ({ note }) => {
-  const { updatedAt, blocks, tags, transformed } = note;
+  const { id, updatedAt, blocks, tags, transformed, contentId } = note;
   return (
     <div css={container}>
       <div css={main}>
@@ -30,7 +30,7 @@ export const Note: VFC<Props> = ({ note }) => {
       </div>
       <div css={aside}>
         <ul css={buttons}>
-          <li><EditNoteButton /></li>
+          <li><EditNoteButton contentId={contentId} noteId={id} /></li>
           <li><DeleteNoteButton /></li>
         </ul>
         <Blocks blocks={blocks} />
