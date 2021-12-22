@@ -2,15 +2,17 @@ import { ipcMain } from 'electron';
 
 import { Tag, Block } from '@prisma/client';
 
-import { create as createTag } from './api/tag/create';
-import { getAll as getAllTag } from './api/tag/getAll';
+import { 
+  createContent, 
+  getContent, 
+  getAllContent, 
+  createTag, 
+  getAllTag, 
+  getNote, 
+  createNote,
+  updateNote
+} from './api';
 
-import { create as createContent } from './api/content/create';
-import { getAll as getAllContent } from './api/content/getAll';
-import { get as getContent } from './api/content/get';
-
-import { create as createNote } from './api/note/create';
-import { get as getNote } from './api/note';
 
 export const useDBQueryOnClient = () => {
   ipcMain.handle('createTag', async (_, name: string) => {
