@@ -9,6 +9,9 @@ export type Action = {
 } | {
   type: 'SELECTED_BLOCKS/CONCAT';
   blocks: Block[];
+} | {
+  type: 'SELECTED_BLOCKS/SET';
+  blocks: Block[];
 };
 
 const reduer: Reducer<State, Action> = (state, action) => {
@@ -23,6 +26,10 @@ const reduer: Reducer<State, Action> = (state, action) => {
 
     case 'SELECTED_BLOCKS/CONCAT': {
       return state.concat(action.blocks);
+    }
+
+    case 'SELECTED_BLOCKS/SET': {
+      return action.blocks;
     }
   }
 };
