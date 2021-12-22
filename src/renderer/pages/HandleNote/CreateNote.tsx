@@ -43,6 +43,7 @@ export const CreateNote: VFC = () => {
           isOpenCreateNewTag,
           onOpenCreateNewTag,
           onCloseCreateNewTag,
+          onCreateNote,
           setToEdit,
           setToPreview,
           handleLink,
@@ -76,7 +77,8 @@ export const CreateNote: VFC = () => {
             setToPreview={setToPreview}
             onOpenSelectBlocks={onOpenSelectBlocks}
             onOpenSelectTags={onOpenSelectTags}
-            onOpenCreateNewTag={onOpenCreateNewTag} />
+            onOpenCreateNewTag={onOpenCreateNewTag}
+            onCreateNote={onCreateNote} />
         </HStack>
       </Box>
       <ModalToSelectBlocks 
