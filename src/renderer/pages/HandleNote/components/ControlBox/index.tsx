@@ -27,7 +27,9 @@ type Props = {
   onOpenSelectBlocks: () => void;
   onOpenSelectTags: () => void;
   onOpenCreateNewTag: () => void;
+  isNoteExist: boolean;
   onCreateNote: () => void;
+  onUpdateNote: () => void;
 };
 
 export const ControlBox: VFC<Props> = ({ 
@@ -38,7 +40,9 @@ export const ControlBox: VFC<Props> = ({
   onOpenSelectBlocks,
   onOpenSelectTags,
   onOpenCreateNewTag,
-  onCreateNote
+  isNoteExist,
+  onCreateNote,
+  onUpdateNote
   }) => {
   return (
     <Box pos="fixed" top="220px" left="65%">
@@ -57,7 +61,7 @@ export const ControlBox: VFC<Props> = ({
           <PreviewButton mode={mode} onClick={setToPreview}/>
         </HStack>
         <CommitButton />
-        <SaveButton onClick={onCreateNote}/> {/* TODO: when a note have already been existed, onClick should be passed `onUpdateNote` handler */}
+        <SaveButton onClick={isNoteExist ? onUpdateNote : onCreateNote}/>
         <OneMoreNoteButton />
       </VStack>
     </Box>

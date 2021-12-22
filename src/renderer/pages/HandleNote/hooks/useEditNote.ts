@@ -2,10 +2,12 @@ import {
   useState , 
   useContext, 
   useCallback,
-  useMemo
+  useMemo,
+  useEffect
 } from 'react';
 
-import { markdownToHTML, createNote } from '~/api';
+
+import { markdownToHTML, createNote, updateNote, getNote } from '~/api';
 
 import { arrayeEqualWithId } from '~/utils';
 
@@ -15,7 +17,7 @@ import { SelectedBlocksContext } from '../SelectedBlocksContextProvider';
 
 
 import { useDisclosure } from '@chakra-ui/react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 
 import { Mode } from '../types'
 import { ContentContext } from '~/pages/ContentContextProvider';
@@ -23,10 +25,21 @@ import { confirmer } from '../functions';
 
 
 export const useEditNote = () => {
+  const { noteId } = useParams<{ noteId: string | undefined }>();
+  const { note, setNote }= useContext(NoteContext);
 
+  useEffect(() => {
+    (async () => {
+      if (noteId !== undefined) {
+        const note = await getNote(Number(noteId));
+        setNote(note);
+      }
+    })();
+  }, [noteId]);
+
+  const isNoteExist = useMemo(() => note !== null, [note]);
+  console.log('useEditNote isNoteExist:', isNoteExist);
   const content = useContext(ContentContext);
-  const note = useContext(NoteContext);
-  
 
   const { selectedTags } = useContext(SelectedTagsContext);
   const { selectedBlocks } = useContext(SelectedBlocksContext);
@@ -91,12 +104,24 @@ export const useEditNote = () => {
   const onCreateNote = useCallback(() => {
     (async () => {
       if (content !== null) {
-        const html = await markdownToHTML(markdown)
+        const html = await markdownToHTML(markdown);
         const newNote = await createNote(markdown, html, selectedTags, selectedBlocks, content.id);
         history.push(`/content/${newNote.contentId}/updatenote/${newNote.id}`);
       }
     })();
   }, [markdown, selectedTags, selectedBlocks, content]); 
+
+  const onUpdateNote = useCallback(() => {
+    (async () => {
+      if (note !== null) {
+        const html = await markdownToHTML(markdown);
+        const updatedNote = await updateNote(note.id, markdown, html, selectedTags, selectedBlocks, note.contentId, note.commitedAt, new Date()); 
+        const newNote = await getNote(updatedNote.id); 
+        console.log('useEditNote', newNote);
+        setNote(newNote);
+      }
+    })();
+  }, [note, markdown, selectedTags, selectedBlocks]);
 
   return {
     content,
@@ -116,6 +141,8 @@ export const useEditNote = () => {
     onOpenCreateNewTag,
     onCloseCreateNewTag,
     onCreateNote,
+    onUpdateNote,
+    isNoteExist,
     setToEdit,
     setToPreview,
     handleLink,
