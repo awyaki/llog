@@ -1,6 +1,6 @@
 import { Reducer } from 'react';
 import { State } from './useConditions';
-import { Condition } from '../types';
+import { Condition } from '../../types';
 
 type Action = {
   type: 'MODAL/CHANGE_PREDICATE',

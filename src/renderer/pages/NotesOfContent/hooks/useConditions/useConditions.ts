@@ -1,5 +1,5 @@
 import { useReducer, Reducer } from 'react';
-import { Condition, ConditionWithIsValid } from '../types';
+import { Condition, ConditionWithIsValid } from '../../types';
 
 import { modalCreateReducer } from './modalCreateReducer';
 import { modalChangeSubjectReducer } from './modalChangeSubjectReducer';

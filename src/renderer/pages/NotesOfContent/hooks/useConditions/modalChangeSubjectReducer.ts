@@ -1,8 +1,8 @@
 import { Reducer } from 'react';
-import { Condition } from '../types';
+import { Condition } from '../../types';
 import { State } from './useConditions';
 
-import { Subject, Predicate } from '../types';
+import { Subject, Predicate } from '../../types';
 
 const defaultPredicate = (subject: Subject): Predicate => {
   switch(subject) {
