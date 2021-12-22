@@ -33,6 +33,7 @@ interface IElectronAPI {
     commitedAt: Date | null,
     updatedAt: Date
   ) => Prisma.Prisma__NoteClient<Note>;
+  getNoteWithContentId: (contentId: number) => Prisma.Prisma__NoteClient<(typeof noteWithRelation)[]>;
   markdownToHTML: (markdown: string) => Promise<string>;
 }
 

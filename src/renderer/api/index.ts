@@ -39,6 +39,10 @@ export const updateNote = async (
   return await window.electronAPI.updateNote(id, markdown, html, tags, blocks, contentId, commitedAt, updatedAt);
 };
 
+export const getNoteWithContentId = async (contentId: number) => {
+  return await window.electronAPI.getNoteWithContentId(contentId);
+};
+
 export const markdownToHTML = async (markdown: string) => {
   return await window.electronAPI.markdownToHTML(markdown);
 };

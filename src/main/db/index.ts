@@ -10,7 +10,8 @@ import {
   getAllTag, 
   getNote, 
   createNote,
-  updateNote
+  updateNote,
+  getNoteWithContentId
 } from './api';
 
 
@@ -71,7 +72,11 @@ export const useDBQueryOnClient = () => {
     const result = await updateNote(id, markdown, html, tags, blocks, contentId, commitedAt, updatedAt);
     return result;
   });
-
+  
+  ipcMain.handle('getNoteWithContentId', async (_, contentId: number) => {
+    const result = await getNoteWithContentId(contentId);
+    return result;
+  });
 };
 
 
