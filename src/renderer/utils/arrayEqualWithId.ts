@@ -9,7 +9,7 @@ type ArrayWithId = {
   id: number;
 }[];
 
-export const ArrayeEqualWithId = (array1: ArrayWithId, array2: ArrayWithId) => {
+export const arrayeEqualWithId = (array1: ArrayWithId, array2: ArrayWithId) => {
 
   const len1 = array1.length;
   const len2 = array2.length;
