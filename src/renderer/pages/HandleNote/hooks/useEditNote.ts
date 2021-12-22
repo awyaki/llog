@@ -15,7 +15,7 @@ import { SelectedBlocksContext } from '../SelectedBlocksContextProvider';
 
 
 import { useDisclosure } from '@chakra-ui/react';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 import { Mode } from '../types'
 import { ContentContext } from '~/pages/ContentContextProvider';
@@ -23,13 +23,10 @@ import { confirmer } from '../functions';
 
 
 export const useEditNote = () => {
-  const location = useLocation(); 
-  console.log('useEditNote url', location.pathname);
 
   const content = useContext(ContentContext);
   const note = useContext(NoteContext);
   
-  console.log('useEditNote note', note);
 
   const { selectedTags } = useContext(SelectedTagsContext);
   const { selectedBlocks } = useContext(SelectedBlocksContext);
@@ -48,10 +45,10 @@ export const useEditNote = () => {
     }
     
     const isMarkdownChange = note.origin !== markdown;
-    const isSelectedTagsChange = arrayeEqualWithId(note.tags, selectedTags);
-    const isOpenSelectBlocksChange = arrayeEqualWithId(note.blocks, selectedBlocks);
-
-    return isMarkdownChange || isSelectedTagsChange || isOpenSelectBlocksChange;
+    const isSelectedTagsChange = !arrayeEqualWithId(note.tags, selectedTags);
+    const isSelectedBlocksChange = !arrayeEqualWithId(note.blocks, selectedBlocks);
+    
+    return isMarkdownChange || isSelectedTagsChange || isSelectedBlocksChange;
 
   }, [note, markdown, selectedTags, selectedBlocks]);
 
