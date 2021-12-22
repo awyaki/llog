@@ -23,6 +23,16 @@ interface IElectronAPI {
   getContent: (id: number) => Prisma.Prisma__ContentClient<Prisma.ContentGetPayload<typeof contentWithRelation> | null>;
   createNote: (mkd: string, transformed: string, tags: Tag[], blocks: Block[], contentId: number) => Prisma.Prisma__NoteClient<Note>;
   getNote: (id: number) => Prisma.Prisma__NoteClient<Prisma.NoteGetPayload<typeof noteWithRelation> | null>;
+  updateNote: (
+    id: number,
+    markdown: string,
+    html: string,
+    tags: Tag[],
+    blocks: Block[],
+    contentId: number,
+    commitedAt: Date,
+    updatedAt: Date
+  ) => Prisma.Prisma__NoteClient<Note>;
   markdownToHTML: (markdown: string) => Promise<string>;
 }
 

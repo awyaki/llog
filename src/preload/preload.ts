@@ -16,6 +16,16 @@ contextBridge.exposeInMainWorld('electronAPI', {
     contentId: number,
   ) => ipcRenderer.invoke('createNote', mkd, transformed, tags, blocks, contentId),
   getNote: (id: number) => ipcRenderer.invoke('getNote', id),
+  updateNote: (
+    id: number,
+    markdown: string,
+    html: string,
+    tags: Tag[],
+    blocks: Block[],
+    contentId: number,
+    commitedAt: Date,
+    updatedAt: Date
+  ) => ipcRenderer.invoke('updateNote', id, markdown, html, tags, blocks, contentId, commitedAt, updatedAt),
   markdownToHTML: (markdown: string) => ipcRenderer.invoke('markdownToHTML', markdown),
 });
 
