@@ -29,6 +29,11 @@ export const useEditNote = () => {
   const { note, setNote }= useContext(NoteContext);
   const [markdown, setMarkdown] = useState('');
 
+  const { selectedTags, dispatch: selectedTagsDispatch } = useContext(SelectedTagsContext);
+  const { selectedBlocks, dispatch: selectedBlocksDispatch } = useContext(SelectedBlocksContext);
+
+  const [mode, setMode] = useState<Mode>('edit');
+
   useEffect(() => {
     (async () => {
       if (noteId !== undefined) {
@@ -36,6 +41,8 @@ export const useEditNote = () => {
         console.log('useEditNote note', note);
         if (note !== null) {
           setMarkdown(note.origin);
+          selectedTagsDispatch({ type: 'SELECTED_TAGS/CONCAT', tags: note.tags });
+          selectedBlocksDispatch({ type: 'SELECTED_BLOCKS/CONCAT', blocks: note.blocks });
           setNote(note);
         }
       }
@@ -45,10 +52,6 @@ export const useEditNote = () => {
   const isNoteExist = useMemo(() => note !== null, [note]);
   const content = useContext(ContentContext);
 
-  const { selectedTags } = useContext(SelectedTagsContext);
-  const { selectedBlocks } = useContext(SelectedBlocksContext);
-
-  const [mode, setMode] = useState<Mode>('edit');
   
 
   // if `note` is null and `markdown` is empty string, 
