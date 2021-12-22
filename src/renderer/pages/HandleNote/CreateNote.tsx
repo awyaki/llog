@@ -50,15 +50,14 @@ export const CreateNote: VFC = () => {
           handleLink,
         } = useEditNote();
   
-  console.log('CreateNote markdown', markdown);
   return (
     <>
       <Header isNoteChange={isNoteChange} confirmer={confirmer} />
       <Box __css={container}>
         <h2 css={pageTitle}>{content?.name}</h2>
         <HStack width="120px" mb="16px">
-          <InfoButton onClick={handleLink(`/content/${content?.id}`, false)} />
-          <ShowNoteButton onClick={handleLink(`/content/${content?.id}/notes`, true)}/>
+          <InfoButton onClick={handleLink(`/content/${content?.id}`, isNoteChange)} />
+          <ShowNoteButton onClick={handleLink(`/content/${content?.id}/notes`, isNoteChange)} />
         </HStack>
         <HStack>
           <Note 
