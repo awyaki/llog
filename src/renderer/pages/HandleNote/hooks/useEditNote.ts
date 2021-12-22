@@ -15,7 +15,7 @@ import { SelectedBlocksContext } from '../SelectedBlocksContextProvider';
 
 
 import { useDisclosure } from '@chakra-ui/react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 
 import { Mode } from '../types'
 import { ContentContext } from '~/pages/ContentContextProvider';
@@ -23,6 +23,8 @@ import { confirmer } from '../functions';
 
 
 export const useEditNote = () => {
+  const location = useLocation(); 
+  console.log('useEditNote url', location.pathname);
 
   const content = useContext(ContentContext);
   const note = useContext(NoteContext);

@@ -22,6 +22,9 @@ export const App: VFC = () => {
           <Route path="/content/:contentId/createnote">
             <CreateNote />
           </Route>
+          <Route path="/content/:contentId/updatenote/:noteId">
+            <CreateNote />
+          </Route>
           <Route path="/content/:contentId">
             <Content />
           </Route>
