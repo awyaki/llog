@@ -26,6 +26,19 @@ export const createNote = async (
   return await window.electronAPI.createNote(markdown, html, tags, blocks, contentId);
 };
 
+export const updateNote = async (
+  id: number,
+  markdown: string,
+  html: string,
+  tags: Tag[],
+  blocks: Block[],
+  contentId: number,
+  commitedAt: Date,
+  updatedAt: Date
+) => {
+  return await window.electronAPI.updateNote(id, markdown, html, tags, blocks, contentId, commitedAt, updatedAt);
+};
+
 export const markdownToHTML = async (markdown: string) => {
   return await window.electronAPI.markdownToHTML(markdown);
 };
