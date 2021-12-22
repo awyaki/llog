@@ -27,25 +27,28 @@ import { confirmer } from '../functions';
 export const useEditNote = () => {
   const { noteId } = useParams<{ noteId: string | undefined }>();
   const { note, setNote }= useContext(NoteContext);
+  const [markdown, setMarkdown] = useState('');
 
   useEffect(() => {
     (async () => {
       if (noteId !== undefined) {
         const note = await getNote(Number(noteId));
-        setNote(note);
+        console.log('useEditNote note', note);
+        if (note !== null) {
+          setMarkdown(note.origin);
+          setNote(note);
+        }
       }
     })();
   }, [noteId]);
 
   const isNoteExist = useMemo(() => note !== null, [note]);
-  console.log('useEditNote isNoteExist:', isNoteExist);
   const content = useContext(ContentContext);
 
   const { selectedTags } = useContext(SelectedTagsContext);
   const { selectedBlocks } = useContext(SelectedBlocksContext);
 
   const [mode, setMode] = useState<Mode>('edit');
-  const [markdown, setMarkdown] = useState('');
   
 
   // if `note` is null and `markdown` is empty string, 
@@ -116,7 +119,6 @@ export const useEditNote = () => {
         const html = await markdownToHTML(markdown);
         const updatedNote = await updateNote(note.id, markdown, html, selectedTags, selectedBlocks, note.contentId, note.commitedAt, new Date()); 
         const newNote = await getNote(updatedNote.id); 
-        console.log('useEditNote', newNote);
         setNote(newNote);
       }
     })();

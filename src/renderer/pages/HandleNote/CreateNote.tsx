@@ -50,7 +50,7 @@ export const CreateNote: VFC = () => {
           handleLink,
         } = useEditNote();
   
-  console.log('CreateNote: isNoteChange', isNoteChange);
+  console.log('CreateNote markdown', markdown);
   return (
     <>
       <Header isNoteChange={isNoteChange} confirmer={confirmer} />
