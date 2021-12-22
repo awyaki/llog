@@ -33,7 +33,7 @@ export const updateNote = async (
   tags: Tag[],
   blocks: Block[],
   contentId: number,
-  commitedAt: Date,
+  commitedAt: Date | null,
   updatedAt: Date
 ) => {
   return await window.electronAPI.updateNote(id, markdown, html, tags, blocks, contentId, commitedAt, updatedAt);

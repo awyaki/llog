@@ -30,7 +30,7 @@ interface IElectronAPI {
     tags: Tag[],
     blocks: Block[],
     contentId: number,
-    commitedAt: Date,
+    commitedAt: Date | null,
     updatedAt: Date
   ) => Prisma.Prisma__NoteClient<Note>;
   markdownToHTML: (markdown: string) => Promise<string>;

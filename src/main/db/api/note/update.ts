@@ -9,7 +9,7 @@ export const update = async (
   tags: Tag[],
   blocks: Block[],
   contentId: number,
-  commitedAt: Date,
+  commitedAt: Date | null,
   updatedAt: Date
 ) => {
   const note = await prisma.note.update({
