@@ -47,7 +47,6 @@ export const useEditNote = () => {
   const [mode, setMode] = useState<Mode>('edit');
   const [markdown, setMarkdown] = useState('');
   
-  const defaultTags = useMemo(() => note !== null ? note.tags : content?.tags ?? [], [note, content]);
 
   // if `note` is null and `markdown` is empty string, 
   // `isNoteChange` should be false because the note have not be written yet.
@@ -129,7 +128,6 @@ export const useEditNote = () => {
     markdown,
     setMarkdown,
     mode,
-    defaultTags,
     isNoteChange,
     isOpenSelectBlocks,
     onOpenSelectBlocks,
