@@ -1,16 +1,28 @@
-import { useState, useContext, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
-import { getNoteWithContentId } from '~/api'
+import { useParams } from 'react-router-dom';
 
-import { ContentContext } from '~/pages/ContentContextProvider';
+import { getNoteWithContentId, getContent } from '~/api'
 
-import { NoteWithRelation } from '~/pages/type';
+import { NoteWithRelation, ContentWithRelation } from '~/pages/type';
+
 
 export const useNotesOfContent = () => {
-  const content = useContext(ContentContext);
+  const { contentId } = useParams<{ contentId: string }>();
+  const [content, setContent] = useState<ContentWithRelation | null>(null);
   const [notes, setNotes] = useState<NoteWithRelation[]>([]);
   
   console.log('NotesOfContent', notes);
+  console.log('NotesOfContent', content);  
+
+  useEffect(() => {
+    (async () => {
+      const content = await getContent(Number(contentId));
+      setContent(content);
+    })();
+  }, [contentId]);
+
+
   useEffect(() => {
     if (content !== null) {
       (async () => {
