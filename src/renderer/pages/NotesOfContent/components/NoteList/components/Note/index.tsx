@@ -13,20 +13,20 @@ import { EditNoteButton } from './components/EditNoteButton';
 import { Blocks } from './components/Blocks';
 import { BodyOfNote } from './components/BodyOfNote';
 
-import { Note as SNote } from '~/stub/types';
+import { NoteWithRelation } from '~/pages/type';
 
 type Props = {
-  note: SNote;
+  note: NoteWithRelation;
 };
 
 export const Note: VFC<Props> = ({ note }) => {
-  const { modefiedAt, blocks, tags, html } = note;
+  const { updatedAt, blocks, tags, transformed } = note;
   return (
     <div css={container}>
       <div css={main}>
-        <ModefitedAt time={modefiedAt} />
+        <ModefitedAt time={updatedAt} />
         <TagList tags={tags} />
-        <BodyOfNote html={html} />
+        <BodyOfNote html={transformed} />
       </div>
       <div css={aside}>
         <ul css={buttons}>

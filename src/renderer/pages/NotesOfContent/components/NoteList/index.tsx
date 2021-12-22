@@ -4,10 +4,10 @@ import { container } from './style/container';
 
 import { Note } from './components/Note';
 
-import { Note as TNote } from '~/stub/types';
+import { NoteWithRelation } from '~/pages/type';
 
 type Props = {
-  notes: TNote[]; 
+  notes: NoteWithRelation[]; 
 };
 
 export const NoteList: VFC<Props> = ({ notes }) => { 
