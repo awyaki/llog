@@ -56,6 +56,22 @@ export const useDBQueryOnClient = () => {
     const result = await getNote(id);
     return result;
   });
+
+  ipcMain.handle('updateNote', async (
+    _,
+    id: number,
+    markdown: string,
+    html: string,
+    tags: Tag[],
+    blocks: Block[],
+    contentId: number,
+    commitedAt: Date | null,
+    updatedAt: Date
+  ) => {
+    const result = await updateNote(id, markdown, html, tags, blocks, contentId, commitedAt, updatedAt);
+    return result;
+  });
+
 };
 
 
