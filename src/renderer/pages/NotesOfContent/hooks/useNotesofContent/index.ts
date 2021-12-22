@@ -10,6 +10,7 @@ export const useNotesOfContent = () => {
   const content = useContext(ContentContext);
   const [notes, setNotes] = useState<NoteWithRelation[]>([]);
   
+  console.log('NotesOfContent', notes);
   useEffect(() => {
     if (content !== null) {
       (async () => {

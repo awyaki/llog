@@ -1,2 +1,2 @@
 export * from './useConditions';
-export * from './useNotesofContent';
+export * from './useNotesOfContent';

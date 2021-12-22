@@ -1,6 +1,5 @@
-import { VFC, useContext } from 'react';
+import { VFC } from 'react';
 
-import { ContentContext } from '~/pages/ContentContextProvider';
 
 import { useDisclosure } from '@chakra-ui/react';
 import { useConditions, useNotesOfContent } from './hooks';
