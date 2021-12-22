@@ -46,7 +46,7 @@ export const NotesOfContent: VFC = () => {
               createCondtions={createConditions}
               dispatch={dispatch}
               />
-            <Box>
+            <Box w="100%">
               <h1 css={title}>{content?.name ?? ''}</h1>
               <TagList tags={content?.tags ?? []} />
               <ul css={buttons}>
@@ -56,10 +56,10 @@ export const NotesOfContent: VFC = () => {
               </ul>
               <ul css={makeNoteListsStyle(isDrawerOpen)}>
                 {isDrawerOpen 
-                  ? <li><NoteList notes={notes} /></li> 
+                  ? <li css={{ width: '70%' }}><NoteList notes={notes} /></li> 
                   : <>
-                      <li><NoteList notes={notes.filter((_, i) => i % 2 === 0)} /></li>
-                      <li><NoteList notes={notes.filter((_, i) => i % 2 !== 0)} /></li>
+                      <li css={{ width: '40%' }}><NoteList notes={notes.filter((_, i) => i % 2 === 0)} /></li>
+                      <li css={{ width: '40%' }}><NoteList notes={notes.filter((_, i) => i % 2 !== 0)} /></li>
                     </>
                 }
               </ul>
