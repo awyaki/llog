@@ -1,4 +1,4 @@
-import { Prisma, Tag, Content, Note } from '@prisma/client';
+import { Prisma, Tag, Content, Note, Block } from '@prisma/client';
 
 const contentWithRelation = Prisma.validator<Prisma.ContentArgs>()({
   include: {
