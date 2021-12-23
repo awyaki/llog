@@ -42,7 +42,7 @@ export const useEditNote = () => {
         if (note !== null) {
           setMarkdown(note.origin);
           selectedTagsDispatch({ type: 'SELECTED_TAGS/CONCAT', tags: note.tags });
-          selectedBlocksDispatch({ type: 'SELECTED_BLOCKS/CONCAT', blocks: note.blocks });
+          selectedBlocksDispatch({ type: 'SELECTED_BLOCKS/SET', blocks: note.blocks });
           setNote(note);
         }
       }
@@ -111,6 +111,7 @@ export const useEditNote = () => {
       if (content !== null) {
         const html = await markdownToHTML(markdown);
         const newNote = await createNote(markdown, html, selectedTags, selectedBlocks, content.id);
+        console.log('onCreateNote');
         history.push(`/content/${newNote.contentId}/updatenote/${newNote.id}`);
       }
     })();
@@ -122,6 +123,7 @@ export const useEditNote = () => {
         const html = await markdownToHTML(markdown);
         const updatedNote = await updateNote(note.id, markdown, html, selectedTags, selectedBlocks, note.contentId, note.commitedAt, new Date()); 
         const newNote = await getNote(updatedNote.id); 
+        console.log('onUpdateNote');
         setNote(newNote);
       }
     })();
