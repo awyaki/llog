@@ -40,7 +40,7 @@ export const useEditNote = () => {
         const note = await getNote(Number(noteId));
         if (note !== null) {
           setMarkdown(note.origin);
-          selectedTagsDispatch({ type: 'SELECTED_TAGS/CONCAT', tags: note.tags });
+          selectedTagsDispatch({ type: 'SELECTED_TAGS/SET', tags: note.tags });
           selectedBlocksDispatch({ type: 'SELECTED_BLOCKS/SET', blocks: note.blocks });
           setNote(note);
         }
@@ -112,6 +112,7 @@ export const useEditNote = () => {
       if (content !== null) {
         const html = await markdownToHTML(markdown);
         const newNote = await createNote(markdown, html, selectedTags, selectedBlocks, content.id);
+        console.log('useEditNote onCreateNote is run.');
         history.push(`/content/${newNote.contentId}/updatenote/${newNote.id}`);
       }
     })();
@@ -120,6 +121,8 @@ export const useEditNote = () => {
   const onUpdateNote = useCallback(() => {
     (async () => {
       if (note !== null) {
+        console.log('useEditNote onUpdateNote is run.');
+        console.log('useEditNote selectedTags is', selectedTags);
         const html = await markdownToHTML(markdown);
         const updatedNote = await updateNote(note.id, markdown, html, selectedTags, selectedBlocks, note.contentId, note.commitedAt, new Date()); 
         const newNote = await getNote(updatedNote.id); 
@@ -128,6 +131,8 @@ export const useEditNote = () => {
     })();
   }, [note, markdown, selectedTags, selectedBlocks]);
 
+  console.log('useEditNote, note', note);
+  console.log('useEditNote, isNoteChange', isNoteChange);
   return {
     content,
     note,

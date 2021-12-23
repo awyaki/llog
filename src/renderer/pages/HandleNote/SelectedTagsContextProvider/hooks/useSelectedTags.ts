@@ -13,6 +13,9 @@ export type Action = {
 } | {
   type: 'SELECTED_TAGS/CONCAT';
   tags: Tag[];
+} | {
+  type: 'SELECTED_TAGS/SET',
+  tags: Tag[];
 };
 
 const reducer: Reducer<State, Action> = (state, action) => {
@@ -24,11 +27,17 @@ const reducer: Reducer<State, Action> = (state, action) => {
                           : state.slice(0, index).concat(state.slice(index + 1));
       return nextState.sort();
     }
+
     case 'SELECTED_TAGS/ADD': {
       return state.concat(action.tag);
     }
+
     case 'SELECTED_TAGS/CONCAT': {
       return state.concat(action.tags);
+    }
+
+    case 'SELECTED_TAGS/SET': {
+      return action.tags;
     }
     default:
       return state;
