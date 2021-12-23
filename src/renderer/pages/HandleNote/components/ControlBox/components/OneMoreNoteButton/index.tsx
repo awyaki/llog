@@ -3,13 +3,14 @@ import { VFC, MouseEventHandler } from 'react';
 import { OneMoreNoteButtonIcon } from './components/OneMoreNoteButtonIcon';
 
 type Props = {
-  onClick?: MouseEventHandler<HTMLButtonElement>;
+  disabled: boolean;
+  onClick: MouseEventHandler<HTMLButtonElement>;
 };
 
-export const OneMoreNoteButton: VFC<Props> = ({ onClick }) => {
+export const OneMoreNoteButton: VFC<Props> = ({ disabled, onClick }) => {
   return (
-    <button onClick={onClick}>
-      <OneMoreNoteButtonIcon /> 
+    <button disabled={disabled} onClick={onClick}>
+      <OneMoreNoteButtonIcon disabled={disabled} /> 
     </button>
   );
 };
