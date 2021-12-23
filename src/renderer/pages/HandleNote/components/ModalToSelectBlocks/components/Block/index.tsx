@@ -4,7 +4,6 @@ import { Block as BlockType } from '@prisma/client';
 
 import { SelectedBlocksContext } from '~/pages/HandleNote/SelectedBlocksContextProvider';
 
-import { selected } from './style';
 import { makeContainer } from '~/pages/style/block';
 
 type Props = { 
@@ -22,7 +21,7 @@ export const Block: VFC<Props> = memo(({ block }) => {
   }, [block]);
 
   return (
-    <button css={isSlected ? selected : makeContainer(level)} onClick={handleToggleSelectBlock}>
+    <button css={makeContainer(level, isSlected)} onClick={handleToggleSelectBlock}>
       {unitNumber}
     </button>
   );

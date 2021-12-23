@@ -1,1 +1,0 @@
-export { selected } from './selected';
