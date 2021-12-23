@@ -126,13 +126,13 @@ export const useEditNote = () => {
         const html = await markdownToHTML(markdown);
         const updatedNote = await updateNote(note.id, markdown, html, selectedTags, selectedBlocks, note.contentId, note.commitedAt, new Date()); 
         const newNote = await getNote(updatedNote.id); 
+        console.log('useEditNote updatedNote', updatedNote);
+        console.log('useEditNote newNote', newNote);
         setNote(newNote);
       }
     })();
   }, [note, markdown, selectedTags, selectedBlocks]);
 
-  console.log('useEditNote, note', note);
-  console.log('useEditNote, isNoteChange', isNoteChange);
   return {
     content,
     note,

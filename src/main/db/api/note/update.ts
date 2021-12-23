@@ -20,12 +20,14 @@ export const update = async (
       commitedAt: commitedAt,
       updatedAt: updatedAt,
       content: {
-        connect: { id: contentId }
+        connect: { id: contentId },
       },
       tags: {
+        set: [],
         connect: [...tags.map(({ id }) => ({ id: id }))],
       },
       blocks: {
+        set: [],
         connect: [...blocks.map(({ id }) => ({ id: id }))],
       },
     },
