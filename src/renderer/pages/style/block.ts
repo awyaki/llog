@@ -9,6 +9,7 @@ export const makeContainer = (
 ): CSSObject => {
   const borderColor = isSelected ? colors.blue.DEFAULT : colors.cyan.LEVEL[level];
   const color = colors.cyan.LEVEL[level]; 
+  const borderWidth = isSelected ? '2px' : '1px';
 
   const base: CSSObject = {
     display: 'flex',
@@ -16,14 +17,14 @@ export const makeContainer = (
     justifyContent: 'center',
     width: '36px',
     height: '36px',
-    borderWidth: '1px',
+    borderWidth: borderWidth,
     fontSize: font.size.S,
     alignItems: 'center',
   };
 
   const zero: CSSObject = {
     ...base,
-    borderWidth: '1px',
+    borderWidth: borderWidth,
     borderStyle: 'solid',
     borderColor: isSelected ? colors.blue.DEFAULT : colors.text,
   };
