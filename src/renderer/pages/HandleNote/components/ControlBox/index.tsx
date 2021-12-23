@@ -1,6 +1,5 @@
 import { VFC } from 'react';
 
-import { Tag } from '@prisma/client';
 
 import { Mode } from '../../types';
 
@@ -44,7 +43,6 @@ export const ControlBox: VFC<Props> = ({
   onCreateNote,
   onUpdateNote
   }) => {
-  console.log('CreateNote', isNoteChange);
   return (
     <Box pos="fixed" top="220px" left="65%">
       <VStack alignItems="flex-start">
