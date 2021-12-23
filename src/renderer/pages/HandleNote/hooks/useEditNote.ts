@@ -112,7 +112,6 @@ export const useEditNote = () => {
       if (content !== null) {
         const html = await markdownToHTML(markdown);
         const newNote = await createNote(markdown, html, selectedTags, selectedBlocks, content.id);
-        console.log('useEditNote onCreateNote is run.');
         history.push(`/content/${newNote.contentId}/updatenote/${newNote.id}`);
       }
     })();
@@ -121,13 +120,9 @@ export const useEditNote = () => {
   const onUpdateNote = useCallback(() => {
     (async () => {
       if (note !== null) {
-        console.log('useEditNote onUpdateNote is run.');
-        console.log('useEditNote selectedTags is', selectedTags);
         const html = await markdownToHTML(markdown);
         const updatedNote = await updateNote(note.id, markdown, html, selectedTags, selectedBlocks, note.contentId, note.commitedAt, new Date()); 
         const newNote = await getNote(updatedNote.id); 
-        console.log('useEditNote updatedNote', updatedNote);
-        console.log('useEditNote newNote', newNote);
         setNote(newNote);
       }
     })();
