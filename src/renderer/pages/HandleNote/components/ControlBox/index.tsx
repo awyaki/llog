@@ -26,6 +26,7 @@ type Props = {
   onOpenSelectBlocks: () => void;
   onOpenSelectTags: () => void;
   onOpenCreateNewTag: () => void;
+  isNoteChange: boolean;
   isNoteExist: boolean;
   onCreateNote: () => void;
   onUpdateNote: () => void;
@@ -38,10 +39,12 @@ export const ControlBox: VFC<Props> = ({
   onOpenSelectBlocks,
   onOpenSelectTags,
   onOpenCreateNewTag,
+  isNoteChange,
   isNoteExist,
   onCreateNote,
   onUpdateNote
   }) => {
+  console.log('CreateNote', isNoteChange);
   return (
     <Box pos="fixed" top="220px" left="65%">
       <VStack alignItems="flex-start">
@@ -59,7 +62,9 @@ export const ControlBox: VFC<Props> = ({
           <PreviewButton mode={mode} onClick={setToPreview}/>
         </HStack>
         <CommitButton />
-        <SaveButton onClick={isNoteExist ? onUpdateNote : onCreateNote}/>
+        <SaveButton 
+          onClick={isNoteExist ? onUpdateNote : onCreateNote} 
+          disabled={!isNoteChange} />
         <OneMoreNoteButton />
       </VStack>
     </Box>

@@ -77,6 +77,7 @@ export const CreateNote: VFC = () => {
             onOpenSelectBlocks={onOpenSelectBlocks}
             onOpenSelectTags={onOpenSelectTags}
             onOpenCreateNewTag={onOpenCreateNewTag}
+            isNoteChange={isNoteChange}
             isNoteExist={isNoteExist}
             onUpdateNote={onUpdateNote}
             onCreateNote={onCreateNote} />
