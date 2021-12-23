@@ -7,6 +7,7 @@ import {
 } from 'react';
 
 
+
 import { markdownToHTML, createNote, updateNote, getNote } from '~/api';
 
 import { arrayeEqualWithId } from '~/utils';
@@ -26,7 +27,7 @@ import { confirmer } from '../functions';
 
 export const useEditNote = () => {
   const { noteId } = useParams<{ noteId: string | undefined }>();
-  const { note, setNote }= useContext(NoteContext);
+  const { note, setNote } = useContext(NoteContext);
   const [markdown, setMarkdown] = useState('');
 
   const { selectedTags, dispatch: selectedTagsDispatch } = useContext(SelectedTagsContext);
@@ -128,9 +129,15 @@ export const useEditNote = () => {
     })();
   }, [note, markdown, selectedTags, selectedBlocks]);
   
+
   const onMoveToOtherNoteEdit = useCallback(() => {
     if (content !== null) {
       history.push(`/content/${content.id}/createnote`);
+      setNote(null);
+      setMarkdown('');
+      setMode('edit');
+      selectedBlocksDispatch({ type: 'SELECTED_BLOCKS/SET', blocks: [] });
+      selectedTagsDispatch({ type: 'SELECTED_TAGS/SET', tags: [] });
     }
   }, [history, content]);
 

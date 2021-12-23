@@ -45,6 +45,7 @@ export const CreateNote: VFC = () => {
           onCreateNote,
           onUpdateNote,
           isNoteExist,
+          onMoveToOtherNoteEdit,
           setToEdit,
           setToPreview,
           handleLink,
@@ -80,7 +81,8 @@ export const CreateNote: VFC = () => {
             isNoteChange={isNoteChange}
             isNoteExist={isNoteExist}
             onUpdateNote={onUpdateNote}
-            onCreateNote={onCreateNote} />
+            onCreateNote={onCreateNote}
+            onMoveToOtherNoteEdit={onMoveToOtherNoteEdit} />
 
         </HStack>
       </Box>

@@ -29,6 +29,7 @@ type Props = {
   isNoteExist: boolean;
   onCreateNote: () => void;
   onUpdateNote: () => void;
+  onMoveToOtherNoteEdit: () => void;
 };
 
 export const ControlBox: VFC<Props> = ({ 
@@ -41,7 +42,8 @@ export const ControlBox: VFC<Props> = ({
   isNoteChange,
   isNoteExist,
   onCreateNote,
-  onUpdateNote
+  onUpdateNote,
+  onMoveToOtherNoteEdit
   }) => {
   return (
     <Box pos="fixed" top="220px" left="65%">
@@ -63,7 +65,9 @@ export const ControlBox: VFC<Props> = ({
         <SaveButton 
           onClick={isNoteExist ? onUpdateNote : onCreateNote} 
           disabled={!isNoteChange} />
-        <OneMoreNoteButton />
+        <OneMoreNoteButton
+          disabled={isNoteChange || !isNoteExist}
+          onClick={onMoveToOtherNoteEdit} />
       </VStack>
     </Box>
   );
