@@ -38,7 +38,6 @@ export const useEditNote = () => {
     (async () => {
       if (noteId !== undefined) {
         const note = await getNote(Number(noteId));
-        console.log('useEditNote note', note);
         if (note !== null) {
           setMarkdown(note.origin);
           selectedTagsDispatch({ type: 'SELECTED_TAGS/CONCAT', tags: note.tags });
@@ -58,10 +57,12 @@ export const useEditNote = () => {
   // `isNoteChange` should be false because the note have not be written yet.
   const isNoteChange = useMemo(() => {
     if (note === null) {
-      if (markdown === '') return false;
-      return true;
+      if (selectedTags.length !== 0) return true;
+      if (selectedBlocks.length !== 0) return true;
+      if (markdown !== '') return true;
+      return false;
     }
-    
+
     const isMarkdownChange = note.origin !== markdown;
     const isSelectedTagsChange = !arrayeEqualWithId(note.tags, selectedTags);
     const isSelectedBlocksChange = !arrayeEqualWithId(note.blocks, selectedBlocks);
@@ -111,7 +112,6 @@ export const useEditNote = () => {
       if (content !== null) {
         const html = await markdownToHTML(markdown);
         const newNote = await createNote(markdown, html, selectedTags, selectedBlocks, content.id);
-        console.log('onCreateNote');
         history.push(`/content/${newNote.contentId}/updatenote/${newNote.id}`);
       }
     })();
@@ -123,7 +123,6 @@ export const useEditNote = () => {
         const html = await markdownToHTML(markdown);
         const updatedNote = await updateNote(note.id, markdown, html, selectedTags, selectedBlocks, note.contentId, note.commitedAt, new Date()); 
         const newNote = await getNote(updatedNote.id); 
-        console.log('onUpdateNote');
         setNote(newNote);
       }
     })();
