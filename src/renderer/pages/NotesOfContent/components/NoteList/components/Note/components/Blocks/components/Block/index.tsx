@@ -1,6 +1,6 @@
 import { VFC } from 'react';
 
-import { makeContainer } from './style/container';
+import { makeContainer } from './style';
 
 type Props = {
   level: number;
