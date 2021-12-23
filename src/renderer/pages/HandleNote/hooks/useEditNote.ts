@@ -127,6 +127,12 @@ export const useEditNote = () => {
       }
     })();
   }, [note, markdown, selectedTags, selectedBlocks]);
+  
+  const onMoveToOtherNoteEdit = useCallback(() => {
+    if (content !== null) {
+      history.push(`/content/${content.id}/createnote`);
+    }
+  }, [history, content]);
 
   return {
     content,
@@ -147,6 +153,7 @@ export const useEditNote = () => {
     onCreateNote,
     onUpdateNote,
     isNoteExist,
+    onMoveToOtherNoteEdit,
     setToEdit,
     setToPreview,
     handleLink,
