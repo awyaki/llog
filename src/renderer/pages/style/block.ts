@@ -3,8 +3,12 @@ import { colors } from '~/styleConfig/colors';
 import { font } from '~/styleConfig/font';
 
 
-export const makeContainer = (level: number): CSSObject => {
-  const color = colors.cyan.LEVEL[level];
+export const makeContainer = (
+  level: number,
+  isSelected: boolean = false
+): CSSObject => {
+  const borderColor = isSelected ? colors.blue.DEFAULT : colors.cyan.LEVEL[level];
+  const color = colors.cyan.LEVEL[level]; 
 
   const base: CSSObject = {
     display: 'flex',
@@ -21,13 +25,13 @@ export const makeContainer = (level: number): CSSObject => {
     ...base,
     borderWidth: '1px',
     borderStyle: 'solid',
-    borderColor: colors.text,
+    borderColor: isSelected ? colors.blue.DEFAULT : colors.text,
   };
 
   const one: CSSObject = {
     ...base,
     borderStyle: 'solid',
-    borderColor: colors.gray.DEFAULT,
+    borderColor: isSelected ? colors.blue.DEFAULT : colors.gray.DEFAULT,
     backgroundColor: colors.gray.LIGHT,
     color: colors.text,
   };
@@ -36,7 +40,7 @@ export const makeContainer = (level: number): CSSObject => {
   const others: CSSObject = {
     ...base,
     borderStyle: 'solid',
-    borderColor: color,
+    borderColor: borderColor,
     backgroundColor: color,
     color: colors.white,
   };
