@@ -18,6 +18,7 @@ model Content {
   tags Tag[]
   notes Note[]
   blocks Block[]
+  log Log[]
 }
 
 // origin field has markdown style data
@@ -29,6 +30,7 @@ model Note {
   commitedAt DateTime?
   blocks Block[]
   tags Tag[]
+  log Log[]
   origin String
   transformed String
   content Content @relation(fields: [contentId], references: [id])
@@ -55,3 +57,31 @@ model Block {
   notes Note[]
 }
 
+model Log {
+  id Int @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  markdown String
+  html String
+  blocks BlockForLog[]
+  tags TagForLog[]
+  content Content? @relation(fields: [contentId], references: [id])
+  contentId Int?
+  note Note? @relation(fields: [noteId], references: [id])
+  noteId Int?
+}
+
+model BlockForLog {
+  id Int @id @default(autoincrement())
+  unitNumber Int
+  level Int
+  createdAt DateTime @default(now())
+  log Log @relation(fields: [logId], references: [id])
+  logId Int
+}
+
+model TagForLog {
+  id Int @id @default(autoincrement())
+  name String
+  log Log @relation(fields: [logId], references: [id])
+  logId Int
+}
