@@ -1,5 +1,15 @@
 import { Prisma, Tag, Content, Note, Block } from '@prisma/client';
 
+
+type CreateLog = (
+  markdown: string,
+  html: string,
+  blocks: Block[],
+  tags: Tag[],
+  noteId: number,
+  contentId: number,
+) => Prisma.Prisma__LogClient<Log>; 
+
 const contentWithRelation = Prisma.validator<Prisma.ContentArgs>()({
   include: {
     tags: true,
