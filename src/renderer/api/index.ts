@@ -1,4 +1,4 @@
-import { Tag, Block } from '@prisma/client';
+import { Tag, Block, BlockForLog, TagForLog } from '@prisma/client';
 
 export const createTag = async (name: string) => {
   return await window.electronAPI.createTag(name);
@@ -43,6 +43,18 @@ export const getNoteWithContentId = async (contentId: number) => {
   return await window.electronAPI.getNoteWithContentId(contentId);
 };
 
+export const createLog = async (
+  markdown: string,
+  html: string,
+  blocks: BlockForLog[],
+  tags: TagForLog[],
+  noteId: number,
+  contentId: number
+) => {
+  return await window.electronAPI.createLog(markdown, html, blocks, tags, noteId, contentId);
+};
+
 export const markdownToHTML = async (markdown: string) => {
   return await window.electronAPI.markdownToHTML(markdown);
 };
+

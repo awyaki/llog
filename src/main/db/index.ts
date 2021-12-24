@@ -1,6 +1,6 @@
 import { ipcMain } from 'electron';
 
-import { Tag, Block } from '@prisma/client';
+import { Tag, Block, BlockForLog, TagForLog } from '@prisma/client';
 
 import { 
   createContent, 
@@ -11,7 +11,8 @@ import {
   getNote, 
   createNote,
   updateNote,
-  getNoteWithContentId
+  getNoteWithContentId,
+  createLog
 } from './api';
 
 
@@ -70,6 +71,19 @@ export const useDBQueryOnClient = () => {
     updatedAt: Date
   ) => {
     const result = await updateNote(id, markdown, html, tags, blocks, contentId, commitedAt, updatedAt);
+    return result;
+  });
+
+  ipcMain.handle('createLog', async (
+    _,
+    markdown: string,
+    html: string,
+    blocks: BlockForLog[],
+    tags: TagForLog[],
+    noteId: number,
+    contentId: number
+    ) => {
+    const result = await createLog(markdown, html, blocks, tags, noteId, contentId);
     return result;
   });
   

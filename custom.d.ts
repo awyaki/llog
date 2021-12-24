@@ -1,11 +1,19 @@
-import { Prisma, Tag, Content, Note, Block } from '@prisma/client';
+import { 
+  Prisma,
+  Tag, 
+  Content, 
+  Note, 
+  Block,
+  BlockForLog,
+  TagForLog
+} from '@prisma/client';
 
 
 type CreateLog = (
   markdown: string,
   html: string,
-  blocks: Block[],
-  tags: Tag[],
+  blocks: BlockForLog[],
+  tags: TagForLog[],
   noteId: number,
   contentId: number,
 ) => Prisma.Prisma__LogClient<Log>; 
@@ -44,6 +52,7 @@ interface IElectronAPI {
     updatedAt: Date
   ) => Prisma.Prisma__NoteClient<Note>;
   getNoteWithContentId: (contentId: number) => Prisma.Prisma__NoteClient<Prisma.NoteGetPayload<typeof noteWithRelation>[]>;
+  createLog: CreateLog;
   markdownToHTML: (markdown: string) => Promise<string>;
 }
 

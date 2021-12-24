@@ -1,1 +1,1 @@
-export * from './create';
+export { create as createLog } from './create';
