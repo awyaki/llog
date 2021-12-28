@@ -4,3 +4,4 @@ export { divideArray } from './divideArray';
 export { zip } from './zip';
 export * from './arrayEqualWithId';
 export * from './extractNumber';
+export * from './makeFormalDateString';
