@@ -1,12 +1,8 @@
 import { VFC } from 'react';
 
-type Props = {
-  size: string;
-};
-
-export const CancelIcon: VFC<Props> = ({ size }) => {
+export const CancelIcon: VFC = () => {
   return (
-    <svg width={size} height={size} viewBox="0 0 36 36" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <svg width="36px" height="36px" viewBox="0 0 36 36" version="1.1" xmlns="http://www.w3.org/2000/svg">
         <g id="Symbols" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
             <g id="note_for_notes" transform="translate(-523.000000, -17.000000)">
                 <g id="Group-7" transform="translate(385.000000, 17.000000)">
