@@ -54,6 +54,10 @@ export const createLog = async (
   return await window.electronAPI.createLog(markdown, html, blocks, tags, noteId, contentId);
 };
 
+export const getLog = async (id: number) => {
+  return await window.electronAPI.getLog(id);
+};
+
 export const markdownToHTML = async (markdown: string) => {
   return await window.electronAPI.markdownToHTML(markdown);
 };

@@ -12,7 +12,8 @@ import {
   createNote,
   updateNote,
   getNoteWithContentId,
-  createLog
+  createLog,
+  getLog
 } from './api';
 
 
@@ -74,6 +75,12 @@ export const useDBQueryOnClient = () => {
     return result;
   });
 
+
+  ipcMain.handle('getNoteWithContentId', async (_, contentId: number) => {
+    const result = await getNoteWithContentId(contentId);
+    return result;
+  });
+
   ipcMain.handle('createLog', async (
     _,
     markdown: string,
@@ -87,8 +94,9 @@ export const useDBQueryOnClient = () => {
     return result;
   });
   
-  ipcMain.handle('getNoteWithContentId', async (_, contentId: number) => {
-    const result = await getNoteWithContentId(contentId);
+
+  ipcMain.handle('getLog', async (_, id: number) => {
+    const result = await getLog(id);
     return result;
   });
 };
