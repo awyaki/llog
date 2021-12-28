@@ -12,6 +12,7 @@ import { Box, HStack } from '@chakra-ui/react';
 import { 
   ControlButtons,
   ShowBlocks,
+  ShowTags,
   } from './components';
 
 import 'zenn-content-css';
@@ -44,6 +45,7 @@ export const NoteWithContentName: VFC<Props> = ({
       <HStack>
         <Box w="100%" pr="16px">
           <h2 css={title}>{contentName}</h2>
+          <ShowTags tags={tags} />
           <div className="znc" dangerouslySetInnerHTML={{ __html: html }}></div>
         </Box>
         <ShowBlocks blocks={blocks} />
