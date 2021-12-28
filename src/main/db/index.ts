@@ -88,10 +88,11 @@ export const useDBQueryOnClient = () => {
     html: string,
     blocks: BlockForLog[],
     tags: TagForLog[],
+    contentName: string,
     noteId: number,
     contentId: number
     ) => {
-    const result = await createLog(markdown, html, blocks, tags, noteId, contentId);
+    const result = await createLog(markdown, html, blocks, tags, contentName, noteId, contentId);
     return result;
   });
   

@@ -14,6 +14,7 @@ type CreateLog = (
   html: string,
   blocks: BlockForLog[],
   tags: TagForLog[],
+  contentName: string,
   noteId: number,
   contentId: number,
 ) => Prisma.Prisma__LogClient<Log>; 

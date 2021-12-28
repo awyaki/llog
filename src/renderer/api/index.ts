@@ -48,10 +48,11 @@ export const createLog = async (
   html: string,
   blocks: BlockForLog[],
   tags: TagForLog[],
+  contentName: string,
   noteId: number,
   contentId: number
 ) => {
-  return await window.electronAPI.createLog(markdown, html, blocks, tags, noteId, contentId);
+  return await window.electronAPI.createLog(markdown, html, blocks, tags, contentName, noteId, contentId);
 };
 
 export const getLog = async (id: number) => {

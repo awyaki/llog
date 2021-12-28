@@ -6,6 +6,7 @@ export const create: CreateLog = (
   html,
   blocks,
   tags,
+  contentName,
   noteId,
   contentId
 ) => {
@@ -22,6 +23,7 @@ export const create: CreateLog = (
       note: {
         connect: { id: noteId }
       },
+      contentName: contentName,
       content: {
         connect: { id: contentId },
       },
