@@ -1,9 +1,13 @@
 import { VFC } from 'react';
 
 import { Tag, Block } from '@prisma/client';
-import { container } from './style';
+import { 
+  container, 
+  title,
+  date
+  } from './style';
 
-import { Box } from '@chakra-ui/react';
+import { Box, HStack } from '@chakra-ui/react';
 
 type Props = {
   contentName: string;
@@ -15,7 +19,10 @@ type Props = {
 export const NoteWithContentName: VFC<Props> = ({ contentName, tags, blocks, updatedAt }) => {
   return (
     <Box css={container}>
-      
+    <HStack>
+      <div css={date}>{updatedAt}</div>
+    </HStack>
+      <h2 css={title}>{contentName}</h2>
     </Box>
   );
 };

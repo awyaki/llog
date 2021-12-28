@@ -1,0 +1,8 @@
+import { CSSObject } from '@emotion/react';
+import { colors } from '~/styleConfig/colors';
+import { font } from '~/styleConfig/font';
+
+export const title: CSSObject = {
+  color: colors.text,
+  font: font.size.L,
+};
