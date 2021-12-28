@@ -64,6 +64,7 @@ model Log {
   html String
   blocks BlockForLog[]
   tags TagForLog[]
+  contentName String
   content Content? @relation(fields: [contentId], references: [id])
   contentId Int?
   note Note? @relation(fields: [noteId], references: [id])
