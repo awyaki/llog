@@ -4,5 +4,5 @@ import { font } from '~/styleConfig/font';
 
 export const title: CSSObject = {
   color: colors.text,
-  font: font.size.L,
+  fontSize: font.size.L,
 };
