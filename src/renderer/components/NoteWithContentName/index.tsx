@@ -9,16 +9,28 @@ import {
 
 import { Box, HStack } from '@chakra-ui/react';
 
-import { ControlButtons } from './components';
+import { 
+  ControlButtons,
+  ShowBlocks,
+  } from './components';
+
+import 'zenn-content-css';
 
 type Props = {
   contentName: string;
   tags: Pick<Tag, 'id' | 'name'>[];
   blocks: Pick<Block, 'id' | 'level' | 'unitNumber'>[];
   updatedAt: string;
+  html: string;
 };
 
-export const NoteWithContentName: VFC<Props> = ({ contentName, tags, blocks, updatedAt }) => {
+export const NoteWithContentName: VFC<Props> = ({ 
+  contentName,
+  tags, 
+  blocks, 
+  html, 
+  updatedAt
+}) => {
   return (
     <Box css={container}>
     <HStack justifyContent="space-between" justifyItems="flex-start">
@@ -29,7 +41,13 @@ export const NoteWithContentName: VFC<Props> = ({ contentName, tags, blocks, upd
         onClickEditNote={() => {}}
         onClickShowNote={() => {}} />
     </HStack>
-      <h2 css={title}>{contentName}</h2>
+      <HStack>
+        <Box w="100%" pr="16px">
+          <h2 css={title}>{contentName}</h2>
+          <div className="znc" dangerouslySetInnerHTML={{ __html: html }}></div>
+        </Box>
+        <ShowBlocks blocks={blocks} />
+      </HStack>
     </Box>
   );
 };
