@@ -9,6 +9,8 @@ import {
 
 import { Box, HStack } from '@chakra-ui/react';
 
+import { ControlButtons } from './components';
+
 type Props = {
   contentName: string;
   tags: Pick<Tag, 'id' | 'name'>[];
@@ -19,8 +21,13 @@ type Props = {
 export const NoteWithContentName: VFC<Props> = ({ contentName, tags, blocks, updatedAt }) => {
   return (
     <Box css={container}>
-    <HStack>
+    <HStack justifyContent="space-between" justifyItems="flex-start">
       <div css={date}>{updatedAt}</div>
+      <ControlButtons
+        onClickCancel={() => {}}
+        onClickCommit={() => {}}
+        onClickEditNote={() => {}}
+        onClickShowNote={() => {}} />
     </HStack>
       <h2 css={title}>{contentName}</h2>
     </Box>
