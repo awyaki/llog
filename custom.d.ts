@@ -18,6 +18,8 @@ type CreateLog = (
   contentId: number,
 ) => Prisma.Prisma__LogClient<Log>; 
 
+type GetLog = (id: number) => Prisma.Prisma__LogClient<typeof logWithRelation>;
+
 const contentWithRelation = Prisma.validator<Prisma.ContentArgs>()({
   include: {
     tags: true,
@@ -32,6 +34,14 @@ const noteWithRelation = Prisma.validator<Prisma.NoteArgs>()({
     blocks: true,
   },
 });
+
+const logWithRelation = Prisma.validator<Prisma.LogArgs>()({
+  include: {
+    tags: true,
+    blocks: true,
+  },
+});
+
 
 interface IElectronAPI {
   createTag: (name: string) => Prisma.Prisma__TagClient<Tag>;
@@ -53,6 +63,7 @@ interface IElectronAPI {
   ) => Prisma.Prisma__NoteClient<Note>;
   getNoteWithContentId: (contentId: number) => Prisma.Prisma__NoteClient<Prisma.NoteGetPayload<typeof noteWithRelation>[]>;
   createLog: CreateLog;
+  getLog: GetLog;
   markdownToHTML: (markdown: string) => Promise<string>;
 }
 
