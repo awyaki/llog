@@ -13,7 +13,8 @@ import {
   updateNote,
   getNoteWithContentId,
   createLog,
-  getLog
+  getLog,
+  getAllLog,
 } from './api';
 
 
@@ -94,9 +95,13 @@ export const useDBQueryOnClient = () => {
     return result;
   });
   
-
   ipcMain.handle('getLog', async (_, id: number) => {
     const result = await getLog(id);
+    return result;
+  });
+
+  ipcMain.handle('getAllLog', async () => {
+    const result = await getAllLog();
     return result;
   });
 };
