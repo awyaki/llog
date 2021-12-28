@@ -23,7 +23,7 @@ export const ControlButtons: VFC<Props> = ({
   onClickCommit
 }) => {
   return (
-    <HStack w="150px">
+    <HStack>
       <CommitButton onClick={onClickCommit} />
       <ShowNoteButton onClick={onClickShowNote} />
       <EditNoteButton onClick={onClickEditNote} />
