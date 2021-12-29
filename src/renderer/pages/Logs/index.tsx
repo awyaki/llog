@@ -4,7 +4,7 @@ import { LogWithRelation } from '~/pages/type';
 
 import { Box } from '@chakra-ui/react';
 
-import { container } from './style';
+import { container, title } from './style';
 
 import { Header } from './components';
 
@@ -25,6 +25,7 @@ export const Logs: VFC = () => {
     <>
       <Header />
       <Box css={container}>
+        <h2 css={title}>Logs</h2>
         <LogsForDate logs={logs} />
       </Box>
     </>
