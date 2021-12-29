@@ -8,7 +8,7 @@ import { NoteWithContentName } from '~/components';
 
 import { Box } from '@chakra-ui/react';
 
-import { dateStyle, container } from './style';
+import { dateStyle, container, listStyle } from './style';
 
 type Props = {
   logs: LogWithRelation[];
@@ -22,7 +22,7 @@ export const LogsForDate: VFC<Props> = ({ logs }) => {
   return (
     <Box css={container}>
       <div css={dateStyle}>{makeFormalDateString(createdDate)}</div>
-      <ul css={{ width: '70%' }}>
+      <ul css={listStyle}>
         {logs.map(({ id, html, contentName, tags, blocks, createdAt }) => <li key={id}>
                                                             <NoteWithContentName 
                                                               contentName={contentName}

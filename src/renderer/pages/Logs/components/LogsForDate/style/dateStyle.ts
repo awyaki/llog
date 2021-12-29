@@ -6,4 +6,5 @@ import { colors } from '~/styleConfig/colors';
 export const dateStyle: CSSObject = {
   color: colors.text,
   fontSize: font.size.S,
+  marginBottom: '32px',
 };
