@@ -19,9 +19,9 @@ type CreateLog = (
   contentId: number,
 ) => Prisma.Prisma__LogClient<Log>; 
 
-type GetLog = (id: number) => Prisma.Prisma__LogClient<typeof logWithRelation>;
+type GetLog = (id: number) => Prisma.Prisma__LogClient<Prisma.NoteGetPayload<typeof logWithRelation>>;
 
-type GetAllLog = () => Prisma.Prisma__LogClient<(typeof logWithRelation)[]>;
+type GetAllLog = () => Prisma.Prisma__LogClient<Prisma.LogGetPayload<typeof logWithRelation>[]>;
 
 const contentWithRelation = Prisma.validator<Prisma.ContentArgs>()({
   include: {
