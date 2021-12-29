@@ -23,6 +23,10 @@ type Props = {
   blocks: Pick<Block, 'id' | 'level' | 'unitNumber'>[];
   updatedAt: string;
   html: string;
+  onClickDelete?: () => void;
+  onClickCommit?: () => void;
+  onClickEditNote?: () => void;
+  onClickShowNote?: () => void;
 };
 
 export const NoteWithContentName: VFC<Props> = ({ 
@@ -30,17 +34,21 @@ export const NoteWithContentName: VFC<Props> = ({
   tags, 
   blocks, 
   html, 
-  updatedAt
+  updatedAt,
+  onClickDelete,
+  onClickCommit,
+  onClickEditNote,
+  onClickShowNote,
 }) => {
   return (
     <Box css={container}>
     <HStack justifyContent="space-between" justifyItems="flex-start">
       <div css={date}>{updatedAt}</div>
       <ControlButtons
-        onClickDelete={() => {}}
-        onClickCommit={() => {}}
-        onClickEditNote={() => {}}
-        onClickShowNote={() => {}} />
+        onClickDelete={onClickDelete}
+        onClickCommit={onClickCommit}
+        onClickEditNote={onClickEditNote}
+        onClickShowNote={onClickShowNote} />
     </HStack>
       <HStack>
         <Box w="100%" pr="16px">

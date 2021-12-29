@@ -1,15 +1,15 @@
 import { VFC, MouseEventHandler } from 'react';
 
-import { CancelIcon } from './components';
+import { DeleteIcon } from './components';
 
 type Props = {
   onClick?: MouseEventHandler<HTMLButtonElement>;
 };
 
-export const CancelButton: VFC<Props> = ({ onClick }) => {
+export const DeleteButton: VFC<Props> = ({ onClick }) => {
   return (
     <button onClick={onClick}>
-      <CancelIcon />
+      <DeleteIcon />
     </button>
   );
 };

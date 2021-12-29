@@ -1,1 +1,1 @@
-export * from './CancelIcon';
+export * from './DeleteIcon';

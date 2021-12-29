@@ -4,16 +4,16 @@ import {
   CommitButton, 
   ShowNoteButton,
   EditNoteButton,
-  CancelButton,
+  DeleteButton,
   } from '~/components';
 
 import { HStack } from '@chakra-ui/react';
 
 type Props = {
-  onClickCommit: MouseEventHandler<HTMLButtonElement>;
-  onClickShowNote: MouseEventHandler<HTMLButtonElement>;
-  onClickEditNote: MouseEventHandler<HTMLButtonElement>;
-  onClickDelete: MouseEventHandler<HTMLButtonElement>;
+  onClickCommit?: MouseEventHandler<HTMLButtonElement>;
+  onClickShowNote?: MouseEventHandler<HTMLButtonElement>;
+  onClickEditNote?: MouseEventHandler<HTMLButtonElement>;
+  onClickDelete?: MouseEventHandler<HTMLButtonElement>;
 };
 
 export const ControlButtons: VFC<Props> = ({
@@ -24,10 +24,10 @@ export const ControlButtons: VFC<Props> = ({
 }) => {
   return (
     <HStack>
-      <CommitButton onClick={onClickCommit} />
-      <ShowNoteButton onClick={onClickShowNote} />
-      <EditNoteButton onClick={onClickEditNote} />
-      <CancelButton onClick={onClickDelete} />
+      {onClickCommit ? <CommitButton onClick={onClickCommit} /> : undefined}
+      {onClickShowNote ? <ShowNoteButton onClick={onClickShowNote} /> : undefined}
+      {onClickEditNote ? <EditNoteButton onClick={onClickEditNote} /> : undefined}
+      {onClickDelete ? <DeleteButton onClick={onClickDelete} /> : undefined}
     </HStack>
   );
 };
