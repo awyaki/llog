@@ -12,6 +12,6 @@
     "noFallthroughCasesInSwitch": true,
     "module": "module",
     "moduleResolution": "node",
-    "resolveJsonModule": true,
+    "resolveJsonModule": true
   }
 }
