@@ -56,8 +56,8 @@ export const Header: VFC<Props> = ({ confirmer }) => {
     return;
   }, [confirmer, history]);
 
-  const handleTimelineClick = useCallback(() => {
-    const path = 'timeline';
+  const handleLogsClick = useCallback(() => {
+    const path = '/logs';
 
     if (confirmer === undefined) {
       history.push(path);
@@ -133,7 +133,7 @@ export const Header: VFC<Props> = ({ confirmer }) => {
           <button onClick={handleContentsClick}>Contents</button>
         </li>
         <li>
-          <button onClick={handleTimelineClick}>Timeline</button>
+          <button onClick={handleLogsClick}>Logs</button>
         </li>
         <li>
           <button onClick={handleReviewsClick}>Reviews</button>
