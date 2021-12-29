@@ -21,7 +21,7 @@ export const LogsForDate: VFC<Props> = ({ logs }) => {
     <Box>
       <div>{makeFormalDateString(createdDate)}</div>
       <ul>
-        {logs.map(({ html, contentName, tags, blocks, createdAt }) => <li>
+        {logs.map(({ id, html, contentName, tags, blocks, createdAt }) => <li key={id}>
                                                             <NoteWithContentName 
                                                               contentName={contentName}
                                                               updatedAt={dateToString(createdAt)}
