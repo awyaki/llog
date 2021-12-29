@@ -19,7 +19,7 @@ type CreateLog = (
   contentId: number,
 ) => Prisma.Prisma__LogClient<Log>; 
 
-type GetLog = (id: number) => Prisma.Prisma__LogClient<Prisma.NoteGetPayload<typeof logWithRelation>>;
+type GetLog = (id: number) => Prisma.Prisma__LogClient<Prisma.LogGetPayload<typeof logWithRelation>>;
 
 type GetAllLog = () => Prisma.Prisma__LogClient<Prisma.LogGetPayload<typeof logWithRelation>[]>;
 
