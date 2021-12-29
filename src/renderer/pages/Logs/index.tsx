@@ -25,7 +25,7 @@ export const Logs: VFC = () => {
     <>
       <Header />
       <Box css={container}>
-        <h2 css={title}>Logs</h2>
+        <h2 css={{ ...title, marginBottom: '16px' }}>Logs</h2>
         <LogsForDate logs={logs} />
       </Box>
     </>
