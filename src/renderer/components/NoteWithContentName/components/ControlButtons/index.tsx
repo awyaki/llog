@@ -13,11 +13,11 @@ type Props = {
   onClickCommit: MouseEventHandler<HTMLButtonElement>;
   onClickShowNote: MouseEventHandler<HTMLButtonElement>;
   onClickEditNote: MouseEventHandler<HTMLButtonElement>;
-  onClickCancel: MouseEventHandler<HTMLButtonElement>;
+  onClickDelete: MouseEventHandler<HTMLButtonElement>;
 };
 
 export const ControlButtons: VFC<Props> = ({
-  onClickCancel,
+  onClickDelete,
   onClickEditNote,
   onClickShowNote,
   onClickCommit
@@ -27,7 +27,7 @@ export const ControlButtons: VFC<Props> = ({
       <CommitButton onClick={onClickCommit} />
       <ShowNoteButton onClick={onClickShowNote} />
       <EditNoteButton onClick={onClickEditNote} />
-      <CancelButton onClick={onClickCancel} />
+      <CancelButton onClick={onClickDelete} />
     </HStack>
   );
 };

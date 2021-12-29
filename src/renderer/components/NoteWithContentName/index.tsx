@@ -37,7 +37,7 @@ export const NoteWithContentName: VFC<Props> = ({
     <HStack justifyContent="space-between" justifyItems="flex-start">
       <div css={date}>{updatedAt}</div>
       <ControlButtons
-        onClickCancel={() => {}}
+        onClickDelete={() => {}}
         onClickCommit={() => {}}
         onClickEditNote={() => {}}
         onClickShowNote={() => {}} />
