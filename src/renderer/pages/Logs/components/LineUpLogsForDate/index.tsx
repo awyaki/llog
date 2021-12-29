@@ -12,7 +12,6 @@ type Props = {
 
 export const LineUpLogsForDate: VFC<Props> = ({ logs }) => {
   const dividedLogs = divideLogsByDate(logs);
-
   return (
     <>
       {dividedLogs.map((logs) => <LogsForDate key={logs[0].id} logs={logs} />)}
