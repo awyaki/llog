@@ -1,4 +1,4 @@
-import { Log } from '@prisma/client';
+import { LogWithRelation as Log } from '~/pages/type';
 
 const isSameDate = (d1: Date, d2: Date) => {
   const isSameYear = d1.getFullYear() === d2.getFullYear();
