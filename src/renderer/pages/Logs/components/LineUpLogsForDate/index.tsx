@@ -15,7 +15,7 @@ export const LineUpLogsForDate: VFC<Props> = ({ logs }) => {
 
   return (
     <>
-      {dividedLogs.map((logs) => <LogsForDate logs={logs} />)}
+      {dividedLogs.map((logs) => <LogsForDate key={logs[0].id} logs={logs} />)}
     </>
   );
 };
