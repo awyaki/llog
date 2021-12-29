@@ -8,7 +8,7 @@ import { container, title } from './style';
 
 import { Header } from './components';
 
-import { LogsForDate } from './components';
+import { LineUpLogsForDate } from './components';
 
 import { getAllLog } from '~/api';
 
@@ -26,7 +26,7 @@ export const Logs: VFC = () => {
       <Header />
       <Box css={container}>
         <h2 css={{ ...title, marginBottom: '16px' }}>Logs</h2>
-        <LogsForDate logs={logs} />
+        <LineUpLogsForDate logs={logs} />
       </Box>
     </>
   );
