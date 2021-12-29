@@ -29,6 +29,5 @@ export const divideLogsByDate = (logs: Log[]): Log[][] => {
     
   }
   
-  result.push([...tmp]);
   return result;
 };
