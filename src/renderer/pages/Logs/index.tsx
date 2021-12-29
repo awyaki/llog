@@ -1,23 +1,31 @@
-import { VFC } from 'react';
+import { VFC, useEffect, useState } from 'react';
+
+import { LogWithRelation } from '~/pages/type';
 
 import { Box } from '@chakra-ui/react';
+
 import { container } from './style';
 
 import { Header } from './components';
 
-import { NoteWithContentName } from '~/components';
+import { LogsForDate } from './components';
+
+import { getAllLog } from '~/api';
 
 export const Logs: VFC = () => {
+  const [logs, setLogs] = useState<LogWithRelation[]>([]);
+
+  useEffect(() => {
+    (async () => {
+      const result = await getAllLog();
+      setLogs(result);
+    })();
+  }, []);
   return (
     <>
       <Header />
       <Box css={container}>
-      <NoteWithContentName 
-        contentName="コンパイラ原理と構造"
-        tags={[{ id: 1, name: 'computer', }, { id: 2, name: 'compiler' }]}
-        blocks={[{ id: 1, unitNumber: 1, level: 1 }, { id: 2, unitNumber: 2, level: 2 }, { id: 3, unitNumber: 3, level: 3 }]}
-        html="<h1>Hello World</h1>"
-        updatedAt="2021/7/30 9:00" />
+        <LogsForDate logs={logs} />
       </Box>
     </>
   );
