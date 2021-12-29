@@ -22,7 +22,7 @@ export const LogsForDate: VFC<Props> = ({ logs }) => {
   return (
     <Box css={container}>
       <div css={dateStyle}>{makeFormalDateString(createdDate)}</div>
-      <ul>
+      <ul css={{ width: '70%' }}>
         {logs.map(({ id, html, contentName, tags, blocks, createdAt }) => <li key={id}>
                                                             <NoteWithContentName 
                                                               contentName={contentName}
