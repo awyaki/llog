@@ -5,3 +5,4 @@ export { zip } from './zip';
 export * from './arrayEqualWithId';
 export * from './extractNumber';
 export * from './makeFormalDateString';
+export * from './divideLogsByDate';
