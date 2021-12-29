@@ -29,5 +29,5 @@ export const makeFormalDateString = (dateObj: Date) => {
   const month = months[dateObj.getMonth()];
   const year = dateObj.getFullYear().toString();
   
-  return `${day}, ${date}, ${month} ${year}`
+  return `${day}, ${date} ${month} ${year}`
 };
