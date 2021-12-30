@@ -6,6 +6,9 @@ export const getAll = async () => {
       tags: true,
       blocks: true,
     },
+    orderBy: {
+      createdAt: 'desc',
+    },
   });
   return result;
 };
