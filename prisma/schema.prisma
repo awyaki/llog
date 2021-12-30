@@ -76,13 +76,11 @@ model BlockForLog {
   unitNumber Int
   level Int
   createdAt DateTime @default(now())
-  log Log @relation(fields: [logId], references: [id])
-  logId Int
+  logs Log[]
 }
 
 model TagForLog {
   id Int @id @default(autoincrement())
   name String
-  log Log @relation(fields: [logId], references: [id])
-  logId Int
+  logs Log[]
 }
