@@ -13,7 +13,7 @@ import {
   PreviewButton,
   SelectedTags,
   SelectedBlocks,
-  CreateNewTag
+  CreateNewTag,
   } from './components';
 
 import { title } from './style';
@@ -29,6 +29,7 @@ type Props = {
   isNoteExist: boolean;
   onCreateNote: () => void;
   onUpdateNote: () => void;
+  onCommitLog: () => void;
   onMoveToOtherNoteEdit: () => void;
 };
 
@@ -43,6 +44,7 @@ export const ControlBox: VFC<Props> = ({
   isNoteExist,
   onCreateNote,
   onUpdateNote,
+  onCommitLog,
   onMoveToOtherNoteEdit
   }) => {
   return (
@@ -61,7 +63,7 @@ export const ControlBox: VFC<Props> = ({
           <TakeANoteButton mode={mode} onClick={setToEdit} />
           <PreviewButton mode={mode} onClick={setToPreview}/>
         </HStack>
-        <CommitButton />
+        <CommitButton onClick={onCommitLog}/>
         <SaveButton 
           onClick={isNoteExist ? onUpdateNote : onCreateNote} 
           disabled={!isNoteChange} />

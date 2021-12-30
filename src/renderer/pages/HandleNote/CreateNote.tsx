@@ -44,6 +44,7 @@ export const CreateNote: VFC = () => {
           onCloseCreateNewTag,
           onCreateNote,
           onUpdateNote,
+          onCommitLog,
           isNoteExist,
           onMoveToOtherNoteEdit,
           setToEdit,
@@ -82,6 +83,7 @@ export const CreateNote: VFC = () => {
             isNoteExist={isNoteExist}
             onUpdateNote={onUpdateNote}
             onCreateNote={onCreateNote}
+            onCommitLog={onCommitLog}
             onMoveToOtherNoteEdit={onMoveToOtherNoteEdit} />
 
         </HStack>

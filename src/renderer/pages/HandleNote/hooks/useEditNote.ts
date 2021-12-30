@@ -8,7 +8,13 @@ import {
 
 
 
-import { markdownToHTML, createNote, updateNote, getNote } from '~/api';
+import { 
+  markdownToHTML, 
+  createNote, 
+  updateNote, 
+  getNote,
+  createLog
+} from '~/api';
 
 import { arrayeEqualWithId } from '~/utils';
 
@@ -141,6 +147,22 @@ export const useEditNote = () => {
     }
   }, [history, content]);
 
+  const onCommitLog = useCallback(async () => {
+    if (content === null) return;
+    const html = await markdownToHTML(markdown);
+    if (noteId === undefined) {
+      console.log('useEditNote onCommit 1');
+      const newNote = await createNote(markdown, html, selectedTags, selectedBlocks, content.id);
+      await createLog(markdown, html, selectedBlocks, selectedTags, content.name, newNote.id, content.id);
+      history.push(`/logs`);
+    } else {
+      if (note === null) return;
+      await updateNote(note.id, markdown, html, selectedTags, selectedBlocks, note.contentId, note.commitedAt, new Date()); 
+      await createLog(markdown, html, selectedBlocks, selectedTags, content.name, note.id, content.id);
+      history.push('logs');
+    }
+  }, [content, noteId, history, markdown, note]);
+
   return {
     content,
     note,
@@ -161,6 +183,7 @@ export const useEditNote = () => {
     onUpdateNote,
     isNoteExist,
     onMoveToOtherNoteEdit,
+    onCommitLog,
     setToEdit,
     setToPreview,
     handleLink,
