@@ -154,14 +154,22 @@ export const useEditNote = () => {
       console.log('useEditNote onCommit 1');
       const newNote = await createNote(markdown, html, selectedTags, selectedBlocks, content.id);
       await createLog(markdown, html, selectedBlocks, selectedTags, content.name, newNote.id, content.id);
-      history.push(`/content/${content.id}/createnote`);
+      setMarkdown('');
+      selectedTagsDispatch({ type: 'SELECTED_TAGS/SET', tags: [] });
+      selectedBlocksDispatch({ type: 'SELECTED_BLOCKS/SET', blocks: [] });
     } else {
       if (note === null) return;
+      console.log('useEditNote onCommit 2');
       await updateNote(note.id, markdown, html, selectedTags, selectedBlocks, note.contentId, note.commitedAt, new Date()); 
       await createLog(markdown, html, selectedBlocks, selectedTags, content.name, note.id, content.id);
+      setMarkdown('');
+      selectedTagsDispatch({ type: 'SELECTED_TAGS/SET', tags: [] });
+      selectedBlocksDispatch({ type: 'SELECTED_BLOCKS/SET', blocks: [] });
+      setNote(null);
+      console.log('useEditNote note', note);
       history.push(`/content/${content.id}/createnote`);
     }
-  }, [content, noteId, history, markdown, note]);
+  }, [content, noteId, history, markdown, note, selectedTags, selectedBlocks]);
 
   return {
     content,
