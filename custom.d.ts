@@ -5,7 +5,8 @@ import {
   Note, 
   Block,
   BlockForLog,
-  TagForLog
+  TagForLog,
+  Log
 } from '@prisma/client';
 
 
