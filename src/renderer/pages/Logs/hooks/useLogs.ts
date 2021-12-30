@@ -27,6 +27,7 @@ export const useLogs = () => {
     noteId: number | null,
     contentId: number | null
   ) => {
+    console.log('useLogs runs', noteId, contentId);
     // ASSERTION: When a log is created, noteId isn't null and contentId isn't also null.
     if (noteId === null || contentId === null) return ; 
     await createLog(markdown, html, blocks, tags, contentName, noteId, contentId);

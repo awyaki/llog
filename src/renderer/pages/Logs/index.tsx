@@ -1,6 +1,4 @@
-import { VFC, useEffect, useState } from 'react';
-
-import { LogWithRelation } from '~/pages/type';
+import { VFC } from 'react';
 
 import { Box } from '@chakra-ui/react';
 
@@ -10,23 +8,19 @@ import { Header } from './components';
 
 import { LineUpLogsForDate } from './components';
 
-import { getAllLog } from '~/api';
+import { useLogs } from './hooks';
 
 export const Logs: VFC = () => {
-  const [logs, setLogs] = useState<LogWithRelation[]>([]);
+  const { logs, onClickCommit } = useLogs()
 
-  useEffect(() => {
-    (async () => {
-      const result = await getAllLog();
-      setLogs(result);
-    })();
-  }, []);
   return (
     <>
       <Header />
       <Box css={container}>
         <h2 css={{ ...title, marginBottom: '16px' }}>Logs</h2>
-        <LineUpLogsForDate logs={logs} />
+        <LineUpLogsForDate 
+          logs={logs}
+          onClickCommit={onClickCommit} />
       </Box>
     </>
   );
