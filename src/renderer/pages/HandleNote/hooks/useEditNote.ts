@@ -159,7 +159,7 @@ export const useEditNote = () => {
       if (note === null) return;
       await updateNote(note.id, markdown, html, selectedTags, selectedBlocks, note.contentId, note.commitedAt, new Date()); 
       await createLog(markdown, html, selectedBlocks, selectedTags, content.name, note.id, content.id);
-      history.push('logs');
+      history.push('/logs');
     }
   }, [content, noteId, history, markdown, note]);
 
