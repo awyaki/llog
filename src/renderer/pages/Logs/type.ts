@@ -8,4 +8,4 @@ export type OnClickCommit = (
     contentName: string,
     noteId: number | null,
     contentId: number | null
-  ) => Promise<Log>;
+  ) => Promise<void>;
