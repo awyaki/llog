@@ -93,7 +93,13 @@ const logData: Prisma.LogCreateInput[] = [
         { name: 'コンピューターサイエンス' },
         { name: 'コンパイラ' }
       ],
-    }
+    },
+    content: {
+      connect: { id: 1 }
+    },
+    note: {
+      connect: { id: 1 }
+    },
   }
 ];
 
