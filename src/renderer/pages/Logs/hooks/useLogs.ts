@@ -11,7 +11,7 @@ import { Block, Tag } from '@prisma/client';
 
 export const useLogs = () => {
   const [logs, setLogs] = useState<LogWithRelation[]>([]);
-  const { dispatch } = useContext(NotifierContext);
+  const { setMessage } = useContext(NotifierContext);
 
   useEffect(() => {
     (async () => {
@@ -36,8 +36,7 @@ export const useLogs = () => {
     await createLog(markdown, html, blocks, tags, contentName, noteId, contentId);
     const newLogs = await getAllLog();
     setLogs(newLogs);
-    dispatch({ type: 'NOTIFIER/SET_ISSHOW', isShow: true });
-    dispatch({ type: 'NOTIFIER/SET_MESSAGE', message: 'Committed!' });
+    setMessage('Committed!');
   }, []);
 
   return { logs, onClickCommit };

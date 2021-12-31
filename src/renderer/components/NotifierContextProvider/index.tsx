@@ -1,24 +1,27 @@
-import { FC, createContext, Dispatch } from 'react';
+import { FC, createContext, useState, Dispatch, SetStateAction, useMemo } from 'react';
 
-import { useNotification, Action } from './hooks';
 
 type NotifierContextType = {
   isShow: boolean;
-  message: string;
-  dispatch: Dispatch<Action>;
+  message: string | undefined;
+  setMessage: Dispatch<SetStateAction<string | undefined>>;
 };
 
 export const NotifierContext = createContext<NotifierContextType>({
   isShow: false,
   message: '',
-  dispatch: () => {},
+  setMessage: () => {},
 });
 
 
 export const NotifierContextProvider: FC = ({ children }) => {
-  const [{ isShow, message }, dispatch] = useNotification();
+  const [message, setMessage] = useState<string | undefined>(undefined);
+  const isShow = useMemo(() => {
+    return message !== undefined;
+  }, [message]);
+
   return (
-    <NotifierContext.Provider value={{ isShow, message, dispatch }}>
+    <NotifierContext.Provider value={{ isShow, message, setMessage }}>
       {children}
     </NotifierContext.Provider>
   );

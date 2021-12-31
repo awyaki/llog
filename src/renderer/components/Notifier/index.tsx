@@ -7,13 +7,13 @@ import { Fade, Box } from '@chakra-ui/react';
 import { NotifierContext } from '~/components';
 
 export const Notifier: VFC = () => {
-  const { isShow, message, dispatch } = useContext(NotifierContext);
+  const { isShow, message, setMessage } = useContext(NotifierContext); 
 
   useEffect(() => {
+    console.log('Notifier useEffect');
     const timerId = setTimeout(() => {
       if (isShow) {
-        dispatch({ type: 'NOTIFIER/SET_ISSHOW', isShow: false });
-        dispatch({ type: 'NOTIFIER/SET_MESSAGE', message: '' });
+        setMessage(undefined);
       }
     }, 3000);
     
@@ -21,8 +21,10 @@ export const Notifier: VFC = () => {
   }, [isShow]);
 
   return (
+    <Fade in={isShow}>
       <Box css={container}>
         Hello World
       </Box>
+    </Fade>
   );
 };
