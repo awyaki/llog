@@ -40,10 +40,9 @@ model Note {
 model Tag {
   id  Int @id @default(autoincrement())
   name String
-  content Content? @relation(fields: [contentId], references: [id])
-  contentId Int?
-  note Note? @relation(fields: [noteId], references: [id])
-  noteId Int?
+  contents Content[]
+  notes Note[]
+  logs Log[]
 }
 
 model Block {
@@ -56,6 +55,7 @@ model Block {
   content Content @relation(fields: [contentId], references: [id])
   contentId Int
   notes Note[]
+  logs Log[]
 }
 
 model Log {
@@ -63,8 +63,8 @@ model Log {
   createdAt DateTime @default(now())
   markdown String
   html String
-  blocks BlockForLog[]
-  tags TagForLog[]
+  blocks Block[]
+  tags Tag[]
   contentName String
   content Content? @relation(fields: [contentId], references: [id])
   contentId Int?
@@ -72,17 +72,3 @@ model Log {
   noteId Int?
 }
 
-model BlockForLog {
-  id Int @id @default(autoincrement())
-  unitNumber Int
-  level Int
-  createdAt DateTime @default(now())
-  iteration Int
-  logs Log[]
-}
-
-model TagForLog {
-  id Int @id @default(autoincrement())
-  name String
-  logs Log[]
-}
