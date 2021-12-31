@@ -52,6 +52,7 @@ model Block {
   level Int
   createdAt DateTime @default(now())
   commitedAt DateTime?
+  iteration Int
   content Content @relation(fields: [contentId], references: [id])
   contentId Int
   notes Note[]
@@ -76,6 +77,7 @@ model BlockForLog {
   unitNumber Int
   level Int
   createdAt DateTime @default(now())
+  iteration Int
   logs Log[]
 }
 
