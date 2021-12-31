@@ -21,10 +21,8 @@ export const Notifier: VFC = () => {
   }, [isShow]);
 
   return (
-    <Fade in={isShow}>
       <Box css={container}>
-        {message}
+        Hello World
       </Box>
-    </Fade>
   );
 };

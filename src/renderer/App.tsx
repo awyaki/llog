@@ -20,6 +20,7 @@ export const App: VFC = () => {
   return (
     <HashRouter>
       <Box>
+        <Notifier />
         <Switch>
           <Route path="/content/:contentId/notes">
             <NotesOfContent />
@@ -40,7 +41,6 @@ export const App: VFC = () => {
             <Contents />
           </Route>
         </Switch>
-        <Notifier />
       </Box>
     </HashRouter>
   );
