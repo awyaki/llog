@@ -2,25 +2,25 @@ import { FC, createContext, Dispatch } from 'react';
 
 import { useNotification, Action } from './hooks';
 
-type NotificationMessageContextType = {
+type NotifierContextType = {
   isShow: boolean;
   message: string;
   dispatch: Dispatch<Action>;
 };
 
-export const NotificationMessageContext = createContext<NotificationMessageContextType>({
+export const NotifierContext = createContext<NotifierContextType>({
   isShow: false,
   message: '',
   dispatch: () => {},
 });
 
 
-export const NotificationMessageContextProvider: FC = ({ children }) => {
+export const NotifierContextProvider: FC = ({ children }) => {
   const [{ isShow, message }, dispatch] = useNotification();
   return (
-    <NotificationMessageContext.Provider value={{ isShow, message, dispatch }}>
+    <NotifierContext.Provider value={{ isShow, message, dispatch }}>
       {children}
-    </NotificationMessageContext.Provider>
+    </NotifierContext.Provider>
   );
 };
 
