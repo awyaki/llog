@@ -12,6 +12,8 @@ import { CreateNote } from './pages/HandleNote';
 
 import { Logs } from './pages/Logs';
 
+import { Notifier } from './components';
+
 import { Box } from '@chakra-ui/react';
 
 export const App: VFC = () => {
@@ -38,6 +40,7 @@ export const App: VFC = () => {
             <Contents />
           </Route>
         </Switch>
+        <Notifier />
       </Box>
     </HashRouter>
   );
