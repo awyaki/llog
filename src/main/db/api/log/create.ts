@@ -15,10 +15,10 @@ export const create: CreateLog = (
       markdown: markdown,
       html: html,
       tags: {
-        connectOrCreate: [...tags.map(({ id, name }) => ({ where: { id: id }, create: { name: name } }))],
+        create: [...tags.map(({ name }) => ({ name }))],
       },
       blocks: {
-        connectOrCreate: [...blocks.map(({ id, unitNumber, level }) => ({ where: { id: id }, create: { unitNumber: unitNumber, level: level } }))],
+        create: [...blocks.map(({ unitNumber, level, iteration }) => ({ unitNumber, level, iteration: iteration + 1 }))],
       },
       note: {
         connect: { id: noteId }
