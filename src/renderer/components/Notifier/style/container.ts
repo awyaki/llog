@@ -8,8 +8,8 @@ export const container: CSSObject = {
   boxShadow: '0 0 80px -10px rgba(0,0,0,0.50)',
   borderRadius: '4px',
   position: 'absolute',
-  top: '80vh',
-  left: '80%',
+  top: '85vh',
+  left: '80vw',
   padding: '20px',
   zIndex: 3,
 };
