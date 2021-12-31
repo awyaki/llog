@@ -5,13 +5,16 @@ import 'destyle.css';
 import { App } from './App';
 import { ChakraProvider } from '@chakra-ui/react';
 import { TagContextProvider } from './DBContextProviders';
+import { NotificationMessageContextProvider } from './components';
 import { theme } from './theme';
 
 ReactDOM.render(
   <React.StrictMode>
     <ChakraProvider theme={theme}>
       <TagContextProvider>
-      <App />
+      <NotificationMessageContextProvider>
+        <App />
+      </NotificationMessageContextProvider>
       </TagContextProvider>
     </ChakraProvider>
   </React.StrictMode>,
