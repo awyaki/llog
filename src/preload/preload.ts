@@ -1,6 +1,6 @@
 import { ipcRenderer, contextBridge } from 'electron';
 
-import { Tag, Block, TagForLog, BlockForLog } from '@prisma/client';
+import { Tag, Block } from '@prisma/client';
 
 contextBridge.exposeInMainWorld('electronAPI', {
   createTag: (name: string) => ipcRenderer.invoke('createTag', name),
@@ -30,8 +30,8 @@ contextBridge.exposeInMainWorld('electronAPI', {
   createLog: (
     markdown: string,
     html: string,
-    blocks: BlockForLog,
-    tags: TagForLog,
+    blocks: Block[],
+    tags: Tag[],
     contentName: string,
     noteId: number,
     contentId: number

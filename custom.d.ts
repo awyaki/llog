@@ -4,8 +4,6 @@ import {
   Content, 
   Note, 
   Block,
-  BlockForLog,
-  TagForLog,
   Log
 } from '@prisma/client';
 
@@ -13,8 +11,8 @@ import {
 type CreateLog = (
   markdown: string,
   html: string,
-  blocks: BlockForLog[],
-  tags: TagForLog[],
+  blocks: Block[],
+  tags: Tag[],
   contentName: string,
   noteId: number,
   contentId: number,

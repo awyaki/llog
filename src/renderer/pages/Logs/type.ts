@@ -1,10 +1,10 @@
-import { Log, BlockForLog, TagForLog } from '@prisma/client';
+import { Block, Tag } from '@prisma/client';
 
 export type OnClickCommit = (
     markdown: string,
     html: string,
-    blocks: BlockForLog[],
-    tags: TagForLog[],
+    blocks: Block[],
+    tags: Tag[],
     contentName: string,
     noteId: number | null,
     contentId: number | null

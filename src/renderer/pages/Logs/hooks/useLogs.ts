@@ -5,7 +5,7 @@ import { LogWithRelation } from '~/pages/type';
 import { getAllLog, createLog } from '~/api';
 
 
-import { BlockForLog, TagForLog } from '@prisma/client';
+import { Block, Tag } from '@prisma/client';
 
 export const useLogs = () => {
   const [logs, setLogs] = useState<LogWithRelation[]>([]);
@@ -21,8 +21,8 @@ export const useLogs = () => {
   const onClickCommit = useCallback(async (
     markdown: string,
     html: string,
-    blocks: BlockForLog[],
-    tags: TagForLog[],
+    blocks: Block[],
+    tags: Tag[],
     contentName: string,
     noteId: number | null,
     contentId: number | null

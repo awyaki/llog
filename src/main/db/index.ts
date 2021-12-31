@@ -1,6 +1,6 @@
 import { ipcMain } from 'electron';
 
-import { Tag, Block, BlockForLog, TagForLog } from '@prisma/client';
+import { Tag, Block } from '@prisma/client';
 
 import { 
   createContent, 
@@ -86,8 +86,8 @@ export const useDBQueryOnClient = () => {
     _,
     markdown: string,
     html: string,
-    blocks: BlockForLog[],
-    tags: TagForLog[],
+    blocks: Block[],
+    tags: Tag[],
     contentName: string,
     noteId: number,
     contentId: number
