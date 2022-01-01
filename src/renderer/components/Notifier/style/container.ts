@@ -7,7 +7,7 @@ export const container: CSSObject = {
   width: '200px',
   boxShadow: '0 0 80px -10px rgba(0,0,0,0.50)',
   borderRadius: '4px',
-  position: 'absolute',
+  position: 'fixed',
   top: '85vh',
   left: '80vw',
   padding: '20px',
