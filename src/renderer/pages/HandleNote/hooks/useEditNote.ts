@@ -19,6 +19,7 @@ import {
 import { arrayeEqualWithId } from '~/utils';
 
 import { NoteContext } from '~/pages/NoteContextProvider';
+import { NotifierContext } from '~/components';
 import { SelectedTagsContext } from '../SelectedTagsContextProvider';
 import { SelectedBlocksContext } from '../SelectedBlocksContextProvider';
 
@@ -34,6 +35,7 @@ import { confirmer } from '../functions';
 export const useEditNote = () => {
   const { noteId } = useParams<{ noteId: string | undefined }>();
   const { note, setNote } = useContext(NoteContext);
+  const { setMessage } = useContext(NotifierContext);
   const [markdown, setMarkdown] = useState('');
 
   const { selectedTags, dispatch: selectedTagsDispatch } = useContext(SelectedTagsContext);
@@ -169,6 +171,7 @@ export const useEditNote = () => {
       console.log('useEditNote note', note);
       history.push(`/content/${content.id}/createnote`);
     }
+    setMessage('submitted!');
   }, [content, noteId, history, markdown, note, selectedTags, selectedBlocks]);
 
   return {
