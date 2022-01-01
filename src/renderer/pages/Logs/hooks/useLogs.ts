@@ -36,7 +36,7 @@ export const useLogs = () => {
     await createLog(markdown, html, blocks, tags, contentName, noteId, contentId);
     const newLogs = await getAllLog();
     setLogs(newLogs);
-    setMessage('Committed!');
+    setMessage('submitted!');
   }, []);
 
   return { logs, onClickCommit };
