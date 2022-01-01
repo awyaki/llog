@@ -8,7 +8,8 @@ import { NotifierContext } from '~/components';
 
 export const Notifier: VFC = () => {
   const { isShow, message, setMessage } = useContext(NotifierContext); 
-
+  
+  console.log('Notifier isShow, message', isShow, message);
   useEffect(() => {
     console.log('Notifier useEffect');
     const timerId = setTimeout(() => {
@@ -21,7 +22,7 @@ export const Notifier: VFC = () => {
   }, [isShow]);
 
   return (
-    <Fade in={isShow}>
+    <Fade in={isShow} unmountOnExit={true}>
       <Box css={container}>
         {message}
       </Box>
