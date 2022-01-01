@@ -1,5 +1,7 @@
 import { VFC, MouseEventHandler, useContext } from 'react';
 
+import { NotifierContext } from '~/components';
+
 import { ContentsContext } from '../../ContentsContextProvider';
 
 import { SelectedTagsContext } from './SelectedTagsContextProvider';
@@ -17,6 +19,7 @@ import { BlockBox } from './components/BlockBox';
 
 import { pageTitle } from '~/pages/style/pageTitle';
 
+
 type Props = {
   onClick: MouseEventHandler<HTMLButtonElement>;
 };
@@ -27,6 +30,7 @@ export const CreateNewContent: VFC<Props> = ({ onClick }) => {
   const { selectedTags } = useContext(SelectedTagsContext);
   const { name } = useContext(NameContext);
   const { block } = useContext(BlockContext);
+  const { setMessage } = useContext(NotifierContext);
   
   const handleClick: MouseEventHandler<HTMLButtonElement> = async (e) => {
     e.preventDefault();
@@ -34,6 +38,7 @@ export const CreateNewContent: VFC<Props> = ({ onClick }) => {
     console.log('CreateNewContent', newConent);
     const newContents = await window.electronAPI.getAllContent();
     dispatch({ type: 'CONTENTS/UPDATE', contents: newContents });
+    setMessage('New Content was created!');
   };
 
   return (
