@@ -12,4 +12,5 @@ export const container: CSSObject = {
   left: '80vw',
   padding: '20px',
   zIndex: 3,
+  textAlign: 'center',
 };
