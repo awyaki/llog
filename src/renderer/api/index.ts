@@ -16,6 +16,10 @@ export const getAllContent = async () => {
   return await window.electronAPI.getAllContent();
 };
 
+export const createContent = async (name: string, tags: Tag[], numberOfBlock: number) => {
+  return await window.electronAPI.createContent(name, tags, numberOfBlock);
+};
+
 export const getNote = async (id: number) => {
   return await window.electronAPI.getNote(id);
 };
