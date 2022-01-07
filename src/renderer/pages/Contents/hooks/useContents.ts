@@ -4,10 +4,14 @@ import {
   useCallback
 } from 'react';
 
-import { Content } from '@prisma/client';
+import { Content, Tag } from '@prisma/client';
+
 import { useDisclosure } from '@chakra-ui/react';
 
-import { getAllContent } from '~/api';
+import { 
+  getAllContent,
+  createContent,
+} from '~/api';
 
 import { Mode } from '~/pages/Contents/types';
 
@@ -34,7 +38,10 @@ export const useContents = () => {
     setMode('Conditions');
   }, []);
 
-  const onCreateNewContent = useCallback(() => {
+  const onCreateNewContent = useCallback(async (name: string, tags: Tag[], numberOfBlocks: number) => {
+    await createContent(name, tags, numberOfBlocks);
+    const allContents = await getAllContent();
+    setContents(allContents);
     console.log('Contents: onCreateNewContent haven not between implemented.');
   }, []);
 

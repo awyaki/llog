@@ -52,6 +52,7 @@ export const Contents: VFC = () => {
           {mode === 'Conditions' 
             ? <Conditions /> 
             : <CreateNewContent 
+                contents={contents}
                 onOpenTagCreateModal={onOpenTagCreateModal} 
                 onCreateNewContent={onCreateNewContent} />}
         </Box>

@@ -1,21 +1,30 @@
-import { VFC, MouseEventHandler } from 'react';
+import { VFC, MouseEventHandler, ComponentProps } from 'react';
+
+import { Tag } from '@prisma/client';
+
 import { CreateNewContent as SubCreateNewContent } from './CreateNewContent'; 
 
 import { SelectedTagsProvider } from './SelectedTagsContextProvider';
 import { NameContextProvider } from './NameContextProvider';
 import { BlockContextProvider } from './BlockContextProvider';
 
-type Props = {
-  onOpenTagCreateModal: MouseEventHandler<HTMLButtonElement>;
-  onCreateNewContent: MouseEventHandler<HTMLButtonElement>;
-};
 
-export const CreateNewContent: VFC<Props> = ({ onOpenTagCreateModal, onCreateNewContent }) => {
+
+type Props = ComponentProps<typeof SubCreateNewContent>;
+
+export const CreateNewContent: VFC<Props> = ({ 
+  contents,
+  onOpenTagCreateModal,
+  onCreateNewContent
+}) => {
   return (
     <SelectedTagsProvider>
       <NameContextProvider>
         <BlockContextProvider>
-          <SubCreateNewContent onOpenTagCreateModal={onOpenTagCreateModal} onCreateNewContent={onCreateNewContent} />
+          <SubCreateNewContent 
+            contents={contents}
+            onOpenTagCreateModal={onOpenTagCreateModal} 
+            onCreateNewContent={onCreateNewContent} />
         </BlockContextProvider>
       </NameContextProvider>
     </SelectedTagsProvider>
