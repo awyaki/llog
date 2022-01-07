@@ -6,15 +6,16 @@ import { NameContextProvider } from './NameContextProvider';
 import { BlockContextProvider } from './BlockContextProvider';
 
 type Props = {
-  onClick: MouseEventHandler<HTMLButtonElement>;
+  onOpenTagCreateModal: MouseEventHandler<HTMLButtonElement>;
+  onCreateNewContent: MouseEventHandler<HTMLButtonElement>;
 };
 
-export const CreateNewContent: VFC<Props> = ({ onClick }) => {
+export const CreateNewContent: VFC<Props> = ({ onOpenTagCreateModal, onCreateNewContent }) => {
   return (
     <SelectedTagsProvider>
       <NameContextProvider>
         <BlockContextProvider>
-          <SubCreateNewContent onClick={onClick} />
+          <SubCreateNewContent onOpenTagCreateModal={onOpenTagCreateModal} onCreateNewContent={onCreateNewContent} />
         </BlockContextProvider>
       </NameContextProvider>
     </SelectedTagsProvider>

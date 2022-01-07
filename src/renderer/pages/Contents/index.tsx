@@ -1,8 +1,10 @@
-import { VFC, useState, MouseEventHandler } from 'react';
+import { VFC, useState, MouseEventHandler, useEffect, Dispatch, SetStateAction, useCallback } from 'react';
+
+import { Content } from '@prisma/client';
+
+import { getAllContent } from '~/api';
 
 import { pageTitle } from '~/pages/style/pageTitle';
-
-import { ContentsContextProvider } from './ContentsContextProvider';
 
 import { Box, Flex, useDisclosure } from '@chakra-ui/react';
 
@@ -20,18 +22,20 @@ import { container } from './style/container';
 
 type RightViewProps = {
   mode: Mode;
-  onClick: MouseEventHandler<HTMLButtonElement>;
+  onOpenTagCreateModal: MouseEventHandler<HTMLButtonElement>;
+  onCreateNewContent: MouseEventHandler<HTMLButtonElement>;
 };
 
-const RightView: VFC<RightViewProps> = ({ mode, onClick }) => {
+const RightView: VFC<RightViewProps> = ({ mode, onOpenTagCreateModal, onCreateNewContent }) => {
   return mode === 'Conditions' 
             ? <Conditions />
-            : <NewContent onClick={onClick} />;
+            : <NewContent onOpenTagCreateModal={onOpenTagCreateModal} onCreateNewContent={onCreateNewContent} />;
 };
 
 export const Contents: VFC = () => {
+  const [contents, setContents] = useState<Content[]>([]);
   const [mode, setMode] = useState<Mode>('NewContent');
-  const { isOpen, onClose, onOpen } = useDisclosure();
+  const { isOpen, onClose, onOpen: onOpenTagCreateModal } = useDisclosure();
   
   const handleClickNewContent = () => {
     setMode('NewContent');
@@ -41,8 +45,19 @@ export const Contents: VFC = () => {
     setMode('Conditions');
   };
 
+
+  const onCreateNewContent = useCallback(() => {
+    console.log('Contents: onCreateNewContent haven not between implemented.');
+  }, []);
+
+  useEffect(() => {
+    (async () => {
+      const result = await getAllContent();
+      setContents(result);
+    })();
+  }, []);
   return (
-      <ContentsContextProvider>
+      <>
         <Header />
         <Box css={container}>
           <CreateTagModal isOpen={isOpen} onClose={onClose} />
@@ -56,12 +71,14 @@ export const Contents: VFC = () => {
                 active={mode === 'Conditions'} 
                 onClick={handleClickConditions} />
             </Flex>
-            <ContentsList />
+            <ContentsList contents={contents} />
           </Box>
           <RightView 
             mode={mode}
-            onClick={onOpen} />
+            onOpenTagCreateModal={onOpenTagCreateModal}
+            onCreateNewContent={onCreateNewContent}
+            />
         </Box>
-      </ContentsContextProvider>
+      </>
   );
 };

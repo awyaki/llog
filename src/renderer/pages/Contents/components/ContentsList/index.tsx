@@ -1,15 +1,18 @@
 import { VFC } from 'react';
 
+import { Content } from '@prisma/client';
+
 import { contentName, list } from './style';
 
 import { Link } from 'react-router-dom';
 
 
-import { useContentsList } from './hooks/useContentsList';
 
+type Props = {
+  contents: Content[];
+};
 
-export const ContentsList: VFC = () => {
-  const contents = useContentsList();
+export const ContentsList: VFC<Props> = ({ contents }) => {
   return (
     <ul css={list}>
       {contents.map(({ id, name }) => <li key={id}>
