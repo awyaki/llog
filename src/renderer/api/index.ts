@@ -12,6 +12,10 @@ export const getContent = async (id: number) => {
   return await window.electronAPI.getContent(id);
 };
 
+export const getAllContent = async () => {
+  return await window.electronAPI.getAllContent();
+};
+
 export const getNote = async (id: number) => {
   return await window.electronAPI.getNote(id);
 };
@@ -66,4 +70,5 @@ export const getAllLog = async () => {
 export const markdownToHTML = async (markdown: string) => {
   return await window.electronAPI.markdownToHTML(markdown);
 };
+
 
