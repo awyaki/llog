@@ -2,7 +2,13 @@ import { VFC, useState, MouseEventHandler, useCallback } from 'react';
 
 import { Tag, Content } from '@prisma/client';
 
-import { container } from './style/container';
+import {
+  container,
+  buttonStyle,
+  inputBox,
+  errorStyle,
+  labelStyle
+} from './style';
 
 import { pageTitle } from '~/pages/style/pageTitle';
 
@@ -29,6 +35,7 @@ export const CreateNewContent: VFC<Props> = ({
     handleSubmit,
     formState: { errors }
   } = useForm<Inputs>({ 
+    mode: 'onSubmit',
     defaultValues: { 'contentName': '', 'numberOfBlocks': '' }
   });
 
@@ -52,19 +59,28 @@ export const CreateNewContent: VFC<Props> = ({
     <div css={container}>
       <h2 css={pageTitle}>Create New Content</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
+        <label css={labelStyle} htmlFor="contentName">Name</label>
         <input 
-          css={{ border: '1px solid black' }}
+          css={inputBox}
           {...register('contentName', 
             { required: { value: true, message: 'A Name of a new content is required.' }, 
               maxLength: 100, 
               validate: { isAlreadyNameExist: isAlreadyNameExist } })} />
-        {errors.contentName && <span>{errors.contentName?.message}</span>}
-        <input css={{ border: '1px solid black' }} {...register('numberOfBlocks', { required: true, min: 0, max: 1500, pattern: /^[0-9]+$/i })} />
-        {errors.numberOfBlocks?.type === 'required' && <span>This field is required.</span>}
-        {errors.numberOfBlocks?.type === 'min' && <span>Number of Blocks is equal to or more than 0.</span>}
-        {errors.numberOfBlocks?.type === 'max' && <span>Number of Blocks is equal to or less than 1500.</span>}
-        {errors.numberOfBlocks?.type === 'pattern' && <span>This field is required number strings.</span>}
-        <button type="submit">OK</button>
+        <div css={errorStyle}>{errors.contentName?.message}</div>
+
+        <label css={labelStyle} htmlFor="numberOfBlocks">Blocks</label>
+        <input 
+          css={inputBox}
+          {...register('numberOfBlocks', 
+            { required: { value: true, message: 'Number of blocks is required.' }, 
+            min: { value: 0, message: 'The number is equal to or more than 0.' }, 
+            max: { value: 1500, message: 'The number is equal to or less than 1500.' },  // TODO: The number 1500 is not considered number. We should consider that how many blocks a content will have.
+            pattern: { value: /^[0-9]+$/i, message: 'This field is number string.' }})} />
+          <div css={errorStyle}>{errors.numberOfBlocks?.message}</div>
+        <button 
+          type="submit"
+          css={buttonStyle}
+        >OK</button>
       </form>
     </div>
   );
