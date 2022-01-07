@@ -1,4 +1,4 @@
-import { VFC, useState, MouseEventHandler, useEffect, Dispatch, SetStateAction, useCallback } from 'react';
+import { VFC, useState, MouseEventHandler, useEffect, useCallback } from 'react';
 
 import { Content } from '@prisma/client';
 
@@ -9,14 +9,16 @@ import { pageTitle } from '~/pages/style/pageTitle';
 import { Box, Flex, useDisclosure } from '@chakra-ui/react';
 
 import { Mode } from './types';
-import { ContentsList } from './components/ContentsList';
 
 import { Header } from '../Header';
-import { Conditions } from './components/Conditions';
-import { CreateNewContent as NewContent } from './components/CreateNewContent';
-import { CreateContentButton } from './components/CreateContentButton';
-import { SearchContentsButton } from './components/SearchContentsButton';
-import { CreateTagModal } from './components/CreateTagModal';
+import {
+  Conditions,
+  ContentsList,
+  CreateNewContent,
+  CreateContentButton,
+  SearchContentsButton,
+  CreateTagModal,
+} from './components';
 
 import { container } from './style/container';
 
@@ -29,7 +31,7 @@ type RightViewProps = {
 const RightView: VFC<RightViewProps> = ({ mode, onOpenTagCreateModal, onCreateNewContent }) => {
   return mode === 'Conditions' 
             ? <Conditions />
-            : <NewContent onOpenTagCreateModal={onOpenTagCreateModal} onCreateNewContent={onCreateNewContent} />;
+            : <CreateNewContent onOpenTagCreateModal={onOpenTagCreateModal} onCreateNewContent={onCreateNewContent} />;
 };
 
 export const Contents: VFC = () => {
