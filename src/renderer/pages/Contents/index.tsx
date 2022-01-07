@@ -22,18 +22,6 @@ import {
 
 import { container } from './style/container';
 
-type RightViewProps = {
-  mode: Mode;
-  onOpenTagCreateModal: MouseEventHandler<HTMLButtonElement>;
-  onCreateNewContent: MouseEventHandler<HTMLButtonElement>;
-};
-
-const RightView: VFC<RightViewProps> = ({ mode, onOpenTagCreateModal, onCreateNewContent }) => {
-  return mode === 'Conditions' 
-            ? <Conditions />
-            : <CreateNewContent onOpenTagCreateModal={onOpenTagCreateModal} onCreateNewContent={onCreateNewContent} />;
-};
-
 export const Contents: VFC = () => {
   const [contents, setContents] = useState<Content[]>([]);
   const [mode, setMode] = useState<Mode>('NewContent');
@@ -75,11 +63,11 @@ export const Contents: VFC = () => {
             </Flex>
             <ContentsList contents={contents} />
           </Box>
-          <RightView 
-            mode={mode}
-            onOpenTagCreateModal={onOpenTagCreateModal}
-            onCreateNewContent={onCreateNewContent}
-            />
+          {mode === 'Conditions' 
+            ? <Conditions /> 
+            : <CreateNewContent 
+                onOpenTagCreateModal={onOpenTagCreateModal} 
+                onCreateNewContent={onCreateNewContent} />}
         </Box>
       </>
   );
