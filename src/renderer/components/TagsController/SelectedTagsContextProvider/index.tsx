@@ -1,4 +1,4 @@
-import { FC, useState, createContext, Dispatch, SetStateAction } from 'react';
+import { FC, useState, createContext, Dispatch, SetStateAction, useEffect } from 'react';
 
 import { Tag } from '@prisma/client';
 
@@ -29,6 +29,7 @@ export const SelectedTagsContext = createContext<SelectedTagsContextType>({
 
 export const SelectedTagsContextProvider: FC = ({ children }) => {
   const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
+
   const { 
     isOpen: isOpenModalToSelectTags,
     onOpen: onOpenModalToSelectTags, 
