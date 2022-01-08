@@ -33,6 +33,7 @@ export const CreateNewContent: VFC<Props> = ({
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors }
   } = useForm<Inputs>({ 
     mode: 'onSubmit',
@@ -44,7 +45,8 @@ export const CreateNewContent: VFC<Props> = ({
   const onSubmit = useCallback(async (data: Inputs) => {
     const { contentName, numberOfBlocks } = data;
     await onCreateNewContent(contentName, selectedTags, Number(numberOfBlocks));
-
+    setValue('numberOfBlocks', '');
+    setValue('contentName', '');
     console.log('CreateNewContent numberOfBlocks', data.numberOfBlocks);
     console.log('CreateNewContent contentName', data.contentName);
   }, []);  
