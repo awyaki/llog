@@ -8,7 +8,7 @@ export const CreateTagButton: VFC = () => {
   const { onOpenModalToCreateTag } = useContext(SelectedTagsContext);
 
   return (
-    <button onClick={onOpenModalToCreateTag}>
+    <button type="button" onClick={onOpenModalToCreateTag}>
       <CreateNewTagIcon />
     </button>
   );

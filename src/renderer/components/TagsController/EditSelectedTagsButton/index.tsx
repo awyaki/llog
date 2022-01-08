@@ -7,7 +7,7 @@ import { SelectedTagsContext } from '../SelectedTagsContextProvider';
 export const EditSelectedTagsButton: VFC = () => {
   const { onOpenModalToSelectTags } = useContext(SelectedTagsContext);
   return (
-    <button onClick={onOpenModalToSelectTags}>
+    <button type="button" onClick={onOpenModalToSelectTags}>
       <EditIcon />
     </button>
   );
