@@ -26,6 +26,7 @@ export const ModalToSelectTags: VFC = () => {
     tags,
     setTags,
     selectedTags,
+    setSelectedTags,
     isOpenModalToSelectTags, 
     onCloseModalToSelectTags
   } = useContext(SelectedTagsContext);
@@ -36,7 +37,17 @@ export const ModalToSelectTags: VFC = () => {
       setTags(allTags);
     })();
   }, []);
-
+  
+  const onToggleSelect = useCallback((tag: Tag) => {
+    return () => {
+      setSelectedTags((prev) => {
+        const index = prev.findIndex(({ id }) => tag.id === id);
+        return index === -1 
+                  ? prev.concat({ ...tag })
+                  : prev.slice(0, index).concat(prev.slice(index+1));
+      });
+    };
+  }, [setSelectedTags]);
   return (
    <Modal isOpen={isOpenModalToSelectTags} onClose={onCloseModalToSelectTags}>
         <ModalOverlay />
@@ -47,6 +58,7 @@ export const ModalToSelectTags: VFC = () => {
             <ul css={tagsContainer}>
               {tags.map(({ id, name }) => <li key={id}>
                                             <button 
+                                              onClick={onToggleSelect({ id, name })}
                                               css={makeTagStyle(selectedTags.some((tag) => tag.id === id))}
                                             >{name}</button>
                                             </li>)}
