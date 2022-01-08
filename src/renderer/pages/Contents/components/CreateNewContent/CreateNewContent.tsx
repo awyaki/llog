@@ -4,7 +4,7 @@ import { Tag, Content } from '@prisma/client';
 
 import {
   CreateTagButton,
-  EditSelectedTagsButton
+  SelectedTagsList,
 } from '~/components';
 
 import {
@@ -86,8 +86,9 @@ export const CreateNewContent: VFC<Props> = ({
           <div css={errorStyle}>{errors.numberOfBlocks?.message}</div>
 
         <div css={{ marginBottom: '32px' }}>
+          <h2 css={labelStyle}>Tags</h2>
           <CreateTagButton />
-          <EditSelectedTagsButton />
+          <SelectedTagsList />
         </div>
 
         <button 
