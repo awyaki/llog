@@ -1,14 +1,13 @@
-import { VFC, MouseEventHandler } from 'react';
+import { VFC, useContext } from 'react';
 
 import { EditIcon } from './components';
 
-type Props = {
-  onClick?: MouseEventHandler<HTMLButtonElement>;
-};
+import { SelectedTagsContext } from '../SelectedTagsContextProvider';
 
-export const EditSelectedButton: VFC<Props> = ({ onClick }) => {
+export const EditSelectedButton: VFC = () => {
+  const { onOpenModalToSelectTags } = useContext(SelectedTagsContext);
   return (
-    <button onClick={onClick}>
+    <button onClick={onOpenModalToSelectTags}>
       <EditIcon />
     </button>
   );
