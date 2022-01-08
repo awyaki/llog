@@ -21,9 +21,10 @@ import {
 } from '@chakra-ui/react'
 
 export const ModalToSelectTags: VFC = () => {
-  const [tags, setTags] = useState<Tag[]>([]);
 
   const { 
+    tags,
+    setTags,
     selectedTags,
     isOpenModalToSelectTags, 
     onCloseModalToSelectTags

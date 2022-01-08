@@ -1,6 +1,10 @@
 import { VFC, useContext, useEffect, useState, useCallback } from 'react';
 
-import { createTag } from '~/api';
+import { inputBox, warning } from '~/pages/style';
+
+import { buttonStyle } from './style';
+
+import { createTag, getAllTag } from '~/api';
 
 import { useForm } from 'react-hook-form';
 
@@ -25,16 +29,22 @@ export const ModalToCreateTag: VFC = () => {
   const { 
     register,
     handleSubmit,
+    setValue,
     formState: { errors }
   } = useForm<Input>({ defaultValues: { newTagName: '' } });
 
   const { 
+    setTags,
     isOpenModalToCreateTag, 
     onCloseModalToCreateTag
   } = useContext(SelectedTagsContext);
 
-  const onCreateTag = useCallback(() => {
-    console.log('ModalToCreateTag');
+  const onCreateTag = useCallback(async (data: Input) => {
+    const { newTagName } = data;
+    await createTag(newTagName);
+    const allTags = await getAllTag();
+    setTags(allTags);
+    setValue('newTagName', '');
   }, []);
   
   return (
@@ -45,8 +55,12 @@ export const ModalToCreateTag: VFC = () => {
           <ModalCloseButton />
           <ModalBody>
             <form onSubmit={handleSubmit(onCreateTag)}>
-              <input {...register('newTagName', { required: { value: true, message: 'You should fill in this field.'} })} />
-              <div>{errors.newTagName?.message}</div>
+              <input css={inputBox} {...register('newTagName', { required: { value: true, message: 'You should fill in this field.'} })} />
+              <div css={warning}>{errors.newTagName?.message}</div>
+              <button 
+                css={buttonStyle}
+                type="submit"
+              >OK</button>
             </form>
           </ModalBody>
         </ModalContent>

@@ -84,15 +84,17 @@ export const CreateNewContent: VFC<Props> = ({
             max: { value: 1500, message: 'You should fill in this field with a number which is equal to or less than 1500.' },  // TODO: The number 1500 is not considered number. We should consider that how many blocks a content will have.
             pattern: { value: /^[0-9]+$/i, message: 'You should fill in this field with a number.' }})} />
           <div css={errorStyle}>{errors.numberOfBlocks?.message}</div>
+
+        <div css={{ marginBottom: '32px' }}>
+          <CreateTagButton />
+          <EditSelectedTagsButton />
+        </div>
+
         <button 
           type="submit"
           css={buttonStyle}
         >OK</button>
       </form>
-      <div css={{ marginBottom: '32px' }}>
-        <CreateTagButton />
-        <EditSelectedTagsButton />
-      </div>
     </div>
   );
 };
