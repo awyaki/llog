@@ -5,6 +5,8 @@ import { Tag } from '@prisma/client';
 import { useDisclosure } from '@chakra-ui/react';
 
 type SelectedTagsContextType = {
+  tags: Tag[],
+  setTags: Dispatch<SetStateAction<Tag[]>>;
   selectedTags: Tag[];
   setSelectedTags: Dispatch<SetStateAction<Tag[]>>;
   isOpenModalToSelectTags: boolean;
@@ -16,6 +18,8 @@ type SelectedTagsContextType = {
 };
 
 export const SelectedTagsContext = createContext<SelectedTagsContextType>({
+  tags: [],
+  setTags: () => {},
   selectedTags: [],
   setSelectedTags: () => {},
   isOpenModalToSelectTags: false,
@@ -28,6 +32,7 @@ export const SelectedTagsContext = createContext<SelectedTagsContextType>({
 
 
 export const SelectedTagsContextProvider: FC = ({ children }) => {
+  const [tags, setTags] = useState<Tag[]>([]);
   const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
 
   const { 
@@ -43,6 +48,8 @@ export const SelectedTagsContextProvider: FC = ({ children }) => {
 
   return (
     <SelectedTagsContext.Provider value={{
+      tags,
+      setTags,
       selectedTags,
       setSelectedTags,
       isOpenModalToSelectTags,
