@@ -9,6 +9,11 @@ import { useContents } from './hooks';
 import { Header } from '../Header';
 
 import {
+  ModalToCreateTag,
+  ModalToSelectTags,
+} from '~/components';
+
+import {
   Conditions,
   ContentsList,
   CreateNewContent,
@@ -32,6 +37,8 @@ export const Contents: VFC = () => {
   } = useContents();
   return (
       <>
+        <ModalToSelectTags/>
+        <ModalToCreateTag/>
         <Header />
         <Box css={container}>
           <CreateTagModal 

@@ -3,6 +3,11 @@ import { VFC, useState, MouseEventHandler, useCallback } from 'react';
 import { Tag, Content } from '@prisma/client';
 
 import {
+  CreateTagButton,
+  EditSelectedTagsButton
+} from '~/components';
+
+import {
   container,
   buttonStyle,
   inputBox,
@@ -84,6 +89,10 @@ export const CreateNewContent: VFC<Props> = ({
           css={buttonStyle}
         >OK</button>
       </form>
+      <div css={{ marginBottom: '32px' }}>
+        <CreateTagButton />
+        <EditSelectedTagsButton />
+      </div>
     </div>
   );
 };
