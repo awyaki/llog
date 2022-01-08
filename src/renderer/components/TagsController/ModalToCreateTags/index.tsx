@@ -1,4 +1,6 @@
-import { VFC, useContext, useEffect, useState, useCallback } from 'react';
+import { VFC, useContext, useCallback } from 'react';
+
+import { NotifierContext } from '~/components';
 
 import { inputBox, warning } from '~/pages/style';
 
@@ -39,12 +41,15 @@ export const ModalToCreateTag: VFC = () => {
     onCloseModalToCreateTag
   } = useContext(SelectedTagsContext);
 
+  const { setMessage } = useContext(NotifierContext);
+
   const onCreateTag = useCallback(async (data: Input) => {
     const { newTagName } = data;
     await createTag(newTagName);
     const allTags = await getAllTag();
     setTags(allTags);
     setValue('newTagName', '');
+    setMessage('A new Tag is Created.');
   }, []);
   
   return (
