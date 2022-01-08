@@ -43,11 +43,11 @@ export const ModalToCreateTag: VFC = () => {
         <ModalContent>
           <ModalHeader>Create Tag</ModalHeader>
           <ModalCloseButton />
+          <ModalBody>
             <form onSubmit={handleSubmit(onCreateTag)}>
               <input {...register('newTagName', { required: { value: true, message: 'You should fill in this field.'} })} />
               <div>{errors.newTagName?.message}</div>
             </form>
-          <ModalBody>
           </ModalBody>
         </ModalContent>
       </Modal>   
