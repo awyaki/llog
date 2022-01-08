@@ -63,7 +63,7 @@ export const CreateNewContent: VFC<Props> = ({
         <input 
           css={inputBox}
           {...register('contentName', 
-            { required: { value: true, message: 'A Name of a new content is required.' }, 
+            { required: { value: true, message: 'You should fill in this field.' }, 
               maxLength: 100, 
               validate: { isAlreadyNameExist: isAlreadyNameExist } })} />
         <div css={errorStyle}>{errors.contentName?.message}</div>
@@ -72,10 +72,10 @@ export const CreateNewContent: VFC<Props> = ({
         <input 
           css={inputBox}
           {...register('numberOfBlocks', 
-            { required: { value: true, message: 'Number of blocks is required.' }, 
-            min: { value: 0, message: 'The number is equal to or more than 0.' }, 
-            max: { value: 1500, message: 'The number is equal to or less than 1500.' },  // TODO: The number 1500 is not considered number. We should consider that how many blocks a content will have.
-            pattern: { value: /^[0-9]+$/i, message: 'This field is number string.' }})} />
+            { required: { value: true, message: 'You should fill in this field.' }, 
+            min: { value: 0, message: 'You should fill in this field with a number which is equal to or more than 0.' }, 
+            max: { value: 1500, message: 'You should fill in this field with a number which is equal to or less than 1500.' },  // TODO: The number 1500 is not considered number. We should consider that how many blocks a content will have.
+            pattern: { value: /^[0-9]+$/i, message: 'You should fill in this field with a number' }})} />
           <div css={errorStyle}>{errors.numberOfBlocks?.message}</div>
         <button 
           type="submit"
