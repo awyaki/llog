@@ -1,13 +1,13 @@
-import { VFC, useContext, useEffect, useState } from 'react';
-
-import { Tag } from '@prisma/client';
+import { VFC, useContext, useEffect, useCallback } from 'react';
 
 import { getAllTag } from '~/api';
+
+import { Tag } from '@prisma/client';
 
 import { SelectedTagsContext } from '../SelectedTagsContextProvider';
 
 import { 
-  tagStyle,
+  makeTagStyle,
   tagsContainer
 } from './style';
 
@@ -45,7 +45,11 @@ export const ModalToSelectTags: VFC = () => {
           <ModalCloseButton />
           <ModalBody>
             <ul css={tagsContainer}>
-              {tags.map(({ id, name }) => <li key={id}><button css={tagStyle}>{name}</button></li>)}
+              {tags.map(({ id, name }) => <li key={id}>
+                                            <button 
+                                              css={makeTagStyle(selectedTags.some((tag) => tag.id === id))}
+                                            >{name}</button>
+                                            </li>)}
             </ul>
           </ModalBody>
         </ModalContent>
