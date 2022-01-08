@@ -1,10 +1,11 @@
-import { VFC, useState, MouseEventHandler, useCallback } from 'react';
+import { VFC, useState, MouseEventHandler, useContext, useCallback } from 'react';
 
 import { Tag, Content } from '@prisma/client';
 
 import {
   CreateTagButton,
   SelectedTagsList,
+  SelectedTagsContext,
 } from '~/components';
 
 import {
@@ -45,16 +46,21 @@ export const CreateNewContent: VFC<Props> = ({
     defaultValues: { 'contentName': '', 'numberOfBlocks': '' }
   });
 
-  const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
+  const { 
+    selectedTags,
+    setSelectedTags,
+    } = useContext(SelectedTagsContext);
   
   const onSubmit = useCallback(async (data: Inputs) => {
     const { contentName, numberOfBlocks } = data;
-    await onCreateNewContent(contentName, selectedTags, Number(numberOfBlocks));
-    setValue('numberOfBlocks', '');
-    setValue('contentName', '');
+    console.log('CreateNewContent selectedTags', selectedTags);
     console.log('CreateNewContent numberOfBlocks', data.numberOfBlocks);
     console.log('CreateNewContent contentName', data.contentName);
-  }, []);  
+    await onCreateNewContent(contentName, selectedTags, Number(numberOfBlocks));
+    setSelectedTags([]);
+    setValue('numberOfBlocks', '');
+    setValue('contentName', '');
+  }, [selectedTags]);  
 
   const isAlreadyNameExist = useCallback<Validate<string>>((contentName) => {
     console.log('CreateNewContent isAlreadyNameExist contents', contents);
