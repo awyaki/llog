@@ -52,7 +52,7 @@ export const ModalToSelectTags: VFC = () => {
    <Modal isOpen={isOpenModalToSelectTags} onClose={onCloseModalToSelectTags}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Modal Title</ModalHeader>
+          <ModalHeader>Select Tag</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <ul css={tagsContainer}>
