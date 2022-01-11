@@ -1,4 +1,4 @@
-import { VFC, useContext, useCallback } from 'react';
+import { VFC, useContext, useCallback, useEffect } from 'react';
 
 import { NotifierContext } from '~/components';
 
@@ -8,7 +8,7 @@ import { buttonStyle } from './style';
 
 import { createTag, getAllTag } from '~/api';
 
-import { useForm } from 'react-hook-form';
+import { useForm, Validate } from 'react-hook-form';
 
 import { SelectedTagsContext } from '../SelectedTagsContextProvider';
 
@@ -36,12 +36,26 @@ export const ModalToCreateTag: VFC = () => {
   } = useForm<Input>({ defaultValues: { newTagName: '' } });
 
   const { 
+    tags,
     setTags,
     isOpenModalToCreateTag, 
     onCloseModalToCreateTag
   } = useContext(SelectedTagsContext);
 
   const { setMessage } = useContext(NotifierContext);
+
+  useEffect(() => {
+    (async () => {
+      const allTags = await getAllTag();
+      setTags(allTags);
+    })();
+  }, []);
+
+
+  const isAlreadyNameExist = useCallback<Validate<string>>((tagName) => {
+    const isOk = !tags.some((tag) => tag.name === tagName);
+    return isOk || 'This name have already been existed.';
+  }, [tags]);
 
   const onCreateTag = useCallback(async (data: Input) => {
     const { newTagName } = data;
@@ -60,7 +74,7 @@ export const ModalToCreateTag: VFC = () => {
           <ModalCloseButton />
           <ModalBody>
             <form onSubmit={handleSubmit(onCreateTag)}>
-              <input css={inputBox} {...register('newTagName', { required: { value: true, message: 'You should fill in this field.'} })} />
+              <input css={inputBox} {...register('newTagName', { required: { value: true, message: 'You should fill in this field.'}, validate: { isAlreadyNameExist } })} />
               <div css={warning}>{errors.newTagName?.message}</div>
               <button 
                 css={buttonStyle}
