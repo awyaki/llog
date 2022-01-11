@@ -16,10 +16,12 @@ import { Notifier } from './components';
 
 import { Box } from '@chakra-ui/react';
 
+import { container } from './style';
+
 export const App: VFC = () => {
   return (
     <HashRouter>
-      <Box>
+      <Box css={container}>
         <Notifier />
         <Switch>
           <Route path="/content/:contentId/notes">
