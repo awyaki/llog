@@ -13,19 +13,22 @@ import { title } from './style/title';
 import { buttons } from './style/buttons';
 import { makeNoteListsStyle } from './style/noteLists';
 
-import { TagList } from './components/TagList';
-import { InfoButton } from './components/InfoButton';
-import { CreateNoteButton } from './components/CreateNoteButton'
-import { SearchNoteButton } from './components/SearchNoteButton';
-import { NoteList } from './components/NoteList';
-import { SearchConditions } from './components/SearchConditions';
-import { CreateSearchConditions } from './components/CreateSearchConditions';
+import { 
+  TagList,
+  InfoButton,
+  CreateNoteButton,
+  SearchNoteButton,
+  NoteList,
+  SearchConditions,
+  CreateSearchConditions,
+  } from './components';
 
 
 export const NotesOfContent: VFC = () => {
   const [{ createConditions, currentConditions }, dispatch] = useConditions();
   const { content, notes } = useNotesOfContent();
 
+  
   const { isOpen: isModalOpen , onClose: onModalClose, onOpen: onModalOpen } = useDisclosure();
   const { isOpen: isDrawerOpen, onClose: onDrawerClose, onOpen: onDrawerOpen } = useDisclosure();
 
@@ -50,8 +53,8 @@ export const NotesOfContent: VFC = () => {
               <h1 css={title}>{content?.name ?? ''}</h1>
               <TagList tags={content?.tags ?? []} />
               <ul css={buttons}>
-                <li><InfoButton /></li>
-                <li><CreateNoteButton /></li>
+                <li><InfoButton id={content?.id}/></li>
+                <li><CreateNoteButton id={content?.id} /></li>
                 <li><SearchNoteButton onClick={onDrawerOpen} /></li>
               </ul>
               <ul css={makeNoteListsStyle(isDrawerOpen)}>

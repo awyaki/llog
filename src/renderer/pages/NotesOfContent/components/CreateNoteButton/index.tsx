@@ -2,10 +2,20 @@ import { VFC } from 'react';
 
 import { CreateNoteButtonIcon } from './components/CreateNoteButtonIcon';
 
-export const CreateNoteButton: VFC = () => {
+import { Link } from 'react-router-dom';
+
+type Props = {
+  id: number | undefined;
+};
+
+export const CreateNoteButton: VFC<Props> = ({ id }) => {
+  if (id === undefined) {
+    return <CreateNoteButtonIcon />;
+  }
+
   return (
-    <button>
+    <Link to={`/content/${id}/createnote`}>
       <CreateNoteButtonIcon />
-    </button>
+    </Link>
   );
 };
