@@ -35,8 +35,6 @@ export const CreateNote: VFC = () => {
           isOpenSelectBlocks,
           onOpenSelectBlocks,
           onCloseSelectBlocks,
-          onOpenSelectTags,
-          onOpenCreateNewTag,
           onCreateNote,
           onUpdateNote,
           onCommitLog,
@@ -74,8 +72,6 @@ export const CreateNote: VFC = () => {
             setToEdit={setToEdit}
             setToPreview={setToPreview}
             onOpenSelectBlocks={onOpenSelectBlocks}
-            onOpenSelectTags={onOpenSelectTags}
-            onOpenCreateNewTag={onOpenCreateNewTag}
             isNoteChange={isNoteChange}
             isNoteExist={isNoteExist}
             onUpdateNote={onUpdateNote}

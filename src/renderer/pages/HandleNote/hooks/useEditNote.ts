@@ -6,7 +6,7 @@ import {
   useEffect
 } from 'react';
 
-
+import { SelectedTagsContext } from '~/components';
 
 import { 
   markdownToHTML, 
@@ -20,7 +20,6 @@ import { arrayeEqualWithId } from '~/utils';
 
 import { NoteContext } from '~/pages/NoteContextProvider';
 import { NotifierContext } from '~/components';
-import { SelectedTagsContext } from '../SelectedTagsContextProvider';
 import { SelectedBlocksContext } from '../SelectedBlocksContextProvider';
 
 
@@ -37,8 +36,7 @@ export const useEditNote = () => {
   const { note, setNote } = useContext(NoteContext);
   const { setMessage } = useContext(NotifierContext);
   const [markdown, setMarkdown] = useState('');
-
-  const { selectedTags, dispatch: selectedTagsDispatch } = useContext(SelectedTagsContext);
+  const { selectedTags, setSelectedTags } = useContext(SelectedTagsContext);
   const { selectedBlocks, dispatch: selectedBlocksDispatch } = useContext(SelectedBlocksContext);
 
   const [mode, setMode] = useState<Mode>('edit');
@@ -49,7 +47,7 @@ export const useEditNote = () => {
         const note = await getNote(Number(noteId));
         if (note !== null) {
           setMarkdown(note.origin);
-          selectedTagsDispatch({ type: 'SELECTED_TAGS/SET', tags: note.tags });
+          setSelectedTags(note.tags);
           selectedBlocksDispatch({ type: 'SELECTED_BLOCKS/SET', blocks: note.blocks });
           setNote(note);
         }
@@ -85,14 +83,6 @@ export const useEditNote = () => {
   const { isOpen: isOpenSelectBlocks, 
           onOpen: onOpenSelectBlocks,
           onClose: onCloseSelectBlocks } = useDisclosure();
-
-  const { isOpen: isOpenSelectTags, 
-          onOpen: onOpenSelectTags,
-          onClose: onCloseSelectTags } = useDisclosure();
-
-  const { isOpen: isOpenCreateNewTag, 
-          onOpen: onOpenCreateNewTag,
-          onClose: onCloseCreateNewTag } = useDisclosure();
 
 
   const setToEdit = useCallback(() => {
@@ -145,7 +135,7 @@ export const useEditNote = () => {
       setMarkdown('');
       setMode('edit');
       selectedBlocksDispatch({ type: 'SELECTED_BLOCKS/SET', blocks: [] });
-      selectedTagsDispatch({ type: 'SELECTED_TAGS/SET', tags: [] });
+      setSelectedTags([]);
     }
   }, [history, content]);
 
@@ -157,7 +147,7 @@ export const useEditNote = () => {
       const newNote = await createNote(markdown, html, selectedTags, selectedBlocks, content.id);
       await createLog(markdown, html, selectedBlocks, selectedTags, content.name, newNote.id, content.id);
       setMarkdown('');
-      selectedTagsDispatch({ type: 'SELECTED_TAGS/SET', tags: [] });
+      setSelectedTags([]);
       selectedBlocksDispatch({ type: 'SELECTED_BLOCKS/SET', blocks: [] });
     } else {
       if (note === null) return;
@@ -165,7 +155,7 @@ export const useEditNote = () => {
       await updateNote(note.id, markdown, html, selectedTags, selectedBlocks, note.contentId, note.commitedAt, new Date()); 
       await createLog(markdown, html, selectedBlocks, selectedTags, content.name, note.id, content.id);
       setMarkdown('');
-      selectedTagsDispatch({ type: 'SELECTED_TAGS/SET', tags: [] });
+      setSelectedTags([]);
       selectedBlocksDispatch({ type: 'SELECTED_BLOCKS/SET', blocks: [] });
       setNote(null);
       console.log('useEditNote note', note);
@@ -184,12 +174,6 @@ export const useEditNote = () => {
     isOpenSelectBlocks,
     onOpenSelectBlocks,
     onCloseSelectBlocks,
-    isOpenSelectTags,
-    onOpenSelectTags,
-    onCloseSelectTags,
-    isOpenCreateNewTag,
-    onOpenCreateNewTag,
-    onCloseCreateNewTag,
     onCreateNote,
     onUpdateNote,
     isNoteExist,

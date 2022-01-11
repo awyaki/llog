@@ -16,9 +16,7 @@ import {
   OneMoreNoteButton,
   TakeANoteButton,
   PreviewButton,
-  SelectedTags,
   SelectedBlocks,
-  CreateNewTag,
   } from './components';
 
 import { title } from './style';
@@ -28,8 +26,6 @@ type Props = {
   setToEdit: () => void;
   setToPreview: () => void;
   onOpenSelectBlocks: () => void;
-  onOpenSelectTags: () => void;
-  onOpenCreateNewTag: () => void;
   isNoteChange: boolean;
   isNoteExist: boolean;
   onCreateNote: () => void;
@@ -43,8 +39,6 @@ export const ControlBox: VFC<Props> = ({
   setToEdit, 
   setToPreview, 
   onOpenSelectBlocks,
-  onOpenSelectTags,
-  onOpenCreateNewTag,
   isNoteChange,
   isNoteExist,
   onCreateNote,
