@@ -4,6 +4,7 @@ import { colors } from '~/styleConfig/colors';
 export const container: CSSObject = {
   position: 'fixed',
   width: '100%',
+  minWidth: '800px',
   height: '90px',
   display: 'flex',
   padding: '16px 5%',
