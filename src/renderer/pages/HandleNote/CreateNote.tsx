@@ -2,6 +2,7 @@ import { VFC } from 'react';
 
 import { useEditNote } from './hooks';
 
+import { ModalToSelectTags, ModalToCreateTag } from '~/components';
 
 import { pageTitle } from '~/pages/style';
 
@@ -17,8 +18,6 @@ import {
   ShowNoteButton, 
   Note, 
   ModalToSelectBlocks,
-  ModalToSelectTags,
-  ModalToCreateNewTag,
   ControlBox
 } from './components';
 
@@ -36,12 +35,8 @@ export const CreateNote: VFC = () => {
           isOpenSelectBlocks,
           onOpenSelectBlocks,
           onCloseSelectBlocks,
-          isOpenSelectTags,
           onOpenSelectTags,
-          onCloseSelectTags,
-          isOpenCreateNewTag,
           onOpenCreateNewTag,
-          onCloseCreateNewTag,
           onCreateNote,
           onUpdateNote,
           onCommitLog,
@@ -55,6 +50,8 @@ export const CreateNote: VFC = () => {
   return (
     <>
       <Header isNoteChange={isNoteChange} confirmer={confirmer} />
+      <ModalToSelectTags />
+      <ModalToCreateTag />
       <Box __css={container}>
         <h2 css={pageTitle}>{content?.name}</h2>
         <HStack width="120px" mb="16px">
@@ -92,12 +89,6 @@ export const CreateNote: VFC = () => {
         isOpen={isOpenSelectBlocks}
         onClose={onCloseSelectBlocks}
         blocks={content?.blocks ?? []} />
-      <ModalToSelectTags 
-        isOpen={isOpenSelectTags}
-        onClose={onCloseSelectTags} />
-      <ModalToCreateNewTag 
-        isOpen={isOpenCreateNewTag}
-        onClose={onCloseCreateNewTag} />
     </>
   );
 };

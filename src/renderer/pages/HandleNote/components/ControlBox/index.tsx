@@ -5,6 +5,11 @@ import { Mode } from '../../types';
 
 import { Box, VStack, HStack } from '@chakra-ui/react';
 
+import {
+  CreateTagButton,
+  SelectedTagsList
+} from '~/components';
+
 import { 
   SaveButton,
   CommitButton,
@@ -52,8 +57,8 @@ export const ControlBox: VFC<Props> = ({
       <VStack alignItems="flex-start">
           <Box pb="12px">
             <h2 css={title}>Tags</h2>
-            <CreateNewTag onOpen={onOpenCreateNewTag}/>
-            <SelectedTags onOpenSelectTags={onOpenSelectTags} />
+            <CreateTagButton />
+            <SelectedTagsList />
           </Box>
           <Box pb="12px">
             <h2 css={title}>Blocks</h2>
