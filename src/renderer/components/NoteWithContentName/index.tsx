@@ -42,7 +42,7 @@ export const NoteWithContentName: VFC<Props> = ({
 }) => {
   return (
     <Box css={container}>
-    <HStack justifyContent="space-between" justifyItems="flex-start">
+    <HStack mb="8px" justifyContent="space-between" justifyItems="flex-start">
       <div css={date}>{updatedAt}</div>
       <ControlButtons
         onClickDelete={onClickDelete}
@@ -50,7 +50,7 @@ export const NoteWithContentName: VFC<Props> = ({
         onClickEditNote={onClickEditNote}
         onClickShowNote={onClickShowNote} />
     </HStack>
-      <HStack>
+      <HStack alignItems="start">
         <Box w="100%" pr="16px">
           <h2 css={title}>{contentName}</h2>
           <ShowTags tags={tags} />
