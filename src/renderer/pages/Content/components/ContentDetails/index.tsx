@@ -38,9 +38,7 @@ export const ContentDetails: VFC<Props> = ({ content }) => {
       </ul>
       <BasicInfo 
         created={content !== null ? dateToString(content.createdAt) : 'No data'}
-        latest={makeLatestString(content)}
-        blocks={content !== null ? content.blocks.length : 0}
-        streak={10} />
+        blocks={content !== null ? content.blocks.length : 0} />
       <LevelRatio blocks={content?.blocks ?? []} />
     </div>
   );
