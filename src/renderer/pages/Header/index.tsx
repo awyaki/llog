@@ -70,38 +70,6 @@ export const Header: VFC<Props> = ({ confirmer }) => {
     
     return;
   }, [confirmer, history]);
-
-  const handleReviewsClick = useCallback(() => {
-    const path = '/reviews';
-
-    if (confirmer === undefined) {
-      history.push(path);
-      return;
-    }
-    
-    if (confirmer()) {
-      history.push(path);
-    }
-    
-    return;
-  }, [confirmer, history]); 
-
-
-  const handleNotesClick = useCallback(() => {
-    const path = '/notes';
-
-    if (confirmer === undefined) {
-      history.push(path);
-      return;
-    }
-    
-    if (confirmer()) {
-      history.push(path);
-    }
-    
-    return;
-  }, [confirmer, history]); 
-
   const handleSettingsClick = useCallback(() => {
     const path = '/settings';
 
@@ -134,12 +102,6 @@ export const Header: VFC<Props> = ({ confirmer }) => {
         </li>
         <li>
           <button onClick={handleLogsClick}>Logs</button>
-        </li>
-        <li>
-          <button onClick={handleReviewsClick}>Reviews</button>
-        </li>
-        <li>
-          <button onClick={handleNotesClick}>Notes</button>
         </li>
         <li>
           <button onClick={handleSettingsClick}>Settings</button>
