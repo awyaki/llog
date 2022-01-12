@@ -2,7 +2,7 @@ import { VFC } from 'react';
 
 import { pageTitle } from '~/pages/style/pageTitle';
 
-import { Box, Flex } from '@chakra-ui/react';
+import { Box } from '@chakra-ui/react';
 
 import { useContents } from './hooks';
 

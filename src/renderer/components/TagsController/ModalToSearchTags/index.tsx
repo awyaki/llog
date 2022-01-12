@@ -25,10 +25,10 @@ export const ModalToSearchTags: VFC = () => {
   const { 
     tags,
     setTags,
-    selectedTags,
-    setSelectedTags,
-    isOpenModalToSelectTags, 
-    onCloseModalToSelectTags
+    searchedTags,
+    setSearchedTags,
+    isOpenModalToSearchTags,
+    onCloseModalToSearchTags,
   } = useContext(SelectedTagsContext);
   
   useEffect(() => {
@@ -40,26 +40,26 @@ export const ModalToSearchTags: VFC = () => {
   
   const onToggleSelect = useCallback((tag: Tag) => {
     return () => {
-      setSelectedTags((prev) => {
+      setSearchedTags((prev) => {
         const index = prev.findIndex(({ id }) => tag.id === id);
         return index === -1 
                   ? prev.concat({ ...tag })
                   : prev.slice(0, index).concat(prev.slice(index+1));
       });
     };
-  }, [setSelectedTags]);
+  }, [setSearchedTags]);
   return (
-   <Modal isOpen={isOpenModalToSelectTags} onClose={onCloseModalToSelectTags}>
+   <Modal isOpen={isOpenModalToSearchTags} onClose={onCloseModalToSearchTags}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Select Tag</ModalHeader>
+          <ModalHeader>Edit Tags for Searching</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <ul css={tagsContainer}>
               {tags.map(({ id, name }) => <li key={id}>
                                             <button 
                                               onClick={onToggleSelect({ id, name })}
-                                              css={makeTagStyle(selectedTags.some((tag) => tag.id === id))}
+                                              css={makeTagStyle(searchedTags.some((tag) => tag.id === id))}
                                             >{name}</button>
                                             </li>)}
             </ul>
