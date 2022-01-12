@@ -1,19 +1,12 @@
 import { 
-  useState,
   useEffect, 
   useCallback,
-  useContext,
   ChangeEventHandler,
 } from 'react';
 
 import { useContentListWithFiltering } from './useContentListWithFiltering';
 
-import { Content, Tag } from '@prisma/client';
-
-import { createNGramTokenMap } from '~/utils';
-
-import { SelectedTagsContext } from '~/components';
-
+import { Tag } from '@prisma/client';
 
 import { useDisclosure } from '@chakra-ui/react';
 
