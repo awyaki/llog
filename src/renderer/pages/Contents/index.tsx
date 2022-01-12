@@ -8,6 +8,7 @@ import { useContents } from './hooks';
 
 import { Header } from '../Header';
 
+
 import {
   ModalToCreateTag,
   ModalToSelectTags,
@@ -21,13 +22,19 @@ import {
   CreateNewContent,
 } from './components';
 
-import { container } from './style/container';
+import { 
+  container,
+  inputBox
+} from './style';
 
 export const Contents: VFC = () => {
   const {
     contents,
+    filtered,
+    searchQuery,
     onCreateNewContent,
-    onOpenTagCreateModal
+    onOpenTagCreateModal,
+    onChangeSearchQuery
   } = useContents();
   return (
       <SelectedTagsContextProvider>
@@ -38,8 +45,13 @@ export const Contents: VFC = () => {
         <Box css={container}>
           <Box>
             <h2 css={pageTitle}>Contents</h2>
+            <input 
+              css={inputBox}
+              type="text" 
+              value={searchQuery}
+              onChange={onChangeSearchQuery} />
             <SearchedTagsList />
-            <ContentsList contents={contents} />
+            <ContentsList contents={filtered} />
           </Box>
           <CreateNewContent 
             contents={contents}
