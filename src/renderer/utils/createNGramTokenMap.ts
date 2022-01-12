@@ -55,9 +55,9 @@ const diviedStringIntoUniToNGram = (s: string) => {
  * produce Map of token to id which of the obj has the token.
 **/
 
-export const createNGramTokenMap = (
-  objs: { id: number, str: string }[]
-) => {
+type CreateNGramTokenMap = (arg: { id: number, text: string }[]) => Map<string, Set<number>>;
+
+export const createNGramTokenMap: CreateNGramTokenMap = (objs) => {
   const tokenMap = new Map<string, Set<number>>();
 
   const createBiGramTokenMapWithId = (id: number, s: string) => {
@@ -75,10 +75,10 @@ export const createNGramTokenMap = (
     }
     
   };
-  
+ 
   for (const o of objs) {
-    const { id, str } = o;
-    createBiGramTokenMapWithId(id, str);
+    const { id, text } = o;
+    createBiGramTokenMapWithId(id, text);
   }
 
   return tokenMap; 
