@@ -4,3 +4,6 @@ export * from './EditSelectedTagsButton';
 export * from './ModalToCreateTags';
 export * from './SelectedTagsContextProvider';
 export * from './SelectedTagsList';
+export * from './ModalToSearchTags';
+export * from './EditSearchedTagsButton';
+export * from './SearchedTagsList';

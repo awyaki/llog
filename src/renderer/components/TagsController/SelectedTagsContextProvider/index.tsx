@@ -1,4 +1,4 @@
-import { FC, useState, createContext, Dispatch, SetStateAction, useEffect } from 'react';
+import { FC, useState, createContext, Dispatch, SetStateAction } from 'react';
 
 import { Tag } from '@prisma/client';
 
@@ -9,12 +9,17 @@ type SelectedTagsContextType = {
   setTags: Dispatch<SetStateAction<Tag[]>>;
   selectedTags: Tag[];
   setSelectedTags: Dispatch<SetStateAction<Tag[]>>;
+  searchedTags: Tag[],
+  setSearchedTags: Dispatch<SetStateAction<Tag[]>>;
   isOpenModalToSelectTags: boolean;
   onOpenModalToSelectTags: () => void;
   onCloseModalToSelectTags: () => void;
   isOpenModalToCreateTag: boolean;
   onOpenModalToCreateTag: () => void;
   onCloseModalToCreateTag: () => void;
+  isOpenModalToSearchTags: boolean;
+  onOpenModalToSearchTags: () => void;
+  onCloseModalToSearchTags: () => void;
 };
 
 export const SelectedTagsContext = createContext<SelectedTagsContextType>({
@@ -22,28 +27,41 @@ export const SelectedTagsContext = createContext<SelectedTagsContextType>({
   setTags: () => {},
   selectedTags: [],
   setSelectedTags: () => {},
+  searchedTags: [],
+  setSearchedTags: () => {},
   isOpenModalToSelectTags: false,
   onOpenModalToSelectTags: () => {},
   onCloseModalToSelectTags: () => {},
   isOpenModalToCreateTag: false,
   onOpenModalToCreateTag: () => {},
   onCloseModalToCreateTag: () => {},
+  isOpenModalToSearchTags: false,
+  onOpenModalToSearchTags: () => {},
+  onCloseModalToSearchTags: () => {},
 });
 
 
 export const SelectedTagsContextProvider: FC = ({ children }) => {
   const [tags, setTags] = useState<Tag[]>([]);
   const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
+  const [searchedTags, setSearchedTags] = useState<Tag[]>([]);
 
   const { 
     isOpen: isOpenModalToSelectTags,
     onOpen: onOpenModalToSelectTags, 
-    onClose: onCloseModalToSelectTags 
+    onClose: onCloseModalToSelectTags,
   } = useDisclosure();
+
   const { 
     isOpen: isOpenModalToCreateTag,
     onOpen: onOpenModalToCreateTag, 
-    onClose: onCloseModalToCreateTag
+    onClose: onCloseModalToCreateTag,
+  } = useDisclosure();
+
+  const {
+    isOpen: isOpenModalToSearchTags,
+    onOpen: onOpenModalToSearchTags,
+    onClose: onCloseModalToSearchTags,
   } = useDisclosure();
 
   return (
@@ -52,12 +70,17 @@ export const SelectedTagsContextProvider: FC = ({ children }) => {
       setTags,
       selectedTags,
       setSelectedTags,
+      searchedTags,
+      setSearchedTags,
       isOpenModalToSelectTags,
       onOpenModalToSelectTags,
       onCloseModalToSelectTags,
       isOpenModalToCreateTag,
       onOpenModalToCreateTag,
-      onCloseModalToCreateTag
+      onCloseModalToCreateTag,
+      isOpenModalToSearchTags,
+      onOpenModalToSearchTags,
+      onCloseModalToSearchTags,
     }}>
       {children}
     </SelectedTagsContext.Provider>
