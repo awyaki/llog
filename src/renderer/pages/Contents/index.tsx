@@ -11,57 +11,39 @@ import { Header } from '../Header';
 import {
   ModalToCreateTag,
   ModalToSelectTags,
+  ModalToSearchTags,
+  SearchedTagsList,
 } from '~/components';
 
 import {
-  Conditions,
   ContentsList,
   CreateNewContent,
-  CreateContentButton,
-  SearchContentsButton,
-  CreateTagModal,
 } from './components';
 
 import { container } from './style/container';
 
 export const Contents: VFC = () => {
   const {
-    mode,
     contents,
-    onChangeConditions,
-    onChangeNewContent,
     onCreateNewContent,
-    isOpenTagCreateModal,
-    onCloseTagCreateModal,
     onOpenTagCreateModal
   } = useContents();
   return (
       <>
-        <ModalToSelectTags/>
-        <ModalToCreateTag/>
+        <ModalToSelectTags />
+        <ModalToCreateTag />
+        <ModalToSearchTags />
         <Header />
         <Box css={container}>
-          <CreateTagModal 
-            isOpen={isOpenTagCreateModal} 
-            onClose={onCloseTagCreateModal} />
           <Box>
             <h2 css={pageTitle}>Contents</h2>
-            <Flex justify="space-between" w="120px" mb="16px">
-              <CreateContentButton 
-                active={mode === 'NewContent'}  
-                onClick={onChangeNewContent}/>
-              <SearchContentsButton 
-                active={mode === 'Conditions'} 
-                onClick={onChangeConditions} />
-            </Flex>
+            <SearchedTagsList />
             <ContentsList contents={contents} />
           </Box>
-          {mode === 'Conditions' 
-            ? <Conditions /> 
-            : <CreateNewContent 
-                contents={contents}
-                onOpenTagCreateModal={onOpenTagCreateModal} 
-                onCreateNewContent={onCreateNewContent} />}
+          <CreateNewContent 
+            contents={contents}
+            onOpenTagCreateModal={onOpenTagCreateModal} 
+            onCreateNewContent={onCreateNewContent} />
         </Box>
       </>
   );
