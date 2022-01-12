@@ -13,6 +13,7 @@ import {
   ModalToSelectTags,
   ModalToSearchTags,
   SearchedTagsList,
+  SelectedTagsContextProvider,
 } from '~/components';
 
 import {
@@ -29,7 +30,7 @@ export const Contents: VFC = () => {
     onOpenTagCreateModal
   } = useContents();
   return (
-      <>
+      <SelectedTagsContextProvider>
         <ModalToSelectTags />
         <ModalToCreateTag />
         <ModalToSearchTags />
@@ -45,6 +46,6 @@ export const Contents: VFC = () => {
             onOpenTagCreateModal={onOpenTagCreateModal} 
             onCreateNewContent={onCreateNewContent} />
         </Box>
-      </>
+      </SelectedTagsContextProvider>
   );
 };
