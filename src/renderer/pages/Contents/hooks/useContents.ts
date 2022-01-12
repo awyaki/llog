@@ -13,11 +13,10 @@ import {
   createContent,
 } from '~/api';
 
-import { Mode } from '~/pages/Contents/types';
 
 export const useContents = () => {
   const [contents, setContents] = useState<Content[]>([]);
-  const [mode, setMode] = useState<Mode>('NewContent');
+
   const { 
     isOpen: isOpenTagCreateModal, 
     onClose: onCloseTagCreateModal,
@@ -30,13 +29,6 @@ export const useContents = () => {
     })();
   }, []);
 
-  const onChangeNewContent = useCallback(() => {
-    setMode('NewContent');
-  }, []);
-
-  const onChangeConditions = useCallback(() => {
-    setMode('Conditions');
-  }, []);
 
   const onCreateNewContent = useCallback(async (name: string, tags: Tag[], numberOfBlocks: number) => {
     await createContent(name, tags, numberOfBlocks);
@@ -47,9 +39,6 @@ export const useContents = () => {
 
   return {
     contents,
-    mode,
-    onChangeConditions,
-    onChangeNewContent,
     onCreateNewContent,
     isOpenTagCreateModal,
     onCloseTagCreateModal,
