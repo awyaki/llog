@@ -67,7 +67,7 @@ export const SelectedTagsContextProvider: FC = ({ children }) => {
   } = useDisclosure();
   
   const onReleaseSearchedTags = useCallback(() => {
-    setSelectedTags([]);
+    setSearchedTags([]);
   }, []);
 
   return (
