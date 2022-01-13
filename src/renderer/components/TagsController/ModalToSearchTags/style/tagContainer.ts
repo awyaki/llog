@@ -2,9 +2,9 @@ import { CSSObject } from '@emotion/react';
 
 export const tagsContainer: CSSObject = {
   display: 'flex',
-  flexWrap: 'nowrap',
+  flexWrap: 'wrap',
   '> li': {
-    marginRight: '4px',
-    marginBottom: '4px',
+    marginRight: '8px',
+    marginBottom: '8px',
   },
 };

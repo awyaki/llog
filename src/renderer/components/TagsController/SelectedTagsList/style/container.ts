@@ -5,7 +5,7 @@ export const container: CSSObject = {
   width: '100%',
   flexWrap: 'wrap',
   '> li': {
-    marginRight: '4px',
-    marginBottom: '4px',
+    marginRight: '8px',
+    marginBottom: '8px',
   },
 };
