@@ -1,4 +1,4 @@
-import { FC, useState, createContext, Dispatch, SetStateAction } from 'react';
+import { FC, useState, useCallback, createContext, Dispatch, SetStateAction } from 'react';
 
 import { Tag } from '@prisma/client';
 
@@ -20,6 +20,7 @@ type SelectedTagsContextType = {
   isOpenModalToSearchTags: boolean;
   onOpenModalToSearchTags: () => void;
   onCloseModalToSearchTags: () => void;
+  onReleaseSearchedTags: () => void;
 };
 
 export const SelectedTagsContext = createContext<SelectedTagsContextType>({
@@ -38,6 +39,7 @@ export const SelectedTagsContext = createContext<SelectedTagsContextType>({
   isOpenModalToSearchTags: false,
   onOpenModalToSearchTags: () => {},
   onCloseModalToSearchTags: () => {},
+  onReleaseSearchedTags: () => {},
 });
 
 
@@ -63,6 +65,10 @@ export const SelectedTagsContextProvider: FC = ({ children }) => {
     onOpen: onOpenModalToSearchTags,
     onClose: onCloseModalToSearchTags,
   } = useDisclosure();
+  
+  const onReleaseSearchedTags = useCallback(() => {
+    setSelectedTags([]);
+  }, []);
 
   return (
     <SelectedTagsContext.Provider value={{
@@ -81,6 +87,7 @@ export const SelectedTagsContextProvider: FC = ({ children }) => {
       isOpenModalToSearchTags,
       onOpenModalToSearchTags,
       onCloseModalToSearchTags,
+      onReleaseSearchedTags,
     }}>
       {children}
     </SelectedTagsContext.Provider>
