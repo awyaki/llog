@@ -1,19 +1,19 @@
 import { useReducer, Reducer } from 'react';
 
-import { Content } from '@prisma/client';
+import { ContentWithRelation } from '~/pages/type';
 
 import { createNGramTokenMap } from '~/utils';
 
 type State = {
-  contents: Content[];
-  filtered: Content[];
+  contents: ContentWithRelation[];
+  filtered: ContentWithRelation[];
   searchQuery: string;
   tokenMap: Map<string, Set<number>>;
 };
 
 type Action = {
   type: 'CONTENTS/SET_CONTENTS';
-  contents: Content[];
+  contents: ContentWithRelation[];
 } | {
   type: 'CONTENTS/SET_SEARCH_QUERY';
   searchQuery: string;
