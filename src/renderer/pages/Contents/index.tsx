@@ -43,7 +43,7 @@ export const Contents: VFC = () => {
         <ModalToSearchTags />
         <Header />
         <Box css={container}>
-          <Box>
+          <Box w="45%">
             <h2 css={pageTitle}>Contents</h2>
             <input 
               css={inputBox}
