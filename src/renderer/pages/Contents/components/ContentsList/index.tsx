@@ -1,23 +1,27 @@
 import { VFC } from 'react';
 
-import { Content } from '@prisma/client';
+import { ContentWithRelation } from '~/pages/type';
 
-import { contentName, list } from './style';
+import { list } from './style';
 
 import { Link } from 'react-router-dom';
 
+import { ContentCard } from './components';
 
 
 type Props = {
-  contents: Content[];
+  contents: ContentWithRelation[];
 };
 
 export const ContentsList: VFC<Props> = ({ contents }) => {
   return (
     <ul css={list}>
-      {contents.map(({ id, name }) => <li key={id}>
+      {contents.map(({ id, name, createdAt, tags }) => <li key={id}>
                                         <Link to={`/content/${id}`}>
-                                          <h2 css={contentName}>{name}</h2>
+                                          <ContentCard 
+                                            createdAt={createdAt}
+                                            name={name}
+                                            tags={tags} />
                                         </Link>
                                       </li>)}
     </ul>
