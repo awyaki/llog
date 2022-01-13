@@ -14,7 +14,6 @@ import {
   inputBox,
   errorStyle,
   labelStyle,
-  tagButtons
 } from './style';
 
 import { pageTitle } from '~/pages/style/pageTitle';
@@ -94,10 +93,8 @@ export const CreateNewContent: VFC<Props> = ({
 
         <div css={{ marginBottom: '32px' }}>
           <h2 css={labelStyle}>Tags</h2>
-          <div css={tagButtons}>
-            <CreateTagButton />
-            <SelectedTagsList />
-          </div>
+          <div css={{ marginBottom: '8px'}}><CreateTagButton /></div>
+          <SelectedTagsList />
         </div>
 
         <button 
