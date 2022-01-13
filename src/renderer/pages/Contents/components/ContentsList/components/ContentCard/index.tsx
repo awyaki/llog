@@ -1,6 +1,6 @@
 import { VFC } from 'react';
 
-import { ContentWithRelation } from '~/pages/type';
+import { Content } from '@prisma/client';
 
 import { Box } from '@chakra-ui/react';
 
@@ -9,24 +9,19 @@ import { makeFormalDateString } from '~/utils';
 import { 
   container,
   contentName,
-  tagStyle,
-  tagContainer
+  dateStyle,
   } from './style';
 
-type Props = Pick<ContentWithRelation, 'name' | 'createdAt' | 'tags'>;
+type Props = Pick<Content, 'name' | 'createdAt'>;
 
 export const ContentCard: VFC<Props> = ({ 
   createdAt, 
   name,
-  tags
 }) => {
   return (
     <Box css={container}>
-      <div>{makeFormalDateString(createdAt)}</div>
+      <div css={dateStyle}>{makeFormalDateString(createdAt)}</div>
       <h2 css={contentName}>{name}</h2>
-      <ul css={tagContainer}>
-        {tags.map(({ id, name }) => <li key={id} css={tagStyle}>{name}</li>)}
-      </ul>
     </Box>
   );
 };
