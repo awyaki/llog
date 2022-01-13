@@ -15,7 +15,7 @@ export const SelectedTagsList: VFC = () => {
   const { selectedTags } = useContext(SelectedTagsContext);
   return (
     <>
-      <ul css={{ ...container, marginBottom: '8px' }}>
+      <ul css={container}>
         <li><CreateTagButton /></li>
         <li><EditSelectedTagsButton /></li>
       </ul>
