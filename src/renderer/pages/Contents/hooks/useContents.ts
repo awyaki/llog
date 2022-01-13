@@ -2,9 +2,12 @@ import {
   useEffect, 
   useCallback,
   ChangeEventHandler,
+  useContext,
 } from 'react';
 
 import { useContentListWithFiltering } from './useContentListWithFiltering';
+
+import { SelectedTagsContext } from '~/components';
 
 import { Tag } from '@prisma/client';
 
@@ -18,7 +21,7 @@ import {
 
 export const useContents = () => {
   const [{ contents, filtered, searchQuery, tokenMap }, dispatch] = useContentListWithFiltering();
-  
+  const { searchedTags } = useContext(SelectedTagsContext); 
 
   const { 
     isOpen: isOpenTagCreateModal, 
@@ -32,7 +35,11 @@ export const useContents = () => {
       dispatch({ type: 'CONTENTS/SET_CONTENTS', contents: result});
     })();
   }, []);
-
+  
+  useEffect(() => {
+    console.log('useContents searchedTags', searchedTags);
+    dispatch({ type: 'CONTENTS/SET_SEARCHED_TAG_IDS', searchedTagIds: searchedTags.map(({ id }) => id)});
+  }, [searchedTags]);
 
   const onCreateNewContent = useCallback(async (name: string, tags: Tag[], numberOfBlocks: number) => {
     await createContent(name, tags, numberOfBlocks);
@@ -44,6 +51,7 @@ export const useContents = () => {
   const onChangeSearchQuery = useCallback<ChangeEventHandler<HTMLInputElement>>((e) => {
     dispatch({ type: 'CONTENTS/SET_SEARCH_QUERY', searchQuery: e.target.value });
   }, []);
+  
 
   return {
     contents,
@@ -54,6 +62,6 @@ export const useContents = () => {
     onCloseTagCreateModal,
     onOpenTagCreateModal,
     dispatch,
-    onChangeSearchQuery
+    onChangeSearchQuery,
   };
 };
