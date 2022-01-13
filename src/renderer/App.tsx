@@ -12,7 +12,7 @@ import { CreateNote } from './pages/HandleNote';
 
 import { Logs } from './pages/Logs';
 
-import { Notifier } from './components';
+import { Notifier, SelectedTagsContextProvider } from './components';
 
 import { Box } from '@chakra-ui/react';
 
@@ -28,10 +28,14 @@ export const App: VFC = () => {
             <NotesOfContent />
           </Route>
           <Route path="/content/:contentId/createnote">
-            <CreateNote />
+            <SelectedTagsContextProvider>
+              <CreateNote />
+            </SelectedTagsContextProvider>
           </Route>
           <Route path="/content/:contentId/updatenote/:noteId">
-            <CreateNote />
+            <SelectedTagsContextProvider>
+              <CreateNote />
+            </SelectedTagsContextProvider>
           </Route>
           <Route path="/content/:contentId">
             <Content />
@@ -40,7 +44,9 @@ export const App: VFC = () => {
             <Logs />
           </Route>
           <Route path="/">
-            <Contents />
+            <SelectedTagsContextProvider>
+              <Contents />
+            </SelectedTagsContextProvider>
           </Route>
         </Switch>
       </Box>

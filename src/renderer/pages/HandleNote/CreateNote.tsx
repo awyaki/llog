@@ -48,7 +48,7 @@ export const CreateNote: VFC = () => {
         } = useEditNote();
   
   return (
-    <SelectedTagsContextProvider>
+    <>
       <Header isNoteChange={isNoteChange} confirmer={confirmer} />
       <ModalToSelectTags />
       <ModalToCreateTag />
@@ -87,6 +87,6 @@ export const CreateNote: VFC = () => {
         isOpen={isOpenSelectBlocks}
         onClose={onCloseSelectBlocks}
         blocks={content?.blocks ?? []} />
-    </SelectedTagsContextProvider>
+    </>
   );
 };
