@@ -1,4 +1,4 @@
-import { VFC, useState, MouseEventHandler, useContext, useCallback } from 'react';
+import { VFC, MouseEventHandler, useContext, useCallback } from 'react';
 
 import { Tag, Content } from '@prisma/client';
 
@@ -13,7 +13,8 @@ import {
   buttonStyle,
   inputBox,
   errorStyle,
-  labelStyle
+  labelStyle,
+  tagButtons
 } from './style';
 
 import { pageTitle } from '~/pages/style/pageTitle';
@@ -93,8 +94,10 @@ export const CreateNewContent: VFC<Props> = ({
 
         <div css={{ marginBottom: '32px' }}>
           <h2 css={labelStyle}>Tags</h2>
-          <CreateTagButton />
-          <SelectedTagsList />
+          <div css={tagButtons}>
+            <CreateTagButton />
+            <SelectedTagsList />
+          </div>
         </div>
 
         <button 

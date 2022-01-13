@@ -6,6 +6,7 @@ import { colors } from '~/styleConfig/colors';
 
 export const container: CSSObject = {
   ...base,
+  width: '80px',
   display: 'flex',
   justifyContent: 'center',
   padding: '5px 0',

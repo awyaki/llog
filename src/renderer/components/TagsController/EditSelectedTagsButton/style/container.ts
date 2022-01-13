@@ -9,5 +9,4 @@ export const container: CSSObject = {
   display: 'flex',
   justifyContent: 'center',
   border: `1px solid ${colors.text}`,
-  marginBottom: '10px',
 };

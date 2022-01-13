@@ -3,3 +3,4 @@ export * from './container';
 export * from './inputBox';
 export * from './errorStyle';
 export * from './labelStyle';
+export * from './tagButtons';
