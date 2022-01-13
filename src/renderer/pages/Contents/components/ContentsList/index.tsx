@@ -1,6 +1,6 @@
 import { VFC } from 'react';
 
-import { Content } from '@prisma/client';
+import { ContentWithRelation } from '~/pages/type';
 
 import { list } from './style';
 
@@ -10,16 +10,17 @@ import { ContentCard } from './components';
 
 
 type Props = {
-  contents: Content[];
+  contents: ContentWithRelation[];
 };
 
 export const ContentsList: VFC<Props> = ({ contents }) => {
   return (
     <ul css={list}>
-      {contents.map(({ id, name, createdAt }) => <li key={id}>
+      {contents.map(({ id, name, createdAt, tags }) => <li key={id}>
                                         <Link to={`/content/${id}`}>
                                           <ContentCard 
                                             createdAt={createdAt}
+                                            tags={tags}
                                             name={name} />
                                         </Link>
                                       </li>)}
