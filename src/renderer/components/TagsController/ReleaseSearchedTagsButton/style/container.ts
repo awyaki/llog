@@ -8,5 +8,5 @@ export const container: CSSObject = {
   ...base,
   display: 'flex',
   justifyContent: 'center',
-  border: `1px dashed ${colors.white}`,
+  border: `1px solid ${colors.text}`,
 };
