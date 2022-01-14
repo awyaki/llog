@@ -1,8 +1,4 @@
-import { VFC, useContext, useEffect, useCallback } from 'react';
-
-import { getAllTag } from '~/api';
-
-import { Tag } from '@prisma/client';
+import { VFC, useContext } from 'react';
 
 import { SelectedTagsContext } from '../SelectedTagsContextProvider';
 
@@ -23,20 +19,12 @@ import {
 export const ModalToSelectTags: VFC = () => {
 
   const { 
-    tags,
-    setTags,
+    filteredTags,
     selectedTags,
     isOpenModalToSelectTags, 
     onCloseModalToSelectTags,
     onToggleSelectedTags,
   } = useContext(SelectedTagsContext);
-  
-  useEffect(() => {
-    (async () => {
-      const allTags = await getAllTag();
-      setTags(allTags);
-    })();
-  }, []);
   
   return (
    <Modal isOpen={isOpenModalToSelectTags} onClose={onCloseModalToSelectTags}>
@@ -46,7 +34,7 @@ export const ModalToSelectTags: VFC = () => {
           <ModalCloseButton />
           <ModalBody>
             <ul css={tagsContainer}>
-              {tags.map(({ id, name }) => <li key={id}>
+              {filteredTags.map(({ id, name }) => <li key={id}>
                                             <button 
                                               onClick={onToggleSelectedTags({ id, name })}
                                               css={makeTagStyle(selectedTags.some((tag) => tag.id === id))}

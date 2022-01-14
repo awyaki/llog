@@ -1,4 +1,4 @@
-import { VFC, useContext, useCallback, useEffect } from 'react';
+import { VFC, useContext, useCallback } from 'react';
 
 import { NotifierContext } from '~/components';
 
@@ -37,21 +37,13 @@ export const ModalToCreateTag: VFC = () => {
 
   const { 
     tags,
-    setTags,
     setSelectedTags,
+    setTagsAction,
     isOpenModalToCreateTag, 
     onCloseModalToCreateTag
   } = useContext(SelectedTagsContext);
 
   const { setMessage } = useContext(NotifierContext);
-
-  useEffect(() => {
-    (async () => {
-      const allTags = await getAllTag();
-      setTags(allTags);
-    })();
-  }, []);
-
 
   const isAlreadyNameExist = useCallback<Validate<string>>((tagName) => {
     const isOk = !tags.some((tag) => tag.name === tagName);
@@ -63,7 +55,7 @@ export const ModalToCreateTag: VFC = () => {
     const newTag = await createTag(newTagName);
     const allTags = await getAllTag();
     setSelectedTags((prev) => prev.concat(newTag));
-    setTags(allTags);
+    setTagsAction(allTags);
     setValue('newTagName', '');
     setMessage('A new Tag is Created.');
   }, []);

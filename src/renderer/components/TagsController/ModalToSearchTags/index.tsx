@@ -1,6 +1,5 @@
-import { VFC, useContext, useEffect, useCallback } from 'react';
+import { VFC, useContext, useCallback } from 'react';
 
-import { getAllTag } from '~/api';
 
 import { Tag } from '@prisma/client';
 
@@ -23,20 +22,13 @@ import {
 export const ModalToSearchTags: VFC = () => {
 
   const { 
-    tags,
-    setTags,
+    filteredTags,
     searchedTags,
     setSearchedTags,
     isOpenModalToSearchTags,
     onCloseModalToSearchTags,
   } = useContext(SelectedTagsContext);
   
-  useEffect(() => {
-    (async () => {
-      const allTags = await getAllTag();
-      setTags(allTags);
-    })();
-  }, []);
   
   const onToggleSelect = useCallback((tag: Tag) => {
     return () => {
@@ -56,7 +48,7 @@ export const ModalToSearchTags: VFC = () => {
           <ModalCloseButton />
           <ModalBody>
             <ul css={tagsContainer}>
-              {tags.map(({ id, name }) => <li key={id}>
+              {filteredTags.map(({ id, name }) => <li key={id}>
                                             <button 
                                               onClick={onToggleSelect({ id, name })}
                                               css={makeTagStyle(searchedTags.some((tag) => tag.id === id))}

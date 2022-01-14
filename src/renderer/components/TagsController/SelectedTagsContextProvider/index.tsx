@@ -1,12 +1,26 @@
-import { FC, useState, useCallback, createContext, Dispatch, SetStateAction } from 'react';
+import { 
+  FC, 
+  useState, 
+  useCallback, 
+  createContext, 
+  Dispatch, 
+  SetStateAction,
+  useEffect,
+  } from 'react';
+
+import { getAllTag } from '~/api';
+
+import { useFilterTags } from './hooks';
 
 import { Tag } from '@prisma/client';
 
 import { useDisclosure } from '@chakra-ui/react';
 
+
 type SelectedTagsContextType = {
   tags: Tag[],
-  setTags: Dispatch<SetStateAction<Tag[]>>;
+  filteredTags: Tag[],
+  setTagsAction: (tags: Tag[]) => void;
   selectedTags: Tag[];
   setSelectedTags: Dispatch<SetStateAction<Tag[]>>;
   searchedTags: Tag[],
@@ -26,7 +40,8 @@ type SelectedTagsContextType = {
 
 export const SelectedTagsContext = createContext<SelectedTagsContextType>({
   tags: [],
-  setTags: () => {},
+  filteredTags: [],
+  setTagsAction: () => {},
   selectedTags: [],
   setSelectedTags: () => {},
   searchedTags: [],
@@ -46,9 +61,10 @@ export const SelectedTagsContext = createContext<SelectedTagsContextType>({
 
 
 export const SelectedTagsContextProvider: FC = ({ children }) => {
-  const [tags, setTags] = useState<Tag[]>([]);
   const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
   const [searchedTags, setSearchedTags] = useState<Tag[]>([]);
+
+  const [{ tags, filteredTags }, dispatchTagsWithFiltering] = useFilterTags();
 
   const { 
     isOpen: isOpenModalToSelectTags,
@@ -68,6 +84,13 @@ export const SelectedTagsContextProvider: FC = ({ children }) => {
     onClose: onCloseModalToSearchTags,
   } = useDisclosure();
   
+  useEffect(() => {
+    (async () => {
+      const allTags = await getAllTag();
+      dispatchTagsWithFiltering({ type: 'TAGS_CONTROLLER/SET_TAGS', tags: allTags });
+    })();
+  }, [dispatchTagsWithFiltering]);
+
   const onReleaseSearchedTags = useCallback(() => {
     setSearchedTags([]);
   }, []);
@@ -82,11 +105,16 @@ export const SelectedTagsContextProvider: FC = ({ children }) => {
       });
     };
   }, [setSelectedTags]);
+  
+  const setTagsAction = useCallback((tags: Tag[]) => {
+    dispatchTagsWithFiltering({ type: 'TAGS_CONTROLLER/SET_TAGS', tags: tags });
+  }, [dispatchTagsWithFiltering]);
 
   return (
     <SelectedTagsContext.Provider value={{
       tags,
-      setTags,
+      filteredTags,
+      setTagsAction,
       selectedTags,
       setSelectedTags,
       searchedTags,
