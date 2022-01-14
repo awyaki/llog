@@ -5,6 +5,7 @@ import { Tag, Content } from '@prisma/client';
 import {
   SelectedTagsList,
   SelectedTagsContext,
+  NotifierContext
 } from '~/components';
 
 import {
@@ -32,7 +33,6 @@ type Inputs = {
 
 export const CreateNewContent: VFC<Props> = ({ 
   contents,
-  onOpenTagCreateModal,
   onCreateNewContent
 }) => {
   const {
@@ -44,6 +44,8 @@ export const CreateNewContent: VFC<Props> = ({
     mode: 'onSubmit',
     defaultValues: { 'contentName': '', 'numberOfBlocks': '' }
   });
+  
+  const { setMessage } = useContext(NotifierContext);
 
   const { 
     selectedTags,
@@ -52,13 +54,11 @@ export const CreateNewContent: VFC<Props> = ({
   
   const onSubmit = useCallback(async (data: Inputs) => {
     const { contentName, numberOfBlocks } = data;
-    console.log('CreateNewContent selectedTags', selectedTags);
-    console.log('CreateNewContent numberOfBlocks', data.numberOfBlocks);
-    console.log('CreateNewContent contentName', data.contentName);
     await onCreateNewContent(contentName, selectedTags, Number(numberOfBlocks));
     setSelectedTags([]);
     setValue('numberOfBlocks', '');
     setValue('contentName', '');
+    setMessage('A new Contet is created.');
   }, [selectedTags]);  
 
   const isAlreadyNameExist = useCallback<Validate<string>>((contentName) => {
