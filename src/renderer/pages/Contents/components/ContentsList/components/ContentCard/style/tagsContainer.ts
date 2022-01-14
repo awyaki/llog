@@ -3,7 +3,8 @@ import { CSSObject } from '@emotion/react';
 export const tagsContainer: CSSObject = {
   width: '100%',
   display: 'flex',
-  justifyContent: 'space-between',
+  flexWrap: 'wrap',
+  marginBottom: '8px',
   '> li': {
     marginRight: '4px',
     marginBottom: '4px',
