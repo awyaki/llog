@@ -7,7 +7,8 @@ import { SelectedTagsContext } from '../SelectedTagsContextProvider';
 
 import { 
   makeTagStyle,
-  tagsContainer
+  tagsContainer,
+  inputBox
 } from './style';
 
 import {
@@ -25,6 +26,8 @@ export const ModalToSearchTags: VFC = () => {
     filteredTags,
     searchedTags,
     setSearchedTags,
+    searchQuery,
+    setSearchQueryAction,
     isOpenModalToSearchTags,
     onCloseModalToSearchTags,
   } = useContext(SelectedTagsContext);
@@ -47,6 +50,12 @@ export const ModalToSearchTags: VFC = () => {
           <ModalHeader>Edit Tags for Searching</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
+            <input
+              css={{ ...inputBox, marginBottom: '10px' }}
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQueryAction(e.target.value)}
+            />
             <ul css={tagsContainer}>
               {filteredTags.map(({ id, name }) => <li key={id}>
                                             <button 
