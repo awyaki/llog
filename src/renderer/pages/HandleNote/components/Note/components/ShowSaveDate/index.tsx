@@ -5,7 +5,7 @@ import { font } from '~/styleConfig/font';
 
 import { Box } from '@chakra-ui/react';
 
-import { dateToString } from '~/utils';
+import { makeFormalDateString } from '~/utils';
 
 type Props = {
   notSaved: boolean;
@@ -13,7 +13,7 @@ type Props = {
 };
 
 export const ShowSaveDate: VFC<Props> = ({ notSaved, date }) => {
-  const dateString = date !== undefined ? dateToString(date) : '';
+  const dateString = date !== undefined ? makeFormalDateString(date) : '';
 
   if (notSaved) {
     return <Box color={colors.red.DEFAULT} fontSize={font.size.SS}>This version is not saved.</Box>;
