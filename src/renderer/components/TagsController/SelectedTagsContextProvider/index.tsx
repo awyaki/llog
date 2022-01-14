@@ -21,6 +21,7 @@ type SelectedTagsContextType = {
   tags: Tag[],
   filteredTags: Tag[],
   setTagsAction: (tags: Tag[]) => void;
+  setSearchQueryAction: (searchQuery: string) => void;
   selectedTags: Tag[];
   setSelectedTags: Dispatch<SetStateAction<Tag[]>>;
   searchedTags: Tag[],
@@ -42,6 +43,7 @@ export const SelectedTagsContext = createContext<SelectedTagsContextType>({
   tags: [],
   filteredTags: [],
   setTagsAction: () => {},
+  setSearchQueryAction: () => {},
   selectedTags: [],
   setSelectedTags: () => {},
   searchedTags: [],
@@ -110,11 +112,16 @@ export const SelectedTagsContextProvider: FC = ({ children }) => {
     dispatchTagsWithFiltering({ type: 'TAGS_CONTROLLER/SET_TAGS', tags: tags });
   }, [dispatchTagsWithFiltering]);
 
+  const setSearchQueryAction = useCallback((searchQuery: string) => {
+    dispatchTagsWithFiltering({ type: 'TAGS_CONTROLLER/SET_SEARCH_QUERY', searchQuery: searchQuery });
+  }, [dispatchTagsWithFiltering]);
+
   return (
     <SelectedTagsContext.Provider value={{
       tags,
       filteredTags,
       setTagsAction,
+      setSearchQueryAction,
       selectedTags,
       setSelectedTags,
       searchedTags,
