@@ -71,5 +71,5 @@ const initialState: State = {
   tokenMap: new Map(),
 };
 
-export const useFilterSelectedTags = useReducer(reducer, initialState);
+export const useFilterTags = useReducer(reducer, initialState);
 
