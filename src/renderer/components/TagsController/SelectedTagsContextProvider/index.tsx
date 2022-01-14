@@ -26,6 +26,7 @@ type SelectedTagsContextType = {
   setSelectedTags: Dispatch<SetStateAction<Tag[]>>;
   searchedTags: Tag[],
   setSearchedTags: Dispatch<SetStateAction<Tag[]>>;
+  searchQuery: string;
   isOpenModalToSelectTags: boolean;
   onOpenModalToSelectTags: () => void;
   onCloseModalToSelectTags: () => void;
@@ -48,6 +49,7 @@ export const SelectedTagsContext = createContext<SelectedTagsContextType>({
   setSelectedTags: () => {},
   searchedTags: [],
   setSearchedTags: () => {},
+  searchQuery: '',
   isOpenModalToSelectTags: false,
   onOpenModalToSelectTags: () => {},
   onCloseModalToSelectTags: () => {},
@@ -66,7 +68,7 @@ export const SelectedTagsContextProvider: FC = ({ children }) => {
   const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
   const [searchedTags, setSearchedTags] = useState<Tag[]>([]);
 
-  const [{ tags, filteredTags }, dispatchTagsWithFiltering] = useFilterTags();
+  const [{ tags, filteredTags, searchQuery }, dispatchTagsWithFiltering] = useFilterTags();
 
   const { 
     isOpen: isOpenModalToSelectTags,
@@ -126,6 +128,7 @@ export const SelectedTagsContextProvider: FC = ({ children }) => {
       setSelectedTags,
       searchedTags,
       setSearchedTags,
+      searchQuery,
       isOpenModalToSelectTags,
       onOpenModalToSelectTags,
       onCloseModalToSelectTags,

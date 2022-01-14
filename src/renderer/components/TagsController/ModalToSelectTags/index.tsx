@@ -1,4 +1,4 @@
-import { VFC, useContext } from 'react';
+import { VFC, useContext, useState } from 'react';
 
 import { SelectedTagsContext } from '../SelectedTagsContextProvider';
 
@@ -21,6 +21,8 @@ export const ModalToSelectTags: VFC = () => {
   const { 
     filteredTags,
     selectedTags,
+    searchQuery,
+    setSearchQueryAction,
     isOpenModalToSelectTags, 
     onCloseModalToSelectTags,
     onToggleSelectedTags,
@@ -33,6 +35,10 @@ export const ModalToSelectTags: VFC = () => {
           <ModalHeader>Select Tag</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
+            <input 
+              type="text" 
+              value={searchQuery}
+              onChange={(e) => setSearchQueryAction(e.target.value)} />
             <ul css={tagsContainer}>
               {filteredTags.map(({ id, name }) => <li key={id}>
                                             <button 
