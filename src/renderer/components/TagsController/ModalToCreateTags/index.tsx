@@ -38,6 +38,7 @@ export const ModalToCreateTag: VFC = () => {
   const { 
     tags,
     setTags,
+    setSelectedTags,
     isOpenModalToCreateTag, 
     onCloseModalToCreateTag
   } = useContext(SelectedTagsContext);
@@ -59,8 +60,9 @@ export const ModalToCreateTag: VFC = () => {
 
   const onCreateTag = useCallback(async (data: Input) => {
     const { newTagName } = data;
-    await createTag(newTagName);
+    const newTag = await createTag(newTagName);
     const allTags = await getAllTag();
+    setSelectedTags((prev) => prev.concat(newTag));
     setTags(allTags);
     setValue('newTagName', '');
     setMessage('A new Tag is Created.');
