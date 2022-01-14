@@ -1,6 +1,6 @@
 import { VFC } from 'react';
 
-import { makeFormalDateString, dateToString } from '~/utils';
+import { makeFormalDateString, makeFormalTimeString } from '~/utils';
 
 import { LogWithRelation } from '~/pages/type';
 
@@ -30,7 +30,7 @@ export const LogsForDate: VFC<Props> = ({ logs, onClickCommit }) => {
         {logs.map(({ id, markdown, html, contentName, tags, blocks, createdAt, noteId, contentId }) => <li key={id}>
                                                             <NoteWithContentName 
                                                               contentName={contentName}
-                                                              updatedAt={dateToString(createdAt)}
+                                                              updatedAt={makeFormalTimeString(createdAt)}
                                                               html={html}
                                                               tags={tags}
                                                               blocks={blocks}
