@@ -4,7 +4,8 @@ import { SelectedTagsContext } from '../SelectedTagsContextProvider';
 
 import { 
   makeTagStyle,
-  tagsContainer
+  tagsContainer,
+  inputBox
 } from './style';
 
 import {
@@ -36,6 +37,7 @@ export const ModalToSelectTags: VFC = () => {
           <ModalCloseButton />
           <ModalBody>
             <input 
+              css={{ ...inputBox, marginBottom: '10px' }}
               type="text" 
               value={searchQuery}
               onChange={(e) => setSearchQueryAction(e.target.value)} />
