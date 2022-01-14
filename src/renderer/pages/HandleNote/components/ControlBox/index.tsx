@@ -6,7 +6,6 @@ import { Mode } from '../../types';
 import { Box, VStack, HStack } from '@chakra-ui/react';
 
 import {
-  CreateTagButton,
   SelectedTagsList
 } from '~/components';
 
@@ -51,7 +50,6 @@ export const ControlBox: VFC<Props> = ({
       <VStack alignItems="flex-start">
           <Box pb="12px">
             <h2 css={title}>Tags</h2>
-            <CreateTagButton />
             <SelectedTagsList />
           </Box>
           <Box pb="12px">
