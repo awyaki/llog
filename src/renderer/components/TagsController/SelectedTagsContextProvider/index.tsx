@@ -21,6 +21,7 @@ type SelectedTagsContextType = {
   onOpenModalToSearchTags: () => void;
   onCloseModalToSearchTags: () => void;
   onReleaseSearchedTags: () => void;
+  onToggleSelectedTags: (tag: Tag) => () => void;
 };
 
 export const SelectedTagsContext = createContext<SelectedTagsContextType>({
@@ -40,6 +41,7 @@ export const SelectedTagsContext = createContext<SelectedTagsContextType>({
   onOpenModalToSearchTags: () => {},
   onCloseModalToSearchTags: () => {},
   onReleaseSearchedTags: () => {},
+  onToggleSelectedTags: () => () => {},
 });
 
 
@@ -70,6 +72,17 @@ export const SelectedTagsContextProvider: FC = ({ children }) => {
     setSearchedTags([]);
   }, []);
 
+  const onToggleSelectedTags = useCallback((tag: Tag) => {
+    return () => {
+      setSelectedTags((prev) => {
+        const index = prev.findIndex(({ id }) => tag.id === id);
+        return index === -1 
+                  ? prev.concat({ ...tag })
+                  : prev.slice(0, index).concat(prev.slice(index+1));
+      });
+    };
+  }, [setSelectedTags]);
+
   return (
     <SelectedTagsContext.Provider value={{
       tags,
@@ -88,6 +101,7 @@ export const SelectedTagsContextProvider: FC = ({ children }) => {
       onOpenModalToSearchTags,
       onCloseModalToSearchTags,
       onReleaseSearchedTags,
+      onToggleSelectedTags,
     }}>
       {children}
     </SelectedTagsContext.Provider>
