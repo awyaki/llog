@@ -117,6 +117,16 @@ export const SelectedTagsContextProvider: FC = ({ children }) => {
   const setSearchQueryAction = useCallback((searchQuery: string) => {
     dispatchTagsWithFiltering({ type: 'TAGS_CONTROLLER/SET_SEARCH_QUERY', searchQuery: searchQuery });
   }, [dispatchTagsWithFiltering]);
+  
+  const onCloseModalToSearchTagsWithResetQuery = useCallback(() => {
+    onCloseModalToSearchTags();
+    setSearchQueryAction('');
+  }, [onCloseModalToSearchTags, setSearchQueryAction]);
+
+  const onCloseModalToSelectTagsWithResetQuery = useCallback(() => {
+    onCloseModalToSelectTags();
+    setSearchQueryAction('');
+  }, [onCloseModalToSearchTags, setSearchQueryAction]);
 
   return (
     <SelectedTagsContext.Provider value={{
@@ -131,13 +141,13 @@ export const SelectedTagsContextProvider: FC = ({ children }) => {
       searchQuery,
       isOpenModalToSelectTags,
       onOpenModalToSelectTags,
-      onCloseModalToSelectTags,
+      onCloseModalToSelectTags: onCloseModalToSelectTagsWithResetQuery,
       isOpenModalToCreateTag,
       onOpenModalToCreateTag,
       onCloseModalToCreateTag,
       isOpenModalToSearchTags,
       onOpenModalToSearchTags,
-      onCloseModalToSearchTags,
+      onCloseModalToSearchTags: onCloseModalToSearchTagsWithResetQuery,
       onReleaseSearchedTags,
       onToggleSelectedTags,
     }}>
