@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import { ContentWithRelation } from '~/pages/type';
 
-import { dateToString } from '~/utils';
+import { makeFormalDateString } from '~/utils';
 
 import { TagsList } from './components/TagsList';
 import { CreateNoteButton } from './components/CreateNoteButton';
@@ -20,11 +20,6 @@ type Props = {
   content: ContentWithRelation | null;
 };
 
-const makeLatestString = (content: ContentWithRelation | null) => {
-  if (content == null) return 'No data';
-  if (content.commitedAt == null) return 'No commits for this content.';
-  return dateToString(content.commitedAt);
-};
 
 export const ContentDetails: VFC<Props> = ({ content }) => {
 
@@ -37,7 +32,7 @@ export const ContentDetails: VFC<Props> = ({ content }) => {
         <li><Link to={ content !== null ? `/content/${content.id}/notes` : ''}><NoteViewButton /></Link></li>
       </ul>
       <BasicInfo 
-        created={content !== null ? dateToString(content.createdAt) : 'No data'}
+        created={content !== null ? makeFormalDateString(content.createdAt) : 'No data'}
         blocks={content !== null ? content.blocks.length : 0} />
       <LevelRatio blocks={content?.blocks ?? []} />
     </div>
