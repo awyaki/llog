@@ -11,7 +11,6 @@ export const Notifier: VFC = () => {
   
   console.log('Notifier isShow, message', isShow, message);
   useEffect(() => {
-    console.log('Notifier useEffect');
     const timerId = setTimeout(() => {
       if (isShow) {
         setMessage(undefined);
