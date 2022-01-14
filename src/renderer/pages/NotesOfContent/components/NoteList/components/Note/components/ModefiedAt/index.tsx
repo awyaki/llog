@@ -1,7 +1,7 @@
 import { VFC } from 'react';
 
 import { container } from './style/container';
-import { dateToString } from '~/utils/dateToString';
+import { makeFormalDateString } from '~/utils';
 
 type Props = {
   time: Date;
@@ -9,6 +9,6 @@ type Props = {
 
 export const ModefitedAt: VFC<Props> = ({ time }) => {
   return (
-    <div css={container}>{dateToString(time)}</div>
+    <div css={container}>{makeFormalDateString(time)}</div>
   );
 };
