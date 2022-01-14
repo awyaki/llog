@@ -1,4 +1,4 @@
-import { VFC, useContext, useState } from 'react';
+import { VFC, useContext } from 'react';
 
 import { SelectedTagsContext } from '../SelectedTagsContextProvider';
 
