@@ -1,7 +1,7 @@
 import { CSSObject } from '@emotion/react';
 
 export const container: CSSObject = {
-  width: '100%',
+  width: '70%',
   '> li': {
     marginBottom: '32px',
   },

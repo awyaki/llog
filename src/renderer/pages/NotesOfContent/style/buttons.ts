@@ -1,8 +1,12 @@
 import { CSSObject } from '@emotion/react'
 
 export const buttons: CSSObject = {
-    width: '180px',
     display: 'flex',
-    justifyContent: 'space-between',
     marginBottom: '32px',
+    '> li': {
+      marginRight: '10px',
+    },
+    '> li:nth-last-of-type(1)': {
+      marginRight: '0',
+    }
 };
