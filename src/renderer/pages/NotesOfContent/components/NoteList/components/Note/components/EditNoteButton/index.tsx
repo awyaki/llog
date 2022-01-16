@@ -2,7 +2,7 @@ import { VFC } from 'react';
 
 import { Link } from 'react-router-dom';
 
-import { EditNoteButtonIcon } from './components/EditNoteButtonIcon';
+import { EditNoteIcon } from '~/components';
 
 type Props = {
   contentId: number;
@@ -12,7 +12,7 @@ type Props = {
 export const EditNoteButton: VFC<Props> = ({ contentId, noteId }) => {
   return ( 
     <Link to={`/content/${contentId}/updatenote/${noteId}`}>
-      <EditNoteButtonIcon />
+      <EditNoteIcon />
     </Link>
   );
 };
