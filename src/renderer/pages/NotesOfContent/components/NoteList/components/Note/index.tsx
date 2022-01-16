@@ -8,7 +8,6 @@ import { aside } from './style/aside';
 
 import { ModefitedAt } from './components/ModefiedAt';
 import { TagList } from './components/TagList';
-import { DeleteNoteButton } from './components/DeleteNoteButton';
 import { EditNoteButton } from './components/EditNoteButton';
 import { Blocks } from './components/Blocks';
 import { BodyOfNote } from './components/BodyOfNote';
@@ -26,14 +25,13 @@ export const Note: VFC<Props> = ({ note }) => {
       <div css={main}>
         <ModefitedAt time={updatedAt} />
         <TagList tags={tags} />
+        <Blocks blocks={blocks} />
         <BodyOfNote html={transformed} />
       </div>
       <div css={aside}>
         <ul css={buttons}>
           <li><EditNoteButton contentId={contentId} noteId={id} /></li>
-          <li><DeleteNoteButton /></li>
         </ul>
-        <Blocks blocks={blocks} />
       </div>
     </div>
   );
