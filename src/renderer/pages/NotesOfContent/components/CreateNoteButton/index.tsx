@@ -1,6 +1,6 @@
 import { VFC } from 'react';
 
-import { CreateNoteButtonIcon } from './components/CreateNoteButtonIcon';
+import { EditNoteIcon } from '~/components';
 
 import { Link } from 'react-router-dom';
 
@@ -10,12 +10,12 @@ type Props = {
 
 export const CreateNoteButton: VFC<Props> = ({ id }) => {
   if (id === undefined) {
-    return <CreateNoteButtonIcon />;
+    return <EditNoteIcon size="large" />;
   }
 
   return (
     <Link to={`/content/${id}/createnote`}>
-      <CreateNoteButtonIcon />
+      <EditNoteIcon size="large" />
     </Link>
   );
 };

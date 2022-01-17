@@ -24,11 +24,11 @@ const changeSizeDependOnSizeString = (
 
 export const makeContainer = (size: 'large' | 'small'): CSSObject => {
   const style: CSSObject = {
-    width: changeSizeDependOnSizeString(35, 3, 'px', size),
-    height: changeSizeDependOnSizeString(35, 3, 'px', size),
+    width: changeSizeDependOnSizeString(35, 1.5, 'px', size),
+    height: changeSizeDependOnSizeString(35, 1.5, 'px', size),
     border: `1px solid ${colors.cyan.DEFAULT}`,
-    borderRadius: changeSizeDependOnSizeString(35, 3, 'px', size),
-    padding: changeSizeDependOnSizeString(6, 3, 'px', size),
+    borderRadius: changeSizeDependOnSizeString(40, 1.5, 'px', size),
+    padding: changeSizeDependOnSizeString(8, 1.5, 'px', size),
     textAlign: 'center',
   };
   
