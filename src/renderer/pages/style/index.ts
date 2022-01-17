@@ -4,3 +4,4 @@ export * from './container';
 export * from './inputBox';
 export * from './tagStyle';
 export * from './warning';
+export * from './block';
