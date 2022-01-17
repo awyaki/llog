@@ -9,4 +9,5 @@ export const tagStyle: CSSObject = {
   borderWidth: '1px',
   borderStyle: 'solid',
   borderColor: colors.cyan.DEFAULT,
+  color: colors.cyan.DEFAULT,
 };
