@@ -1,11 +1,11 @@
 import { VFC } from 'react';
 
-import { CreateNoteIcon } from './components/CreateNoteIcon';
+import { EditNoteIcon } from '~/components';
 
 export const CreateNoteButton: VFC = () => {
   return (
     <button>
-      <CreateNoteIcon />
+      <EditNoteIcon size="large" />
     </button>
   );
 };
