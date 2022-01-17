@@ -2,15 +2,14 @@ import { VFC } from 'react';
 
 import { HashRouter, Route, Switch } from 'react-router-dom';
 
-import { Contents } from './pages/Contents';
-
-import { Content } from './pages/Content';
-
-import { NotesOfContent } from './pages/NotesOfContent';
-
-import { CreateNote } from './pages/HandleNote';
-
-import { Logs } from './pages/Logs';
+import {
+  Contents,
+  Content,
+  NotesOfContent,
+  CreateNote,
+  Logs,
+  PreviewNote
+} from './pages';
 
 import { Notifier, SelectedTagsContextProvider } from './components';
 
@@ -36,6 +35,9 @@ export const App: VFC = () => {
             <SelectedTagsContextProvider>
               <CreateNote />
             </SelectedTagsContextProvider>
+          </Route>
+          <Route path="/content/:contentId/previewnote/:noteId">
+              <PreviewNote />
           </Route>
           <Route path="/content/:contentId">
             <Content />
