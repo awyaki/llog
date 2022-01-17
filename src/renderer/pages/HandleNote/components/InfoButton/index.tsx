@@ -1,5 +1,6 @@
 import { VFC, MouseEventHandler } from 'react';
-import { InfoButtonIcon } from './components/InfoButtonIcon';
+
+import { InfoIcon } from '~/components'; 
 
 type Props = {
   onClick?: MouseEventHandler<HTMLButtonElement>;
@@ -8,7 +9,7 @@ type Props = {
 export const InfoButton: VFC<Props> = ({ onClick }) => {
   return (
     <button onClick={onClick}>
-      <InfoButtonIcon />
+      <InfoIcon size="large" />
     </button>
   );
 };
