@@ -1,5 +1,7 @@
 import { VFC } from 'react';
 
+import { colors, font } from '~/styleConfig';
+
 import { makeCirlceContainer } from '../style';
 
 type Props = {
@@ -8,6 +10,8 @@ type Props = {
 
 export const InfoIcon: VFC<Props> = ({ size }) => {
   return (
-    <span css={makeCirlceContainer(size)}>Info.</span>
+    <div css={makeCirlceContainer(size)}>
+      <span css={{ color: colors.cyan.DEFAULT, fontSize: font.size.SS }}>Info.</span>
+    </div>
   );
 };
