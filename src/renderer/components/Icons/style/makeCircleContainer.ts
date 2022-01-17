@@ -22,7 +22,7 @@ const changeSizeDependOnSizeString = (
 };
 
 
-export const makeContainer = (size: 'large' | 'small'): CSSObject => {
+export const makeCirlceContainer = (size: 'large' | 'small'): CSSObject => {
   const style: CSSObject = {
     width: changeSizeDependOnSizeString(35, 1.5, 'px', size),
     height: changeSizeDependOnSizeString(35, 1.5, 'px', size),
