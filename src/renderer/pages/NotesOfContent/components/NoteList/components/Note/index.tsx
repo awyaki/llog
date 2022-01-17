@@ -6,11 +6,14 @@ import { main } from './style/main';
 import { aside } from './style/aside';
 
 
-import { ModefitedAt } from './components/ModefiedAt';
-import { TagList } from './components/TagList';
-import { EditNoteButton } from './components/EditNoteButton';
-import { Blocks } from './components/Blocks';
-import { BodyOfNote } from './components/BodyOfNote';
+import {
+  ModefitedAt,
+  TagList,
+  EditNoteButton,
+  Blocks,
+  BodyOfNote,
+  PreviewNoteButton
+} from './components';
 
 import { NoteWithRelation } from '~/pages/type';
 
@@ -31,6 +34,7 @@ export const Note: VFC<Props> = ({ note }) => {
       <div css={aside}>
         <ul css={buttons}>
           <li><EditNoteButton contentId={contentId} noteId={id} /></li>
+          <li><PreviewNoteButton contentId={contentId} noteId={id} /></li>
         </ul>
       </div>
     </div>
