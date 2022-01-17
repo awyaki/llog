@@ -1,6 +1,6 @@
 import { VFC, MouseEventHandler } from 'react';
 
-import { ShowNoteButtonIcon } from './components/ShowNoteButtonIcon';
+import { NotesIcon } from '~/components';
 
 type Props = {
   onClick?: MouseEventHandler<HTMLButtonElement>; 
@@ -9,7 +9,7 @@ type Props = {
 export const ShowNoteButton: VFC<Props> = ({ onClick }) => {
   return (
     <button onClick={onClick}>
-      <ShowNoteButtonIcon />
+      <NotesIcon size="large" />
     </button>
   );
 };
