@@ -12,8 +12,6 @@ import { confirmer } from './functions';
 
 import { Box, HStack } from '@chakra-ui/react';
 
-import { SelectedTagsContextProvider } from '~/components';
-
 import { 
   Header, 
   InfoButton, 
