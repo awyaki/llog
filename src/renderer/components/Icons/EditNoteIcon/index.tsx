@@ -1,17 +1,23 @@
+import { VFC } from 'react';
 import { Icon } from '@chakra-ui/react';
 import { MdOutlineEditNote } from 'react-icons/md';
 
-import { container } from './style';
+import { makeContainer } from './style';
 
 import { colors } from '~/styleConfig';
 
-export const EditNoteIcon = () => {
+type Props = {
+  size: 'large' | 'small';
+};
+
+export const EditNoteIcon: VFC<Props> = ({ size }) => {
+  const n = size === 'large' ? 8 : 4;
   return (
     <Icon
-      css={container}
+      css={makeContainer(size)}
       as={MdOutlineEditNote}
-      w={4}
-      h={4}
+      w={n}
+      h={n}
       color={colors.cyan.DEFAULT}
     />
   );

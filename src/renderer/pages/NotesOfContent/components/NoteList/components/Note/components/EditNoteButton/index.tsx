@@ -12,7 +12,7 @@ type Props = {
 export const EditNoteButton: VFC<Props> = ({ contentId, noteId }) => {
   return ( 
     <Link to={`/content/${contentId}/updatenote/${noteId}`}>
-      <EditNoteIcon />
+      <EditNoteIcon size="small" />
     </Link>
   );
 };
