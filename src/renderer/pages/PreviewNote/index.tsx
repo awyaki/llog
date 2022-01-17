@@ -2,15 +2,15 @@ import { VFC  } from 'react';
 
 import { Header } from '../Header';
 
+import { TagList, BlockList } from './components';
+
 import { Box } from '@chakra-ui/react';
-
-import { makeFormalDateString } from '~/utils';
-
-import { NoteWithContentName } from '~/components';
 
 import { container, pageTitle } from '~/pages/style';
 
 import { usePreviewNote } from './hooks';
+
+import { noteStyle } from './style';
 
 export const PreviewNote: VFC = () => {
   const  note = usePreviewNote();
@@ -20,14 +20,11 @@ export const PreviewNote: VFC = () => {
     <>
       <Header />
       <Box css={container}>
-        <h2 css={pageTitle}>Preview Note</h2>
-        <NoteWithContentName
-          contentName={contentName}
-          blocks={blocks}
-          tags={tags}
-          html={transformed}
-          updatedAt={makeFormalDateString(updatedAt)}
-        />
+        <h2 css={pageTitle}>{contentName}</h2>
+        <Box css={noteStyle}>
+          <TagList tags={tags} />
+          <BlockList blocks={blocks} />
+        </Box>
       </Box>
     </>
   );
