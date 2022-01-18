@@ -50,14 +50,10 @@ export const NoteWithContentName: VFC<Props> = ({
         onClickEditNote={onClickEditNote}
         onClickShowNote={onClickShowNote} />
     </HStack>
-      <HStack alignItems="start">
-        <Box w="100%" pr="16px">
-          <h2 css={title}>{contentName}</h2>
-          <ShowTags tags={tags} />
-          <div className="znc" dangerouslySetInnerHTML={{ __html: html }}></div>
-        </Box>
-        <ShowBlocks blocks={blocks} />
-      </HStack>
+    <h2 css={title}>{contentName}</h2>
+    <ShowTags tags={tags} />
+    <ShowBlocks blocks={blocks} />
+    <div className="znc" dangerouslySetInnerHTML={{ __html: html }}></div>
     </Box>
   );
 };

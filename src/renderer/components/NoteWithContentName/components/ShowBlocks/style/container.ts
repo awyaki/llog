@@ -1,12 +1,11 @@
 import { CSSObject } from '@emotion/react';
 
 export const container: CSSObject = {
-  width: '80px',
-  minWidth: '80px',
+  width: '100%',
   display: 'flex',
-  justifyContent: 'space-between',
   flexWrap: 'wrap',
   '> li': {
-    marginBottom: '3px',
+    marginRight: '4px',
+    marginBottom: '4px',
   }
 };
