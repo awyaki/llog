@@ -1,8 +1,10 @@
 import { useState, useEffect, useCallback, useContext } from 'react';
 
+import { asyncForEach } from '~/utils';
+
 import { LogWithRelation } from '~/pages/type';
 
-import { getAllLog, createLog } from '~/api';
+import { getAllLog, createLog, updateBlock } from '~/api';
 
 import { NotifierContext } from '~/components';
 
@@ -35,6 +37,15 @@ export const useLogs = () => {
     if (noteId === null || contentId === null) return ; 
     await createLog(markdown, html, blocks, tags, contentName, noteId, contentId);
     const newLogs = await getAllLog();
+    await asyncForEach(blocks, async (block) => {
+      const { id, iteration  } = block;
+      await updateBlock({
+        id: id,
+        iteration: iteration + 1,
+        level: 5,
+        commitedAt: new Date(),
+      });
+    });
     setLogs(newLogs);
     setMessage('submitted!');
   }, []);
