@@ -45,8 +45,10 @@ export const PreviewNote: VFC = () => {
           <li><Link to={`content/${contentId}/notes`}><NotesIcon size="large"/></Link></li>
         </ul>
         <Box css={noteStyle}>
-          <div css={dateStyle}>{makeFormalTimeString(updatedAt)}</div>
-          <button onClick={onCommitLog}><CommitIcon size="small" /></button>
+          <div css={{ display: 'flex', justifyContent: 'space-between' }}>
+            <div css={dateStyle}>{makeFormalTimeString(updatedAt)}</div>
+            <button onClick={onCommitLog}><CommitIcon size="small" /></button>
+          </div>
           <TagList tags={tags} />
           <BlockList blocks={blocks} />
           <div className="znc" dangerouslySetInnerHTML={{ __html: transformed }}></div>
