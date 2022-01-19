@@ -8,7 +8,7 @@ import {
   InfoIcon,
   EditNoteIcon,
   NotesIcon,
-  PreviewNoteIcon,
+  CommitIcon,
 } from '~/components';
 
 import { makeFormalTimeString } from '~/utils';
@@ -46,7 +46,7 @@ export const PreviewNote: VFC = () => {
         </ul>
         <Box css={noteStyle}>
           <div css={dateStyle}>{makeFormalTimeString(updatedAt)}</div>
-          <button onClick={onCommitLog}><PreviewNote /></button>
+          <button onClick={onCommitLog}><CommitIcon size="small" /></button>
           <TagList tags={tags} />
           <BlockList blocks={blocks} />
           <div className="znc" dangerouslySetInnerHTML={{ __html: transformed }}></div>

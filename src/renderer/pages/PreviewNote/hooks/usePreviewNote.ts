@@ -1,8 +1,10 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback, useContext } from 'react';
 
 import { asyncForEach } from '~/utils';
 
 import { createLog, updateBlock } from '~/api';
+
+import { NotifierContext } from '~/components';
 
 import { NoteWithRelation, ContentWithRelation } from '~/pages/type';
 
@@ -15,7 +17,8 @@ export const usePreviewNote = () => {
   const { contentId, noteId } = useParams<{ contentId: string, noteId: string}>();
   const [note, setNote] = useState<NoteWithRelation | null>(null);
   const [content, setContent] = useState<ContentWithRelation | null>(null);
-  
+  const { setMessage } = useContext(NotifierContext); 
+
   useEffect(() => {
     (async () => {
       const resultNote = await getNote(Number(noteId));
@@ -39,7 +42,8 @@ export const usePreviewNote = () => {
         commitedAt: new Date(),
       });
     });
-  }, [note, content, setNote, setContent]);
+    setMessage('submitted!');
+  }, [note, content, setNote, setContent, setMessage]);
   
 
   return { 
