@@ -8,3 +8,4 @@ export * from './makeFormalDateString';
 export * from './divideLogsByDate';
 export * from './createNGramTokenMap';
 export * from './makeFormalTimeString';
+export * from './asyncForEach';
