@@ -8,12 +8,15 @@ import {
 
 import { SelectedTagsContext } from '~/components';
 
+import { asyncForEach } from '~/utils';
+
 import { 
   markdownToHTML, 
   createNote, 
   updateNote, 
   getNote,
-  createLog
+  createLog,
+  updateBlock,
 } from '~/api';
 
 import { arrayeEqualWithId } from '~/utils';
@@ -146,16 +149,38 @@ export const useEditNote = () => {
     const html = await markdownToHTML(markdown);
     if (noteId === undefined) {
       console.log('useEditNote onCommit 1');
+      // note creating
       const newNote = await createNote(markdown, html, selectedTags, selectedBlocks, content.id);
       await createLog(markdown, html, selectedBlocks, selectedTags, content.name, newNote.id, content.id);
+      // update block level to 5 (max value)
+      await asyncForEach(selectedBlocks, async (block) => {
+        const { id, iteration } = block;
+        await updateBlock({
+          id: id,
+          iteration: iteration + 1,
+          level: 5,
+          commitedAt: new Date(),
+        });
+      });
       setMarkdown('');
       setSelectedTags([]);
       selectedBlocksDispatch({ type: 'SELECTED_BLOCKS/SET', blocks: [] });
     } else {
       if (note === null) return;
+      // note updating
       console.log('useEditNote onCommit 2');
       await updateNote(note.id, markdown, html, selectedTags, selectedBlocks, note.contentId, note.commitedAt, new Date()); 
       await createLog(markdown, html, selectedBlocks, selectedTags, content.name, note.id, content.id);
+      // update block level to 5 (max value)
+      await asyncForEach(selectedBlocks, async (block) => {
+        const { id, iteration } = block;
+        await updateBlock({
+          id: id,
+          iteration: iteration + 1,
+          level: 5,
+          commitedAt: new Date(),
+        });
+      });
       setMarkdown('');
       setSelectedTags([]);
       selectedBlocksDispatch({ type: 'SELECTED_BLOCKS/SET', blocks: [] });
