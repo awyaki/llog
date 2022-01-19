@@ -16,6 +16,7 @@ import {
   getLog,
   getAllLog,
   updateBlock,
+  getAllBlock
 } from './api';
 
 
@@ -107,6 +108,10 @@ export const useDBQueryOnClient = () => {
     return result;
   });
 
+  ipcMain.handle('getAllBlock', async (_) => {
+    const result = getAllBlock();
+    return result;
+  });
   ipcMain.handle('getAllLog', async () => {
     const result = await getAllLog();
     return result;

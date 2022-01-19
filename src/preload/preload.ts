@@ -39,6 +39,7 @@ contextBridge.exposeInMainWorld('electronAPI', {
   getLog: (id: number) => ipcRenderer.invoke('getLog', id),
   getAllLog: () => ipcRenderer.invoke('getAllLog'),
   updateBlock: (block: Pick<Block, 'id' | 'iteration' | 'commitedAt' | 'level'>) => ipcRenderer.invoke('updateBlock', block),
+  getAllBlock: () => ipcRenderer.invoke('getAllBlock'),
   markdownToHTML: (markdown: string) => ipcRenderer.invoke('markdownToHTML', markdown),
 });
 

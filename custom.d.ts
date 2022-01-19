@@ -68,6 +68,7 @@ interface IElectronAPI {
   getLog: GetLog;
   getAllLog: GetAllLog;
   updateBlock: (block: Pick<Block, 'id' | 'iteration' | 'commitedAt' | 'level'>) => Prisma.Prisma__BlockClient<Block>;
+  getAllBlock: () => Prisma.Prisma__BlockClient<Block[]>;
   markdownToHTML: (markdown: string) => Promise<string>;
 }
 
