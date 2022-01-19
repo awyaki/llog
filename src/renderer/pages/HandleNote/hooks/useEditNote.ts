@@ -17,6 +17,7 @@ import {
   getNote,
   createLog,
   updateBlock,
+  getContent,
 } from '~/api';
 
 import { arrayeEqualWithId } from '~/utils';
@@ -162,6 +163,8 @@ export const useEditNote = () => {
           commitedAt: new Date(),
         });
       });
+      const newContent = await getContent(content.id);
+      setContent(newContent);
       setMarkdown('');
       setSelectedTags([]);
       selectedBlocksDispatch({ type: 'SELECTED_BLOCKS/SET', blocks: [] });
@@ -181,6 +184,8 @@ export const useEditNote = () => {
           commitedAt: new Date(),
         });
       });
+      const newContent = await getContent(content.id);
+      setContent(newContent);
       setMarkdown('');
       setSelectedTags([]);
       selectedBlocksDispatch({ type: 'SELECTED_BLOCKS/SET', blocks: [] });
