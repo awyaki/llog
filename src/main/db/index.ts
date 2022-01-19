@@ -15,6 +15,7 @@ import {
   createLog,
   getLog,
   getAllLog,
+  updateBlock,
 } from './api';
 
 
@@ -98,6 +99,11 @@ export const useDBQueryOnClient = () => {
   
   ipcMain.handle('getLog', async (_, id: number) => {
     const result = await getLog(id);
+    return result;
+  });
+
+  ipcMain.handle('updateBlock', async (_, block: Pick<Block, 'id' | 'iteration' | 'commitedAt' | 'level'>) => {
+    const result = await updateBlock(block);
     return result;
   });
 
