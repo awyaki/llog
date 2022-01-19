@@ -42,7 +42,7 @@ export const PreviewNote: VFC = () => {
         <ul css={buttonsStyle}>
           <li><Link to={`/content/${contentId}`}><InfoIcon size="large" /></Link></li>
           <li><Link to={`/content/${contentId}/updatenote/${id}`}><EditNoteIcon size="large" /></Link></li>
-          <li><Link to={`content/${contentId}/notes`}><NotesIcon size="large"/></Link></li>
+          <li><Link to={`/content/${contentId}/notes`}><NotesIcon size="large"/></Link></li>
         </ul>
         <Box css={noteStyle}>
           <div css={{ display: 'flex', justifyContent: 'space-between' }}>
