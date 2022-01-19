@@ -2,6 +2,8 @@ import { VFC } from 'react';
 
 import { HashRouter, Route, Switch } from 'react-router-dom';
 
+import { useUpdateBlockLevel } from './hooks';
+
 import {
   Contents,
   Content,
@@ -18,6 +20,8 @@ import { Box } from '@chakra-ui/react';
 import { container } from './style';
 
 export const App: VFC = () => {
+  useUpdateBlockLevel();
+
   return (
     <HashRouter>
       <Box css={container}>
