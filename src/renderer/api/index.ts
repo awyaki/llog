@@ -71,8 +71,14 @@ export const getAllLog = async () => {
   return await window.electronAPI.getAllLog();
 };
 
+export const updateBlock = async (block: Pick<Block, 'id' | 'iteration' | 'commitedAt' | 'level'>) => {
+  return await window.electronAPI.updateBlock(block);
+};
+export const getAllBlock = async () => {
+  return await window.electronAPI.getAllBlock();
+};
+
 export const markdownToHTML = async (markdown: string) => {
   return await window.electronAPI.markdownToHTML(markdown);
 };
-
 
