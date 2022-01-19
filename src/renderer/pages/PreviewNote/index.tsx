@@ -8,6 +8,7 @@ import {
   InfoIcon,
   EditNoteIcon,
   NotesIcon,
+  PreviewNoteIcon,
 } from '~/components';
 
 import { makeFormalTimeString } from '~/utils';
@@ -29,9 +30,10 @@ import {
 import 'zenn-content-css';
 
 export const PreviewNote: VFC = () => {
-  const  note = usePreviewNote();
+  const  { note, contentName, onCommitLog } = usePreviewNote();
   if (note === null) return <></>;
-  const { id, contentId, blocks, tags, contentName, transformed, updatedAt } = note;
+
+  const { contentId, id, updatedAt, tags, blocks, transformed } = note;
   return (
     <>
       <Header />
@@ -44,6 +46,7 @@ export const PreviewNote: VFC = () => {
         </ul>
         <Box css={noteStyle}>
           <div css={dateStyle}>{makeFormalTimeString(updatedAt)}</div>
+          <button onClick={onCommitLog}><PreviewNote /></button>
           <TagList tags={tags} />
           <BlockList blocks={blocks} />
           <div className="znc" dangerouslySetInnerHTML={{ __html: transformed }}></div>
