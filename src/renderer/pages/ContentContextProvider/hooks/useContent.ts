@@ -17,5 +17,5 @@ export const useContent = () => {
     })();
   }, []);
 
-  return content;
+  return { content, setContent };
 };

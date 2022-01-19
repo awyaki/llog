@@ -59,7 +59,7 @@ export const useEditNote = () => {
   }, [noteId]);
 
   const isNoteExist = useMemo(() => note !== null, [note]);
-  const content = useContext(ContentContext);
+  const { content, setContent } = useContext(ContentContext);
 
   
 

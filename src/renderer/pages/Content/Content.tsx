@@ -1,4 +1,4 @@
-import { VFC, useState, useContext } from 'react';
+import { VFC, useContext } from 'react';
 
 import { ContentContext } from '../ContentContextProvider';
 
@@ -9,7 +9,7 @@ import { ContentBlocks } from './components/ContentBlocks';
 import { container } from './style/container';
 
 export const Content: VFC = () => {
-  const content = useContext(ContentContext);
+  const { content } = useContext(ContentContext);
   
   return (
     <>
