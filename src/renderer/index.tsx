@@ -5,7 +5,7 @@ import 'destyle.css';
 import { App } from './App';
 import { ChakraProvider } from '@chakra-ui/react';
 import { TagContextProvider } from './DBContextProviders';
-import { NotifierContextProvider } from './components';
+import { NotifierContextProvider, ContentsContextProvider } from './components';
 import { theme } from './theme';
 
 ReactDOM.render(
@@ -13,7 +13,9 @@ ReactDOM.render(
     <ChakraProvider theme={theme}>
       <TagContextProvider>
       <NotifierContextProvider>
-        <App />
+        <ContentsContextProvider>
+          <App />
+        </ContentsContextProvider>
       </NotifierContextProvider>
       </TagContextProvider>
     </ChakraProvider>
