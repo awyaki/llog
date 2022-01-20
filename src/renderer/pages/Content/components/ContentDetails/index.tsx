@@ -1,8 +1,10 @@
-import { VFC } from 'react';
+import { VFC, useCallback, useContext } from 'react';
+
+import { getContent } from '~/api';
 
 import { Link } from 'react-router-dom';
 
-import { ContentWithRelation } from '~/pages/type';
+import { ContentContext } from '~/pages/ContentContextProvider';
 
 import { ContentNameForm } from '~/components';
 
@@ -19,18 +21,22 @@ import { buttons } from './style/buttons';
 import { title } from './style/title';
 
 
-type Props = {
-  content: ContentWithRelation | null;
-};
+export const ContentDetails: VFC = () => {
+  const { content, setContent } = useContext(ContentContext);
 
-
-export const ContentDetails: VFC<Props> = ({ content }) => {
   if (content === null) return <></>;
+  
+  const onSubmitContentName = useCallback(async () => {
+    const updatedContent = await getContent(content.id);
+    setContent(updatedContent);
+  }, [content, setContent]);
 
   return (
     <div css={container}>
       <h2 css={title}>{content.name}</h2>
-      <ContentNameForm id={content.id} />
+      <ContentNameForm 
+        id={content.id}
+        onSubmit={onSubmitContentName}/>
       <TagsList tags={content.tags} />
       <ul css={buttons}>
         <li><Link to={`/content/${content.id}/createnote`}><CreateNoteButton /></Link></li>

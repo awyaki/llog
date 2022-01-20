@@ -10,12 +10,12 @@ import { container } from './style/container';
 
 export const Content: VFC = () => {
   const { content } = useContext(ContentContext);
-  
+
   return (
     <>
     <Header />
       <div css={container}>
-        <ContentDetails content={content} />
+        <ContentDetails />
         <ContentBlocks blocks={content?.blocks ?? []} />
       </div>
     </>
