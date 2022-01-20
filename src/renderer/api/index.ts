@@ -1,4 +1,4 @@
-import { Tag, Block } from '@prisma/client';
+import { Tag, Block, Content } from '@prisma/client';
 
 export const createTag = async (name: string) => {
   return await window.electronAPI.createTag(name);
@@ -18,6 +18,10 @@ export const getAllContent = async () => {
 
 export const createContent = async (name: string, tags: Tag[], numberOfBlock: number) => {
   return await window.electronAPI.createContent(name, tags, numberOfBlock);
+};
+
+export const updateConteName = async ({ id, name }: Pick<Content, 'id' | 'name'>) => {
+  return await window.electronAPI.updateContentName({ id, name });
 };
 
 export const getNote = async (id: number) => {

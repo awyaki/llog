@@ -1,6 +1,6 @@
 import { ipcMain } from 'electron';
 
-import { Tag, Block } from '@prisma/client';
+import { Tag, Block, Content } from '@prisma/client';
 
 import { 
   createContent, 
@@ -16,7 +16,8 @@ import {
   getLog,
   getAllLog,
   updateBlock,
-  getAllBlock
+  getAllBlock,
+  updateContentName
 } from './api';
 
 
@@ -43,6 +44,11 @@ export const useDBQueryOnClient = () => {
 
   ipcMain.handle('getContent', async (_, id: number) => {
     const result = await getContent(id);
+    return result;
+  });
+
+  ipcMain.handle('updateContentName', async (_, { id, name }: Pick<Content, 'id' | 'name'>) => {
+    const result = await updateContentName({ id, name });
     return result;
   });
 
@@ -112,6 +118,7 @@ export const useDBQueryOnClient = () => {
     const result = getAllBlock();
     return result;
   });
+
   ipcMain.handle('getAllLog', async () => {
     const result = await getAllLog();
     return result;
