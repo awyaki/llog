@@ -12,7 +12,7 @@ import { ContentsContext, NotifierContext } from '~/components';
 
 type Props = {
   id: number;
-  onSubmit: () => void;
+  onSubmit?: () => void;
 };
 
 type Input = {
@@ -37,7 +37,9 @@ export const ContentNameForm: VFC<Props> = ({ id, onSubmit }) => {
   const onSubmitContentName = useCallback(async ({ name }: Input) => {
     await updateContentName({ id, name })
     const updatedContents = await getAllContent();
-    onSubmit();
+    if (onSubmit !== undefined) {
+      onSubmit();
+    }
     setContents(updatedContents);
     setMessage('updated!');
     setValue('name', '');
