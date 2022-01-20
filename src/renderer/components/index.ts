@@ -7,3 +7,4 @@ export * from './NotifierContextProvider';
 export * from './Notifier';
 export * from './TagsController';
 export * from './Icons';
+export * from './ContentsContextProvider';
