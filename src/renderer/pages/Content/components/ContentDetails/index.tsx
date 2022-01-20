@@ -28,24 +28,31 @@ import { title } from './style/title';
 
 
 export const ContentDetails: VFC = () => {
+  const [isUpdateNameMode, setIsUpdateNameMode] = useState(false);
   const { content, setContent } = useContext(ContentContext);
+  
+  const onChangeToNameUpdate = useCallback(() => {
+    setIsUpdateNameMode(true);
+  }, [setIsUpdateNameMode]);
 
   const onSubmitContentName = useCallback(async () => {
     if (content === null) return;
     const updatedContent = await getContent(content.id);
+    setIsUpdateNameMode(false);
     setContent(updatedContent);
   }, [content, setContent]);
 
   if (content === null) return <></>;
   return (
     <div css={container}>
-        <div css={{ display: 'flex' }}>
-          <h2 css={{ ...title, marginRight: '4px' }}>{content.name}</h2>
-            <EditIcon />
-        </div>
-        <ContentNameForm 
-          id={content.id}
-          onSubmit={onSubmitContentName} />
+        {isUpdateNameMode
+          ? <ContentNameForm 
+              id={content.id}
+              onSubmit={onSubmitContentName} />
+          : <div css={{ display: 'flex' }}>
+              <h2 css={{ ...title, marginRight: '4px' }}>{content.name}</h2>
+              <button onClick={onChangeToNameUpdate}><EditIcon /></button>
+            </div>}
       <TagsList tags={content.tags} />
       <ul css={buttons}>
         <li><Link to={`/content/${content.id}/createnote`}><CreateNoteButton /></Link></li>
