@@ -51,16 +51,18 @@ export const ContentNameForm: VFC<Props> = ({ id, onSubmit }) => {
   }, [contents]);
 
   return (
-    <form onSubmit={handleSubmit(onSubmitContentName)}>
-      <input 
-        css={inputBox}
-        {...register('name', 
-          { required: { value: true, message: 'You should fill in this field.' }, 
-            maxLength: 100, 
-            validate: { isAlreadyNameExist: isAlreadyNameExist } })} />
-      <div css={errorStyle}>{errors.name?.message}</div>
+    <form css={{ display: 'flex' }} onSubmit={handleSubmit(onSubmitContentName)}>
+      <div>
+        <input 
+          css={inputBox}
+          {...register('name', 
+            { required: { value: true, message: 'You should fill in this field.' }, 
+              maxLength: 100, 
+              validate: { isAlreadyNameExist: isAlreadyNameExist } })} />
+        <div css={errorStyle}>{errors.name?.message}</div>
+      </div> 
       <button 
-        type="button"
+        type="submit"
         >OK</button>
     </form>
   );
