@@ -8,3 +8,4 @@ export * from './Notifier';
 export * from './TagsController';
 export * from './Icons';
 export * from './ContentsContextProvider';
+export * from './Forms';
