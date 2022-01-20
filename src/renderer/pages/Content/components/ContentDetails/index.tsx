@@ -48,6 +48,7 @@ export const ContentDetails: VFC = () => {
         {isUpdateNameMode
           ? <ContentNameForm 
               id={content.id}
+              defaultName={content.name}
               onSubmit={onSubmitContentName} />
           : <div css={{ display: 'flex' }}>
               <h2 css={{ ...title, marginRight: '4px' }}>{content.name}</h2>

@@ -2,16 +2,24 @@ import { VFC, useCallback, useContext } from 'react';
 
 import { Validate } from 'react-hook-form';
 
-import { inputBox, errorStyle } from './style';
+import { 
+  inputBox, 
+  errorStyle,
+} from './style';
 
 import { updateContentName, getAllContent } from '~/api';
 
 import { useForm } from 'react-hook-form';
 
-import { ContentsContext, NotifierContext } from '~/components';
+import { 
+  ContentsContext, 
+  NotifierContext,
+  EnterIcon,
+} from '~/components';
 
 type Props = {
   id: number;
+  defaultName: string;
   onSubmit?: () => void;
 };
 
@@ -19,7 +27,7 @@ type Input = {
   name: string;
 };
 
-export const ContentNameForm: VFC<Props> = ({ id, onSubmit }) => {
+export const ContentNameForm: VFC<Props> = ({ id, defaultName, onSubmit }) => {
   const {
     register,
     handleSubmit,
@@ -27,7 +35,7 @@ export const ContentNameForm: VFC<Props> = ({ id, onSubmit }) => {
     formState: { errors }
   } = useForm<Input>({ 
     mode: 'onSubmit',
-    defaultValues: { name: '' }
+    defaultValues: { name: defaultName }
   });
 
   
@@ -51,19 +59,19 @@ export const ContentNameForm: VFC<Props> = ({ id, onSubmit }) => {
   }, [contents]);
 
   return (
-    <form css={{ display: 'flex' }} onSubmit={handleSubmit(onSubmitContentName)}>
-      <div>
+    <form onSubmit={handleSubmit(onSubmitContentName)}>
+      <div css={{ display: 'flex', alignItems: 'center' }}>
         <input 
-          css={inputBox}
+          css={{ ...inputBox, marginRight: '8px' }}
           {...register('name', 
             { required: { value: true, message: 'You should fill in this field.' }, 
               maxLength: 100, 
               validate: { isAlreadyNameExist: isAlreadyNameExist } })} />
-        <div css={errorStyle}>{errors.name?.message}</div>
-      </div> 
-      <button 
-        type="submit"
-        >OK</button>
+        <button type="submit">
+          <EnterIcon />
+        </button>
+      </div>
+      <div css={errorStyle}>{errors.name?.message}</div>
     </form>
   );
 };
