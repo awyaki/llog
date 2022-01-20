@@ -10,11 +10,14 @@ import { ContentNameForm } from '~/components';
 
 import { makeFormalDateString } from '~/utils';
 
-import { TagsList } from './components/TagsList';
-import { CreateNoteButton } from './components/CreateNoteButton';
-import { NoteViewButton } from './components/NoteViewButton';
-import { BasicInfo } from './components/BasicInfo';
-import { LevelRatio } from './components/LevelRatio';
+import {
+  TagsList,
+  CreateNoteButton,
+  NoteViewButton,
+  BasicInfo,
+  LevelRatio
+} from './components';
+
 
 import { container } from './style/container';
 import { buttons } from './style/buttons';
