@@ -20,7 +20,7 @@ export const createContent = async (name: string, tags: Tag[], numberOfBlock: nu
   return await window.electronAPI.createContent(name, tags, numberOfBlock);
 };
 
-export const updateConteName = async ({ id, name }: Pick<Content, 'id' | 'name'>) => {
+export const updateContentName = async ({ id, name }: Pick<Content, 'id' | 'name'>) => {
   return await window.electronAPI.updateContentName({ id, name });
 };
 
