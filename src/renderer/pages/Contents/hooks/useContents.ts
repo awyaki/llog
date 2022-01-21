@@ -5,7 +5,7 @@ import {
   useContext,
 } from 'react';
 
-import { useContentListWithFiltering } from './useContentListWithFiltering';
+import { ContentsContext } from '~/components';
 
 import { SelectedTagsContext } from '~/components';
 
@@ -20,7 +20,7 @@ import {
 
 
 export const useContents = () => {
-  const [{ contents, filtered, searchQuery, tokenMap }, dispatch] = useContentListWithFiltering();
+  const { contents, filtered, searchQuery, contentsActionDispatch: dispatch } = useContext(ContentsContext);
   const { searchedTags } = useContext(SelectedTagsContext); 
 
   const { 
@@ -28,7 +28,6 @@ export const useContents = () => {
     onClose: onCloseTagCreateModal,
     onOpen: onOpenTagCreateModal } = useDisclosure();
     
-  console.log('useContents tokenMap', tokenMap);
   useEffect(() => {
     (async () => {
       const result = await getAllContent();
