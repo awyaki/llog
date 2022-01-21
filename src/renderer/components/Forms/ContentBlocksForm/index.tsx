@@ -38,7 +38,7 @@ export const ContentBlocksForm: VFC<Props> = ({
   const { setMessage } = useContext(NotifierContext);
   
   const onSubmitUpsert = useCallback(async ({ newMaxUnitNumber }: Input) => {
-    await upsertContentBlocks(id, maxUnitNumber, Number(newMaxUnitNumber));
+    await upsertContentBlocks(id, maxUnitNumber, Number(newMaxUnitNumber) - maxUnitNumber);
     if (onSubmit) {
       onSubmit();
     }
