@@ -5,3 +5,4 @@ export * from './NotesIcon';
 export * from './CommitIcon';
 export * from './EditIcon';
 export * from './EnterIcon';
+export * from './CancelIcon';
