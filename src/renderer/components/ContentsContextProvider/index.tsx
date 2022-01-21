@@ -1,38 +1,33 @@
 import { 
   FC, 
   Dispatch, 
-  SetStateAction, 
   createContext,
-  useState,
-  useEffect,
 } from 'react';
 
-import { getAllContent } from '~/api';
+import { useContentListWithFiltering, Action } from './hooks';
 
 import { ContentWithRelation } from '~/components/type';
 
 type ContentContextType = {
   contents: ContentWithRelation[];
-  setContents: Dispatch<SetStateAction<ContentWithRelation[]>>;
+  filtered: ContentWithRelation[];
+  searchQuery: string;
+  contentsActionDispatch: Dispatch<Action>;
 };
 
 export const ContentsContext = createContext<ContentContextType>({
   contents: [],
-  setContents: () => {},
+  filtered: [],
+  searchQuery: '',
+  contentsActionDispatch: () => {},
 });;
 
 export const ContentsContextProvider: FC = ({ children }) => {
-  const [contents, setContents] = useState<ContentWithRelation[]>([]);
+  const [{ contents, filtered, searchQuery }, contentsActionDispatch] = useContentListWithFiltering(); 
   
-  useEffect(() => {
-    (async () => {
-      const allContents = await getAllContent();
-      setContents(allContents);
-    })();
-  }, [setContents]);
 
   return (
-    <ContentsContext.Provider value={{ contents, setContents }}>
+    <ContentsContext.Provider value={{ contents, filtered, searchQuery, contentsActionDispatch }}>
       {children}
     </ContentsContext.Provider>
   );
