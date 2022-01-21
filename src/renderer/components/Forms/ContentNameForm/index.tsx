@@ -40,7 +40,7 @@ export const ContentNameForm: VFC<Props> = ({ id, defaultName, onSubmit }) => {
 
   
   const { setMessage } = useContext(NotifierContext);
-  const { contents, setContents } = useContext(ContentsContext);
+  const { contents, contentsActionDispatch } = useContext(ContentsContext);
 
   const onSubmitContentName = useCallback(async ({ name }: Input) => {
     await updateContentName({ id, name })
@@ -48,10 +48,10 @@ export const ContentNameForm: VFC<Props> = ({ id, defaultName, onSubmit }) => {
     if (onSubmit !== undefined) {
       onSubmit();
     }
-    setContents(updatedContents);
+    contentsActionDispatch({ type: 'CONTENTS/SET_CONTENTS', contents: updatedContents});
     setMessage('updated!');
     setValue('name', '');
-  }, [onSubmit, setContents, setMessage, setValue]);
+  }, [onSubmit, contentsActionDispatch, setMessage, setValue]);
 
   const isAlreadyNameExist = useCallback<Validate<string>>((contentName) => {
     const isOk = !contents.some((content) => content.name === contentName);
