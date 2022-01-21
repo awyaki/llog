@@ -15,19 +15,21 @@ import {
   ContentsContext, 
   NotifierContext,
   EnterIcon,
+  CancelIcon,
 } from '~/components';
 
 type Props = {
   id: number;
   defaultName: string;
   onSubmit?: () => void;
+  onClose?: () => void;
 };
 
 type Input = {
   name: string;
 };
 
-export const ContentNameForm: VFC<Props> = ({ id, defaultName, onSubmit }) => {
+export const ContentNameForm: VFC<Props> = ({ id, defaultName, onSubmit, onClose }) => {
   const {
     register,
     handleSubmit,
@@ -72,6 +74,12 @@ export const ContentNameForm: VFC<Props> = ({ id, defaultName, onSubmit }) => {
         <button type="submit">
           <EnterIcon />
         </button>
+        {onClose ? 
+          <button 
+            type="button"
+            onClick={onClose}>
+          <CancelIcon />
+        </button> : undefined}
       </div>
       <div css={errorStyle}>{errors.name?.message}</div>
     </form>
