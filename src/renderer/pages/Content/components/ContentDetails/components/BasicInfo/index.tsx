@@ -2,16 +2,22 @@ import { VFC } from 'react';
 
 import { container } from './style/container';
 
+import { ContentBlocksForm } from '~/components';
+
 type Props = {
-  created: string,
-  blocks: number,
+  id: number;
+  created: string;
+  blocks: number;
+  isUpsertBlocksMode: boolean;
 };
 
-export const BasicInfo: VFC<Props> = ({ created, blocks }) => {
+export const BasicInfo: VFC<Props> = ({ id, created, blocks, isUpsertBlocksMode }) => {
   return (
     <ul css={container}>
       <li>Created time：{created}</li>
-      <li>Blocks：{blocks}</li>
+      <li>Blocks：{isUpsertBlocksMode 
+                    ? <ContentBlocksForm id={id} maxUnitNumber={blocks} /> 
+                    : blocks}</li>
     </ul>
   );
 };

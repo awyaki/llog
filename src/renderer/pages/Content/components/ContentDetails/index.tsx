@@ -9,7 +9,6 @@ import { ContentContext } from '~/pages/ContentContextProvider';
 import { 
   ContentNameForm,
   EditIcon,
-  CancelIcon,
 } from '~/components';
 
 import { makeFormalDateString } from '~/utils';
@@ -67,6 +66,8 @@ export const ContentDetails: VFC = () => {
         <li><Link to={`/content/${content.id}/notes`}><NoteViewButton /></Link></li>
       </ul>
       <BasicInfo 
+        id={content.id}
+        isUpsertBlocksMode={true}
         created={makeFormalDateString(content.createdAt)}
         blocks={content.blocks.length} />
       <LevelRatio blocks={content.blocks} />
