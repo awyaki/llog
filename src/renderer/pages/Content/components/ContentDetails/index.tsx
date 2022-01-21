@@ -9,6 +9,7 @@ import { ContentContext } from '~/pages/ContentContextProvider';
 import { 
   ContentNameForm,
   EditIcon,
+  CancelIcon,
 } from '~/components';
 
 import { makeFormalDateString } from '~/utils';
@@ -42,14 +43,22 @@ export const ContentDetails: VFC = () => {
     setContent(updatedContent);
   }, [content, setContent]);
 
+  const onChangeToNormal = useCallback(() => {
+    setIsUpdateNameMode(false);
+  }, [setIsUpdateNameMode]);
+
   if (content === null) return <></>;
   return (
     <div css={container}>
         {isUpdateNameMode
-          ? <ContentNameForm 
-              id={content.id}
-              defaultName={content.name}
-              onSubmit={onSubmitContentName} />
+          ? <div css={{ }}>
+              <ContentNameForm 
+                  id={content.id}
+                  defaultName={content.name}
+                  onSubmit={onSubmitContentName}
+                  onClose={onChangeToNormal}
+                  />
+            </div>
           : <div css={{ display: 'flex' }}>
               <h2 css={{ ...title, marginRight: '4px' }}>{content.name}</h2>
               <button onClick={onChangeToNameUpdate}><EditIcon /></button>
