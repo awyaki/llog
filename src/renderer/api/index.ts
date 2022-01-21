@@ -82,6 +82,10 @@ export const getAllBlock = async () => {
   return await window.electronAPI.getAllBlock();
 };
 
+export const upsertContentBlocks = async (id: number, blockMaxUnitNumber: number, howManyBlocks: number) => {
+  return await window.electronAPI.upsertContentBlocks(id, blockMaxUnitNumber, howManyBlocks);
+};
+
 export const markdownToHTML = async (markdown: string) => {
   return await window.electronAPI.markdownToHTML(markdown);
 };
