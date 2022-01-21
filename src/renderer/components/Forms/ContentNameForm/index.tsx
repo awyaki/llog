@@ -54,7 +54,9 @@ export const ContentNameForm: VFC<Props> = ({ id, defaultName, onSubmit }) => {
   }, [onSubmit, contentsActionDispatch, setMessage, setValue]);
 
   const isAlreadyNameExist = useCallback<Validate<string>>((contentName) => {
-    const isOk = !contents.some((content) => content.name === contentName);
+    const isOk = !contents
+                    .filter((content) => content.id !== id) // the origin content is removed from the contents list to allow you '''update''' the previous name.
+                    .some((content) => content.name === contentName);
     return isOk || 'This name have already been existed.';
   }, [contents]);
 
