@@ -6,7 +6,6 @@ import {
   useEffect
 } from 'react';
 
-import { SelectedTagsContext } from '~/components';
 
 import { asyncForEach } from '~/utils';
 
@@ -23,7 +22,12 @@ import {
 import { arrayeEqualWithId } from '~/utils';
 
 import { NoteContext } from '~/pages/NoteContextProvider';
-import { NotifierContext } from '~/components';
+import { 
+  NotifierContext,
+  ContentContext, 
+  SelectedTagsContext
+} from '~/components';
+
 import { SelectedBlocksContext } from '../SelectedBlocksContextProvider';
 
 
@@ -31,12 +35,11 @@ import { useDisclosure } from '@chakra-ui/react';
 import { useHistory, useParams } from 'react-router-dom';
 
 import { Mode } from '../types'
-import { ContentContext } from '~/pages/ContentContextProvider';
 import { confirmer } from '../functions';
 
 
 export const useEditNote = () => {
-  const { noteId } = useParams<{ noteId: string | undefined }>();
+  const { noteId, contentId } = useParams<{ noteId: string | undefined, contentId: string }>();
   const { note, setNote } = useContext(NoteContext);
   const { setMessage } = useContext(NotifierContext);
   const [markdown, setMarkdown] = useState('');
@@ -63,6 +66,12 @@ export const useEditNote = () => {
   const { content, setContent } = useContext(ContentContext);
 
   
+  useEffect(() => {
+    (async () => {
+      const result = await getContent(Number(contentId));
+      setContent(result);
+    })();
+  }, [contentId]);
 
   // if `note` is null and `markdown` is empty string, 
   // `isNoteChange` should be false because the note have not be written yet.
@@ -135,6 +144,7 @@ export const useEditNote = () => {
   
 
   const onMoveToOtherNoteEdit = useCallback(() => {
+    console.log('onMoveToOtherNoteEdit content', content);
     if (content !== null) {
       history.push(`/content/${content.id}/createnote`);
       setNote(null);
@@ -146,6 +156,7 @@ export const useEditNote = () => {
   }, [history, content]);
 
   const onCommitLog = useCallback(async () => {
+    console.log('onCommitlog content contentId', content, contentId);
     if (content === null) return;
     const html = await markdownToHTML(markdown);
     if (noteId === undefined) {
@@ -194,7 +205,7 @@ export const useEditNote = () => {
       history.push(`/content/${content.id}/createnote`);
     }
     setMessage('submitted!');
-  }, [content, noteId, history, markdown, note, selectedTags, selectedBlocks]);
+  }, [content, contentId, noteId, history, markdown, note, selectedTags, selectedBlocks]);
 
   return {
     content,

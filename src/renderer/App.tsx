@@ -13,7 +13,11 @@ import {
   PreviewNote
 } from './pages';
 
-import { Notifier, SelectedTagsContextProvider } from './components';
+import { 
+  Notifier,
+  SelectedTagsContextProvider,
+  ContentContextProvider
+} from './components';
 
 import { Box } from '@chakra-ui/react';
 
@@ -31,20 +35,26 @@ export const App: VFC = () => {
             <NotesOfContent />
           </Route>
           <Route path="/content/:contentId/createnote">
-            <SelectedTagsContextProvider>
-              <CreateNote />
-            </SelectedTagsContextProvider>
+            <ContentContextProvider>
+              <SelectedTagsContextProvider>
+                <CreateNote />
+              </SelectedTagsContextProvider>
+            </ContentContextProvider>
           </Route>
           <Route path="/content/:contentId/updatenote/:noteId">
-            <SelectedTagsContextProvider>
-              <CreateNote />
-            </SelectedTagsContextProvider>
+            <ContentContextProvider>
+              <SelectedTagsContextProvider>
+                <CreateNote />
+              </SelectedTagsContextProvider>
+            </ContentContextProvider>
           </Route>
           <Route path="/content/:contentId/previewnote/:noteId">
               <PreviewNote />
           </Route>
           <Route path="/content/:contentId">
-            <Content />
+            <ContentContextProvider>
+              <Content />
+            </ContentContextProvider>
           </Route>
           <Route path="/logs">
             <Logs />

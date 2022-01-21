@@ -4,7 +4,7 @@ import { getContent } from '~/api';
 
 import { Link } from 'react-router-dom';
 
-import { ContentContext } from '~/pages/ContentContextProvider';
+import { ContentContext } from '~/components/ContentContextProvider';
 
 import { 
   ContentNameForm,
