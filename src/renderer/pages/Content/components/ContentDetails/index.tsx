@@ -51,16 +51,14 @@ export const ContentDetails: VFC = () => {
   return (
     <div css={container}>
         {isUpdateNameMode
-          ? <div css={{ }}>
-              <ContentNameForm 
+          ?   <ContentNameForm 
                   id={content.id}
                   defaultName={content.name}
                   onSubmit={onSubmitContentName}
                   onClose={onChangeToNormal}
                   />
-            </div>
-          : <div css={{ display: 'flex' }}>
-              <h2 css={{ ...title, marginRight: '4px' }}>{content.name}</h2>
+          : <div css={{ display: 'flex', alignItems: 'center', marginBottom: '8px' }}>
+              <h2 css={{ ...title, marginRight: '8px' }}>{content.name}</h2>
               <button onClick={onChangeToNameUpdate}><EditIcon /></button>
             </div>}
       <TagsList tags={content.tags} />
