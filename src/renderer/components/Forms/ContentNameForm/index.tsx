@@ -71,7 +71,7 @@ export const ContentNameForm: VFC<Props> = ({ id, defaultName, onSubmit, onClose
             { required: { value: true, message: 'You should fill in this field.' }, 
               maxLength: 100, 
               validate: { isAlreadyNameExist: isAlreadyNameExist } })} />
-        <button type="submit">
+        <button css={{ marginRight: '8px' }} type="submit">
           <EnterIcon />
         </button>
         {onClose ? 
