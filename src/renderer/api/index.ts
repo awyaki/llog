@@ -90,6 +90,10 @@ export const updateContentTags = async (id: number, tags: Tag[]) => {
   return await window.electronAPI.updateContentTags(id, tags);
 };
 
+export const deleteConnectContentTags = async (id: number) => {
+  return await window.electronAPI.deleteConnectContentTags(id);
+};
+
 export const markdownToHTML = async (markdown: string) => {
   return await window.electronAPI.markdownToHTML(markdown);
 };

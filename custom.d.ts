@@ -72,6 +72,7 @@ interface IElectronAPI {
   getAllBlock: () => Prisma.Prisma__BlockClient<Block[]>;
   upsertContentBlocks: (id: number, blockMaxUnitNumber: number, howManyBlocks: number) => Prisma.Prisma__ContentClient<Content>; 
   updateContentTags: (id: number, tags: Tag[]) => Prisma.Prisma__ContentClient<Content>;
+  deleteConnectContentTags: (id: number) => Prisma.Prisma__ContentClient<Content>;
   markdownToHTML: (markdown: string) => Promise<string>;
 }
 
