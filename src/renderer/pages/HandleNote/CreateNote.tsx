@@ -51,7 +51,7 @@ export const CreateNote: VFC = () => {
       <ModalToSelectTags />
       <ModalToCreateTag />
       <Box __css={container}>
-        <h2 css={pageTitle}>{content?.name}</h2>
+        <h2 css={{ ...pageTitle, marginBottom: '8px' }}>{content?.name}</h2>
         <HStack width="120px" mb="16px">
           <InfoButton onClick={handleLink(`/content/${content?.id}`, isNoteChange)} />
           <ShowNoteButton onClick={handleLink(`/content/${content?.id}/notes`, isNoteChange)} />
