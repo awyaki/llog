@@ -1,6 +1,7 @@
-import { VFC, useContext } from 'react';
+import { VFC, useContext, useCallback } from 'react';
 
 import { SelectedTagsContext } from '../SelectedTagsContextProvider';
+
 
 import { 
   makeTagStyle,
@@ -29,6 +30,10 @@ export const ModalToUpdateContentTags: VFC = () => {
     onCloseModalToUpdateContentTags,
     onToggleSelectedTags,
   } = useContext(SelectedTagsContext);
+
+  const onUpdateContentTags = useCallback(() => {
+
+  }, []);
   
   return (
    <Modal isOpen={isOpenModalToUpdateContentTags} onClose={onCloseModalToUpdateContentTags}>
@@ -52,8 +57,12 @@ export const ModalToUpdateContentTags: VFC = () => {
             </ul>
           </ModalBody>
           <ModalFooter>
-            <button>OK</button>
-            <button>Cancel</button>
+            <button
+              onClick={() => {}}
+            >OK</button>
+            <button 
+              onClick={onCloseModalToUpdateContentTags}
+            >Cancel</button>
           </ModalFooter>
         </ModalContent>
       </Modal>   
