@@ -56,7 +56,7 @@ export const ContentDetails: VFC = () => {
                   onSubmit={onSubmitContentName}
                   onClose={onChangeToNormal}
                   />
-          : <div css={{ display: 'flex', alignItems: 'center', marginBottom: '8px' }}>
+          : <div css={{ display: 'flex', alignItems: 'flex-start', marginBottom: '8px' }}>
               <h2 css={{ ...title, marginRight: '8px' }}>{content.name}</h2>
               <button onClick={onChangeToNameUpdate}><EditIcon /></button>
             </div>}
