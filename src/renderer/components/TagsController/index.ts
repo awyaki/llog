@@ -7,3 +7,5 @@ export * from './SelectedTagsList';
 export * from './ModalToSearchTags';
 export * from './EditSearchedTagsButton';
 export * from './SearchedTagsList';
+export * from './ModalToUpdateContentTags';
+export * from './OpenModalToUpdateContentTagsButton';

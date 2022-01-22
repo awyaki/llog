@@ -1,12 +1,10 @@
 import { VFC, useContext, useEffect } from 'react';
 
-import { ContentContext } from '~/components/ContentContextProvider';
+import { ContentContext, ModalToUpdateContentTags } from '~/components';
 
 import { getContent } from '~/api';
 
 import { useParams } from 'react-router-dom';
-
-import { ModalToSelectTags } from '~/components';
 
 import { Header } from '../Header';
 
@@ -30,7 +28,7 @@ export const Content: VFC = () => {
 
   return (
     <>
-    <ModalToSelectTags />
+    <ModalToUpdateContentTags />
     <Header />
       <div css={container}>
         <ContentDetails />
