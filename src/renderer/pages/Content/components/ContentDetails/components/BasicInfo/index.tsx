@@ -37,7 +37,7 @@ export const BasicInfo: VFC<Props> = ({
   return (
     <ul css={container}>
       <li>Created time：{created}</li>
-      <li css={{ display: 'flex' }}>
+      <li css={{ display: 'flex', alignItems: 'flex-start', height: '48px' }}>
         <span>Blocks：</span>
         {isUpsertBlocksMode 
                     ? <ContentBlocksForm 
