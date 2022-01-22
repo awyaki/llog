@@ -53,7 +53,9 @@ export const App: VFC = () => {
           </Route>
           <Route path="/content/:contentId">
             <ContentContextProvider>
-              <Content />
+              <SelectedTagsContextProvider>
+                <Content />
+              </SelectedTagsContextProvider>
             </ContentContextProvider>
           </Route>
           <Route path="/logs">

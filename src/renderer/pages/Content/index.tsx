@@ -6,9 +6,11 @@ import { getContent } from '~/api';
 
 import { useParams } from 'react-router-dom';
 
+import { ModalToSelectTags } from '~/components';
+
 import { Header } from '../Header';
-import { ContentDetails } from './components/ContentDetails';
-import { ContentBlocks } from './components/ContentBlocks';
+
+import { ContentDetails, ContentBlocks } from './components';
 
 import { container } from './style/container';
 
@@ -28,6 +30,7 @@ export const Content: VFC = () => {
 
   return (
     <>
+    <ModalToSelectTags />
     <Header />
       <div css={container}>
         <ContentDetails />
