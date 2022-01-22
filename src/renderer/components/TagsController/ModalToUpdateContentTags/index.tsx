@@ -14,7 +14,9 @@ import {
 import { 
   makeTagStyle,
   tagsContainer,
-  inputBox
+  inputBox,
+  buttonStyle,
+  cancel
 } from './style';
 
 import {
@@ -76,9 +78,11 @@ export const ModalToUpdateContentTags: VFC<Props> = ({ contentId }) => {
           </ModalBody>
           <ModalFooter>
             <button
+              css={{ ...buttonStyle, marginRight: '4px'  }}
               onClick={onUpdateContentTags}
             >OK</button>
             <button 
+              css={cancel}
               onClick={onCloseModalToUpdateContentTags}
             >Cancel</button>
           </ModalFooter>
