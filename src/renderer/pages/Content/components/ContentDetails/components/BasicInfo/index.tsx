@@ -1,4 +1,8 @@
-import { VFC, useState, useCallback } from 'react';
+import { VFC, useState, useCallback, useContext } from 'react';
+
+import { ContentContext } from '~/components';
+
+import { getContent } from '~/api';
 
 import { container } from './style/container';
 
@@ -18,10 +22,13 @@ export const BasicInfo: VFC<Props> = ({
   blocks, 
 }) => {
   const [isUpsertBlocksMode, setIsUpsertBlocksMode] = useState(false);
-  
-  const onChangeNormalMode = useCallback(() => {
+  const { setContent } = useContext(ContentContext);
+
+  const onChangeNormalMode = useCallback(async () => {
+    const result = await getContent(id);
+    setContent(result);
     setIsUpsertBlocksMode(false);
-  }, []);
+  }, [id]);
   
   const onChangeEditMode = useCallback(() => {
     setIsUpsertBlocksMode(true);
