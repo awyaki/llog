@@ -1,26 +1,27 @@
-import { VFC } from 'react';
-
-import { Tag as TagType } from '@prisma/client';
+import { VFC, useContext } from 'react';
 
 import { 
   OpenModalToUpdateContentTagsButton,
   CreateTagButton,
+  ContentContext
 } from '~/components';
 
 import { container } from './style/container';
 import { Tag } from './components/Tag';
 
-type Props = {
-  tags: TagType[];
-};
 
-export const TagsList: VFC<Props> = ({ tags }) => {
-
+export const TagsList: VFC = () => {
+  const { content } = useContext(ContentContext);
+  if (content === null) return <></>
   return (
-    <ul css={container}>
-      <li><CreateTagButton /></li>
-      <li><OpenModalToUpdateContentTagsButton /></li>
-      {tags.map(({ id, name }) => <li key={id}><Tag name={name} /></li>)}
-    </ul>
+    <>
+      <ul css={{ ...container, marginBottom: '8px' }}>
+        <li><CreateTagButton /></li>
+        <li><OpenModalToUpdateContentTagsButton /></li>
+      </ul>
+      <ul css={container}>
+        {content.tags.map(({ id, name }) => <li key={id}><Tag name={name} /></li>)}
+      </ul>
+    </>
   );
 };

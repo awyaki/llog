@@ -1,14 +1,16 @@
 import { VFC, useState, useCallback, useContext } from 'react';
 
-import { ContentContext } from '~/components';
+import { 
+  ContentContext, 
+  ContentBlocksForm,
+  EditIcon
+} from '~/components';
 
 import { getContent } from '~/api';
 
 import { container } from './style/container';
 
-import { ContentBlocksForm } from '~/components';
-
-import { EditIcon } from '~/components';
+import { TagsList } from '../TagsList';
 
 type Props = {
   id: number;
@@ -35,21 +37,25 @@ export const BasicInfo: VFC<Props> = ({
   }, []);
 
   return (
-    <ul css={container}>
-      <li>Created time：{created}</li>
-      <li css={{ display: 'flex', alignItems: 'flex-start', height: '48px' }}>
-        <span>Blocks：</span>
-        {isUpsertBlocksMode 
-                    ? <ContentBlocksForm 
-                        id={id} 
-                        maxUnitNumber={blocks} 
-                        onSubmit={onChangeNormalMode} 
-                        onClose={onChangeNormalMode}/> 
-                    : <div css={{ display: 'flex' }}>
-                        <span css={{ marginRight: '10px' }}>{blocks}</span>
-                        <button css={{ display: 'flex', alignItems: 'center' }} onClick={onChangeEditMode}><EditIcon /></button>
-                      </div>}
-      </li>
-    </ul>
+    <div css={{ marginBottom: '32px' }}>
+      <ul css={{ ...container, marginBottom: '8px' }}>
+        <li>Created time：{created}</li>
+        <li css={{ display: 'flex', alignItems: 'flex-start', height: '48px' }}>
+          <span>Blocks：</span>
+          {isUpsertBlocksMode 
+                      ? <ContentBlocksForm 
+                          id={id} 
+                          maxUnitNumber={blocks} 
+                          onSubmit={onChangeNormalMode} 
+                          onClose={onChangeNormalMode}/> 
+                      : <div css={{ display: 'flex' }}>
+                          <span css={{ marginRight: '10px' }}>{blocks}</span>
+                          <button css={{ display: 'flex', alignItems: 'center' }} onClick={onChangeEditMode}><EditIcon /></button>
+                        </div>}
+        </li>
+      </ul>
+      <div css={{ marginBottom: '8px' }}>Tags：</div>
+      <TagsList />
+    </div>
   );
 };

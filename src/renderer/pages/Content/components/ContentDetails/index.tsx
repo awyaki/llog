@@ -14,7 +14,6 @@ import {
 import { makeFormalDateString } from '~/utils';
 
 import {
-  TagsList,
   CreateNoteButton,
   NoteViewButton,
   BasicInfo,
@@ -60,7 +59,6 @@ export const ContentDetails: VFC = () => {
               <h2 css={{ ...title, marginRight: '8px' }}>{content.name}</h2>
               <button css={{ marginTop: '3px' }} onClick={onChangeToNameUpdate}><EditIcon /></button>
             </div>}
-      <TagsList tags={content.tags} />
       <ul css={buttons}>
         <li><Link to={`/content/${content.id}/createnote`}><CreateNoteButton /></Link></li>
         <li><Link to={`/content/${content.id}/notes`}><NoteViewButton /></Link></li>
