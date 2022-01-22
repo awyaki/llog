@@ -67,7 +67,6 @@ export const ContentDetails: VFC = () => {
       </ul>
       <BasicInfo 
         id={content.id}
-        isUpsertBlocksMode={true}
         created={makeFormalDateString(content.createdAt)}
         blocks={content.blocks.length} />
       <LevelRatio blocks={content.blocks} />
