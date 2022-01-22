@@ -17,7 +17,7 @@ export const TagsList: VFC = () => {
     <>
       <ul css={{ ...container, marginBottom: '8px' }}>
         <li><CreateTagButton /></li>
-        <li><OpenModalToUpdateContentTagsButton /></li>
+        <li><OpenModalToUpdateContentTagsButton defaultTags={content.tags} /></li>
       </ul>
       <ul css={container}>
         {content.tags.map(({ id, name }) => <li key={id}><Tag name={name} /></li>)}

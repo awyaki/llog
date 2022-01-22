@@ -38,6 +38,7 @@ export const ModalToUpdateContentTags: VFC<Props> = ({ contentId }) => {
   const { 
     filteredTags,
     selectedTags,
+    setSelectedTags,
     searchQuery,
     setSearchQueryAction,
     isOpenModalToUpdateContentTags,
