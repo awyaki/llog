@@ -36,6 +36,9 @@ type SelectedTagsContextType = {
   isOpenModalToSearchTags: boolean;
   onOpenModalToSearchTags: () => void;
   onCloseModalToSearchTags: () => void;
+  isOpenModalToUpdateContentTags: boolean;
+  onOpenModalToUpdateContentTags: () => void;
+  onCloseModalToUpdateContentTags: () => void;
   onReleaseSearchedTags: () => void;
   onToggleSelectedTags: (tag: Tag) => () => void;
 };
@@ -59,6 +62,9 @@ export const SelectedTagsContext = createContext<SelectedTagsContextType>({
   isOpenModalToSearchTags: false,
   onOpenModalToSearchTags: () => {},
   onCloseModalToSearchTags: () => {},
+  isOpenModalToUpdateContentTags: false,
+  onOpenModalToUpdateContentTags: () => {},
+  onCloseModalToUpdateContentTags: () => {},
   onReleaseSearchedTags: () => {},
   onToggleSelectedTags: () => () => {},
 });
@@ -86,6 +92,12 @@ export const SelectedTagsContextProvider: FC = ({ children }) => {
     isOpen: isOpenModalToSearchTags,
     onOpen: onOpenModalToSearchTags,
     onClose: onCloseModalToSearchTags,
+  } = useDisclosure();
+
+  const {
+    isOpen: isOpenModalToUpdateContentTags,
+    onOpen: onOpenModalToUpdateContentTags,
+    onClose: onCloseModalToUpdateContentTags
   } = useDisclosure();
   
   useEffect(() => {
@@ -126,7 +138,13 @@ export const SelectedTagsContextProvider: FC = ({ children }) => {
   const onCloseModalToSelectTagsWithResetQuery = useCallback(() => {
     onCloseModalToSelectTags();
     setSearchQueryAction('');
-  }, [onCloseModalToSearchTags, setSearchQueryAction]);
+  }, [onCloseModalToSelectTags, setSearchQueryAction]);
+
+
+  const onCloseModalToUpdateContentTagsWithResetQuery = useCallback(() => {
+    onCloseModalToUpdateContentTags();
+    setSearchQueryAction('');
+  }, [onCloseModalToUpdateContentTags, setSearchQueryAction]);
 
   return (
     <SelectedTagsContext.Provider value={{
@@ -148,6 +166,9 @@ export const SelectedTagsContextProvider: FC = ({ children }) => {
       isOpenModalToSearchTags,
       onOpenModalToSearchTags,
       onCloseModalToSearchTags: onCloseModalToSearchTagsWithResetQuery,
+      isOpenModalToUpdateContentTags,
+      onOpenModalToUpdateContentTags,
+      onCloseModalToUpdateContentTags: onCloseModalToUpdateContentTagsWithResetQuery,
       onReleaseSearchedTags,
       onToggleSelectedTags,
     }}>
