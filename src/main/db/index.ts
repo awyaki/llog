@@ -20,6 +20,7 @@ import {
   updateContentName,
   upsertContentBlocks,
   updateContentTags,
+  deleteConnectContentTags,
 } from './api';
 
 
@@ -128,6 +129,11 @@ export const useDBQueryOnClient = () => {
 
   ipcMain.handle('updateContentTags', async (_, id: number, tags: Tag[]) => {
     const result = await updateContentTags(id, tags);
+    return result;
+  });
+
+  ipcMain.handle('deleteConnectContentTags', async (_, id: number) => {
+    const result = await deleteConnectContentTags(id);
     return result;
   });
 
