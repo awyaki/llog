@@ -1,8 +1,15 @@
 import { VFC, useContext, useCallback } from 'react';
 
-import { SelectedTagsContext } from '../SelectedTagsContextProvider';
+import { 
+  SelectedTagsContext,
+  ContentContext
+} from '~/components';
 
-import { updateContentTags } from '~/api';
+import { 
+  updateContentTags, 
+  deleteConnectContentTags,
+  getContent,
+} from '~/api';
 
 import { 
   makeTagStyle,
@@ -36,10 +43,15 @@ export const ModalToUpdateContentTags: VFC<Props> = ({ contentId }) => {
     onToggleSelectedTags,
   } = useContext(SelectedTagsContext);
 
+  const { setContent } = useContext(ContentContext);
+
   const onUpdateContentTags = useCallback(async () => {
-    const result = await updateContentTags(contentId, selectedTags);
-    console.log(result);
-  }, [updateContentTags]);
+    await deleteConnectContentTags(contentId);
+    await updateContentTags(contentId, selectedTags);
+    const updatedContet = await getContent(contentId);
+    console.log('ok is clicked');
+    setContent(updatedContet);
+  }, [contentId, selectedTags]);
   
   return (
    <Modal isOpen={isOpenModalToUpdateContentTags} onClose={onCloseModalToUpdateContentTags}>
