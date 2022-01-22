@@ -41,6 +41,7 @@ contextBridge.exposeInMainWorld('electronAPI', {
   getAllLog: () => ipcRenderer.invoke('getAllLog'),
   updateBlock: (block: Pick<Block, 'id' | 'iteration' | 'commitedAt' | 'level'>) => ipcRenderer.invoke('updateBlock', block),
   getAllBlock: () => ipcRenderer.invoke('getAllBlock'),
+  updateContentTags: (id: number, tags: Tag[]) => ipcRenderer.invoke('updateContentTags', id, tags),
   upsertContentBlocks: (id: number, blockMaxUnitNumber: number, howManyBlocks: number) => ipcRenderer.invoke('upsertContentBlocks', id, blockMaxUnitNumber, howManyBlocks),
   markdownToHTML: (markdown: string) => ipcRenderer.invoke('markdownToHTML', markdown),
 });

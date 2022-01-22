@@ -18,7 +18,8 @@ import {
   updateBlock,
   getAllBlock,
   updateContentName,
-  upsertContentBlocks
+  upsertContentBlocks,
+  updateContentTags,
 } from './api';
 
 
@@ -116,12 +117,17 @@ export const useDBQueryOnClient = () => {
   });
 
   ipcMain.handle('getAllBlock', async (_) => {
-    const result = getAllBlock();
+    const result = await getAllBlock();
     return result;
   });
 
   ipcMain.handle('upsertContentBlocks', async (_, id: number, blockMaxUnitNumber: number, howManyBlocks: number) => {
-    const result = upsertContentBlocks(id, blockMaxUnitNumber, howManyBlocks);
+    const result = await upsertContentBlocks(id, blockMaxUnitNumber, howManyBlocks);
+    return result;
+  });
+
+  ipcMain.handle('updateContentTags', async (_, id: number, tags: Tag[]) => {
+    const result = await updateContentTags(id, tags);
     return result;
   });
 
