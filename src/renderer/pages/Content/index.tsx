@@ -31,7 +31,7 @@ export const Content: VFC = () => {
     <Header />
       <div css={container}>
         <ContentDetails />
-        <ContentBlocks blocks={content?.blocks ?? []} />
+        <ContentBlocks blocks={content.blocks} />
       </div>
     </>
   );

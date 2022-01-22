@@ -58,7 +58,7 @@ export const ContentDetails: VFC = () => {
                   />
           : <div css={{ display: 'flex', alignItems: 'flex-start', marginBottom: '8px' }}>
               <h2 css={{ ...title, marginRight: '8px' }}>{content.name}</h2>
-              <button onClick={onChangeToNameUpdate}><EditIcon /></button>
+              <button css={{ marginTop: '3px' }} onClick={onChangeToNameUpdate}><EditIcon /></button>
             </div>}
       <TagsList tags={content.tags} />
       <ul css={buttons}>
