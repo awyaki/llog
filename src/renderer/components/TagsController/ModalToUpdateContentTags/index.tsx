@@ -2,6 +2,7 @@ import { VFC, useContext, useCallback } from 'react';
 
 import { SelectedTagsContext } from '../SelectedTagsContextProvider';
 
+import { updateContentTags } from '~/api';
 
 import { 
   makeTagStyle,
@@ -19,7 +20,11 @@ import {
   ModalCloseButton,
 } from '@chakra-ui/react'
 
-export const ModalToUpdateContentTags: VFC = () => {
+type Props = {
+  contentId: number;
+};
+
+export const ModalToUpdateContentTags: VFC<Props> = ({ contentId }) => {
 
   const { 
     filteredTags,
@@ -31,9 +36,10 @@ export const ModalToUpdateContentTags: VFC = () => {
     onToggleSelectedTags,
   } = useContext(SelectedTagsContext);
 
-  const onUpdateContentTags = useCallback(() => {
-
-  }, []);
+  const onUpdateContentTags = useCallback(async () => {
+    const result = await updateContentTags(contentId, selectedTags);
+    console.log(result);
+  }, [updateContentTags]);
   
   return (
    <Modal isOpen={isOpenModalToUpdateContentTags} onClose={onCloseModalToUpdateContentTags}>
@@ -58,7 +64,7 @@ export const ModalToUpdateContentTags: VFC = () => {
           </ModalBody>
           <ModalFooter>
             <button
-              onClick={() => {}}
+              onClick={onUpdateContentTags}
             >OK</button>
             <button 
               onClick={onCloseModalToUpdateContentTags}

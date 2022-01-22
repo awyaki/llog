@@ -1,6 +1,10 @@
 import { VFC, useContext, useEffect } from 'react';
 
-import { ContentContext, ModalToUpdateContentTags } from '~/components';
+import { 
+  ContentContext, 
+  ModalToUpdateContentTags,
+  ModalToCreateTag,
+} from '~/components';
 
 import { getContent } from '~/api';
 
@@ -28,7 +32,8 @@ export const Content: VFC = () => {
 
   return (
     <>
-    <ModalToUpdateContentTags />
+    <ModalToUpdateContentTags contentId={content.id}/>
+    <ModalToCreateTag />
     <Header />
       <div css={container}>
         <ContentDetails />
