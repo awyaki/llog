@@ -9,7 +9,6 @@ export const updateContentTags = async (
     where: { id: id },
     data: {
       tags: {
-        set: [],
         connect: tags.map(({ id }) => ({ id })),
       },
     },
