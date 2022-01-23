@@ -28,10 +28,10 @@ export const MarkdownEditor: VFC<Props> = ({ markdown, setMarkdown }) => {
       const defaultHeight = 300;
 
       const lines = aceEditor.editor.getSession().getScreenLength();
-      const lineHeight = (document.querySelector('.ace_line') as HTMLDivElement)
-                          .style
+      const lineHeight = (document.querySelector('.ace_line') as HTMLDivElement | null)
+                          ?.style
                           .height
-                          .replace('px', '');
+                          .replace('px', '') ?? '0';
 
       const _newHeight = lines * Number(lineHeight);
       
