@@ -36,15 +36,20 @@ export const testCalculateLevel = (
   };
 
   const now = new Date();
-  const timePassed = now.getMilliseconds() - committedAt.getMilliseconds();
+  const timePassed = now.getTime() - committedAt.getTime();
   
   const interval = (MinutesToms(spanMap.get(iteration) ?? 0)) / 5; 
+  console.log('now', now.getTime());
+  console.log('committedAt', committedAt.getTime());
+  console.log(`timePassed`, timePassed);
+  console.log('spanMap', spanMap.get(iteration));
+  console.log('interval', interval);
+  if (0 <= timePassed && timePassed < interval) { console.log('1');return 5; }
+  if (interval <= timePassed && timePassed < 2 * interval) { console.log('2'); return 4; }
+  if (2 * interval <= timePassed && timePassed < 3 * interval) { console.log('3'); return 3; }
+  if (3 * interval <= timePassed && timePassed < 4 * interval) { console.log('4'); return 2; }
+  if (4 * interval <= timePassed && timePassed < 5 * interval) { console.log('5'); return 1; }
   
-  if (0 <= timePassed && timePassed < interval) return 5;
-  if (interval <= timePassed && timePassed < 2 * interval) return 4;
-  if (2 * interval <= timePassed && timePassed < 3 * interval) return 3;
-  if (3 * interval <= timePassed && timePassed < 4 * interval) return 2;
-  if (4 * interval <= timePassed && timePassed < 5 * interval) return 1;
-
+  console.log('6');
   return 5;
 };

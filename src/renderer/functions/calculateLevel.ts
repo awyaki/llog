@@ -36,7 +36,7 @@ export const calculateLevel = (
   };
 
   const now = new Date();
-  const timePassed = now.getMilliseconds() - committedAt.getMilliseconds();
+  const timePassed = now.getTime() - committedAt.getTime();
   
   const interval = (dayToms(spanMap.get(iteration) ?? 0)) / 5; 
   

@@ -22,7 +22,6 @@ export const useUpdateBlockLevel = () => {
         await updateBlock({ id, iteration, commitedAt, level: calculateLevel(iteration, commitedAt)});
       });
 
-      console.log(allBlocks);
     }, 5000);
 
     return () => clearInterval(intervalId); 
