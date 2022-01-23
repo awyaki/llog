@@ -18,8 +18,8 @@ export const SelectedBlocks: VFC<Props> = ({ onOpenSelectBlocks, ...rest }) => {
   return (
     <Box __css={rest}>
       <ul css={container}>
-        {selectedBlocks.map(({ id, level, unitNumber }) => <li key={id}><Block level={level} unitNumber={unitNumber} /></li>)}
         <li><SelectBlockButton onClick={onOpenSelectBlocks}/></li>
+        {selectedBlocks.map(({ id, level, unitNumber }) => <li key={id}><Block level={level} unitNumber={unitNumber} /></li>)}
       </ul>
     </Box>
   );
