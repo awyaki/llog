@@ -28,6 +28,7 @@ contextBridge.exposeInMainWorld('electronAPI', {
     updatedAt: Date
   ) => ipcRenderer.invoke('updateNote', id, markdown, html, tags, blocks, contentId, commitedAt, updatedAt),
   getNoteWithContentId: (contentId: number) => ipcRenderer.invoke('getNoteWithContentId', contentId),
+  deleteNote: (id: number) => ipcRenderer.invoke('deleteNote', id),
   createLog: (
     markdown: string,
     html: string,

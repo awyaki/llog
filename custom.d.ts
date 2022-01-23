@@ -65,6 +65,7 @@ interface IElectronAPI {
   ) => Prisma.Prisma__NoteClient<Note>;
   updateContentName: ({ id, name }: Pick<Content, 'id' | 'name'>) => Prisma.Prisma__ContentClient<Content>;
   getNoteWithContentId: (contentId: number) => Prisma.Prisma__NoteClient<Prisma.NoteGetPayload<typeof noteWithRelation>[]>;
+  deleteNote: (id: number) => Prisma.Prisma__NoteClient<Note>;
   createLog: CreateLog;
   getLog: GetLog;
   getAllLog: GetAllLog;

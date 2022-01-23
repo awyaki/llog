@@ -67,6 +67,10 @@ export const createLog = async (
   return await window.electronAPI.createLog(markdown, html, blocks, tags, contentName, noteId, contentId);
 };
 
+export const deleteNote = async (id: number) => {
+  return await window.electronAPI.deleteNote(id);
+};
+
 export const getLog = async (id: number) => {
   return await window.electronAPI.getLog(id);
 };
