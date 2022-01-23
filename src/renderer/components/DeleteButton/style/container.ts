@@ -7,10 +7,11 @@ export const makeContainer = (disabled: boolean): CSSObject => {
   const base: CSSObject = {
     width: '90px',
     padding: '5px 8px',
-    borderWidth: '2px',
+    borderWidth: '1px',
     backgroundColor: colors.white,
     borderRadius: '4px',
     transition: '.3s',
+    textAlign: 'center',
   };
 
   const disabledStyle: CSSObject = {

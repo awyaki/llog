@@ -68,7 +68,9 @@ export const ContentDetails: VFC = () => {
         created={makeFormalDateString(content.createdAt)}
         blocks={content.blocks.length} />
       <LevelRatio blocks={content.blocks} />
-      <DeleteButton onClick={() => {}} disabled={true}/>
+      <DeleteButton 
+        onClick={() => {}} 
+        disabled={true} />
     </div>
   );
 };

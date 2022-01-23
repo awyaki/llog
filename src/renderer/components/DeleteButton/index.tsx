@@ -7,7 +7,7 @@ import { makeContainer } from './style';
 type Props = {
   onClick: () => void;
   disabled: boolean;
-  css: CSSObject;
+  css?: CSSObject;
 };
 
 export const DeleteButton: VFC<Props> = ({ onClick, disabled, ...rest }) => {
