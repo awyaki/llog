@@ -1,5 +1,7 @@
 import { VFC } from 'react';
 
+import { CSSObject } from '@emotion/react';
+
 
 import { Mode } from '../../types';
 
@@ -21,6 +23,7 @@ import {
 import { title } from './style';
 
 type Props = {
+  css?: CSSObject;
   mode: Mode;
   setToEdit: () => void;
   setToPreview: () => void;
@@ -43,10 +46,11 @@ export const ControlBox: VFC<Props> = ({
   onCreateNote,
   onUpdateNote,
   onCommitLog,
-  onMoveToOtherNoteEdit
+  onMoveToOtherNoteEdit,
+  ...rest
   }) => {
   return (
-    <Box pos="fixed" top="220px" left="65%">
+    <div {...rest}>
       <VStack alignItems="flex-start">
           <Box pb="12px">
             <h2 css={title}>Tags</h2>
@@ -68,6 +72,6 @@ export const ControlBox: VFC<Props> = ({
           disabled={isNoteChange || !isNoteExist}
           onClick={onMoveToOtherNoteEdit} />
       </VStack>
-    </Box>
+    </div>
   );
 };

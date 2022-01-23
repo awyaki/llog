@@ -56,18 +56,16 @@ export const CreateNote: VFC = () => {
           <InfoButton onClick={handleLink(`/content/${content?.id}`, isNoteChange)} />
           <ShowNoteButton onClick={handleLink(`/content/${content?.id}/notes`, isNoteChange)} />
         </HStack>
-        <HStack>
+        <div css={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'flex-start' }}>
           <Note 
+            css={{ width: 'calc(100% - 200px)', maxWidth: '830px', marginRight: '32px' }}
             mode={mode}
             markdown={markdown}
             setMarkdown={setMarkdown}
             updatedAt={note?.updatedAt}
-            isNoteChange={isNoteChange}
-            minWidth="300px" 
-            maxWidth="800px" 
-            w="70%" 
-            pr="6%" />
+            isNoteChange={isNoteChange} />
           <ControlBox 
+            css={{ width: '200px', position: 'sticky', top: '244px' }}
             mode={mode}
             setToEdit={setToEdit}
             setToPreview={setToPreview}
@@ -79,7 +77,7 @@ export const CreateNote: VFC = () => {
             onCommitLog={onCommitLog}
             onMoveToOtherNoteEdit={onMoveToOtherNoteEdit} />
 
-        </HStack>
+        </div>
       </Box>
       <ModalToSelectBlocks 
         isOpen={isOpenSelectBlocks}

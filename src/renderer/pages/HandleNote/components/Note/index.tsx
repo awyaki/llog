@@ -1,8 +1,10 @@
 import { VFC, Dispatch, SetStateAction } from 'react';
 
+import { CSSObject } from '@emotion/react';
+
 import { Mode } from '../../types';
 
-import { Box, HStack, CSSObject } from '@chakra-ui/react';
+import { HStack } from '@chakra-ui/react';
 
 import { MarkdownEditor } from './components/MarkdownEditor';
 import { MarkdownPreview } from './components/MarkdownPreview';
@@ -14,7 +16,8 @@ type Props = {
   setMarkdown: Dispatch<SetStateAction<string>>;
   updatedAt: Date | undefined;
   isNoteChange: boolean;
-} & CSSObject;
+  css?: CSSObject;
+};
 
 export const Note: VFC<Props> = ({ 
   mode,
@@ -25,7 +28,7 @@ export const Note: VFC<Props> = ({
   ...rest
 }) => {
   return (
-    <Box __css={rest}>
+    <div {...rest}>
       <HStack justifyContent="center"  mb="16px">
         <ShowSaveDate notSaved={isNoteChange} date={updatedAt}/>
       </HStack>
@@ -36,6 +39,6 @@ export const Note: VFC<Props> = ({
           : <MarkdownPreview 
               markdown={markdown}
             />}
-    </Box>
+    </div>
   );
 };
