@@ -43,7 +43,7 @@ export const Contents: VFC = () => {
         <Header />
         <Box css={container}>
           <Box w="45%">
-            <h2 css={pageTitle}>Contents</h2>
+            <h2 css={{ ...pageTitle, marginBottom: '8px' }}>Contents</h2>
             <input 
               css={inputBox}
               type="text" 

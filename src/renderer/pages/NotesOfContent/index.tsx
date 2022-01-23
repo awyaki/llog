@@ -21,17 +21,18 @@ import {
 
 export const NotesOfContent: VFC = () => {
   const { content, notes } = useNotesOfContent();
-
+  
+  if (content === null) return <></>;
   return (
         <>
           <Header />
           <Box css={container}>
-            <h1 css={title}>{content?.name ?? ''}</h1>
-            <TagList tags={content?.tags ?? []} />
-            <ul css={buttons}>
-              <li><InfoButton id={content?.id}/></li>
-              <li><CreateNoteButton id={content?.id} /></li>
+            <h1 css={{ ...title, marginBottom: '8px' }}>{content.name}</h1>
+            <ul css={{ ...buttons, marginBottom: '8px' }}>
+              <li><InfoButton id={content.id}/></li>
+              <li><CreateNoteButton id={content.id} /></li>
             </ul>
+            <TagList tags={content.tags} />
             <NoteList notes={notes} />
           </Box>
         </>
