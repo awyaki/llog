@@ -23,7 +23,7 @@ export const ContentCard: VFC<Props> = ({
   name,
 }) => {
   return (
-    <SlideFade in={true} offsetY="30px" css={container}>
+    <SlideFade in={true} offsetY="30px" css={container} unmountOnExit={true}>
       <div css={dateStyle}>{makeFormalDateString(createdAt)}</div>
       <ul css={tagsContainer}>
         {tags.map(({ id, name }) => <li key={id} css={tagStyle}>{name}</li>)}
