@@ -10,3 +10,4 @@ export * from './Icons';
 export * from './ContentsContextProvider';
 export * from './Forms';
 export * from './ContentContextProvider';
+export * from './DeleteButton';

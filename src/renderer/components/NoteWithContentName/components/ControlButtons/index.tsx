@@ -4,7 +4,7 @@ import {
   CommitButton, 
   ShowNoteButton,
   EditNoteButton,
-  DeleteButton,
+  CancelButton,
   } from '~/components';
 
 import { HStack } from '@chakra-ui/react';
@@ -27,7 +27,7 @@ export const ControlButtons: VFC<Props> = ({
       {onClickCommit ? <CommitButton onClick={onClickCommit} /> : undefined}
       {onClickShowNote ? <ShowNoteButton onClick={onClickShowNote} /> : undefined}
       {onClickEditNote ? <EditNoteButton onClick={onClickEditNote} /> : undefined}
-      {onClickDelete ? <DeleteButton onClick={onClickDelete} /> : undefined}
+      {onClickDelete ? <CancelButton onClick={onClickDelete} /> : undefined}
     </HStack>
   );
 };

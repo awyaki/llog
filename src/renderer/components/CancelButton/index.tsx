@@ -6,7 +6,7 @@ type Props = {
   onClick?: MouseEventHandler<HTMLButtonElement>;
 };
 
-export const DeleteButton: VFC<Props> = ({ onClick }) => {
+export const CancelButton: VFC<Props> = ({ onClick }) => {
   return (
     <button onClick={onClick}>
       <DeleteIcon />

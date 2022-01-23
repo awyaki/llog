@@ -4,11 +4,11 @@ import { getContent } from '~/api';
 
 import { Link } from 'react-router-dom';
 
-import { ContentContext } from '~/components/ContentContextProvider';
-
 import { 
+  ContentContext,
   ContentNameForm,
   EditIcon,
+  DeleteButton,
 } from '~/components';
 
 import { makeFormalDateString } from '~/utils';
@@ -68,6 +68,7 @@ export const ContentDetails: VFC = () => {
         created={makeFormalDateString(content.createdAt)}
         blocks={content.blocks.length} />
       <LevelRatio blocks={content.blocks} />
+      <DeleteButton onClick={() => {}} disabled={true}/>
     </div>
   );
 };
