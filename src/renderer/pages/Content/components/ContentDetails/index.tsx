@@ -2,7 +2,9 @@ import { VFC, useCallback, useContext, useState } from 'react';
 
 import { Switch } from '@chakra-ui/react';
 
-import { getContent } from '~/api';
+import { useHistory } from 'react-router-dom';
+
+import { getContent, deleteContent } from '~/api';
 
 import { Link } from 'react-router-dom';
 
@@ -11,6 +13,7 @@ import {
   ContentNameForm,
   EditIcon,
   DeleteButton,
+  NotifierContext
 } from '~/components';
 
 import { makeFormalDateString } from '~/utils';
@@ -32,6 +35,8 @@ export const ContentDetails: VFC = () => {
   const [isUpdateNameMode, setIsUpdateNameMode] = useState(false);
   const [isAllowDelete, setIsAllowDelete] = useState(false);
   const { content, setContent } = useContext(ContentContext);
+  const history = useHistory();
+  const { setMessage } = useContext(NotifierContext);
   
   const onChangeToNameUpdate = useCallback(() => {
     setIsUpdateNameMode(true);
@@ -51,6 +56,13 @@ export const ContentDetails: VFC = () => {
   const onToggleToAllowDelete = useCallback(() => {
     setIsAllowDelete((prev) => !prev);
   }, []);
+
+  const onDeleteContent = useCallback(async () => {
+    if (content === null) return;
+    setMessage('The Content is deleted!');
+    history.push('/');
+    await deleteContent(content.id);
+  }, [content]); 
 
   if (content === null) return <></>;
   return (
@@ -77,7 +89,7 @@ export const ContentDetails: VFC = () => {
       <LevelRatio blocks={content.blocks} />
       <DeleteButton 
         css={{ marginRight: '16px' }}
-        onClick={() => {}} 
+        onClick={onDeleteContent} 
         disabled={!isAllowDelete} />
       <Switch 
         isChecked={isAllowDelete}
