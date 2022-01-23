@@ -5,3 +5,4 @@ export * from './updateContentName';
 export * from './upsertContentBlocks';
 export * from './updateContentTags';
 export * from './deleteConnectContentTags';
+export * from './deleteContent';

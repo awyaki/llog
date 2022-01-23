@@ -94,6 +94,10 @@ export const deleteConnectContentTags = async (id: number) => {
   return await window.electronAPI.deleteConnectContentTags(id);
 };
 
+export const deleteContent = async (id: number) => {
+  return await window.electronAPI.deleteContent(id);
+};
+
 export const markdownToHTML = async (markdown: string) => {
   return await window.electronAPI.markdownToHTML(markdown);
 };

@@ -44,6 +44,7 @@ contextBridge.exposeInMainWorld('electronAPI', {
   updateContentTags: (id: number, tags: Tag[]) => ipcRenderer.invoke('updateContentTags', id, tags),
   upsertContentBlocks: (id: number, blockMaxUnitNumber: number, howManyBlocks: number) => ipcRenderer.invoke('upsertContentBlocks', id, blockMaxUnitNumber, howManyBlocks),
   deleteConnectContentTags: (id: number) => ipcRenderer.invoke('deleteConnectContentTags', id),
+  deleteContent: (id: number) => ipcRenderer.invoke('deleteContent', id),
   markdownToHTML: (markdown: string) => ipcRenderer.invoke('markdownToHTML', markdown),
 });
 
