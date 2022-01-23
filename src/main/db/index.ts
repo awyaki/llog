@@ -21,6 +21,7 @@ import {
   upsertContentBlocks,
   updateContentTags,
   deleteConnectContentTags,
+  deleteNote,
 } from './api';
 
 
@@ -90,6 +91,11 @@ export const useDBQueryOnClient = () => {
 
   ipcMain.handle('getNoteWithContentId', async (_, contentId: number) => {
     const result = await getNoteWithContentId(contentId);
+    return result;
+  });
+
+  ipcMain.handle('deleteNote', async (_, id: number) => {
+    const result = await deleteNote(id);
     return result;
   });
 
