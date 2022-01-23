@@ -13,9 +13,9 @@ type Props = {
 export const DeleteButton: VFC<Props> = ({ onClick, disabled, ...rest }) => {
   return (
     <button 
-      css={{ ...makeContainer(disabled), ...rest }}
+      css={makeContainer(disabled)}
       onClick={onClick} 
-      disabled={disabled}>
+      disabled={disabled} {...rest}>
       Delete
     </button>
   );

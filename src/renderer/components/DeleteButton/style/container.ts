@@ -26,7 +26,7 @@ export const makeContainer = (disabled: boolean): CSSObject => {
     color: colors.red.DEFAULT,
     '&:hover': {
       backgroundColor: colors.red.DEFAULT,
-      color: colors.text,
+      color: colors.white,
     },
   };
   

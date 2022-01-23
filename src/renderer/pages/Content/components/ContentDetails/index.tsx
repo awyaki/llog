@@ -1,5 +1,7 @@
 import { VFC, useCallback, useContext, useState } from 'react';
 
+import { Switch } from '@chakra-ui/react';
+
 import { getContent } from '~/api';
 
 import { Link } from 'react-router-dom';
@@ -28,6 +30,7 @@ import { title } from './style/title';
 
 export const ContentDetails: VFC = () => {
   const [isUpdateNameMode, setIsUpdateNameMode] = useState(false);
+  const [isAllowDelete, setIsAllowDelete] = useState(false);
   const { content, setContent } = useContext(ContentContext);
   
   const onChangeToNameUpdate = useCallback(() => {
@@ -44,6 +47,10 @@ export const ContentDetails: VFC = () => {
   const onChangeToNormal = useCallback(() => {
     setIsUpdateNameMode(false);
   }, [setIsUpdateNameMode]);
+
+  const onToggleToAllowDelete = useCallback(() => {
+    setIsAllowDelete((prev) => !prev);
+  }, []);
 
   if (content === null) return <></>;
   return (
@@ -69,8 +76,12 @@ export const ContentDetails: VFC = () => {
         blocks={content.blocks.length} />
       <LevelRatio blocks={content.blocks} />
       <DeleteButton 
+        css={{ marginRight: '16px' }}
         onClick={() => {}} 
-        disabled={true} />
+        disabled={!isAllowDelete} />
+      <Switch 
+        isChecked={isAllowDelete}
+        onChange={onToggleToAllowDelete} />
     </div>
   );
 };
