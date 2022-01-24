@@ -2,21 +2,21 @@ import { FC, ButtonHTMLAttributes } from 'react';
 
 import { colors } from '~/styleConfig';
 
-export const NormalButton: FC<ButtonHTMLAttributes<HTMLButtonElement>> = ({ children, ...rest }) => {
+export const WarningButton: FC<ButtonHTMLAttributes<HTMLButtonElement>> = ({ children, ...rest }) => {
   return (
     <button css={{
       width: '110px',
       padding: '5px 8px',
       transition: '.25s',
       color: colors.white,
-      backgroundColor: colors.cyan.DEFAULT,
+      backgroundColor: colors.red.DEFAULT,
       borderWidth: '1px',
       borderStyle: 'solid',
-      borderColor: colors.cyan.DEFAULT,
+      borderColor: colors.red.DEFAULT,
       borderRadius: '4px',
       '&:hover, focus': {
         backgroundColor: colors.white,
-        color: colors.cyan.DEFAULT,
+        color: colors.red.DEFAULT,
       }
     }}
     {...rest}>
