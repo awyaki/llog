@@ -10,8 +10,6 @@ import {
 
 import { Block } from '@prisma/client';
 
-import { title } from './style/title';
-
 import { BlocksOverview } from './components/BlocksOverview';
 import { BlocksDetailView } from './components/BlocksDetailView';
 
@@ -30,7 +28,6 @@ export const ContentBlocks: VFC<Props> = ({ blocks, ...rest }) => {
   
   return (
     <div {...rest}>
-      <h2 css={title}>Blocks</h2>
       <FormControl display="flex" alignItems="center" mb="16px">
         <FormLabel htmlFor="show-details" mb="0">
          Show Details 
