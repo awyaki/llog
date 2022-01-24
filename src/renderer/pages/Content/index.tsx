@@ -12,6 +12,8 @@ import { useParams } from 'react-router-dom';
 
 import { Header } from '../Header';
 
+import { NotFoundPage } from '~/pages';
+
 import { ContentDetails, ContentBlocks } from './components';
 
 import { container } from './style/container';
@@ -28,7 +30,7 @@ export const Content: VFC = () => {
 
   }, [contentId]);
   
-  if (content === null) return <></>;
+  if (content === null) return <NotFoundPage />;
 
   return (
     <>

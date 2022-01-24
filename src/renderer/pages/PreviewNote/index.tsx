@@ -11,6 +11,8 @@ import {
   CommitIcon,
 } from '~/components';
 
+import { NotFoundPage } from '~/pages';
+
 import { makeFormalTimeString } from '~/utils';
 
 import { TagList, BlockList } from './components';
@@ -31,7 +33,7 @@ import 'zenn-content-css';
 
 export const PreviewNote: VFC = () => {
   const  { note, contentName, onCommitLog } = usePreviewNote();
-  if (note === null) return <></>;
+  if (note === null) return <NotFoundPage />;
 
   const { contentId, id, updatedAt, tags, blocks, transformed } = note;
   return (
