@@ -1,22 +1,20 @@
 import { VFC } from 'react';
 
-import { colors } from '~/styleConfig';
+import { CSSObject } from '@emotion/react';
 
 import { MdSearch } from 'react-icons/md';
 
 import { Icon } from '@chakra-ui/react';
 
 type Props = {
-  color?: string;
+  css?: CSSObject;
 };
 
-export const SearchIcon: VFC<Props> = ({ color }) => {
+export const SearchIcon: VFC<Props> = ({ ...rest }) => {
   return (
     <Icon
       as={MdSearch}
-      w={4}
-      h={4}
-      color={color ?? colors.cyan.DEFAULT}
+      {...rest}
     />
   );
 };
