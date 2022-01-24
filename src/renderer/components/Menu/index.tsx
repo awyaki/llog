@@ -9,6 +9,7 @@ import { useMenu } from './hooks';
 import { 
   HomeIcon,
   LogsIcon,
+  BackIcon,
 } from '../Icons';
 
 
@@ -38,6 +39,11 @@ export const Menu: VFC<Props> = ({ confirmer }) => {
         backgroundColor: colors.cyan.DEFAULT,
         marginRight: '8px',
       }}>
+      <button
+        onClick={onClickBack}
+        css={{ ...menuButton, marginBottom: '16px' }}>
+        <BackIcon />
+      </button>
       <button 
         onClick={onClickHome}
         css={{ ...menuButton, marginBottom: '16px' }}>
