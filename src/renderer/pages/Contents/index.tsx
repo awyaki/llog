@@ -1,7 +1,5 @@
 import { VFC } from 'react';
 
-import { pageTitle } from '~/pages/style/pageTitle';
-
 import { Box } from '@chakra-ui/react';
 
 import { useContents } from './hooks';
@@ -16,6 +14,7 @@ import {
   SearchedTagsList,
   NormalButton,
   SearchIcon,
+  Menu,
 } from '~/components';
 
 import {
@@ -40,14 +39,14 @@ export const Contents: VFC = () => {
     onCloseDrawerToCreateContent,
   } = useContents();
   return (
-      <>
+      <div css={{ display: 'flex' }}>
         <ModalToSelectTags />
         <ModalToCreateTag />
         <ModalToSearchTags />
         <DrawerToCreateContent 
           isOpen={isOpenDrawerToCreateContent}
           onClose={onCloseDrawerToCreateContent} />
-        <Header />
+        <Menu />
         <Box css={container}>
           <NormalButton 
             css={{ display: 'block', marginBottom: '16px' }}
@@ -68,6 +67,6 @@ export const Contents: VFC = () => {
           </div>
           <ContentsList contents={filtered} />
         </Box>
-      </>
+      </div>
   );
 };

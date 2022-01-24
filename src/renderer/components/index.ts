@@ -13,3 +13,4 @@ export * from './ContentContextProvider';
 export * from './DeleteButton';
 export * from './Header';
 export * from './Buttons';
+export * from './Menu';
