@@ -19,7 +19,7 @@ export const useMenu = (confirmer?: () => boolean) => {
     return;
   }, [confirmer, history]);
     
-  const onClickFarward = useCallback(() => {
+  const onClickForward = useCallback(() => {
     if (confirmer === undefined) {
       history.goForward();
       return;
@@ -63,7 +63,7 @@ export const useMenu = (confirmer?: () => boolean) => {
   }, [confirmer, history]);
 
   return {
-    onClickFarward,
+    onClickForward,
     onClickBack,
     onClickHome,
     onClickLogs,
