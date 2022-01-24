@@ -4,7 +4,7 @@ import { Box } from '@chakra-ui/react';
 
 import { container, title } from './style';
 
-import { Header } from './components';
+import { Menu } from '~/components';
 
 import { LineUpLogsForDate } from './components';
 
@@ -14,14 +14,14 @@ export const Logs: VFC = () => {
   const { logs, onClickCommit } = useLogs()
 
   return (
-    <>
-      <Header />
+    <div css={{ display: 'flex' }}>
+      <Menu />
       <Box css={container}>
         <h2 css={{ ...title, marginBottom: '16px' }}>Logs</h2>
         <LineUpLogsForDate 
           logs={logs}
           onClickCommit={onClickCommit} />
       </Box>
-    </>
+    </div>
   );
 };
