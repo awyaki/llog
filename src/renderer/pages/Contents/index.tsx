@@ -15,6 +15,7 @@ import {
   ModalToSearchTags,
   SearchedTagsList,
   NormalButton,
+  SearchIcon,
 } from '~/components';
 
 import {
@@ -56,11 +57,14 @@ export const Contents: VFC = () => {
           </NormalButton>
           <div css={searchBox}>
             <h2 css={{ ...searchTitle, marginBottom: '8px' }}>Search</h2>
-            <input 
-              css={{ ...inputBox, marginBottom: '16px' }}
-              type="text" 
-              value={searchQuery}
-              onChange={onChangeSearchQuery} />
+            <div css={{ display: 'flex', alignItems: 'flex-end', marginBottom: '16px' }}>
+              <input 
+                css={{ ...inputBox, marginRight: '4px' }}
+                type="text" 
+                value={searchQuery}
+                onChange={onChangeSearchQuery} />
+              <SearchIcon />
+            </div>
             <SearchedTagsList />
           </div>
           <ContentsList contents={filtered} />
