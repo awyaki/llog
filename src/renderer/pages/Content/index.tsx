@@ -4,13 +4,12 @@ import {
   ContentContext, 
   ModalToUpdateContentTags,
   ModalToCreateTag,
+  Menu
 } from '~/components';
 
 import { getContent } from '~/api';
 
 import { useParams } from 'react-router-dom';
-
-import { Header } from '../Header';
 
 import { NotFoundPage } from '~/pages';
 
@@ -33,16 +32,16 @@ export const Content: VFC = () => {
   if (content === null) return <NotFoundPage />;
 
   return (
-    <>
+    <div css={{ display: 'flex' }}>
     <ModalToUpdateContentTags contentId={content.id}/>
     <ModalToCreateTag />
-    <Header />
+    <Menu />
       <div css={container}>
         <ContentDetails css={{ marginRight: '48px' }} />
         <ContentBlocks 
           css={{ width: '60%' }}
           blocks={content.blocks} />
       </div>
-    </>
+    </div>
   );
 }; 
