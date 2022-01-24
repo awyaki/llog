@@ -4,19 +4,32 @@ import { colors } from '~/styleConfig';
 
 import { menuButton } from './style';
 
+import { useMenu } from './hooks';
+
 import { 
   HomeIcon,
   LogsIcon,
 } from '../Icons';
 
-import { Link } from 'react-router-dom';
 
-export const Menu: VFC = () => {
+type Props = {
+  confirmer?: () => boolean;
+};
+
+export const Menu: VFC<Props> = ({ confirmer }) => {
+  const {
+    onClickBack,
+    onClickFarward,
+    onClickHome,
+    onClickLogs
+  } = useMenu(confirmer);
+
   return (
     <div css={{ 
         height: '100vh',
         position: 'sticky',
         display: 'flex',
+        top: 0,
         justifyContent: 'flex-start',
         alignItems: 'center',
         flexDirection: 'column',
@@ -25,12 +38,16 @@ export const Menu: VFC = () => {
         backgroundColor: colors.cyan.DEFAULT,
         marginRight: '8px',
       }}>
-      <Link css={{ ...menuButton, marginBottom: '16px' }} to="/">
+      <button 
+        onClick={onClickHome}
+        css={{ ...menuButton, marginBottom: '16px' }}>
         <HomeIcon />
-      </Link>
-      <Link css={menuButton} to="/logs">
+      </button>
+      <button 
+        onClick={onClickLogs}
+        css={menuButton}>
         <LogsIcon />
-      </Link>
+      </button>
     </div>
   );
 };

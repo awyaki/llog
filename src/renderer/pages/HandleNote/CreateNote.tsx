@@ -2,7 +2,10 @@ import { VFC } from 'react';
 
 import { useEditNote } from './hooks';
 
-import { ModalToSelectTags, ModalToCreateTag } from '~/components';
+import { 
+  ModalToSelectTags, 
+  ModalToCreateTag,
+} from '~/components';
 
 import { pageTitle } from '~/pages/style';
 
@@ -13,12 +16,12 @@ import { confirmer } from './functions';
 import { Box, HStack } from '@chakra-ui/react';
 
 import { 
-  Header, 
   InfoButton, 
   ShowNoteButton, 
   Note, 
   ModalToSelectBlocks,
-  ControlBox
+  ControlBox,
+  SwitchingMenu,
 } from './components';
 
 
@@ -48,10 +51,12 @@ export const CreateNote: VFC = () => {
   if (content === null) return <></>;
 
   return (
-    <>
-      <Header isNoteChange={isNoteChange} confirmer={confirmer} />
+    <div css={{ display: 'flex' }}>
       <ModalToSelectTags />
       <ModalToCreateTag />
+      <SwitchingMenu 
+        isNoteChange={isNoteChange} 
+        confirmer={confirmer} />
       <Box __css={container}>
         <h2 css={{ ...pageTitle, marginBottom: '8px' }}>{content.name}</h2>
         <HStack width="120px" mb="16px">
@@ -85,6 +90,6 @@ export const CreateNote: VFC = () => {
         isOpen={isOpenSelectBlocks}
         onClose={onCloseSelectBlocks}
         blocks={content.blocks} />
-    </>
+    </div>
   );
 };
