@@ -10,6 +10,7 @@ import {
   HomeIcon,
   LogsIcon,
   BackIcon,
+  ForwardIcon,
 } from '../Icons';
 
 
@@ -20,7 +21,7 @@ type Props = {
 export const Menu: VFC<Props> = ({ confirmer }) => {
   const {
     onClickBack,
-    onClickFarward,
+    onClickForward,
     onClickHome,
     onClickLogs
   } = useMenu(confirmer);
@@ -43,6 +44,11 @@ export const Menu: VFC<Props> = ({ confirmer }) => {
         onClick={onClickBack}
         css={{ ...menuButton, marginBottom: '16px' }}>
         <BackIcon />
+      </button>
+      <button
+        onClick={onClickForward}
+        css={{ ...menuButton, marginBottom: '32px' }}>
+        <ForwardIcon />
       </button>
       <button 
         onClick={onClickHome}
