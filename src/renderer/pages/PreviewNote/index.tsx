@@ -2,13 +2,12 @@ import { VFC  } from 'react';
 
 import { Link } from 'react-router-dom';
 
-import { Header } from '../Header';
-
 import { 
   InfoIcon,
   EditNoteIcon,
   NotesIcon,
   CommitIcon,
+  Menu
 } from '~/components';
 
 import { NotFoundPage } from '~/pages';
@@ -37,8 +36,8 @@ export const PreviewNote: VFC = () => {
 
   const { contentId, id, updatedAt, tags, blocks, transformed } = note;
   return (
-    <>
-      <Header />
+    <div css={{ display: 'flex' }}>
+      <Menu />
       <Box css={container}>
         <h2 css={{ ...pageTitle, marginBottom: '8px' }}>{contentName}</h2>
         <ul css={buttonsStyle}>
@@ -58,6 +57,6 @@ export const PreviewNote: VFC = () => {
           <div className="znc" dangerouslySetInnerHTML={{ __html: transformed }}></div>
         </Box>
       </Box>
-    </>
+    </div>
   );
 };
