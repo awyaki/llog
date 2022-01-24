@@ -48,14 +48,14 @@ export const Contents: VFC = () => {
           onClose={onCloseDrawerToCreateContent} />
         <Header />
         <Box css={container}>
-          <h2 css={{ ...pageTitle, marginBottom: '16px' }}>Contents</h2>
+          <h2 css={{ ...pageTitle, marginBottom: '32px' }}>Contents</h2>
           <NormalButton 
             css={{ display: 'block', marginBottom: '16px' }}
             onClick={onOpenDrawerToCreateContent}>
             Add new
           </NormalButton>
           <div css={searchBox}>
-            <h2 css={searchTitle}>Search</h2>
+            <h2 css={{ ...searchTitle, marginBottom: '8px' }}>Search</h2>
             <input 
               css={{ ...inputBox, marginBottom: '16px' }}
               type="text" 
