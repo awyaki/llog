@@ -36,7 +36,7 @@ export const Menu: VFC<Props> = ({ confirmer }) => {
         alignItems: 'center',
         flexDirection: 'column',
         width: '90px', 
-        padding: '120px 16px 16px 16px', 
+        padding: '90px 16px 16px 16px', 
         backgroundColor: colors.cyan.DEFAULT,
         marginRight: '8px',
       }}>

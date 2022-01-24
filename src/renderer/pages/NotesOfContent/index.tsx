@@ -5,7 +5,7 @@ import { useNotesOfContent } from './hooks';
 
 import { Box } from '@chakra-ui/react';
 
-import { Header } from '../Header';
+import { Menu } from '~/components';
 
 import { container } from './style/container'
 import { title } from './style/title';
@@ -24,8 +24,8 @@ export const NotesOfContent: VFC = () => {
   
   if (content === null) return <></>;
   return (
-        <>
-          <Header />
+        <div css={{ display: 'flex' }}>
+          <Menu />
           <Box css={container}>
             <h1 css={{ ...title, marginBottom: '8px' }}>{content.name}</h1>
             <ul css={{ ...buttons, marginBottom: '8px' }}>
@@ -35,6 +35,6 @@ export const NotesOfContent: VFC = () => {
             <TagList tags={content.tags} />
             <NoteList notes={notes} />
           </Box>
-        </>
+        </div>
   );
 };
