@@ -5,8 +5,7 @@ import { colors } from '~/styleConfig';
 export const WarningButton: FC<ButtonHTMLAttributes<HTMLButtonElement>> = ({ children, ...rest }) => {
   return (
     <button css={{
-      width: '110px',
-      padding: '5px 8px',
+      padding: '5px 16px',
       transition: '.25s',
       color: colors.white,
       backgroundColor: colors.red.DEFAULT,
@@ -14,7 +13,7 @@ export const WarningButton: FC<ButtonHTMLAttributes<HTMLButtonElement>> = ({ chi
       borderStyle: 'solid',
       borderColor: colors.red.DEFAULT,
       borderRadius: '4px',
-      '&:hover, focus': {
+      '&:hover, &:focus': {
         backgroundColor: colors.white,
         color: colors.red.DEFAULT,
       }
