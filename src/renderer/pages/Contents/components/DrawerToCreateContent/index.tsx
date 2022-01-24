@@ -67,6 +67,7 @@ export const DrawerToCreateContent: VFC<Omit<DrawerProps, 'children'>> = ({
     setValue('numberOfBlocks', '');
     setValue('contentName', '');
     setMessage('A new Contet is created.');
+    onClose();
   }, [selectedTags]);  
 
   const isAlreadyNameExist = useCallback<Validate<string>>((contentName) => {
