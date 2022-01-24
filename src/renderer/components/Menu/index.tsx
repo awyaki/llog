@@ -59,7 +59,7 @@ export const Menu: VFC<Props> = ({ confirmer }) => {
       </button>
       <button 
         onClick={onClickLogs}
-        css={menuButton}>
+        css={{ ...menuButton, marginBottom: '16px'}}>
         <LogsIcon />
       </button>
       <button 
