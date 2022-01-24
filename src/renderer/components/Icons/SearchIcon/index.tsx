@@ -10,7 +10,7 @@ type Props = {
   color?: string;
 };
 
-export const EditIcon: VFC<Props> = ({ color }) => {
+export const SearchIcon: VFC<Props> = ({ color }) => {
   return (
     <Icon
       as={MdSearch}

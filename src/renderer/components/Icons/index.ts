@@ -6,3 +6,4 @@ export * from './CommitIcon';
 export * from './EditIcon';
 export * from './EnterIcon';
 export * from './CancelIcon';
+export * from './SearchIcon';
