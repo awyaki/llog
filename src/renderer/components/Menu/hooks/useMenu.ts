@@ -62,10 +62,26 @@ export const useMenu = (confirmer?: () => boolean) => {
     return;
   }, [confirmer, history]);
 
+  const onClickTags = useCallback(() => {
+    const path = '/tags';
+
+    if (confirmer === undefined) {
+      history.push(path);
+      return;
+    }
+    
+    if (confirmer()) {
+      history.push(path);
+    }
+    
+    return;
+  }, [confirmer, history]);
+
   return {
     onClickForward,
     onClickBack,
     onClickHome,
     onClickLogs,
+    onClickTags,
   };
 };

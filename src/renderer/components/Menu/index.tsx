@@ -11,6 +11,7 @@ import {
   LogsIcon,
   BackIcon,
   ForwardIcon,
+  TagsIcon
 } from '../Icons';
 
 
@@ -23,7 +24,8 @@ export const Menu: VFC<Props> = ({ confirmer }) => {
     onClickBack,
     onClickForward,
     onClickHome,
-    onClickLogs
+    onClickLogs,
+    onClickTags
   } = useMenu(confirmer);
 
   return (
@@ -59,6 +61,11 @@ export const Menu: VFC<Props> = ({ confirmer }) => {
         onClick={onClickLogs}
         css={menuButton}>
         <LogsIcon />
+      </button>
+      <button 
+        onClick={onClickTags}
+        css={menuButton}>
+        <TagsIcon />
       </button>
     </div>
   );
