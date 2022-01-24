@@ -36,8 +36,10 @@ export const Content: VFC = () => {
     <ModalToCreateTag />
     <Header />
       <div css={container}>
-        <ContentDetails />
-        <ContentBlocks blocks={content.blocks} />
+        <ContentDetails css={{ marginRight: '32px' }} />
+        <ContentBlocks 
+          css={{ width: '60%' }}
+          blocks={content.blocks} />
       </div>
     </>
   );

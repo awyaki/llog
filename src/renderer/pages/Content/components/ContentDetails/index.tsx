@@ -1,5 +1,7 @@
 import { VFC, useCallback, useContext, useState } from 'react';
 
+import { CSSObject } from '@emotion/react';
+
 import { Switch } from '@chakra-ui/react';
 
 import { useHistory } from 'react-router-dom';
@@ -26,12 +28,15 @@ import {
 } from './components';
 
 
-import { container } from './style/container';
 import { buttons } from './style/buttons';
 import { title } from './style/title';
 
+type Props = {
+  css?: CSSObject;
+};
 
-export const ContentDetails: VFC = () => {
+
+export const ContentDetails: VFC<Props> = ({  ...rest }) => {
   const [isUpdateNameMode, setIsUpdateNameMode] = useState(false);
   const [isAllowDelete, setIsAllowDelete] = useState(false);
   const { content, setContent } = useContext(ContentContext);
@@ -66,7 +71,7 @@ export const ContentDetails: VFC = () => {
 
   if (content === null) return <></>;
   return (
-    <div css={container}>
+    <div {...rest}>
         {isUpdateNameMode
           ?   <ContentNameForm 
                   id={content.id}

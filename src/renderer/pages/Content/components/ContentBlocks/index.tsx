@@ -1,5 +1,7 @@
 import { VFC, useState, useCallback } from 'react';
 
+import { CSSObject } from '@emotion/react';
+
 import {
   FormControl,
   FormLabel,
@@ -8,7 +10,6 @@ import {
 
 import { Block } from '@prisma/client';
 
-import { container } from './style/container';
 import { title } from './style/title';
 
 import { BlocksOverview } from './components/BlocksOverview';
@@ -16,9 +17,10 @@ import { BlocksDetailView } from './components/BlocksDetailView';
 
 type Props = {
   blocks: Block[];
+  css?: CSSObject;
 };
 
-export const ContentBlocks: VFC<Props> = ({ blocks }) => {
+export const ContentBlocks: VFC<Props> = ({ blocks, ...rest }) => {
   const [isDetails, setIsDetails] = useState(false);
   
   const handleChange = useCallback(() => {
@@ -27,7 +29,7 @@ export const ContentBlocks: VFC<Props> = ({ blocks }) => {
 
   
   return (
-    <div css={container}>
+    <div {...rest}>
       <h2 css={title}>Blocks</h2>
       <FormControl display="flex" alignItems="center" mb="16px">
         <FormLabel htmlFor="show-details" mb="0">
