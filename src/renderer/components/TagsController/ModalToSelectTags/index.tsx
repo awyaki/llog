@@ -1,5 +1,7 @@
 import { VFC, useContext } from 'react';
 
+import { SearchIcon } from '~/components';
+
 import { SelectedTagsContext } from '../SelectedTagsContextProvider';
 
 import { 
@@ -36,11 +38,14 @@ export const ModalToSelectTags: VFC = () => {
           <ModalHeader>Select Tag</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <input 
-              css={{ ...inputBox, marginBottom: '10px' }}
-              type="text" 
-              value={searchQuery}
-              onChange={(e) => setSearchQueryAction(e.target.value)} />
+            <div css={{ display: 'flex', alignItems: 'flex-end' }}>
+              <input 
+                css={{ ...inputBox, marginRight: '4px' }}
+                type="text" 
+                value={searchQuery}
+                onChange={(e) => setSearchQueryAction(e.target.value)} />
+              <SearchIcon />
+            </div>
             <ul css={tagsContainer}>
               {filteredTags.map(({ id, name }) => <li key={id}>
                                             <button 
