@@ -4,7 +4,10 @@ import { colors } from '~/styleConfig';
 
 import { menuButton } from './style';
 
-import { HomeIcon } from '../Icons';
+import { 
+  HomeIcon,
+  LogsIcon,
+} from '../Icons';
 
 import { Link } from 'react-router-dom';
 
@@ -22,8 +25,11 @@ export const Menu: VFC = () => {
         backgroundColor: colors.cyan.DEFAULT,
         marginRight: '8px',
       }}>
-      <Link css={menuButton} to="/">
+      <Link css={{ ...menuButton, marginBottom: '16px' }} to="/">
         <HomeIcon />
+      </Link>
+      <Link css={menuButton} to="/logs">
+        <LogsIcon />
       </Link>
     </div>
   );
