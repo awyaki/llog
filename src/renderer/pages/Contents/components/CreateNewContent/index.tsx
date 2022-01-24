@@ -16,25 +16,24 @@ import {
   labelStyle,
 } from './style';
 
+
 import { pageTitle } from '~/pages/style/pageTitle';
 
 import { useForm, Validate } from 'react-hook-form';
 
-type Props = {
-  contents: Content[]; 
-  onOpenTagCreateModal: MouseEventHandler<HTMLButtonElement>;
-  onCreateNewContent: (name: string, tags: Tag[], numberOfBlocks: number) => Promise<void>;
-};
+import { useCreateContent } from './hooks'
 
 type Inputs = {
   contentName: string;
   numberOfBlocks: string;
 };
 
-export const CreateNewContent: VFC<Props> = ({ 
-  contents,
-  onCreateNewContent
-}) => {
+export const CreateNewContent: VFC = () => {
+  const { 
+    contents,
+    onCreateNewContent,
+  } = useCreateContent();
+
   const {
     register,
     handleSubmit,

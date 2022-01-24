@@ -18,7 +18,7 @@ import {
 
 import {
   ContentsList,
-  CreateNewContent,
+  DrawerToCreateContent,
 } from './components';
 
 import { 
@@ -28,22 +28,26 @@ import {
 
 export const Contents: VFC = () => {
   const {
-    contents,
     filtered,
     searchQuery,
-    onCreateNewContent,
-    onOpenTagCreateModal,
-    onChangeSearchQuery
+    onChangeSearchQuery,
+    isOpenDrawerToCreateContent,
+    onOpenDrawerToCreateContent,
+    onCloseDrawerToCreateContent,
   } = useContents();
   return (
       <>
         <ModalToSelectTags />
         <ModalToCreateTag />
         <ModalToSearchTags />
+        <DrawerToCreateContent 
+          isOpen={isOpenDrawerToCreateContent}
+          onClose={onCloseDrawerToCreateContent} />
         <Header />
         <Box css={container}>
           <Box w="45%">
             <h2 css={{ ...pageTitle, marginBottom: '8px' }}>Contents</h2>
+            <button onClick={onOpenDrawerToCreateContent}>Create</button>
             <input 
               css={inputBox}
               type="text" 
@@ -52,10 +56,6 @@ export const Contents: VFC = () => {
             <SearchedTagsList />
             <ContentsList contents={filtered} />
           </Box>
-          <CreateNewContent 
-            contents={contents}
-            onOpenTagCreateModal={onOpenTagCreateModal} 
-            onCreateNewContent={onCreateNewContent} />
         </Box>
       </>
   );
