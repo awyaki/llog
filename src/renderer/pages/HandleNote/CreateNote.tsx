@@ -45,16 +45,18 @@ export const CreateNote: VFC = () => {
           handleLink,
         } = useEditNote();
   
+  if (content === null) return <></>;
+
   return (
     <>
       <Header isNoteChange={isNoteChange} confirmer={confirmer} />
       <ModalToSelectTags />
       <ModalToCreateTag />
       <Box __css={container}>
-        <h2 css={{ ...pageTitle, marginBottom: '8px' }}>{content?.name}</h2>
+        <h2 css={{ ...pageTitle, marginBottom: '8px' }}>{content.name}</h2>
         <HStack width="120px" mb="16px">
-          <InfoButton onClick={handleLink(`/content/${content?.id}`, isNoteChange)} />
-          <ShowNoteButton onClick={handleLink(`/content/${content?.id}/notes`, isNoteChange)} />
+          <InfoButton onClick={handleLink(`/content/${content.id}`, isNoteChange)} />
+          <ShowNoteButton onClick={handleLink(`/content/${content.id}/notes`, isNoteChange)} />
         </HStack>
         <div css={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'flex-start' }}>
           <Note 
@@ -82,7 +84,7 @@ export const CreateNote: VFC = () => {
       <ModalToSelectBlocks 
         isOpen={isOpenSelectBlocks}
         onClose={onCloseSelectBlocks}
-        blocks={content?.blocks ?? []} />
+        blocks={content.blocks} />
     </>
   );
 };
