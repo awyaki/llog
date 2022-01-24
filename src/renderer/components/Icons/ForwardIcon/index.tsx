@@ -4,15 +4,15 @@ import { CSSObject } from '@emotion/react';
 
 import { Icon } from '@chakra-ui/react';
 
-import { MdArrowBack } from 'react-icons/md';
+import { MdArrowForward } from 'react-icons/md';
 
 type Props = {
   css?: CSSObject;
 };
 
-export const BackIcon: VFC<Props> = ({ ...rest }) => {
+export const ForwardIcon: VFC<Props> = ({ ...rest }) => {
   return (
     <Icon 
-    as={MdArrowBack} {...rest} />
+    as={MdArrowForward} {...rest} />
   );
 };

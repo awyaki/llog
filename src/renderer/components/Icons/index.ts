@@ -10,3 +10,4 @@ export * from './SearchIcon';
 export * from './HomeIcon';
 export * from './LogsIcon';
 export * from './BackIcon';
+export * from './ForwardIcon';
