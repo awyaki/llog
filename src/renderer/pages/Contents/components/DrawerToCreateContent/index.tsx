@@ -1,6 +1,4 @@
-import { VFC, MouseEventHandler, useContext, useCallback } from 'react';
-
-import { Tag, Content } from '@prisma/client';
+import { VFC, useContext, useCallback } from 'react';
 
 import {
   Drawer,
@@ -15,7 +13,9 @@ import {
 import {
   SelectedTagsList,
   SelectedTagsContext,
-  NotifierContext
+  NotifierContext,
+  NormalButton,
+  WarningButton
 } from '~/components';
 
 import {
@@ -75,6 +75,13 @@ export const DrawerToCreateContent: VFC<Omit<DrawerProps, 'children'>> = ({
     return isOk || 'This name have already been existed.';
   }, [contents]);
 
+  const onCloseWithReset = useCallback(() => {
+    onClose();
+    setSelectedTags([]);
+    setValue('contentName', '');
+    setValue('numberOfBlocks', '');
+  }, []);
+
   return (
     <Drawer isOpen={isOpen} onClose={onClose}>
       <DrawerOverlay />
@@ -110,11 +117,16 @@ export const DrawerToCreateContent: VFC<Omit<DrawerProps, 'children'>> = ({
         </form>
       </DrawerBody>
       <DrawerFooter>
-          <button 
+          <NormalButton
+            css={{ marginRight: '8px' }}
             type="submit"
-            form="content-create"
-          >Create</button>
-        <button onClick={onClose}>Cancel</button>
+            form="content-create">
+            Create
+          </NormalButton>
+          <WarningButton
+          onClick={onCloseWithReset}>
+            Cancel
+          </WarningButton>
       </DrawerFooter>
       </DrawerContent>
     </Drawer>
