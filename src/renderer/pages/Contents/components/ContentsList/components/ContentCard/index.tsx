@@ -2,7 +2,7 @@ import { VFC } from 'react';
 
 import { ContentWithRelation } from '~/pages/type';
 
-import { makeFormalDateString } from '~/utils';
+import { makeFormalTimeString } from '~/utils';
 
 import { SlideFade } from '@chakra-ui/react';
 
@@ -24,7 +24,7 @@ export const ContentCard: VFC<Props> = ({
 }) => {
   return (
     <SlideFade in={true} offsetY="30px" css={container} unmountOnExit={true}>
-      <div css={dateStyle}>{makeFormalDateString(createdAt)}</div>
+      <div css={dateStyle}>{makeFormalTimeString(createdAt)}</div>
       <ul css={tagsContainer}>
         {tags.map(({ id, name }) => <li key={id} css={tagStyle}>{name}</li>)}
       </ul>

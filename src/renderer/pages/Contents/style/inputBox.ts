@@ -4,5 +4,4 @@ import { inputBox as base } from '~/pages/style';
 
 export const inputBox: CSSObject = {
   ...base,
-  marginBottom: '10px',
 };

@@ -1,12 +1,17 @@
 import { FC, ButtonHTMLAttributes } from 'react';
 
+import { CSSObject } from '@emotion/react';
+
 import { colors } from '~/styleConfig';
 
-export const NormalButton: FC<ButtonHTMLAttributes<HTMLButtonElement>> = ({ children, ...rest }) => {
+type Props = {
+  css?: CSSObject;
+} & ButtonHTMLAttributes<HTMLButtonElement>;
+
+export const NormalButton: FC<Props> = ({ children, ...rest }) => {
   return (
     <button css={{
-      width: '110px',
-      padding: '5px 8px',
+      padding: '5px 16px',
       transition: '.25s',
       color: colors.white,
       backgroundColor: colors.cyan.DEFAULT,
@@ -14,7 +19,8 @@ export const NormalButton: FC<ButtonHTMLAttributes<HTMLButtonElement>> = ({ chil
       borderStyle: 'solid',
       borderColor: colors.cyan.DEFAULT,
       borderRadius: '4px',
-      '&:hover, focus': {
+      textAlign: 'center',
+      '&:hover, &:focus': {
         backgroundColor: colors.white,
         color: colors.cyan.DEFAULT,
       }

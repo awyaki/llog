@@ -14,6 +14,7 @@ import {
   ModalToSelectTags,
   ModalToSearchTags,
   SearchedTagsList,
+  NormalButton,
 } from '~/components';
 
 import {
@@ -23,7 +24,9 @@ import {
 
 import { 
   container,
-  inputBox
+  inputBox,
+  searchBox,
+  searchTitle,
 } from './style';
 
 export const Contents: VFC = () => {
@@ -45,17 +48,22 @@ export const Contents: VFC = () => {
           onClose={onCloseDrawerToCreateContent} />
         <Header />
         <Box css={container}>
-          <Box w="45%">
-            <h2 css={{ ...pageTitle, marginBottom: '8px' }}>Contents</h2>
-            <button onClick={onOpenDrawerToCreateContent}>Create</button>
+          <h2 css={{ ...pageTitle, marginBottom: '16px' }}>Contents</h2>
+          <NormalButton 
+            css={{ display: 'block', marginBottom: '16px' }}
+            onClick={onOpenDrawerToCreateContent}>
+            Add new
+          </NormalButton>
+          <div css={searchBox}>
+            <h2 css={searchTitle}>Search</h2>
             <input 
-              css={inputBox}
+              css={{ ...inputBox, marginBottom: '16px' }}
               type="text" 
               value={searchQuery}
               onChange={onChangeSearchQuery} />
             <SearchedTagsList />
-            <ContentsList contents={filtered} />
-          </Box>
+          </div>
+          <ContentsList contents={filtered} />
         </Box>
       </>
   );
