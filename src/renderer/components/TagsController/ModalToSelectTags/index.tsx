@@ -1,6 +1,6 @@
 import { VFC, useContext } from 'react';
 
-import { SearchIcon } from '~/components';
+import { SearchIcon, WarningButton } from '~/components';
 
 import { SelectedTagsContext } from '../SelectedTagsContextProvider';
 
@@ -16,6 +16,7 @@ import {
   ModalContent,
   ModalHeader,
   ModalBody,
+  ModalFooter,
   ModalCloseButton,
 } from '@chakra-ui/react'
 
@@ -38,7 +39,7 @@ export const ModalToSelectTags: VFC = () => {
           <ModalHeader>Select Tag</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <div css={{ display: 'flex', alignItems: 'flex-end' }}>
+            <div css={{ display: 'flex', alignItems: 'flex-end', marginBottom: '16px' }}>
               <input 
                 css={{ ...inputBox, marginRight: '4px' }}
                 type="text" 
@@ -55,6 +56,11 @@ export const ModalToSelectTags: VFC = () => {
                                             </li>)}
             </ul>
           </ModalBody>
+          <ModalFooter>
+            <WarningButton onClick={onCloseModalToSelectTags}>
+              Cancel
+            </WarningButton>
+          </ModalFooter>
         </ModalContent>
       </Modal>   
   );
