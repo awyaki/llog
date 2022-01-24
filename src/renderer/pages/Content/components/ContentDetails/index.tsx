@@ -18,7 +18,7 @@ import {
   NotifierContext
 } from '~/components';
 
-import { makeFormalDateString } from '~/utils';
+import { makeFormalTimeString } from '~/utils';
 
 import {
   CreateNoteButton,
@@ -89,7 +89,7 @@ export const ContentDetails: VFC<Props> = ({  ...rest }) => {
       </ul>
       <BasicInfo 
         id={content.id}
-        created={makeFormalDateString(content.createdAt)}
+        created={makeFormalTimeString(content.createdAt)}
         blocks={content.blocks.length} />
       <LevelRatio blocks={content.blocks} />
       <DeleteButton 
