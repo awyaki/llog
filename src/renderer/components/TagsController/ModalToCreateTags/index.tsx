@@ -1,6 +1,10 @@
 import { VFC, useContext, useCallback } from 'react';
 
-import { NotifierContext } from '~/components';
+import { 
+  NotifierContext,
+  NormalButton,
+  WarningButton
+} from '~/components';
 
 import { inputBox, warning } from '~/pages/style';
 
@@ -19,6 +23,7 @@ import {
   ModalContent,
   ModalHeader,
   ModalBody,
+  ModalFooter,
   ModalCloseButton,
 } from '@chakra-ui/react'
 
@@ -67,15 +72,22 @@ export const ModalToCreateTag: VFC = () => {
           <ModalHeader>Create Tag</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <form onSubmit={handleSubmit(onCreateTag)}>
+            <form id="create-tag" onSubmit={handleSubmit(onCreateTag)}>
               <input css={inputBox} {...register('newTagName', { required: { value: true, message: 'You should fill in this field.'}, validate: { isAlreadyNameExist } })} />
               <div css={warning}>{errors.newTagName?.message}</div>
-              <button 
-                css={buttonStyle}
-                type="submit"
-              >OK</button>
             </form>
           </ModalBody>
+          <ModalFooter>
+            <NormalButton 
+              css={{ marginRight: '8px' }}
+              form="create-tag"
+              type="submit">
+              Create
+            </NormalButton>
+            <WarningButton onClick={onCloseModalToCreateTag}>
+              Cancel
+            </WarningButton>
+          </ModalFooter>
         </ModalContent>
       </Modal>   
   );
