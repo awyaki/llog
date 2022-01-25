@@ -1,26 +1,18 @@
 import { VFC } from 'react';
 
-import { colors } from '~/styleConfig';
-
-import { makeCirlceContainer } from '../style';
-
-import { MdOutlineDescription } from 'react-icons/md';
+import { CSSObject } from '@emotion/react';
 
 import { Icon } from '@chakra-ui/react';
 
+import { MdStickyNote2  } from 'react-icons/md';
+
 type Props = {
-  size: 'large' | 'small';
+  css?: CSSObject;
 };
 
-export const NotesIcon: VFC<Props> = ({ size }) => {
-  const n = size === 'large' ? 8 : 4;
+export const NotesIcon: VFC<Props> = ({ ...rest }) => {
   return (
     <Icon 
-      css={makeCirlceContainer(size)}
-      as={MdOutlineDescription}
-      w={n}
-      h={n}
-      color={colors.cyan.DEFAULT}
-    />
+    as={MdStickyNote2} {...rest} />
   );
 };
