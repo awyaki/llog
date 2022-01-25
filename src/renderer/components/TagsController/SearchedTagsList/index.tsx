@@ -5,9 +5,9 @@ import { EditSearchedTagsButton } from '../EditSearchedTagsButton';
 import { ReleaseSearchedTagsButton } from '../ReleaseSearchedTagsButton';
 
 import {
-  container,
+  tagsContainer,
   tagStyle
-} from './style';
+} from '../style';
 
 import { SelectedTagsContext } from '../SelectedTagsContextProvider';
 
@@ -15,11 +15,11 @@ export const SearchedTagsList: VFC = () => {
   const { searchedTags } = useContext(SelectedTagsContext);
   return (
     <>
-      <ul css={container}>
+      <ul css={tagsContainer}>
         <li><EditSearchedTagsButton /></li>
         <li><ReleaseSearchedTagsButton /></li>
       </ul>
-      <ul css={container}>
+      <ul css={tagsContainer}>
         {searchedTags.map(({ id, name }) => <li key={id}><div css={tagStyle}>{name}</div></li>)}
       </ul>
     </>

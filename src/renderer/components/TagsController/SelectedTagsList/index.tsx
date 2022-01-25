@@ -5,9 +5,9 @@ import { EditSelectedTagsButton } from '../EditSelectedTagsButton';
 import { CreateTagButton } from '../CreateTagButton';
 
 import {
-  container,
+  tagsContainer,
   tagStyle
-} from './style';
+} from '../style';
 
 import { SelectedTagsContext } from '../SelectedTagsContextProvider';
 
@@ -15,11 +15,11 @@ export const SelectedTagsList: VFC = () => {
   const { selectedTags } = useContext(SelectedTagsContext);
   return (
     <>
-      <ul css={container}>
+      <ul css={tagsContainer}>
         <li><CreateTagButton /></li>
         <li><EditSelectedTagsButton /></li>
       </ul>
-      <ul css={container}>
+      <ul css={tagsContainer}>
         {selectedTags.map(({ id, name }) => <li key={id}><div css={tagStyle}>{name}</div></li>)}
       </ul>
     </>
