@@ -10,7 +10,7 @@ type Props = {
   css?: CSSObject;
 };
 
-export const InfoIcon: VFC<Props> = ({ ...rest }) => {
+export const EditNoteIcon: VFC<Props> = ({ ...rest }) => {
   return (
     <Icon 
     as={MdEditNote} {...rest} />
