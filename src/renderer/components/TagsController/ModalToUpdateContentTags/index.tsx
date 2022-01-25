@@ -13,11 +13,16 @@ import {
 
 import { 
   makeTagStyle,
-  tagsContainer,
   inputBox,
   buttonStyle,
   cancel
 } from './style';
+
+import {
+  tagsContainer,
+  reverseTagStyle,
+  tagStyle
+} from '../style';
 
 import {
   Modal,
@@ -71,7 +76,7 @@ export const ModalToUpdateContentTags: VFC<Props> = ({ contentId }) => {
               {filteredTags.map(({ id, name }) => <li key={id}>
                                             <button 
                                               onClick={onToggleSelectedTags({ id, name })}
-                                              css={makeTagStyle(selectedTags.some((tag) => tag.id === id))}
+                                              css={selectedTags.some((tag) => tag.id === id) ? reverseTagStyle : tagStyle}
                                             >{name}</button>
                                             </li>)}
             </ul>
