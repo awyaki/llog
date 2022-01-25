@@ -6,7 +6,6 @@ import {
   ModalToCreateTag,
   Menu,
   ContentMenu,
-  TagsList,
   NormalButton,
 } from '~/components';
 
@@ -16,14 +15,8 @@ import {
   Tab,
   TabPanel,
   TabPanels,
-  Table,
-  Tbody,
-  Tr,
-  Td,
-  Th,
 } from '@chakra-ui/react';
 
-import { font } from '~/styleConfig';
 
 import { getContent } from '~/api';
 
@@ -31,9 +24,12 @@ import { useParams } from 'react-router-dom';
 
 import { NotFoundPage } from '~/pages';
 
-import { makeFormalTimeString } from '~/utils';
-
 import { pageTitle, container } from '~/pages/style';
+
+import { 
+  BasicInfo
+} from './components';
+
 
 export const Content: VFC = () => {
   const { contentId } = useParams<{ contentId: string }>();
@@ -67,23 +63,7 @@ export const Content: VFC = () => {
           </TabList>
           <TabPanels>
             <TabPanel>
-                <TagsList 
-                  css={{ marginBottom: '16px' }}
-                  tags={content.tags} />
-                <Table 
-                  maxWidth="600px"
-                  size="lg">
-                  <Tbody>
-                    <Tr>
-                      <Th>Created Time</Th>
-                      <Td>{makeFormalTimeString(content.createdAt)}</Td>
-                    </Tr>
-                    <Tr>
-                      <Th>Blocks</Th>
-                      <Td>{content.blocks.length}</Td>
-                    </Tr>
-                  </Tbody>
-                </Table>
+              <BasicInfo content={content} />
             </TabPanel>
             <TabPanel>
             </TabPanel>

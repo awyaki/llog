@@ -1,2 +1,1 @@
-export * from './ContentBlocks';
-export * from './ContentDetails';
+export * from './BasicInfo';
