@@ -22,7 +22,6 @@ import { makeFormalTimeString } from '~/utils';
 
 import {
   CreateNoteButton,
-  NoteViewButton,
   BasicInfo,
   LevelRatio
 } from './components';
@@ -85,7 +84,6 @@ export const ContentDetails: VFC<Props> = ({  ...rest }) => {
             </div>}
       <ul css={buttons}>
         <li><Link to={`/content/${content.id}/createnote`}><CreateNoteButton /></Link></li>
-        <li><Link to={`/content/${content.id}/notes`}><NoteViewButton /></Link></li>
       </ul>
       <BasicInfo 
         id={content.id}

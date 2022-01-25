@@ -13,10 +13,9 @@ import { confirmer } from './functions';
 
 
 
-import { Box, HStack } from '@chakra-ui/react';
+import { Box } from '@chakra-ui/react';
 
 import { 
-  ShowNoteButton, 
   Note, 
   ModalToSelectBlocks,
   ControlBox,
@@ -44,7 +43,6 @@ export const CreateNote: VFC = () => {
           onMoveToOtherNoteEdit,
           setToEdit,
           setToPreview,
-          handleLink,
         } = useEditNote();
   
   if (content === null) return <></>;
@@ -58,9 +56,6 @@ export const CreateNote: VFC = () => {
         confirmer={confirmer} />
       <Box __css={container}>
         <h2 css={{ ...pageTitle, marginBottom: '8px' }}>{content.name}</h2>
-        <HStack width="120px" mb="16px">
-          <ShowNoteButton onClick={handleLink(`/content/${content.id}/notes`, isNoteChange)} />
-        </HStack>
         <div css={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'flex-start' }}>
           <Note 
             css={{ width: 'calc(100% - 200px)', maxWidth: '830px', marginRight: '32px' }}

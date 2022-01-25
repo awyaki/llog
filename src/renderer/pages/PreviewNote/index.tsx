@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 
 import { 
   EditNoteIcon,
-  NotesIcon,
   CommitIcon,
   Menu
 } from '~/components';
@@ -24,7 +23,6 @@ import { usePreviewNote } from './hooks';
 import { 
   noteStyle, 
   dateStyle,
-  buttonsStyle
   } from './style';
 
 import 'zenn-content-css';
@@ -39,9 +37,6 @@ export const PreviewNote: VFC = () => {
       <Menu />
       <Box css={container}>
         <h2 css={{ ...pageTitle, marginBottom: '8px' }}>{contentName}</h2>
-        <ul css={buttonsStyle}>
-          <li><Link to={`/content/${contentId}/notes`}><NotesIcon size="large"/></Link></li>
-        </ul>
         <Box css={noteStyle}>
           <div css={{ display: 'flex', justifyContent: 'space-between' }}>
             <div css={dateStyle}>{makeFormalTimeString(updatedAt)}</div>
