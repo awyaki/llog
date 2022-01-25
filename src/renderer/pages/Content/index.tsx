@@ -64,14 +64,15 @@ export const Content: VFC = () => {
           <TabList>
             <Tab>Basic Info.</Tab>
             <Tab>Blocks Table</Tab>
-            <Tab></Tab>
           </TabList>
           <TabPanels>
             <TabPanel>
                 <TagsList 
                   css={{ marginBottom: '16px' }}
                   tags={content.tags} />
-                <Table size="lg">
+                <Table 
+                  maxWidth="600px"
+                  size="lg">
                   <Tbody>
                     <Tr>
                       <Th>Created Time</Th>
