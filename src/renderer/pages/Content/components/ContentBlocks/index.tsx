@@ -1,40 +1,24 @@
-import { VFC, useState, useCallback } from 'react';
+import { VFC } from 'react';
 
 import { CSSObject } from '@emotion/react';
 
-import {
-  FormControl,
-  FormLabel,
-  Switch
-} from '@chakra-ui/react';
-
 import { Block } from '@prisma/client';
 
-import { BlocksOverview } from './components/BlocksOverview';
-import { BlocksDetailView } from './components/BlocksDetailView';
+import { BlocksOverview, BlocksDetailView} from './components';
 
 type Props = {
   blocks: Block[];
   css?: CSSObject;
+  isOverView: boolean;
 };
 
-export const ContentBlocks: VFC<Props> = ({ blocks, ...rest }) => {
-  const [isDetails, setIsDetails] = useState(false);
-  
-  const handleChange = useCallback(() => {
-    setIsDetails((cur) => !cur);
-  }, []);
-
-  
+export const ContentBlocks: VFC<Props> = ({ 
+  blocks, 
+  isOverView,
+  ...rest }) => {
   return (
     <div {...rest}>
-      <FormControl display="flex" alignItems="center" mb="16px">
-        <FormLabel htmlFor="show-details" mb="0">
-         Show Details 
-        </FormLabel>
-        <Switch id="show-details" onChange={handleChange} />
-      </FormControl>
-      {isDetails ? <BlocksDetailView blocks={blocks} /> : <BlocksOverview blocks={blocks} />}
+      {isOverView ? <BlocksOverview blocks={blocks} /> : <BlocksDetailView blocks={blocks} />}
     </div>
   );
 };

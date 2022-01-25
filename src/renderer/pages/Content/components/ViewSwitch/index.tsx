@@ -66,10 +66,10 @@ export const ViewSwitch: VFC<Props> = ({
         padding: '8px 16px',
         borderBottom: `2px solid ${colors.cyan.DEFAULT}`}} {...rest}>
       <div
-      css={!isOverView ? miniStyle : reverseMiniStyle}>
+      css={isOverView ? miniStyle : reverseMiniStyle}>
       </div>
       <div
-        css={isOverView ? normalStyle : reverseNormalStyle}>
+        css={!isOverView ? normalStyle : reverseNormalStyle}>
       </div>
     </button>
   );

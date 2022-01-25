@@ -1,4 +1,10 @@
-import { VFC, useContext, useEffect } from 'react';
+import { 
+  VFC, 
+  useContext, 
+  useEffect,
+  useState,
+  useCallback,
+} from 'react';
 
 import { 
   ContentContext, 
@@ -27,13 +33,16 @@ import { NotFoundPage } from '~/pages';
 import { pageTitle, container } from '~/pages/style';
 
 import { 
-  BasicInfo
+  BasicInfo,
+  ContentBlocks,
+  ViewSwitch
 } from './components';
 
 
 export const Content: VFC = () => {
   const { contentId } = useParams<{ contentId: string }>();
   const { content, setContent } = useContext(ContentContext);
+  const [isOverView, setIsOverView] = useState(true);
 
   useEffect(() => {
     (async () => {
@@ -42,7 +51,11 @@ export const Content: VFC = () => {
     })();
 
   }, [contentId]);
-  
+ 
+  const onSwitch = useCallback(() => {
+    setIsOverView((prev) => !prev);
+  }, []); 
+
   if (content === null) return <NotFoundPage />;
 
   return (
@@ -66,6 +79,13 @@ export const Content: VFC = () => {
               <BasicInfo content={content} />
             </TabPanel>
             <TabPanel>
+              <ViewSwitch 
+                css={{ marginBottom: '32px' }}
+                isOverView={isOverView} 
+                onSwitch={onSwitch} />
+              <ContentBlocks 
+                isOverView={isOverView}
+                blocks={content.blocks} />
             </TabPanel>
           </TabPanels>
         </Tabs>
