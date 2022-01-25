@@ -13,7 +13,6 @@ import { buttons } from './style/buttons';
 
 import { 
   TagList,
-  InfoButton,
   CreateNoteButton,
   NoteList,
   } from './components';
@@ -29,7 +28,6 @@ export const NotesOfContent: VFC = () => {
           <Box css={container}>
             <h1 css={{ ...title, marginBottom: '8px' }}>{content.name}</h1>
             <ul css={{ ...buttons, marginBottom: '8px' }}>
-              <li><InfoButton id={content.id}/></li>
               <li><CreateNoteButton id={content.id} /></li>
             </ul>
             <TagList tags={content.tags} />

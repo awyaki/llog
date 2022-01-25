@@ -3,7 +3,6 @@ import { VFC  } from 'react';
 import { Link } from 'react-router-dom';
 
 import { 
-  InfoIcon,
   EditNoteIcon,
   NotesIcon,
   CommitIcon,
@@ -41,7 +40,6 @@ export const PreviewNote: VFC = () => {
       <Box css={container}>
         <h2 css={{ ...pageTitle, marginBottom: '8px' }}>{contentName}</h2>
         <ul css={buttonsStyle}>
-          <li><Link to={`/content/${contentId}`}><InfoIcon size="large" /></Link></li>
           <li><Link to={`/content/${contentId}/notes`}><NotesIcon size="large"/></Link></li>
         </ul>
         <Box css={noteStyle}>

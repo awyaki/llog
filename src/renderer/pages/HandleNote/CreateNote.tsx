@@ -16,7 +16,6 @@ import { confirmer } from './functions';
 import { Box, HStack } from '@chakra-ui/react';
 
 import { 
-  InfoButton, 
   ShowNoteButton, 
   Note, 
   ModalToSelectBlocks,
@@ -60,7 +59,6 @@ export const CreateNote: VFC = () => {
       <Box __css={container}>
         <h2 css={{ ...pageTitle, marginBottom: '8px' }}>{content.name}</h2>
         <HStack width="120px" mb="16px">
-          <InfoButton onClick={handleLink(`/content/${content.id}`, isNoteChange)} />
           <ShowNoteButton onClick={handleLink(`/content/${content.id}/notes`, isNoteChange)} />
         </HStack>
         <div css={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'flex-start' }}>
