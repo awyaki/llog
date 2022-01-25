@@ -1,12 +1,25 @@
 import { VFC } from 'react';
 
-import { InfoButton } from '../Buttons';
+import { CSSObject } from '@emotion/react';
+
+import { 
+  InfoButton,
+  NotesButton
+} from '../Buttons';
 
 import { colors } from '~/styleConfig';
 
 type Props = {
   confirmer?: () => boolean;
 };
+
+const buttonStyle: CSSObject = { 
+            backgroundColor: colors.cyan.SECOND,
+            '&:hover, &:focus': {
+              color: colors.cyan.SECOND
+            }
+          };
+
 
 export const ContentMenu: VFC<Props> = ({ confirmer }) => {
 
@@ -23,13 +36,8 @@ export const ContentMenu: VFC<Props> = ({ confirmer }) => {
         padding: '90px 16px 16px 16px', 
         backgroundColor: colors.cyan.SECOND,
       }}>
-      <InfoButton 
-        css={{ 
-          backgroundColor: colors.cyan.SECOND,
-          '&:hover, &:focus': {
-            color: colors.cyan.SECOND
-          }
-          }} />
+      <InfoButton css={{ ...buttonStyle, marginBottom: '16px' }} />
+      <NotesButton css={buttonStyle} />
     </div>
   );
 };
