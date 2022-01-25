@@ -1,17 +1,18 @@
 import { VFC } from 'react';
 
-import { colors, font } from '~/styleConfig';
+import { CSSObject } from '@emotion/react';
 
-import { makeCirlceContainer } from '../style';
+import { Icon } from '@chakra-ui/react';
+
+import { IoMdInformation } from 'react-icons/io';
 
 type Props = {
-  size: 'large' | 'small';
+  css?: CSSObject;
 };
 
-export const InfoIcon: VFC<Props> = ({ size }) => {
+export const InfoIcon: VFC<Props> = ({ ...rest }) => {
   return (
-    <div css={makeCirlceContainer(size)}>
-      <span css={{ color: colors.cyan.DEFAULT, fontSize: font.size.SS }}>Info.</span>
-    </div>
+    <Icon 
+    as={IoMdInformation} {...rest} />
   );
 };
