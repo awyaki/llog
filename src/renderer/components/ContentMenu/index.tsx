@@ -1,8 +1,8 @@
-import { VFC, useCallback } from 'react';
+import { VFC } from 'react';
 
 import { CSSObject } from '@emotion/react';
 
-import { useHistory } from 'react-router-dom';
+import { useContentMenu } from './hooks';
 
 import { 
   InfoButton,
@@ -29,47 +29,11 @@ export const ContentMenu: VFC<Props> = ({
   contentId,
   confirmer
 }) => {
-  
-  const history = useHistory();
-
-  const onClickInfoButton = useCallback(() => {
-    if (confirmer === undefined) {
-      history.push(`/content/${contentId}`);
-      return;
-    }
-    
-    if (confirmer()) {
-      history.push(`/content/${contentId}`);
-    }
-    
-    return;
-  }, [confirmer, history, contentId]);
-    
-  const onClickNotesButton = useCallback(() => {
-    if (confirmer === undefined) {
-      history.push(`/content/${contentId}/notes`);
-      return;
-    }
-    
-    if (confirmer()) {
-      history.push(`/content/${contentId}/notes`);
-    }
-    
-    return;
-  }, [confirmer, history, contentId]);
-    
-  const onClickEditNote = useCallback(() => {
-    if (confirmer === undefined) {
-      history.push(`/content/${contentId}/createnote`);
-      return;
-    }
-    
-    if (confirmer()) {
-      history.push(`/content/${contentId}/createnote`);
-    }
-    
-    return;
-  }, [confirmer, history, contentId]);
+  const {
+    onClickEditNote,
+    onClickInfoButton,
+    onClickNotesButton
+  } = useContentMenu({ contentId, confirmer });
 
   return (
     <div css={{ 
