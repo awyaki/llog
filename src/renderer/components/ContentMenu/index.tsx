@@ -2,6 +2,8 @@ import { VFC } from 'react';
 
 import { CSSObject } from '@emotion/react';
 
+import { SlideFade } from '@chakra-ui/react';
+
 import { useContentMenu } from './hooks';
 
 import { 
@@ -36,7 +38,10 @@ export const ContentMenu: VFC<Props> = ({
   } = useContentMenu({ contentId, confirmer });
 
   return (
-    <div css={{ 
+    <SlideFade 
+      in={true}
+      offsetY="50px"
+      css={{ 
         height: '100vh',
         position: 'sticky',
         display: 'flex',
@@ -57,6 +62,6 @@ export const ContentMenu: VFC<Props> = ({
       <EditNoteButton 
         css={buttonStyle}
         onClick={onClickEditNote} />
-    </div>
+    </SlideFade>
   );
 };
