@@ -20,6 +20,7 @@ import {
   ModalToSelectBlocks,
   ControlBox,
   SwitchingMenu,
+  SwitchingContentMenu,
 } from './components';
 
 
@@ -54,6 +55,11 @@ export const CreateNote: VFC = () => {
       <SwitchingMenu 
         isNoteChange={isNoteChange} 
         confirmer={confirmer} />
+      <SwitchingContentMenu 
+        contentId={content.id}
+        isNoteChange={isNoteChange}
+        confirmer={confirmer}
+      />
       <Box __css={container}>
         <h2 css={{ ...pageTitle, marginBottom: '8px' }}>{content.name}</h2>
         <div css={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'flex-start' }}>
