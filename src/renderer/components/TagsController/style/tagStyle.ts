@@ -11,4 +11,5 @@ export const tagStyle: CSSObject = {
     backgroundColor: colors.white,
     color: colors.cyan.DEFAULT,
     padding: '2px 4px',
+    transition: '.25s',
   };
