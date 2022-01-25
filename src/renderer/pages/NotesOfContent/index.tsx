@@ -9,6 +9,8 @@ import {
   ContentMenu
 } from '~/components';
 
+import { NotFoundPage } from '~/pages';
+
 import { container } from './style/container'
 import { title } from './style/title';
 
@@ -22,7 +24,7 @@ import {
 export const NotesOfContent: VFC = () => {
   const { content, notes } = useNotesOfContent();
   
-  if (content === null) return <></>;
+  if (content === null) return <NotFoundPage />;
   return (
         <div css={{ display: 'flex' }}>
           <Menu />
