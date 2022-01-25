@@ -12,7 +12,6 @@ import {
 } from '~/api';
 
 import { 
-  makeTagStyle,
   inputBox,
   buttonStyle,
   cancel
