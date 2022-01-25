@@ -2,7 +2,9 @@ import { VFC, useContext, useCallback } from 'react';
 
 import { 
   SelectedTagsContext,
-  ContentContext
+  ContentContext,
+  NormalButton,
+  WarningButton
 } from '~/components';
 
 import { 
@@ -81,14 +83,14 @@ export const ModalToUpdateContentTags: VFC<Props> = ({ contentId }) => {
             </ul>
           </ModalBody>
           <ModalFooter>
-            <button
-              css={{ ...buttonStyle, marginRight: '4px'  }}
-              onClick={onUpdateContentTags}
-            >OK</button>
-            <button 
-              css={cancel}
-              onClick={onCloseModalToUpdateContentTags}
-            >Cancel</button>
+            <NormalButton 
+              css={{ marginRight: '4px' }}
+              onClick={onUpdateContentTags}>
+              Update
+            </NormalButton>
+            <WarningButton onClick={onCloseModalToUpdateContentTags}>
+              Cancel
+            </WarningButton>
           </ModalFooter>
         </ModalContent>
       </Modal>   
