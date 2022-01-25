@@ -5,8 +5,25 @@ import {
   ModalToUpdateContentTags,
   ModalToCreateTag,
   Menu,
-  ContentMenu
+  ContentMenu,
+  TagsList,
+  NormalButton,
 } from '~/components';
+
+import {
+  Tabs,
+  TabList,
+  Tab,
+  TabPanel,
+  TabPanels,
+  Table,
+  Tbody,
+  Tr,
+  Td,
+  Th,
+} from '@chakra-ui/react';
+
+import { font } from '~/styleConfig';
 
 import { getContent } from '~/api';
 
@@ -14,9 +31,9 @@ import { useParams } from 'react-router-dom';
 
 import { NotFoundPage } from '~/pages';
 
-import { ContentDetails, ContentBlocks } from './components';
+import { makeFormalTimeString } from '~/utils';
 
-import { container } from './style/container';
+import { pageTitle, container } from '~/pages/style';
 
 export const Content: VFC = () => {
   const { contentId } = useParams<{ contentId: string }>();
@@ -34,15 +51,43 @@ export const Content: VFC = () => {
 
   return (
     <div css={{ display: 'flex' }}>
-    <ModalToUpdateContentTags contentId={content.id}/>
-    <ModalToCreateTag />
-    <Menu />
-    <ContentMenu contentId={content.id} />
+      <ModalToUpdateContentTags contentId={content.id}/>
+      <ModalToCreateTag />
+      <Menu />
+      <ContentMenu contentId={content.id} />
       <div css={container}>
-        <ContentDetails css={{ marginRight: '48px' }} />
-        <ContentBlocks 
-          css={{ width: '60%' }}
-          blocks={content.blocks} />
+        <NormalButton css={{ marginBottom: '16px' }}>
+          Update
+        </NormalButton>
+        <h1 css={{ ...pageTitle, marginBottom: '8px' }}>{content.name}</h1>
+        <Tabs>
+          <TabList>
+            <Tab>Basic Info.</Tab>
+            <Tab>Blocks Table</Tab>
+            <Tab></Tab>
+          </TabList>
+          <TabPanels>
+            <TabPanel>
+                <TagsList 
+                  css={{ marginBottom: '16px' }}
+                  tags={content.tags} />
+                <Table size="lg">
+                  <Tbody>
+                    <Tr>
+                      <Th>Created Time</Th>
+                      <Td>{makeFormalTimeString(content.createdAt)}</Td>
+                    </Tr>
+                    <Tr>
+                      <Th>Blocks</Th>
+                      <Td>{content.blocks.length}</Td>
+                    </Tr>
+                  </Tbody>
+                </Table>
+            </TabPanel>
+            <TabPanel>
+            </TabPanel>
+          </TabPanels>
+        </Tabs>
       </div>
     </div>
   );
