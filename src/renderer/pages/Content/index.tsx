@@ -37,7 +37,7 @@ export const Content: VFC = () => {
     <ModalToUpdateContentTags contentId={content.id}/>
     <ModalToCreateTag />
     <Menu />
-    <ContentMenu />
+    <ContentMenu contentId={content.id} />
       <div css={container}>
         <ContentDetails css={{ marginRight: '48px' }} />
         <ContentBlocks 

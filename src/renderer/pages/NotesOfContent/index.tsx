@@ -1,15 +1,16 @@
 import { VFC } from 'react';
 
-
 import { useNotesOfContent } from './hooks';
 
 import { Box } from '@chakra-ui/react';
 
-import { Menu, EditNoteButton } from '~/components';
+import { 
+  Menu,
+  ContentMenu
+} from '~/components';
 
 import { container } from './style/container'
 import { title } from './style/title';
-import { buttons } from './style/buttons';
 
 import { 
   TagList,
@@ -25,11 +26,9 @@ export const NotesOfContent: VFC = () => {
   return (
         <div css={{ display: 'flex' }}>
           <Menu />
+          <ContentMenu contentId={content.id} />
           <Box css={container}>
             <h1 css={{ ...title, marginBottom: '8px' }}>{content.name}</h1>
-            <ul css={{ ...buttons, marginBottom: '8px' }}>
-              <li><EditNoteButton secondary /></li>
-            </ul>
             <TagList tags={content.tags} />
             <NoteList notes={notes} />
           </Box>
