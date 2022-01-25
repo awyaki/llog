@@ -21,10 +21,15 @@ export const ContentMenu: VFC<Props> = ({ confirmer }) => {
         flexDirection: 'column',
         width: '90px', 
         padding: '90px 16px 16px 16px', 
-        backgroundColor: colors.cyan.FIRST,
-        marginRight: '8px',
+        backgroundColor: colors.cyan.SECOND,
       }}>
-      <InfoButton />
+      <InfoButton 
+        css={{ 
+          backgroundColor: colors.cyan.SECOND,
+          '&:hover, &:focus': {
+            color: colors.cyan.SECOND
+          }
+          }} />
     </div>
   );
 };
