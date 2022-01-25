@@ -8,15 +8,12 @@ import { useHistory } from 'react-router-dom';
 
 import { getContent, deleteContent } from '~/api';
 
-import { Link } from 'react-router-dom';
-
 import { 
   ContentContext,
   ContentNameForm,
   EditIcon,
   DeleteButton,
   NotifierContext,
-  EditNoteButton
 } from '~/components';
 
 import { makeFormalTimeString } from '~/utils';
@@ -27,7 +24,6 @@ import {
 } from './components';
 
 
-import { buttons } from './style/buttons';
 import { title } from './style/title';
 
 type Props = {
@@ -82,9 +78,6 @@ export const ContentDetails: VFC<Props> = ({  ...rest }) => {
               <h2 css={{ ...title, marginRight: '8px' }}>{content.name}</h2>
               <button css={{ marginTop: '3px' }} onClick={onChangeToNameUpdate}><EditIcon /></button>
             </div>}
-      <ul css={buttons}>
-        <li><Link to={`/content/${content.id}/createnote`}><EditNoteButton secondary /></Link></li>
-      </ul>
       <BasicInfo 
         id={content.id}
         created={makeFormalTimeString(content.createdAt)}
