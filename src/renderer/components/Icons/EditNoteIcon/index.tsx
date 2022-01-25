@@ -1,24 +1,18 @@
 import { VFC } from 'react';
+
+import { CSSObject } from '@emotion/react';
+
 import { Icon } from '@chakra-ui/react';
-import { MdOutlineEditNote } from 'react-icons/md';
 
-import { makeCirlceContainer } from '../style';
-
-import { colors } from '~/styleConfig';
+import { MdEditNote } from 'react-icons/md';
 
 type Props = {
-  size: 'large' | 'small';
+  css?: CSSObject;
 };
 
-export const EditNoteIcon: VFC<Props> = ({ size }) => {
-  const n = size === 'large' ? 8 : 4;
+export const InfoIcon: VFC<Props> = ({ ...rest }) => {
   return (
-    <Icon
-      css={makeCirlceContainer(size)}
-      as={MdOutlineEditNote}
-      w={n}
-      h={n}
-      color={colors.cyan.DEFAULT}
-    />
+    <Icon 
+    as={MdEditNote} {...rest} />
   );
 };
