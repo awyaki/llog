@@ -4,7 +4,8 @@ import { CSSObject } from '@emotion/react';
 
 import { 
   InfoButton,
-  NotesButton
+  NotesButton,
+  EditNoteButton
 } from '../Buttons';
 
 import { colors } from '~/styleConfig';
@@ -37,7 +38,8 @@ export const ContentMenu: VFC<Props> = ({ confirmer }) => {
         backgroundColor: colors.cyan.SECOND,
       }}>
       <InfoButton css={{ ...buttonStyle, marginBottom: '16px' }} />
-      <NotesButton css={buttonStyle} />
+      <NotesButton css={{ ...buttonStyle, marginBottom: '16px' }} />
+      <EditNoteButton css={buttonStyle} />
     </div>
   );
 };
