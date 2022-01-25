@@ -4,8 +4,6 @@ import { Box } from '@chakra-ui/react';
 
 import { useContents } from './hooks';
 
-import { Header } from '../Header';
-
 
 import {
   ModalToCreateTag,
