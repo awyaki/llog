@@ -1,11 +1,10 @@
 import { VFC  } from 'react';
 
-import { Link } from 'react-router-dom';
-
 import { 
   CommitIcon,
   Menu,
-  EditNoteButton
+  EditNoteButton,
+  ContentMenu
 } from '~/components';
 
 import { NotFoundPage } from '~/pages';
@@ -35,6 +34,7 @@ export const PreviewNote: VFC = () => {
   return (
     <div css={{ display: 'flex' }}>
       <Menu />
+      <ContentMenu contentId={contentId} />
       <Box css={container}>
         <h2 css={{ ...pageTitle, marginBottom: '8px' }}>{contentName}</h2>
         <Box css={noteStyle}>
