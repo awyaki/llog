@@ -14,3 +14,4 @@ export * from './DeleteButton';
 export * from './Header';
 export * from './Buttons';
 export * from './Menu';
+export * from './ContentMenu';

@@ -4,7 +4,8 @@ import {
   ContentContext, 
   ModalToUpdateContentTags,
   ModalToCreateTag,
-  Menu
+  Menu,
+  ContentMenu
 } from '~/components';
 
 import { getContent } from '~/api';
@@ -36,6 +37,7 @@ export const Content: VFC = () => {
     <ModalToUpdateContentTags contentId={content.id}/>
     <ModalToCreateTag />
     <Menu />
+    <ContentMenu />
       <div css={container}>
         <ContentDetails css={{ marginRight: '48px' }} />
         <ContentBlocks 
