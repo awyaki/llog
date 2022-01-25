@@ -57,8 +57,8 @@ export const ModalToUpdateContentTags: VFC<Props> = ({ contentId }) => {
     await deleteConnectContentTags(contentId);
     await updateContentTags(contentId, selectedTags);
     const updatedContet = await getContent(contentId);
-    console.log('ok is clicked');
     setContent(updatedContet);
+    onCloseModalToUpdateContentTags();
   }, [contentId, selectedTags]);
   
   return (
