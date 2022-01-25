@@ -1,14 +1,21 @@
 import { VFC, useContext } from 'react';
 
-import { SearchIcon, WarningButton } from '~/components';
+import { 
+  SearchIcon, 
+  WarningButton, 
+  SelectedTagsContext,
+} from '~/components';
 
-import { SelectedTagsContext } from '../SelectedTagsContextProvider';
 
 import { 
-  makeTagStyle,
-  tagsContainer,
   inputBox
 } from './style';
+
+import {
+  tagsContainer,
+  tagStyle,
+  reverseTagStyle
+} from '../style';
 
 import {
   Modal,
@@ -48,12 +55,13 @@ export const ModalToSelectTags: VFC = () => {
               <SearchIcon />
             </div>
             <ul css={tagsContainer}>
-              {filteredTags.map(({ id, name }) => <li key={id}>
-                                            <button 
-                                              onClick={onToggleSelectedTags({ id, name })}
-                                              css={makeTagStyle(selectedTags.some((tag) => tag.id === id))}
-                                            >{name}</button>
-                                            </li>)}
+              {filteredTags.map(({ id, name }) => 
+                                  <li key={id}>
+                                      <button 
+                                        onClick={onToggleSelectedTags({ id, name })}
+                                        css={selectedTags.some((tag) => tag.id === id) ? reverseTagStyle : tagStyle}
+                                      >{name}</button>
+                                  </li>)}
             </ul>
           </ModalBody>
           <ModalFooter>
