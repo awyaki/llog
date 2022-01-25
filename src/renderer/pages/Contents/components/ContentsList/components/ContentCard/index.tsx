@@ -1,5 +1,7 @@
 import { VFC } from 'react';
 
+import { TagsList } from '~/components';
+
 import { ContentWithRelation } from '~/pages/type';
 
 import { makeFormalTimeString } from '~/utils';
@@ -11,8 +13,6 @@ import {
   container,
   contentName,
   dateStyle,
-  tagsContainer,
-  tagStyle
   } from './style';
 
 type Props = Pick<ContentWithRelation, 'name' | 'createdAt' | 'tags'>;
@@ -25,9 +25,10 @@ export const ContentCard: VFC<Props> = ({
   return (
     <SlideFade in={true} offsetY="30px" css={container} unmountOnExit={true}>
       <div css={dateStyle}>{makeFormalTimeString(createdAt)}</div>
-      <ul css={tagsContainer}>
-        {tags.map(({ id, name }) => <li key={id} css={tagStyle}>{name}</li>)}
-      </ul>
+      <TagsList 
+        css={{ marginBottom: '8px',}}
+        tags={tags}
+        secandary />
       <h2 css={contentName}>{name}</h2>
     </SlideFade>
   );
