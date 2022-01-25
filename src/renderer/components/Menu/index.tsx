@@ -40,7 +40,6 @@ export const Menu: VFC<Props> = ({ confirmer }) => {
         width: '90px', 
         padding: '90px 16px 16px 16px', 
         backgroundColor: colors.cyan.DEFAULT,
-        marginRight: '8px',
       }}>
       <button
         onClick={onClickBack}
