@@ -7,9 +7,14 @@ import { SelectedTagsContext } from '../SelectedTagsContextProvider';
 
 import { 
   makeTagStyle,
-  tagsContainer,
   inputBox
 } from './style';
+
+import {
+  tagsContainer,
+  tagStyle,
+  reverseTagStyle
+} from '../style';
 
 import {
   Modal,
@@ -60,7 +65,7 @@ export const ModalToSearchTags: VFC = () => {
               {filteredTags.map(({ id, name }) => <li key={id}>
                                             <button 
                                               onClick={onToggleSelect({ id, name })}
-                                              css={makeTagStyle(searchedTags.some((tag) => tag.id === id))}
+                                              css={searchedTags.some((tag) => tag.id === id) ? reverseTagStyle : tagStyle}
                                             >{name}</button>
                                             </li>)}
             </ul>
