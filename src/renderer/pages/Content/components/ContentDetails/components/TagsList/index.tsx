@@ -3,12 +3,11 @@ import { VFC, useContext } from 'react';
 import { 
   OpenModalToUpdateContentTagsButton,
   CreateTagButton,
-  ContentContext
+  ContentContext,
+  TagsList as BaseTagsList
 } from '~/components';
 
 import { container } from './style/container';
-import { Tag } from './components/Tag';
-
 
 export const TagsList: VFC = () => {
   const { content } = useContext(ContentContext);
@@ -19,9 +18,7 @@ export const TagsList: VFC = () => {
         <li><CreateTagButton /></li>
         <li><OpenModalToUpdateContentTagsButton defaultTags={content.tags} /></li>
       </ul>
-      <ul css={container}>
-        {content.tags.map(({ id, name }) => <li key={id}><Tag name={name} /></li>)}
-      </ul>
+      <BaseTagsList tags={content.tags} />
     </>
   );
 };
