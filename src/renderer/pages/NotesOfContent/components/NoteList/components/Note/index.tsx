@@ -5,11 +5,14 @@ import { buttons } from './style/buttons';
 import { main } from './style/main';
 import { aside } from './style/aside';
 
+import {
+  EditNoteButton,
+} from '~/components';
+
 
 import {
   ModefitedAt,
   TagList,
-  EditNoteButton,
   Blocks,
   BodyOfNote,
   PreviewNoteButton
@@ -33,7 +36,7 @@ export const Note: VFC<Props> = ({ note }) => {
       </div>
       <div css={aside}>
         <ul css={buttons}>
-          <li><EditNoteButton contentId={contentId} noteId={id} /></li>
+          <li><EditNoteButton secondary /></li>
           <li><PreviewNoteButton contentId={contentId} noteId={id} /></li>
         </ul>
       </div>

@@ -3,9 +3,9 @@ import { VFC  } from 'react';
 import { Link } from 'react-router-dom';
 
 import { 
-  EditNoteIcon,
   CommitIcon,
-  Menu
+  Menu,
+  EditNoteButton
 } from '~/components';
 
 import { NotFoundPage } from '~/pages';
@@ -41,8 +41,8 @@ export const PreviewNote: VFC = () => {
           <div css={{ display: 'flex', justifyContent: 'space-between' }}>
             <div css={dateStyle}>{makeFormalTimeString(updatedAt)}</div>
             <div css={{ display: 'flex' }}>
-              <button css={{ marginRight: '8px' }}onClick={onCommitLog}><CommitIcon size="small" /></button>
-              <Link to={`/content/${contentId}/updatenote/${id}`}><EditNoteIcon size="small" /></Link>
+              <button css={{ marginRight: '8px' }} onClick={onCommitLog}><CommitIcon size="small" /></button>
+              <EditNoteButton secondary />
             </div>
           </div>
           <TagList tags={tags} />

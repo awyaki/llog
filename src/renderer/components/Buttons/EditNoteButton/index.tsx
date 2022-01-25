@@ -12,11 +12,11 @@ import {
 
 type Props = {
   css?: CSSObject;
-  secondary: boolean;
+  secondary?: boolean;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
 
-export const InfoButton: VFC<Props> = ({ secondary,  ...rest }) => {
+export const EditNoteButton: VFC<Props> = ({ secondary,  ...rest }) => {
   return (
     <button 
       css={secondary ? secondaryStyle : menuButton } {...rest}>

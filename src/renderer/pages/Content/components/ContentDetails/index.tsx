@@ -15,13 +15,13 @@ import {
   ContentNameForm,
   EditIcon,
   DeleteButton,
-  NotifierContext
+  NotifierContext,
+  EditNoteButton
 } from '~/components';
 
 import { makeFormalTimeString } from '~/utils';
 
 import {
-  CreateNoteButton,
   BasicInfo,
   LevelRatio
 } from './components';
@@ -83,7 +83,7 @@ export const ContentDetails: VFC<Props> = ({  ...rest }) => {
               <button css={{ marginTop: '3px' }} onClick={onChangeToNameUpdate}><EditIcon /></button>
             </div>}
       <ul css={buttons}>
-        <li><Link to={`/content/${content.id}/createnote`}><CreateNoteButton /></Link></li>
+        <li><Link to={`/content/${content.id}/createnote`}><EditNoteButton secondary /></Link></li>
       </ul>
       <BasicInfo 
         id={content.id}
