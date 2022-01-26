@@ -14,6 +14,12 @@ import {
 
 import { colors } from '~/styleConfig';
 
+import { 
+  motion, 
+  Variants,
+  AnimatePresence
+  } from 'framer-motion';
+
 type Props = {
   contentId: number;  
 };
@@ -25,6 +31,10 @@ const buttonStyle: CSSObject = {
             }
           };
 
+const container: Variants = {
+  hidden: { opacity: 0, x: -50 },
+  show: { opacity: 1, x: 0 },
+};
 
 export const ContentMenu: VFC<Props> = ({ 
   contentId,
@@ -36,9 +46,12 @@ export const ContentMenu: VFC<Props> = ({
   } = useContentMenu(contentId);
 
   return (
-    <SlideFade 
-      in={true}
-      offsetY="50px"
+    <motion.nav
+      key="content-menu"
+      variants={container}
+      initial="hidden"
+      animate="show"
+      exit="hidden"
       css={{ 
         height: '100vh',
         position: 'sticky',
@@ -60,6 +73,6 @@ export const ContentMenu: VFC<Props> = ({
       <EditNoteButton 
         css={buttonStyle}
         onClick={onClickEditNote} />
-    </SlideFade>
+    </motion.nav>
   );
 };
