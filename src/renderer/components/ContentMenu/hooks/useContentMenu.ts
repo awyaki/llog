@@ -1,6 +1,6 @@
 import { useCallback, useContext } from 'react';
 
-import { useHistory, useRouteMatch } from 'react-router-dom';
+import { useHistory, useRouteMatch, useLocation } from 'react-router-dom';
 
 import { IsAllowTransitionContext } from '~/components';
 
@@ -8,11 +8,12 @@ export const useContentMenu = (contentId: number) => {
   const history = useHistory();
 
   const { isAllowTransition, confirmer  } = useContext(IsAllowTransitionContext);
+  console.log('useContentMenu isAllowTransition', isAllowTransition);
 
-  const { path } = useRouteMatch();
+  const { pathname } = useLocation();
 
   const onClickInfoButton = useCallback(() => {
-    if (path === '/content/:contentId') return;
+    if (pathname === `/content/${contentId}`) return;
 
     if (isAllowTransition) {
       history.push(`/content/${contentId}`);
@@ -25,26 +26,26 @@ export const useContentMenu = (contentId: number) => {
     }
     
     return;
-  }, [confirmer, history, contentId, path]);
+  }, [confirmer, history, contentId, pathname]);
     
   const onClickNotesButton = useCallback(() => {
-    if (path === '/content/:contentId/notes')
+    if (pathname === `/content/${contentId}/notes`) return;
 
     if (isAllowTransition) {
       history.push(`/content/${contentId}/notes`);
       return;
     }
-    
+
     if (confirmer()) {
       history.push(`/content/${contentId}/notes`);
       return;
     }
     
     return;
-  }, [confirmer, history, contentId, path]);
+  }, [confirmer, history, contentId, pathname]);
     
   const onClickEditNote = useCallback(() => {
-    if (path === `/content/:contentId/createnote`)
+    if (pathname === `/content/${contentId}/createnote`) return;
 
     if (isAllowTransition) {
       history.push(`/content/${contentId}/createnote`);
@@ -58,7 +59,7 @@ export const useContentMenu = (contentId: number) => {
     
     
     return;
-  }, [confirmer, history, contentId, path]);
+  }, [confirmer, history, contentId, pathname]);
 
   return {
     onClickEditNote,
