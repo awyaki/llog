@@ -1,14 +1,19 @@
 import { useCallback, useContext } from 'react';
 
-import { useHistory } from 'react-router-dom';
+import { useHistory, useRouteMatch } from 'react-router-dom';
 
 import { IsAllowTransitionContext } from '~/components';
 
 export const useContentMenu = (contentId: number) => {
   const history = useHistory();
+
   const { isAllowTransition, confirmer  } = useContext(IsAllowTransitionContext);
 
+  const { path } = useRouteMatch();
+
   const onClickInfoButton = useCallback(() => {
+    if (path === '/content/:contentId') return;
+
     if (isAllowTransition) {
       history.push(`/content/${contentId}`);
       return;
@@ -23,6 +28,8 @@ export const useContentMenu = (contentId: number) => {
   }, [confirmer, history, contentId]);
     
   const onClickNotesButton = useCallback(() => {
+    if (path === '/content/:contentId/notes')
+
     if (isAllowTransition) {
       history.push(`/content/${contentId}/notes`);
       return;
@@ -37,6 +44,8 @@ export const useContentMenu = (contentId: number) => {
   }, [confirmer, history, contentId]);
     
   const onClickEditNote = useCallback(() => {
+    if (path === `/content/:contentId/createnote`)
+
     if (isAllowTransition) {
       history.push(`/content/${contentId}/createnote`);
       return;
