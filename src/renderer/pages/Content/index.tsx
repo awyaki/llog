@@ -84,6 +84,7 @@ export const Content: VFC = () => {
                 isOverView={isOverView} 
                 onSwitch={onSwitch} />
               <ContentBlocks 
+                css={{ overflowY: 'scroll', height: '60vh' }}
                 isOverView={isOverView}
                 blocks={content.blocks} />
             </TabPanel>
