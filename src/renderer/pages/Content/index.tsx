@@ -23,7 +23,6 @@ import {
   TabPanels,
 } from '@chakra-ui/react';
 
-
 import { getContent } from '~/api';
 
 import { useParams } from 'react-router-dom';
