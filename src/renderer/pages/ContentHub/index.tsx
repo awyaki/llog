@@ -42,10 +42,10 @@ export const ContentHub: VFC = () => {
             <NotesOfContent content={content} />
           </Route>
           <Route path={`${path}/createnote`}>
-                <CreateNote />
+                <CreateNote content={content} />
           </Route>
           <Route path={`${path}/updatenote/:noteId`}>
-                <CreateNote />
+                <CreateNote content={content} />
           </Route>
           <Route path={`${path}/previewnote/:noteId`}>
               <PreviewNote />

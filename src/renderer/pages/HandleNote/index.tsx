@@ -6,11 +6,17 @@ import { SelectedBlocksContextProvider } from './SelectedBlocksContextProvider';
 
 import { CreateNote as SubCreateNote } from './CreateNote';
 
-export const CreateNote: VFC = () => {
+import { ContentWithRelation } from '~/pages/type';
+
+type Props = {
+  content: ContentWithRelation;
+};
+
+export const CreateNote: VFC<Props> = ({ content }) => {
   return (
       <NoteContextProvider>
         <SelectedBlocksContextProvider>
-            <SubCreateNote />
+            <SubCreateNote content={content} />
         </SelectedBlocksContextProvider>
       </NoteContextProvider>
   );

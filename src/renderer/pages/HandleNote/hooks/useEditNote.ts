@@ -37,8 +37,10 @@ import { useHistory, useParams } from 'react-router-dom';
 import { Mode } from '../types'
 import { confirmer } from '../functions';
 
+import { ContentWithRelation } from '~/pages/type';
 
-export const useEditNote = () => {
+
+export const useEditNote = (content: ContentWithRelation) => {
   const { noteId, contentId } = useParams<{ noteId: string | undefined, contentId: string }>();
   const { note, setNote } = useContext(NoteContext);
   const { setMessage } = useContext(NotifierContext);
@@ -63,7 +65,7 @@ export const useEditNote = () => {
   }, [noteId]);
 
   const isNoteExist = useMemo(() => note !== null, [note]);
-  const { content, setContent } = useContext(ContentContext);
+  const { setContent } = useContext(ContentContext);
 
   
   useEffect(() => {

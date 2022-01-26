@@ -9,25 +9,21 @@ import {
 
 import { pageTitle } from '~/pages/style';
 
-import { confirmer } from './functions';
-
-
-import { Box } from '@chakra-ui/react';
-
 import { 
   Note, 
   ModalToSelectBlocks,
   ControlBox,
-  SwitchingMenu,
-  SwitchingContentMenu,
 } from './components';
 
+import { ContentWithRelation } from '~/pages/type';
 
-import { container } from '~/pages/style/container';
+type Props = {
+  content: ContentWithRelation;
+};
 
 
-export const CreateNote: VFC = () => {
-  const { content, 
+export const CreateNote: VFC<Props> = ({ content }) => {
+  const { 
           note, 
           mode, 
           markdown,
@@ -43,9 +39,8 @@ export const CreateNote: VFC = () => {
           onMoveToOtherNoteEdit,
           setToEdit,
           setToPreview,
-        } = useEditNote();
+        } = useEditNote(content);
   
-  if (content === null) return <></>;
 
   return (
     <>
