@@ -1,12 +1,10 @@
 import { 
   VFC, 
-  useContext, 
   useState,
   useCallback,
 } from 'react';
 
 import { 
-  ContentContext, 
   ModalToUpdateContentTags,
   ModalToCreateTag,
   NormalButton,
@@ -20,7 +18,7 @@ import {
   TabPanels,
 } from '@chakra-ui/react';
 
-import { NotFoundPage } from '~/pages';
+import { ContentWithRelation } from '~/pages/type';
 
 import { pageTitle } from '~/pages/style';
 
@@ -31,8 +29,11 @@ import {
 } from './components';
 
 
-export const Content: VFC = () => {
-  const { content } = useContext(ContentContext);
+type Props = {
+  content: ContentWithRelation;
+};
+
+export const Content: VFC<Props> = ({ content }) => {
   console.log(`Content`, content);
   const [isOverView, setIsOverView] = useState(true);
 
@@ -40,7 +41,7 @@ export const Content: VFC = () => {
     setIsOverView((prev) => !prev);
   }, []); 
 
-  if (content === null) return <NotFoundPage />;
+  if (content === null) return <></>;
 
   return (
     <>

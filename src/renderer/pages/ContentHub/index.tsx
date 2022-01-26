@@ -51,7 +51,7 @@ export const ContentHub: VFC = () => {
               <PreviewNote />
           </Route>
           <Route path={`${path}`}>
-                <Content />
+                <Content content={content} />
           </Route>
         </Switch>
       </div>
