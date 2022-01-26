@@ -25,7 +25,8 @@ import { NoteContext } from '~/pages/NoteContextProvider';
 import { 
   NotifierContext,
   ContentContext, 
-  SelectedTagsContext
+  SelectedTagsContext,
+  IsAllowTransitionContext
 } from '~/components';
 
 import { SelectedBlocksContext } from '../SelectedBlocksContextProvider';
@@ -49,6 +50,12 @@ export const useEditNote = (content: ContentWithRelation) => {
   const { selectedBlocks, dispatch: selectedBlocksDispatch } = useContext(SelectedBlocksContext);
 
   const [mode, setMode] = useState<Mode>('edit');
+
+  const { 
+    setIsAllowTransition,
+    setConfirmerMessage 
+  } = useContext(IsAllowTransitionContext);
+  
 
   useEffect(() => {
     (async () => {
@@ -92,6 +99,21 @@ export const useEditNote = (content: ContentWithRelation) => {
     return isMarkdownChange || isSelectedTagsChange || isSelectedBlocksChange;
 
   }, [note, markdown, selectedTags, selectedBlocks]);
+
+  useEffect(() => {
+    if (isNoteChange) {
+      setIsAllowTransition(false);
+      setConfirmerMessage('If you leave this page now, You will lose all changes which were not saved.');
+    } else {
+      setIsAllowTransition(true);
+      setConfirmerMessage('');
+    }
+
+    return () => {
+      setIsAllowTransition(true);
+      setConfirmerMessage('');
+    };
+  }, [setConfirmerMessage, setIsAllowTransition, isNoteChange]);
 
   const history = useHistory();
 
