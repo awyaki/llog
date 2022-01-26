@@ -30,6 +30,7 @@ export const useContentMenu = (contentId: number) => {
     
     if (confirmer()) {
       history.push(`/content/${contentId}/notes`);
+      return;
     }
     
     return;
@@ -43,7 +44,9 @@ export const useContentMenu = (contentId: number) => {
     
     if (confirmer()) {
       history.push(`/content/${contentId}/createnote`);
+      return;
     }
+    
     
     return;
   }, [confirmer, history, contentId]);
