@@ -1,33 +1,29 @@
-import { useCallback } from 'react';
+import { useCallback, useContext } from 'react';
 
 import { useHistory } from 'react-router-dom';
 
-type Props = {
-  contentId: number;  
-  confirmer?: () => boolean;
-};
+import { IsAllowTransitionContext } from '~/components';
 
-export const useContentMenu = ({ 
-  contentId, 
-  confirmer
-}: Props ) => {
+export const useContentMenu = (contentId: number) => {
   const history = useHistory();
+  const { isAllowTransition, confirmer  } = useContext(IsAllowTransitionContext);
 
   const onClickInfoButton = useCallback(() => {
-    if (confirmer === undefined) {
+    if (isAllowTransition) {
       history.push(`/content/${contentId}`);
       return;
     }
     
     if (confirmer()) {
       history.push(`/content/${contentId}`);
+      return;
     }
     
     return;
   }, [confirmer, history, contentId]);
     
   const onClickNotesButton = useCallback(() => {
-    if (confirmer === undefined) {
+    if (isAllowTransition) {
       history.push(`/content/${contentId}/notes`);
       return;
     }
@@ -40,7 +36,7 @@ export const useContentMenu = ({
   }, [confirmer, history, contentId]);
     
   const onClickEditNote = useCallback(() => {
-    if (confirmer === undefined) {
+    if (isAllowTransition) {
       history.push(`/content/${contentId}/createnote`);
       return;
     }

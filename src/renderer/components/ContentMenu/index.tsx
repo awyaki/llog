@@ -16,7 +16,6 @@ import { colors } from '~/styleConfig';
 
 type Props = {
   contentId: number;  
-  confirmer?: () => boolean;
 };
 
 const buttonStyle: CSSObject = { 
@@ -29,13 +28,12 @@ const buttonStyle: CSSObject = {
 
 export const ContentMenu: VFC<Props> = ({ 
   contentId,
-  confirmer
 }) => {
   const {
     onClickEditNote,
     onClickInfoButton,
     onClickNotesButton
-  } = useContentMenu({ contentId, confirmer });
+  } = useContentMenu(contentId);
 
   return (
     <SlideFade 
