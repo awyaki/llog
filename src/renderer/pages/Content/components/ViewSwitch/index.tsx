@@ -44,10 +44,8 @@ export const ViewSwitch: VFC<Props> = ({
         animate={isOverView ? 'overview' : 'normal'}
         variants={variants}
         transition={{ 
-          duration: 0.1, 
-          type: 'spring', 
-          bounce: 0.25,
-          stiffness: 200,
+          type: 'tween', 
+          duration: 0.1
           }}
         css={miniStyle}>
       </motion.div>
