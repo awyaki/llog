@@ -80,7 +80,7 @@ export const Content: VFC = () => {
             </TabPanel>
             <TabPanel>
               <ViewSwitch 
-                css={{ marginBottom: '32px' }}
+                css={{ marginBottom: '16px' }}
                 isOverView={isOverView} 
                 onSwitch={onSwitch} />
               <ContentBlocks 

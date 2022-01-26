@@ -2,7 +2,12 @@ import { VFC } from 'react';
 
 import { CSSObject } from '@emotion/react';
 
-import { colors, font } from '~/styleConfig';
+import { colors } from '~/styleConfig';
+
+import { 
+  motion, 
+  Variants, 
+  } from 'framer-motion';
 
 const miniStyle: CSSObject = {
   width: '18px',
@@ -11,43 +16,17 @@ const miniStyle: CSSObject = {
   borderStyle: 'solid',
   borderColor: colors.cyan.DEFAULT,
   backgroundColor: colors.cyan.DEFAULT,
-  transition: '.25',
-};
-
-const reverseMiniStyle: CSSObject = {
-  width: '18px',
-  height: '18px',
-  borderWidth: '1px',
-  borderStyle: 'solid',
-  borderColor: colors.cyan.DEFAULT,
-  backgroundColor: colors.white,
-  transition: '.25',
-};
-
-const normalStyle: CSSObject = {
-  width: '36px',
-  height: '36px',
-  borderWidth: '1px',
-  borderStyle: 'solid',
-  borderColor: colors.cyan.DEFAULT,
-  backgroundColor: colors.cyan.DEFAULT,
-  transition: '.25',
-};
-
-const reverseNormalStyle: CSSObject = {
-  width: '36px',
-  height: '36px',
-  borderWidth: '1px',
-  borderStyle: 'solid',
-  borderColor: colors.cyan.DEFAULT,
-  backgroundColor: colors.white,
-  transition: '.25',
 };
 
 type Props = {
   css?: CSSObject;
   isOverView: boolean;
   onSwitch: () => void;
+};
+
+const variants: Variants = {
+  overview: { scale: 1, rotate: 0 },
+  normal: { scale: 2, rotate: 90 },
 };
 
 export const ViewSwitch: VFC<Props> = ({ 
@@ -59,18 +38,19 @@ export const ViewSwitch: VFC<Props> = ({
     <button 
       onClick={onSwitch}
       css={{ 
-        width: '110px',
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'flex-end',
-        padding: '8px 16px',
-        borderBottom: `2px solid ${colors.cyan.DEFAULT}`}} {...rest}>
-      <div
-      css={isOverView ? miniStyle : reverseMiniStyle}>
-      </div>
-      <div
-        css={!isOverView ? normalStyle : reverseNormalStyle}>
-      </div>
+        padding: '16px',
+        border: `1px solid ${colors.cyan.DEFAULT}`}} {...rest}>
+      <motion.div
+        animate={isOverView ? 'overview' : 'normal'}
+        variants={variants}
+        transition={{ 
+          duration: 0.1, 
+          type: 'spring', 
+          bounce: 0.25,
+          stiffness: 200,
+          }}
+        css={miniStyle}>
+      </motion.div>
     </button>
   );
 };
