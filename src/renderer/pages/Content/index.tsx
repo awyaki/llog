@@ -9,7 +9,6 @@ import {
   ContentContext, 
   ModalToUpdateContentTags,
   ModalToCreateTag,
-  Menu,
   ContentMenu,
   NormalButton,
 } from '~/components';
@@ -45,11 +44,9 @@ export const Content: VFC = () => {
   if (content === null) return <NotFoundPage />;
 
   return (
-    <div css={{ display: 'flex' }}>
+    <>
       <ModalToUpdateContentTags contentId={content.id}/>
       <ModalToCreateTag />
-      <Menu />
-      <ContentMenu contentId={content.id} />
       <div css={container}>
         <NormalButton css={{ marginBottom: '16px' }}>
           Update
@@ -77,6 +74,6 @@ export const Content: VFC = () => {
           </TabPanels>
         </Tabs>
       </div>
-    </div>
+    </>
   );
 }; 

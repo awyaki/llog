@@ -49,18 +49,14 @@ export const CreateNote: VFC = () => {
   if (content === null) return <></>;
 
   return (
-    <div css={{ display: 'flex' }}>
+    <>
       <ModalToSelectTags />
       <ModalToCreateTag />
-      <SwitchingMenu 
-        isNoteChange={isNoteChange} 
-        confirmer={confirmer} />
-      <SwitchingContentMenu 
-        contentId={content.id}
-        isNoteChange={isNoteChange}
-        confirmer={confirmer}
-      />
-      <Box __css={container}>
+      <ModalToSelectBlocks 
+        isOpen={isOpenSelectBlocks}
+        onClose={onCloseSelectBlocks}
+        blocks={content.blocks} />
+      <div css={container}>
         <h2 css={{ ...pageTitle, marginBottom: '8px' }}>{content.name}</h2>
         <div css={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'flex-start' }}>
           <Note 
@@ -84,11 +80,7 @@ export const CreateNote: VFC = () => {
             onMoveToOtherNoteEdit={onMoveToOtherNoteEdit} />
 
         </div>
-      </Box>
-      <ModalToSelectBlocks 
-        isOpen={isOpenSelectBlocks}
-        onClose={onCloseSelectBlocks}
-        blocks={content.blocks} />
-    </div>
+      </div>
+    </>
   );
 };

@@ -7,4 +7,5 @@ export const container: CSSObject = {
   minWidth: '800px',
   minHeight: '400px',
   color: colors.text,
+  display: 'flex',
 };

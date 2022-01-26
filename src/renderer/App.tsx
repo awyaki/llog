@@ -13,7 +13,8 @@ import {
 import { 
   Notifier,
   SelectedTagsContextProvider,
-  ContentContextProvider
+  ContentContextProvider,
+  Menu
 } from './components';
 
 import { Box } from '@chakra-ui/react';
@@ -27,6 +28,7 @@ export const App: VFC = () => {
     <HashRouter>
       <Box css={container}>
         <Notifier />
+        <Menu />
         <Switch>
           <Route path="/content/:contentId">
             <ContentContextProvider>
