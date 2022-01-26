@@ -5,7 +5,11 @@ import 'destyle.css';
 import { App } from './App';
 import { ChakraProvider } from '@chakra-ui/react';
 import { TagContextProvider } from './DBContextProviders';
-import { NotifierContextProvider, ContentsContextProvider } from './components';
+import { 
+  NotifierContextProvider,
+  ContentsContextProvider,
+  IsAllowTransitionContextProvider
+} from './components';
 import { theme } from './theme';
 
 ReactDOM.render(
@@ -14,7 +18,9 @@ ReactDOM.render(
       <TagContextProvider>
       <NotifierContextProvider>
         <ContentsContextProvider>
-          <App />
+          <IsAllowTransitionContextProvider>
+            <App />
+          </IsAllowTransitionContextProvider>
         </ContentsContextProvider>
       </NotifierContextProvider>
       </TagContextProvider>
