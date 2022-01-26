@@ -9,7 +9,6 @@ import {
   ContentContext, 
   ModalToUpdateContentTags,
   ModalToCreateTag,
-  ContentMenu,
   NormalButton,
 } from '~/components';
 
@@ -23,7 +22,7 @@ import {
 
 import { NotFoundPage } from '~/pages';
 
-import { pageTitle, container } from '~/pages/style';
+import { pageTitle } from '~/pages/style';
 
 import { 
   BasicInfo,
@@ -47,7 +46,7 @@ export const Content: VFC = () => {
     <>
       <ModalToUpdateContentTags contentId={content.id}/>
       <ModalToCreateTag />
-      <div css={container}>
+      <>
         <NormalButton css={{ marginBottom: '16px' }}>
           Update
         </NormalButton>
@@ -73,7 +72,7 @@ export const Content: VFC = () => {
             </TabPanel>
           </TabPanels>
         </Tabs>
-      </div>
+      </>
     </>
   );
 }; 

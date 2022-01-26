@@ -14,7 +14,7 @@ import { TagList, BlockList } from './components';
 
 import { Box } from '@chakra-ui/react';
 
-import { container, pageTitle } from '~/pages/style';
+import { pageTitle } from '~/pages/style';
 
 import { usePreviewNote } from './hooks';
 
@@ -30,8 +30,9 @@ export const PreviewNote: VFC = () => {
   if (note === null) return <NotFoundPage />;
 
   const { contentId, updatedAt, tags, blocks, transformed } = note;
+
   return (
-    <div css={container}>
+    <>
       <h2 css={{ ...pageTitle, marginBottom: '8px' }}>{contentName}</h2>
       <Box css={noteStyle}>
         <div css={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -45,6 +46,6 @@ export const PreviewNote: VFC = () => {
         <BlockList blocks={blocks} />
         <div className="znc" dangerouslySetInnerHTML={{ __html: transformed }}></div>
       </Box>
-    </div>
+    </>
   );
 };

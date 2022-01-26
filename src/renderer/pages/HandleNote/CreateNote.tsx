@@ -12,7 +12,6 @@ import { pageTitle } from '~/pages/style';
 import { confirmer } from './functions';
 
 
-
 import { Box } from '@chakra-ui/react';
 
 import { 
@@ -56,7 +55,7 @@ export const CreateNote: VFC = () => {
         isOpen={isOpenSelectBlocks}
         onClose={onCloseSelectBlocks}
         blocks={content.blocks} />
-      <div css={container}>
+      <>
         <h2 css={{ ...pageTitle, marginBottom: '8px' }}>{content.name}</h2>
         <div css={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'flex-start' }}>
           <Note 
@@ -80,7 +79,7 @@ export const CreateNote: VFC = () => {
             onMoveToOtherNoteEdit={onMoveToOtherNoteEdit} />
 
         </div>
-      </div>
+      </>
     </>
   );
 };

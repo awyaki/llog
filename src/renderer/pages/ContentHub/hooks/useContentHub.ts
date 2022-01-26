@@ -12,7 +12,7 @@ import { ContentContext } from '~/components';
 
 export const useContentHub = () => {
   const { contentId } = useParams<{ contentId: string }>();
-  const { setContent } = useContext(ContentContext);
+  const { content, setContent } = useContext(ContentContext);
     
   useEffect(() => {
     (async () => {
@@ -23,4 +23,5 @@ export const useContentHub = () => {
     })();
   }, [contentId]);
 
+  return { content }
 };
