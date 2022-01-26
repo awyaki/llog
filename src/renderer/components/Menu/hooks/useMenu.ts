@@ -41,7 +41,7 @@ export const useMenu = () => {
   const onClickHome = useCallback(() => {
     const path = '/contents';
 
-    if (confirmer === undefined) {
+    if (isAllowTransition) {
       history.push(path);
       return;
     }
