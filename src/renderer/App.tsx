@@ -6,11 +6,8 @@ import { useUpdateBlockLevel } from './hooks';
 
 import {
   Contents,
-  Content,
-  NotesOfContent,
-  CreateNote,
   Logs,
-  PreviewNote
+  ContentHub,
 } from './pages';
 
 import { 
@@ -31,30 +28,10 @@ export const App: VFC = () => {
       <Box css={container}>
         <Notifier />
         <Switch>
-          <Route path="/content/:contentId/notes">
-            <NotesOfContent />
-          </Route>
-          <Route path="/content/:contentId/createnote">
-            <ContentContextProvider>
-              <SelectedTagsContextProvider>
-                <CreateNote />
-              </SelectedTagsContextProvider>
-            </ContentContextProvider>
-          </Route>
-          <Route path="/content/:contentId/updatenote/:noteId">
-            <ContentContextProvider>
-              <SelectedTagsContextProvider>
-                <CreateNote />
-              </SelectedTagsContextProvider>
-            </ContentContextProvider>
-          </Route>
-          <Route path="/content/:contentId/previewnote/:noteId">
-              <PreviewNote />
-          </Route>
           <Route path="/content/:contentId">
             <ContentContextProvider>
               <SelectedTagsContextProvider>
-                <Content />
+                <ContentHub />
               </SelectedTagsContextProvider>
             </ContentContextProvider>
           </Route>

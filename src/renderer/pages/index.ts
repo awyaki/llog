@@ -5,3 +5,4 @@ export * from './Logs';
 export * from './NotesOfContent';
 export * from './PreviewNote';
 export * from './NotFoundPage';
+export * from './ContentHub';

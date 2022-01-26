@@ -1,7 +1,6 @@
 import { 
   VFC, 
   useContext, 
-  useEffect,
   useState,
   useCallback,
 } from 'react';
@@ -23,10 +22,6 @@ import {
   TabPanels,
 } from '@chakra-ui/react';
 
-import { getContent } from '~/api';
-
-import { useParams } from 'react-router-dom';
-
 import { NotFoundPage } from '~/pages';
 
 import { pageTitle, container } from '~/pages/style';
@@ -39,18 +34,10 @@ import {
 
 
 export const Content: VFC = () => {
-  const { contentId } = useParams<{ contentId: string }>();
-  const { content, setContent } = useContext(ContentContext);
+  const { content } = useContext(ContentContext);
+  console.log(`Content`, content);
   const [isOverView, setIsOverView] = useState(true);
 
-  useEffect(() => {
-    (async () => {
-      const result = await getContent(Number(contentId));
-      setContent(result);
-    })();
-
-  }, [contentId]);
- 
   const onSwitch = useCallback(() => {
     setIsOverView((prev) => !prev);
   }, []); 
