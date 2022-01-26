@@ -1,36 +1,42 @@
-import { useCallback } from 'react';
+import { useCallback, useContext } from 'react';
 
 import { useHistory } from 'react-router-dom';
 
-export const useMenu = (confirmer?: () => boolean) => {
+import { IsAllowTransitionContext } from '~/components';
+
+export const useMenu = () => {
 
   const history = useHistory();
 
+  const { isAllowTransition, confirmer } = useContext(IsAllowTransitionContext);
+
   const onClickBack = useCallback(() => {
-    if (confirmer === undefined) {
+    if (isAllowTransition) {
       history.goBack();
       return;
     }
     
     if (confirmer()) {
       history.goBack();
+      return;
     }
     
     return;
-  }, [confirmer, history]);
+  }, [isAllowTransition, confirmer, history]);
     
   const onClickForward = useCallback(() => {
-    if (confirmer === undefined) {
+    if (isAllowTransition) {
       history.goForward();
       return;
     }
     
     if (confirmer()) {
       history.goBack();
+      return;
     }
     
     return;
-  }, [confirmer, history]); 
+  }, [isAllowTransition, confirmer, history]); 
 
   const onClickHome = useCallback(() => {
     const path = '/contents';
@@ -42,40 +48,43 @@ export const useMenu = (confirmer?: () => boolean) => {
     
     if (confirmer()) {
       history.push(path);
+      return;
     }
     
     return;
-  }, [confirmer, history]);
+  }, [isAllowTransition, confirmer, history]);
 
   const onClickLogs = useCallback(() => {
     const path = '/logs';
 
-    if (confirmer === undefined) {
+    if (isAllowTransition) {
       history.push(path);
       return;
     }
     
     if (confirmer()) {
       history.push(path);
+      return;
     }
     
     return;
-  }, [confirmer, history]);
+  }, [isAllowTransition, confirmer, history]);
 
   const onClickTags = useCallback(() => {
     const path = '/tags';
 
-    if (confirmer === undefined) {
+    if (isAllowTransition) {
       history.push(path);
       return;
     }
     
     if (confirmer()) {
       history.push(path);
+      return;
     }
     
     return;
-  }, [confirmer, history]);
+  }, [isAllowTransition, confirmer, history]);
 
   return {
     onClickForward,

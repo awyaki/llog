@@ -15,18 +15,14 @@ import {
 } from '../Icons';
 
 
-type Props = {
-  confirmer?: () => boolean;
-};
-
-export const Menu: VFC<Props> = ({ confirmer }) => {
+export const Menu: VFC = () => {
   const {
     onClickBack,
     onClickForward,
     onClickHome,
     onClickLogs,
     onClickTags
-  } = useMenu(confirmer);
+  } = useMenu();
 
   return (
     <div css={{ 
