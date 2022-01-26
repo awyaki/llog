@@ -2,21 +2,22 @@ import { VFC } from 'react';
 
 import { useNotesOfContent } from './hooks';
 
-import { NotFoundPage } from '~/pages';
-
 import { title } from './style/title';
+
+import { ContentWithRelation } from '~/pages/type';
 
 import { 
   TagList,
   NoteList,
   } from './components';
 
+type Props = {
+  content: ContentWithRelation;
+};
 
-
-export const NotesOfContent: VFC = () => {
-  const { content, notes } = useNotesOfContent();
+export const NotesOfContent: VFC<Props> = ({ content }) => {
+  const { notes } = useNotesOfContent(content.id);
   
-  if (content === null) return <NotFoundPage />;
   return (
     <>
       <h1 css={{ ...title, marginBottom: '8px' }}>{content.name}</h1>

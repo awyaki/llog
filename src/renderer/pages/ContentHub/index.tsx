@@ -39,7 +39,7 @@ export const ContentHub: VFC = () => {
         }}>
         <Switch>
           <Route path={`${path}/notes`}>
-            <NotesOfContent />
+            <NotesOfContent content={content} />
           </Route>
           <Route path={`${path}/createnote`}>
                 <CreateNote />
