@@ -25,7 +25,7 @@ export const useContentMenu = (contentId: number) => {
     }
     
     return;
-  }, [confirmer, history, contentId]);
+  }, [confirmer, history, contentId, path]);
     
   const onClickNotesButton = useCallback(() => {
     if (path === '/content/:contentId/notes')
@@ -41,7 +41,7 @@ export const useContentMenu = (contentId: number) => {
     }
     
     return;
-  }, [confirmer, history, contentId]);
+  }, [confirmer, history, contentId, path]);
     
   const onClickEditNote = useCallback(() => {
     if (path === `/content/:contentId/createnote`)
@@ -58,7 +58,7 @@ export const useContentMenu = (contentId: number) => {
     
     
     return;
-  }, [confirmer, history, contentId]);
+  }, [confirmer, history, contentId, path]);
 
   return {
     onClickEditNote,
