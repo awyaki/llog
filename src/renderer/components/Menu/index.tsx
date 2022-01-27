@@ -36,6 +36,7 @@ export const Menu: VFC = () => {
         width: '90px', 
         padding: '90px 16px 16px 16px', 
         backgroundColor: colors.cyan.DEFAULT,
+        zIndex: 100,
       }}>
       <button
         onClick={onClickBack}
