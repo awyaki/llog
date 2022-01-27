@@ -5,15 +5,12 @@ import { CSSObject } from '@emotion/react';
 
 import { useContentMenu } from './hooks';
 
-import { 
-  NotesButton,
-  EditNoteButton
-} from '../Buttons';
-
 import { colors } from '~/styleConfig';
 
 import {
-  InfoButton
+  InfoButton,
+  NotesButton,
+  EditNoteButton,
 } from './components';
 
 import { 
@@ -69,10 +66,9 @@ export const ContentMenu: VFC<Props> = ({
         css={{ marginBottom: '16px' }}
         onClick={onClickInfoButton} />
       <NotesButton 
-        css={{ ...buttonStyle, marginBottom: '16px' }} 
+        css={{ marginBottom: '16px' }} 
         onClick={onClickNotesButton} />
       <EditNoteButton 
-        css={buttonStyle}
         onClick={onClickEditNote} />
     </motion.nav>
   );
