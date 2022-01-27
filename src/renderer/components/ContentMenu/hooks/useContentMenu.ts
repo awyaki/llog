@@ -1,6 +1,6 @@
 import { useCallback, useContext } from 'react';
 
-import { useHistory, useRouteMatch, useLocation } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 
 import { IsAllowTransitionContext } from '~/components';
 
@@ -8,7 +8,6 @@ export const useContentMenu = (contentId: number) => {
   const history = useHistory();
 
   const { isAllowTransition, confirmer  } = useContext(IsAllowTransitionContext);
-  console.log('useContentMenu isAllowTransition', isAllowTransition);
 
   const { pathname } = useLocation();
 

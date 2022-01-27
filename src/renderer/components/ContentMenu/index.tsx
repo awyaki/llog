@@ -1,8 +1,5 @@
 import { VFC } from 'react';
 
-import { CSSObject } from '@emotion/react';
-
-
 import { useContentMenu } from './hooks';
 
 import { colors } from '~/styleConfig';
@@ -22,12 +19,6 @@ type Props = {
   contentId: number;  
 };
 
-const buttonStyle: CSSObject = { 
-            backgroundColor: colors.cyan.SECOND,
-            '&:hover, &:focus': {
-              color: colors.cyan.SECOND
-            }
-          };
 
 const container: Variants = {
   hidden: { opacity: 0, x: -50 },

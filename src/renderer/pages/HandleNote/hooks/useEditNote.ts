@@ -103,7 +103,7 @@ export const useEditNote = (content: ContentWithRelation) => {
   useEffect(() => {
     if (isNoteChange) {
       setIsAllowTransition(false);
-      setConfirmerMessage('If you leave this page now, You will lose all changes which were not saved.');
+      setConfirmerMessage('If you leave this page now, you will lose all changes which are not saved.');
     } else {
       setIsAllowTransition(true);
       setConfirmerMessage('');
