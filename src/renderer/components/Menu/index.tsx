@@ -19,6 +19,7 @@ import { motion } from 'framer-motion';
 import {
   ForwardButton,
   BackButton,
+  HomeButton,
 } from './components';
 
 
@@ -55,11 +56,9 @@ export const Menu: VFC = () => {
       <ForwardButton 
         css={{ marginBottom: '32px' }}
         onClick={onClickForward} />
-      <motion.button 
-        onClick={onClickHome}
-        css={{ ...menuButton, marginBottom: '16px' }}>
-        <HomeIcon />
-      </motion.button>
+      <HomeButton 
+        css={{ marginBottom: '16px' }}
+        onClick={onClickHome} />
       <motion.button 
         onClick={onClickLogs}
         css={{ ...menuButton, marginBottom: '16px'}}>
