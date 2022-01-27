@@ -1,6 +1,9 @@
 import { VFC } from 'react';
 
-import { ContentMenu } from '~/components';
+import { 
+  ContentMenu,
+  PageMotion
+  } from '~/components';
 
 import { 
   Content,
@@ -32,7 +35,7 @@ export const ContentHub: VFC = () => {
       flexGrow: 1,
       }}>
       <ContentMenu contentId={content.id} />
-      <div css={{ 
+      <PageMotion css={{ 
         width: '100%',
         padding: '60px 20px 20px 40px',
         flexGrow: 1,
@@ -54,7 +57,7 @@ export const ContentHub: VFC = () => {
                 <Content content={content} />
           </Route>
         </Switch>
-      </div>
+      </PageMotion>
     </div>
   );
 };
