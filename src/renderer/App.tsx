@@ -25,28 +25,26 @@ export const App: VFC = () => {
   useUpdateBlockLevel();
 
   return (
-    <HashRouter>
-      <Box css={container}>
-        <Notifier />
-        <Menu />
-        <Switch>
-          <Route path="/content/:contentId">
-            <ContentContextProvider>
-              <SelectedTagsContextProvider>
-                <ContentHub />
-              </SelectedTagsContextProvider>
-            </ContentContextProvider>
-          </Route>
-          <Route path="/logs">
-            <Logs />
-          </Route>
-          <Route path="/">
+    <Box css={container}>
+      <Notifier />
+      <Menu />
+      <Switch>
+        <Route path="/content/:contentId">
+          <ContentContextProvider>
             <SelectedTagsContextProvider>
-              <Contents />
+              <ContentHub />
             </SelectedTagsContextProvider>
-          </Route>
-        </Switch>
-      </Box>
-    </HashRouter>
+          </ContentContextProvider>
+        </Route>
+        <Route path="/logs">
+          <Logs />
+        </Route>
+        <Route path="/">
+          <SelectedTagsContextProvider>
+            <Contents />
+          </SelectedTagsContextProvider>
+        </Route>
+      </Switch>
+    </Box>
   );
 };
