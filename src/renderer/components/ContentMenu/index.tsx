@@ -2,22 +2,23 @@ import { VFC } from 'react';
 
 import { CSSObject } from '@emotion/react';
 
-import { SlideFade } from '@chakra-ui/react';
 
 import { useContentMenu } from './hooks';
 
 import { 
-  InfoButton,
   NotesButton,
   EditNoteButton
 } from '../Buttons';
 
 import { colors } from '~/styleConfig';
 
+import {
+  InfoButton
+} from './components';
+
 import { 
   motion, 
   Variants,
-  AnimatePresence
   } from 'framer-motion';
 
 type Props = {
@@ -65,7 +66,7 @@ export const ContentMenu: VFC<Props> = ({
         backgroundColor: colors.cyan.SECOND,
       }}>
       <InfoButton 
-        css={{ ...buttonStyle, marginBottom: '16px' }} 
+        css={{ marginBottom: '16px' }}
         onClick={onClickInfoButton} />
       <NotesButton 
         css={{ ...buttonStyle, marginBottom: '16px' }} 
