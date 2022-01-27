@@ -17,7 +17,10 @@ export const InfoButton: VFC<Props> = ({
   ...rest
 }) => {
   return (
-    <MenuButtonWrapper onClick={onClick} {...rest}>
+    <MenuButtonWrapper 
+      secondary
+      onClick={onClick}
+      {...rest}>
       <InfoIcon />
     </MenuButtonWrapper>
   );

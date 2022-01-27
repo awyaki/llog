@@ -15,7 +15,7 @@ type Props = {
   secondary?: boolean;
 } & HTMLMotionProps<"button">;
 
-const makeButtonMotions = (secondary: boolean): Variants => {
+const makeButtonMotions = (secondary?: boolean): Variants => {
   return {
     initial: {
       x: 0,
