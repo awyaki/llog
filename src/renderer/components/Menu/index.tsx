@@ -20,6 +20,7 @@ import {
   ForwardButton,
   BackButton,
   HomeButton,
+  LogsButton,
 } from './components';
 
 
@@ -59,11 +60,9 @@ export const Menu: VFC = () => {
       <HomeButton 
         css={{ marginBottom: '16px' }}
         onClick={onClickHome} />
-      <motion.button 
-        onClick={onClickLogs}
-        css={{ ...menuButton, marginBottom: '16px'}}>
-        <LogsIcon />
-      </motion.button>
+      <LogsButton 
+        css={{ marginBottom: '16px' }}
+        onClick={onClickLogs} />
       <motion.button 
         onClick={onClickTags}
         css={menuButton}>
