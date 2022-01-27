@@ -19,7 +19,7 @@ import {
 
 type Props = Pick<ContentWithRelation, 'name' | 'createdAt' | 'tags'>;
 
-const hoverStates: Variants = {
+const containerMotions: Variants = {
   normal: {
     scale: 1,
     borderColor: colors.cyan.DEFAULT,
@@ -34,6 +34,18 @@ const hoverStates: Variants = {
   },
 };
 
+const tagListMotions: Variants = {
+  normal: {
+    borderColor: colors.white,
+    backgroundColor: colors.cyan.DEFAULT,
+    color: colors.white,
+  },
+  delta: {
+    borderColor: colors.cyan.DEFAULT,
+    backgroundColor: colors.white,
+    color: colors.cyan.DEFAULT,
+  },
+};
 
 export const ContentCard: VFC<Props> = ({ 
   createdAt, 
@@ -42,7 +54,7 @@ export const ContentCard: VFC<Props> = ({
 }) => {
   return (
     <motion.div 
-      variants={hoverStates}
+      variants={containerMotions}
       style={{
         width: '100%',
         borderWidth: '1px',
@@ -59,7 +71,7 @@ export const ContentCard: VFC<Props> = ({
         marginBottom: '6px',
       }}>{makeFormalTimeString(createdAt)}</div>
       <TagsList 
-        variants={hoverStates}
+        variants={tagListMotions}
         css={{ marginBottom: '8px' }}
         tags={tags}
         secandary />
