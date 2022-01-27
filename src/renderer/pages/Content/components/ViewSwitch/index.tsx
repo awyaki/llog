@@ -25,8 +25,8 @@ type Props = {
 };
 
 const variants: Variants = {
-  overview: { scale: 1, rotate: 0 },
-  normal: { scale: 2, rotate: 90 },
+  overview: { scale: 1 },
+  normal: { scale: 1.8 },
 };
 
 export const ViewSwitch: VFC<Props> = ({ 
@@ -43,10 +43,7 @@ export const ViewSwitch: VFC<Props> = ({
       <motion.div
         animate={isOverView ? 'overview' : 'normal'}
         variants={variants}
-        transition={{ 
-          type: 'tween', 
-          duration: 0.1
-          }}
+        transition={{ duration: 0.1 }}
         css={miniStyle}>
       </motion.div>
     </button>
