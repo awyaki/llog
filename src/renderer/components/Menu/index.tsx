@@ -21,6 +21,7 @@ import {
   BackButton,
   HomeButton,
   LogsButton,
+  TagsButton,
 } from './components';
 
 
@@ -63,11 +64,7 @@ export const Menu: VFC = () => {
       <LogsButton 
         css={{ marginBottom: '16px' }}
         onClick={onClickLogs} />
-      <motion.button 
-        onClick={onClickTags}
-        css={menuButton}>
-        <TagsIcon />
-      </motion.button>
+      <TagsButton onClick={onClickTags} />
     </motion.div>
   );
 };
