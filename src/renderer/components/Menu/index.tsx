@@ -14,6 +14,8 @@ import {
   TagsIcon
 } from '../Icons';
 
+import { motion } from 'framer-motion';
+
 
 export const Menu: VFC = () => {
   const {
@@ -25,7 +27,11 @@ export const Menu: VFC = () => {
   } = useMenu();
 
   return (
-    <div css={{ 
+    <motion.div 
+      initial={{ opacity: 0, x: -30 }}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0, x: -30 }}
+      css={{ 
         height: '100vh',
         position: 'sticky',
         display: 'flex',
@@ -63,6 +69,6 @@ export const Menu: VFC = () => {
         css={menuButton}>
         <TagsIcon />
       </button>
-    </div>
+    </motion.div>
   );
 };
