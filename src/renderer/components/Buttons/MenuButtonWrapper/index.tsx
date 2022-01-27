@@ -12,7 +12,7 @@ import {
 
 type Props = {
   css?: CSSObject; 
-  secondary: boolean;
+  secondary?: boolean;
 } & HTMLMotionProps<"button">;
 
 const makeButtonMotions = (secondary: boolean): Variants => {
