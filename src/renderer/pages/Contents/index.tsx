@@ -12,6 +12,7 @@ import {
   SearchedTagsList,
   NormalButton,
   SearchIcon,
+  PageMotion,
 } from '~/components';
 
 import {
@@ -36,14 +37,14 @@ export const Contents: VFC = () => {
     onCloseDrawerToCreateContent,
   } = useContents();
   return (
-      <>
+      <PageMotion css={container}>
         <ModalToSelectTags />
         <ModalToCreateTag />
         <ModalToSearchTags />
         <DrawerToCreateContent 
           isOpen={isOpenDrawerToCreateContent}
           onClose={onCloseDrawerToCreateContent} />
-        <Box css={container}>
+        <Box>
           <NormalButton 
             css={{ display: 'block', marginBottom: '16px' }}
             onClick={onOpenDrawerToCreateContent}>
@@ -63,6 +64,6 @@ export const Contents: VFC = () => {
           </div>
           <ContentsList contents={filtered} />
         </Box>
-      </>
+      </PageMotion>
   );
 };
