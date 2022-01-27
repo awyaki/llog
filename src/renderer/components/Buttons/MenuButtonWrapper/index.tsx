@@ -12,31 +12,35 @@ import {
 
 type Props = {
   css?: CSSObject; 
+  secondary: boolean;
 } & HTMLMotionProps<"button">;
 
-const buttonMotions: Variants = {
-  initial: {
-    x: 0,
-    scale: 1,
-    borderColor: colors.white,
-    color: colors.white,
-    backgroundColor: colors.cyan.DEFAULT,
-  },
-  delta: {
-    x: 8,
-    scale: 1.1,
-    backgroundColor: colors.white,
-    color: colors.cyan.DEFAULT,
-  },
+const makeButtonMotions = (secondary: boolean): Variants => {
+  return {
+    initial: {
+      x: 0,
+      scale: 1,
+      borderColor: colors.white,
+      color: colors.white,
+      backgroundColor: secondary ? colors.cyan.SECOND : colors.cyan.DEFAULT,
+    },
+    delta: {
+      x: 8,
+      scale: 1.1,
+      backgroundColor: colors.white,
+      color: secondary ? colors.cyan.SECOND : colors.cyan.DEFAULT,
+    },
+  }
 };
 
 export const MenuButtonWrapper: FC<Props> = ({
   children,
+  secondary,
   ...rest
 }) => {
   return (
     <motion.button
-      variants={buttonMotions}
+      variants={makeButtonMotions(secondary)}
       initial="initial"
       whileHover="delta"
       whileFocus="delta"
