@@ -16,6 +16,10 @@ import {
 
 import { motion } from 'framer-motion';
 
+import {
+  ForwardButton,
+} from './components';
+
 
 export const Menu: VFC = () => {
   const {
@@ -44,31 +48,29 @@ export const Menu: VFC = () => {
         backgroundColor: colors.cyan.DEFAULT,
         zIndex: 100,
       }}>
-      <button
+      <motion.button
         onClick={onClickBack}
         css={{ ...menuButton, marginBottom: '16px' }}>
         <BackIcon />
-      </button>
-      <button
-        onClick={onClickForward}
-        css={{ ...menuButton, marginBottom: '32px' }}>
-        <ForwardIcon />
-      </button>
-      <button 
+      </motion.button>
+      <ForwardButton 
+        css={{ marginBottom: '32px' }}
+        onClick={onClickForward} />
+      <motion.button 
         onClick={onClickHome}
         css={{ ...menuButton, marginBottom: '16px' }}>
         <HomeIcon />
-      </button>
-      <button 
+      </motion.button>
+      <motion.button 
         onClick={onClickLogs}
         css={{ ...menuButton, marginBottom: '16px'}}>
         <LogsIcon />
-      </button>
-      <button 
+      </motion.button>
+      <motion.button 
         onClick={onClickTags}
         css={menuButton}>
         <TagsIcon />
-      </button>
+      </motion.button>
     </motion.div>
   );
 };

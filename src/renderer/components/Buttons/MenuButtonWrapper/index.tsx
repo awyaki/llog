@@ -5,11 +5,29 @@ import { CSSObject } from '@emotion/react';
 import { colors } from '~/styleConfig';
 
 import {
-  motion
+  motion,
+  HTMLMotionProps,
+  Variants
 } from 'framer-motion';
 
 type Props = {
   css?: CSSObject; 
+} & HTMLMotionProps<"button">;
+
+const buttonMotions: Variants = {
+  initial: {
+    x: 0,
+    scale: 1,
+    borderColor: colors.white,
+    color: colors.white,
+    backgroundColor: colors.cyan.DEFAULT,
+  },
+  delta: {
+    x: 8,
+    scale: 1.1,
+    backgroundColor: colors.white,
+    color: colors.cyan.DEFAULT,
+  },
 };
 
 export const MenuButtonWrapper: FC<Props> = ({
@@ -18,22 +36,12 @@ export const MenuButtonWrapper: FC<Props> = ({
 }) => {
   return (
     <motion.button
-      initial={{
-        x: 0,
-        rotate: 0,
-        borderColor: colors.white,
-        color: colors.white,
-        backgroundColor: colors.cyan.DEFAULT,
-      }}
-      whileHover={{
-        x: 8,
-        rotate: 30,
-        backgroundColor: colors.white,
-        color: colors.cyan.DEFAULT,
-      }}
+      variants={buttonMotions}
+      initial="initial"
+      whileHover="delta"
+      whileFocus="delta"
       style={{
         display: 'flex',
-        rotate: 30,
         justifyContent: 'center',
         alignItems: 'center',
         width: '30px',
