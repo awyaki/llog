@@ -15,8 +15,6 @@ import {
   SaveButton,
   CommitButton,
   OneMoreNoteButton,
-  TakeANoteButton,
-  PreviewButton,
   SelectedBlocks,
   SwitchEdit,
   } from './components';
@@ -26,8 +24,7 @@ import { title } from './style';
 type Props = {
   css?: CSSObject;
   mode: Mode;
-  setToEdit: () => void;
-  setToPreview: () => void;
+  toggleEditBeteewnPreview: () => void;
   onOpenSelectBlocks: () => void;
   isNoteChange: boolean;
   isNoteExist: boolean;
@@ -39,8 +36,7 @@ type Props = {
 
 export const ControlBox: VFC<Props> = ({ 
   mode, 
-  setToEdit, 
-  setToPreview, 
+  toggleEditBeteewnPreview,
   onOpenSelectBlocks,
   isNoteChange,
   isNoteExist,
@@ -63,7 +59,7 @@ export const ControlBox: VFC<Props> = ({
           </Box>
         <SwitchEdit 
           isEdit={mode === 'edit'}
-          onChange={() => {}}/>
+          onClick={toggleEditBeteewnPreview}/>
         <CommitButton onClick={onCommitLog}/>
         <SaveButton 
           onClick={isNoteExist ? onUpdateNote : onCreateNote} 

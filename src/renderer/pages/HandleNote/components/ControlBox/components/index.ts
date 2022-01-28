@@ -4,3 +4,4 @@ export * from './PreviewButton';
 export * from './SaveButton';
 export * from './SelectedBlocks';
 export * from './TakeANoteButton';
+export * from './SwitchEdit';

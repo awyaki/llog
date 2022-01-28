@@ -1,18 +1,19 @@
 import { VFC } from 'react';
 
-import { colors } from '~/styleConfig';
-
-import { MdEdit } from 'react-icons/md';
+import { CSSObject } from '@emotion/react';
 
 import { Icon } from '@chakra-ui/react';
 
-export const EditIcon: VFC = () => {
+import { MdEdit } from 'react-icons/md';
+
+
+type Props = {
+  css?: CSSObject;
+};
+
+export const EditIcon: VFC<Props> = ({ ...rest }) => {
   return (
-    <Icon
-      as={MdEdit}
-      w={4}
-      h={4}
-      color={colors.cyan.DEFAULT}
-    />
+    <Icon 
+      as={MdEdit} {...rest} />
   );
 };
