@@ -13,3 +13,4 @@ export * from './BackIcon';
 export * from './ForwardIcon';
 export * from './TagsIcon';
 export * from './SaveIcon';
+export * from './NoteAddIcon';
