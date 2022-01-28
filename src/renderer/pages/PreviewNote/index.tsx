@@ -2,8 +2,8 @@ import { VFC  } from 'react';
 
 import { 
   CommitIcon,
-  EditNoteButton,
-  ContentMenu
+  NormalButtonAnimationWrapper,
+  EditIcon,
 } from '~/components';
 
 import { NotFoundPage } from '~/pages';
@@ -26,10 +26,10 @@ import {
 import 'zenn-content-css';
 
 export const PreviewNote: VFC = () => {
-  const  { note, contentName, onCommitLog } = usePreviewNote();
+  const  { note, contentName, onCommitLog, onClickEdit } = usePreviewNote();
   if (note === null) return <NotFoundPage />;
 
-  const { contentId, updatedAt, tags, blocks, transformed } = note;
+  const { updatedAt, tags, blocks, transformed } = note;
 
   return (
     <>
@@ -38,8 +38,14 @@ export const PreviewNote: VFC = () => {
         <div css={{ display: 'flex', justifyContent: 'space-between' }}>
           <div css={dateStyle}>{makeFormalTimeString(updatedAt)}</div>
           <div css={{ display: 'flex' }}>
-            <button css={{ marginRight: '8px' }} onClick={onCommitLog}><CommitIcon size="small" /></button>
-            <EditNoteButton secondary />
+            <NormalButtonAnimationWrapper 
+              onClick={onCommitLog}
+              css={{ marginRight: '8px' }}>
+              <CommitIcon />
+            </NormalButtonAnimationWrapper>
+            <NormalButtonAnimationWrapper onClick={onClickEdit}>
+                <EditIcon />
+            </NormalButtonAnimationWrapper>
           </div>
         </div>
         <TagList tags={tags} />

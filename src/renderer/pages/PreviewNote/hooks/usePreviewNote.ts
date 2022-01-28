@@ -1,5 +1,7 @@
 import { useEffect, useState, useCallback, useContext } from 'react';
 
+import { useHistory } from 'react-router-dom';
+
 import { asyncForEach } from '~/utils';
 
 import { createLog, updateBlock } from '~/api';
@@ -18,6 +20,7 @@ export const usePreviewNote = () => {
   const [note, setNote] = useState<NoteWithRelation | null>(null);
   const [content, setContent] = useState<ContentWithRelation | null>(null);
   const { setMessage } = useContext(NotifierContext); 
+  const history = useHistory();
 
   useEffect(() => {
     (async () => {
@@ -45,10 +48,14 @@ export const usePreviewNote = () => {
     setMessage('submitted!');
   }, [note, content, setNote, setContent, setMessage]);
   
+  const onClickEdit = useCallback(() => {
+    history.push(`/content/${contentId}/updatenote/${noteId}`);
+  }, []);
 
   return { 
     note: note ?? null,
     contentName: content?.name ?? '',
     onCommitLog,
+    onClickEdit,
   };
 };

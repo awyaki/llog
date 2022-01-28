@@ -1,24 +1,18 @@
 import { VFC } from 'react';
+
+import { CSSObject } from '@emotion/react';
+
 import { Icon } from '@chakra-ui/react';
+
 import { MdKeyboardReturn } from 'react-icons/md';
 
-import { makeCirlceContainer } from '../style';
-
-import { colors } from '~/styleConfig';
-
 type Props = {
-  size: 'large' | 'small';
+  css?: CSSObject;
 };
 
-export const CommitIcon: VFC<Props> = ({ size }) => {
-  const n = size === 'large' ? 8 : 4;
+export const CommitIcon: VFC<Props> = ({ ...rest }) => {
   return (
-    <Icon
-      css={makeCirlceContainer(size)}
-      as={MdKeyboardReturn}
-      w={n}
-      h={n}
-      color={colors.cyan.DEFAULT}
-    />
+    <Icon 
+    as={MdKeyboardReturn} {...rest} />
   );
 };
