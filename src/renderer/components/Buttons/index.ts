@@ -6,3 +6,4 @@ export * from './NotesButton';
 export * from './EditNoteButton';
 export * from './MenuButtonWrapper';
 export * from './NormalButtonAnimationWrapper';
+export * from './DisabableButtonAnimationWrapper';
