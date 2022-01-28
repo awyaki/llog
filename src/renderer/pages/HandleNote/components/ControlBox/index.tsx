@@ -18,6 +18,7 @@ import {
   TakeANoteButton,
   PreviewButton,
   SelectedBlocks,
+  SwitchEdit,
   } from './components';
 
 import { title } from './style';
@@ -60,10 +61,9 @@ export const ControlBox: VFC<Props> = ({
             <h2 css={title}>Blocks</h2>
             <SelectedBlocks onOpenSelectBlocks={onOpenSelectBlocks} />
           </Box>
-        <HStack w="120px" pb="25px">
-          <TakeANoteButton mode={mode} onClick={setToEdit} />
-          <PreviewButton mode={mode} onClick={setToPreview}/>
-        </HStack>
+        <SwitchEdit 
+          isEdit={mode === 'edit'}
+          onChange={() => {}}/>
         <CommitButton onClick={onCommitLog}/>
         <SaveButton 
           onClick={isNoteExist ? onUpdateNote : onCreateNote} 

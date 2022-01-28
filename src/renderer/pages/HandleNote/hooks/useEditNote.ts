@@ -121,15 +121,11 @@ export const useEditNote = (content: ContentWithRelation) => {
           onOpen: onOpenSelectBlocks,
           onClose: onCloseSelectBlocks } = useDisclosure();
 
+  
+  const toggleEditBetweenPreview = useCallback(() => {
+    setMode((mode) => mode === 'edit' ? 'preview' : 'edit');
+  }, []);
 
-  const setToEdit = useCallback(() => {
-    setMode('edit');
-  }, []);
-  
-  const setToPreview = useCallback(() => {
-    setMode('preview');
-  }, []);
-  
   const handleLink = useCallback((path: string, isNoteChange: boolean) => () => {
     if (isNoteChange) {
       if (confirmer()) {
@@ -246,8 +242,7 @@ export const useEditNote = (content: ContentWithRelation) => {
     isNoteExist,
     onMoveToOtherNoteEdit,
     onCommitLog,
-    setToEdit,
-    setToPreview,
+    toggleEditBetweenPreview,
     handleLink,
   };
 };
