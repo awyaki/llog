@@ -1,5 +1,9 @@
 import { VFC, MouseEventHandler } from 'react';
-import { CommitIcon } from '~/components';
+
+import { 
+  CommitIcon,
+  NormalButtonAnimationWrapper
+  } from '~/components';
 
 type Props = {
   onClick?: MouseEventHandler<HTMLButtonElement>;
@@ -7,8 +11,8 @@ type Props = {
 
 export const CommitButton: VFC<Props> = ({ onClick }) => {
   return (
-    <button onClick={onClick}>
+    <NormalButtonAnimationWrapper onClick={onClick}>
       <CommitIcon />
-    </button>
+    </NormalButtonAnimationWrapper>
   );
 };
