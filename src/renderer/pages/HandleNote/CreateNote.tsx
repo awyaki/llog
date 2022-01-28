@@ -37,8 +37,7 @@ export const CreateNote: VFC<Props> = ({ content }) => {
           onCommitLog,
           isNoteExist,
           onMoveToOtherNoteEdit,
-          setToEdit,
-          setToPreview,
+          toggleEditBetweenPreview
         } = useEditNote(content);
   
 
@@ -63,8 +62,7 @@ export const CreateNote: VFC<Props> = ({ content }) => {
           <ControlBox 
             css={{ width: '200px', position: 'sticky', top: '244px' }}
             mode={mode}
-            setToEdit={setToEdit}
-            setToPreview={setToPreview}
+            toggleEditBeteewnPreview={toggleEditBetweenPreview}
             onOpenSelectBlocks={onOpenSelectBlocks}
             isNoteChange={isNoteChange}
             isNoteExist={isNoteExist}

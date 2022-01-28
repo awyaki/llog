@@ -50,7 +50,6 @@ export const useEditNote = (content: ContentWithRelation) => {
   const { selectedBlocks, dispatch: selectedBlocksDispatch } = useContext(SelectedBlocksContext);
 
   const [mode, setMode] = useState<Mode>('edit');
-
   const { 
     setIsAllowTransition,
     setConfirmerMessage 
@@ -164,7 +163,6 @@ export const useEditNote = (content: ContentWithRelation) => {
   
 
   const onMoveToOtherNoteEdit = useCallback(() => {
-    console.log('onMoveToOtherNoteEdit content', content);
     if (content !== null) {
       history.push(`/content/${content.id}/createnote`);
       setNote(null);
@@ -176,11 +174,9 @@ export const useEditNote = (content: ContentWithRelation) => {
   }, [history, content]);
 
   const onCommitLog = useCallback(async () => {
-    console.log('onCommitlog content contentId', content, contentId);
     if (content === null) return;
     const html = await markdownToHTML(markdown);
     if (noteId === undefined) {
-      console.log('useEditNote onCommit 1');
       // note creating
       const newNote = await createNote(markdown, html, selectedTags, selectedBlocks, content.id);
       await createLog(markdown, html, selectedBlocks, selectedTags, content.name, newNote.id, content.id);
@@ -202,7 +198,6 @@ export const useEditNote = (content: ContentWithRelation) => {
     } else {
       if (note === null) return;
       // note updating
-      console.log('useEditNote onCommit 2');
       await updateNote(note.id, markdown, html, selectedTags, selectedBlocks, note.contentId, note.commitedAt, new Date()); 
       await createLog(markdown, html, selectedBlocks, selectedTags, content.name, note.id, content.id);
       // update block level to 5 (max value)
@@ -221,7 +216,6 @@ export const useEditNote = (content: ContentWithRelation) => {
       setSelectedTags([]);
       selectedBlocksDispatch({ type: 'SELECTED_BLOCKS/SET', blocks: [] });
       setNote(null);
-      console.log('useEditNote note', note);
       history.push(`/content/${content.id}/createnote`);
     }
     setMessage('submitted!');
