@@ -18,7 +18,7 @@ const colors = {
   },
   gray: {
     LIGHT: '#DFE1E4',
-    DEFAULT: '#EBEDF0',
+    DEFAULT: '#898989',
   },
   white: '#FFFFFF',
   
