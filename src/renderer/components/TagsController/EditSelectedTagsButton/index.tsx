@@ -1,19 +1,19 @@
 import { VFC, useContext } from 'react';
 
-import { container } from './style';
-
-import { EditIcon } from './components';
-
 import { SelectedTagsContext } from '../SelectedTagsContextProvider';
+
+import {
+  EditIcon,
+  TagAnimationButtonWrapper
+} from '~/components';
 
 export const EditSelectedTagsButton: VFC = () => {
   const { onOpenModalToSelectTags } = useContext(SelectedTagsContext);
   return (
-    <button 
-      css={container}
+    <TagAnimationButtonWrapper 
       type="button"
       onClick={onOpenModalToSelectTags}>
       <EditIcon />
-    </button>
+    </TagAnimationButtonWrapper>
   );
 };

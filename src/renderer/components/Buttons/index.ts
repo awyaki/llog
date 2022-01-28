@@ -7,3 +7,4 @@ export * from './EditNoteButton';
 export * from './MenuButtonWrapper';
 export * from './NormalButtonAnimationWrapper';
 export * from './DisabableButtonAnimationWrapper';
+export * from './TagAnimationButtonWrapper';
