@@ -18,7 +18,7 @@ const containerMotions: Variants = {
     color: colors.white,
     backgroundColor: colors.cyan.DEFAULT,
   },
-  delta: {
+  hover: {
     scale: 1.1,
     backgroundColor: colors.white,
     color: colors.cyan.DEFAULT,
@@ -31,30 +31,30 @@ const containerMotions: Variants = {
   disableHover: {
     scale: 1.1,
   },
-  disableTap: {
-    x: [-8, 0, 8, 0],
-    transition: { duration: 0.1 }
+  tap: {
+    scale: 0.7,
   },
 };
 
 type Props = {
   css?: CSSObject;
-  disable?: boolean;
+  disabled?: boolean;
 } & HTMLMotionProps<"button">;
 
 export const DisabableButtonAnimationWrapper: FC<Props> = ({
   css,
   children,
-  disable,
+  disabled,
   ...rest
 }) => {
+  console.log('DisabableButtonAnimationWrapper', disabled);
   return (
     <motion.button
+      disabled={disabled}
       variants={containerMotions}
-      initial={disable ? "disableInitail" : "initial"}
-      whileHover={disable ? "disableHover" : "delta"}
-      whileFocus={disable ? undefined : "delta"}
-      whileTap={disable ? "disableTap" : undefined}
+      animate={disabled ? "disableInitail" : "initial"}
+      whileHover={disabled ? "disableHover" : "hover"}
+      whileTap="tap"
       style={{
         display: 'flex',
         justifyContent: 'center',
