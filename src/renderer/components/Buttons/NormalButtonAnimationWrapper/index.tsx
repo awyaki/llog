@@ -23,6 +23,9 @@ const containerMotions: Variants = {
     backgroundColor: colors.white,
     color: colors.cyan.DEFAULT,
   },
+  tap: {
+    scale: 0.7
+  },
 };
 
 type Props = {
@@ -39,7 +42,7 @@ export const NormalButtonAnimationWrapper: FC<Props> = ({
       variants={containerMotions}
       initial="initial"
       whileHover="delta"
-      whileFocus="delta"
+      whileTap="tap"
       style={{
         display: 'flex',
         justifyContent: 'center',
