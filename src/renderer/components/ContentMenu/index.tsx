@@ -49,15 +49,14 @@ export const ContentMenu: VFC<Props> = ({
         justifyContent: 'flex-start',
         alignItems: 'center',
         flexDirection: 'column',
-        width: '90px', 
-        padding: '90px 16px 16px 16px', 
+        width: '160px', 
+        minWidth: '160px',
+        padding: '90px 0 16px 0', 
         backgroundColor: colors.cyan.SECOND,
       }}>
       <InfoButton 
-        css={{ marginBottom: '16px' }}
         onClick={onClickInfoButton} />
       <NotesButton 
-        css={{ marginBottom: '16px' }} 
         onClick={onClickNotesButton} />
       <EditNoteButton 
         onClick={onClickEditNote} />
