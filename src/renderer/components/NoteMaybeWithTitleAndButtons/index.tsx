@@ -48,7 +48,7 @@ export const NoteMaybeWithTitleAndButtons: INoteMaybeWithTitleAndButtons = ({
             marginBottom: '8px',
           }}>{makeFormalTimeString(updatedAt)}</div>
           <ul css={{ display: 'flex' }}>
-            {Buttons?.map((Button) => <li css={{ marginRight: '8px' }}>{Button}</li>)}
+            {Buttons?.map((Button, i) => <li key={i} css={{ marginRight: '8px' }}>{Button}</li>)}
           </ul>
         </div>
         <TagsList tags={tags} />
