@@ -35,7 +35,21 @@ export const Note: VFC<Props> = ({ note }) => {
           </Link>
           ];
   const Note = NoteMaybeWithTitleAndButtons({ Buttons });
-  return <Note 
-      css={{ maxHeight: '500px' ,overflowY: 'hidden' }}
-      note={note} />
+  return (
+    <div css={{
+        minHeight: '500px',
+        padding: '50px',
+        boxShadow: '0px 0px 80px -26px rgba(0, 0, 0, 0.5)',
+        borderRadius: '25px',
+    }}>
+      <Note 
+        css={{ 
+          maxHeight: '500px' ,
+          overflowY: 'hidden', 
+          padding: 0,
+          boxShadow: '0 0 0 0 rgba(0, 0, 0, 0)',
+          borderRadius: 0,
+          }}
+        note={note} />
+    </div>);
 };
