@@ -1,14 +1,16 @@
 import { VFC } from 'react';
 
+import { CSSObject } from '@emotion/react';
+
 import { colors } from '~/styleConfig';
 
 import { 
   EditIcon, 
   PreviewNoteIcon,
-  MenuButtonWrapper,
   } from '~/components';
 
 type Props = {
+  css?: CSSObject;
   isEdit: boolean;
   onClick: () => void;
 };
@@ -31,9 +33,6 @@ const buttonStyle: MotionStyle = {
   zIndex: 1
 };
 
-const containerMotions: Variants = {
-  
-};
 
 const editButtonMotions: Variants = {
   edit: { color: colors.white },
@@ -53,6 +52,7 @@ const circleMotion: Variants = {
 export const SwitchEdit: VFC<Props> = ({ 
   isEdit,
   onClick,
+  ...rest
 }) => {
   return (
     <motion.button
@@ -63,8 +63,7 @@ export const SwitchEdit: VFC<Props> = ({
         backgroundColor: colors.white,
         borderRadius: '90px',
         border: `1px solid ${colors.cyan.DEFAULT}`,
-      }}
-    >
+      }} {...rest}>
       <motion.div
         variants={editButtonMotions}
         animate={isEdit ? "edit" : "preview"}
