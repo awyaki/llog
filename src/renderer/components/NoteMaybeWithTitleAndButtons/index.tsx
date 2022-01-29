@@ -41,7 +41,7 @@ export const NoteMaybeWithTitleAndButtons: INoteMaybeWithTitleAndButtons = ({
         borderRadius: '25px',
       }} {...rest}>
         {title ? <h1 css={{ fontSize: font.size.M }}>{title}</h1> : undefined}
-        <div css={{ display: 'flex', justifyContent: 'space-between' }}>
+        <div css={{ display: 'flex', justifyContent: 'space-between', marginBottom: '16px', }}>
           <div css={{
             fontSize: font.size.SS,
             color: colors.text,
