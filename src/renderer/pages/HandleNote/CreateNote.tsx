@@ -56,9 +56,7 @@ export const CreateNote: VFC<Props> = ({ content }) => {
             css={{ width: 'calc(100% - 200px)', maxWidth: '830px', marginRight: '32px' }}
             mode={mode}
             markdown={markdown}
-            setMarkdown={setMarkdown}
-            updatedAt={note?.updatedAt}
-            isNoteChange={isNoteChange} />
+            setMarkdown={setMarkdown} />
           <ControlBox 
             css={{ width: '200px', position: 'sticky', top: '80px' }}
             updatedAt={note?.updatedAt}
