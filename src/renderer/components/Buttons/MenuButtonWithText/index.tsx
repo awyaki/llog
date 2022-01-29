@@ -1,0 +1,86 @@
+import { VFC } from 'react';
+
+
+import { 
+  motion,
+  Variants,
+  } from 'framer-motion';
+
+import { CSSObject } from '@emotion/react';
+
+import {
+  colors,
+  font,
+} from '~/styleConfig';
+
+type Props = {
+  Icon: VFC<{ css?: CSSObject }>
+  text: string;
+};
+
+
+const motions: Variants = {
+  initial: {
+    color: colors.white,
+    backgroundColor: colors.cyan.DEFAULT,
+    borderColor: colors.cyan.DEFAULT
+  },
+  delta: {
+    color: colors.cyan.DEFAULT,
+    backgroundColor: colors.white,
+    borderColor: colors.white,
+  }
+};
+
+const icon: Variants = {
+  initial: {
+    color: colors.white,
+    backgroundColor: colors.cyan.DEFAULT,
+    borderColor: colors.white
+  },
+  delta: {
+    color: colors.cyan.DEFAULT,
+    backgroundColor: colors.white,
+    borderColor: colors.cyan.DEFAULT,
+  }
+};
+
+export const MenuButtonWithText: VFC<Props> = ({ 
+  Icon,
+  text
+}) => {
+  return (
+    <motion.button
+      variants={motions}
+      initial="initial"
+      whileHover="delta"
+      style={{
+        width: '100%', 
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: '16px 0',
+      }}>
+      <motion.div
+        variants={icon}
+        style={{ 
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          width: '40px',
+          height: '40px',
+          borderRadius: '4px',
+          padding: '5px',
+          borderWidth: '1px',
+          borderStyle: 'solid',
+          textAlign: 'center',
+          marginRight: '8px',
+        }}>
+        <Icon css={{ 
+          width: '20px', 
+          height: '20px'}} />
+      </motion.div>
+      <div>{text}</div>
+    </motion.button>
+  );
+};
