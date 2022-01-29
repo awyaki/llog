@@ -1,7 +1,8 @@
 import { VFC, useContext } from 'react';
 
+import { CSSObject } from '@emotion/react';
+
 import { SelectedBlocksContext } from '~/pages/HandleNote/SelectedBlocksContextProvider';
-import { Box, CSSObject } from '@chakra-ui/react';
 
 
 import { Block } from './components/Block';
@@ -10,13 +11,14 @@ import { SelectBlockButton } from './components/SelectBlockButton';
 import { container } from './style/container';
 
 type Props = {
+  css?: CSSObject;
   onOpenSelectBlocks: () => void;
-} & CSSObject;
+};
 
 export const SelectedBlocks: VFC<Props> = ({ onOpenSelectBlocks, ...rest }) => {
   const { selectedBlocks } = useContext(SelectedBlocksContext);
   return (
-    <Box __css={rest}>
+    <div {...rest}>
 
       <SelectBlockButton 
         css={{ marginBottom: '4px' }} 
@@ -24,6 +26,6 @@ export const SelectedBlocks: VFC<Props> = ({ onOpenSelectBlocks, ...rest }) => {
       <ul css={container}>
         {selectedBlocks.map(({ id, level, unitNumber }) => <li key={id}><Block level={level} unitNumber={unitNumber} /></li>)}
       </ul>
-    </Box>
+    </div>
   );
 };
