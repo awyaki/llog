@@ -21,7 +21,7 @@ type Props = {
 export const BasicInfo: VFC<Props> = ({  
   content
 }) => {
-  const { tags, blocks, createdAt } = content;
+  const { tags, blocks, createdAt, notes } = content;
   return (
     <>
       <TagsList 
@@ -34,6 +34,10 @@ export const BasicInfo: VFC<Props> = ({
           <Tr>
             <Th>Created Time</Th>
             <Td>{makeFormalTimeString(createdAt)}</Td>
+          </Tr>
+          <Tr>
+            <Th>Notes</Th>
+            <Td>{notes.length}</Td>
           </Tr>
           <Tr>
             <Th>Blocks</Th>
