@@ -1,4 +1,4 @@
-import { VFC  } from 'react';
+import { VFC, ReactElement } from 'react';
 
 import {
   colors,
@@ -21,7 +21,7 @@ type Props = {
   note: NoteWithRelation;
 };
 
-type INoteMaybeWithTitleAndButtons = (arg: { title?: string, Buttons?: VFC[] }) => VFC<Props>;
+type INoteMaybeWithTitleAndButtons = (arg: { title?: string, Buttons?: ReactElement[]}) => VFC<Props>;
 
 export const NoteMaybeWithTitleAndButtons: INoteMaybeWithTitleAndButtons = ({
   title,
@@ -44,9 +44,9 @@ export const NoteMaybeWithTitleAndButtons: INoteMaybeWithTitleAndButtons = ({
             color: colors.text,
             marginBottom: '8px',
           }}>{makeFormalTimeString(updatedAt)}</div>
-          <div css={{ display: 'flex' }}>
-            {Buttons?.map((Button) => <Button />)}
-          </div>
+          <ul css={{ display: 'flex' }}>
+            {Buttons?.map((Button) => <li css={{ marginRight: '8px' }}>{Button}</li>)}
+          </ul>
         </div>
         <TagsList tags={tags} />
         <BlockList blocks={blocks} />
