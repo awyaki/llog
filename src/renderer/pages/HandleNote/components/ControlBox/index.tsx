@@ -5,8 +5,6 @@ import { CSSObject } from '@emotion/react';
 
 import { Mode } from '../../types';
 
-import { Box, VStack } from '@chakra-ui/react';
-
 import {
   SelectedTagsList
 } from '~/components';
@@ -17,13 +15,14 @@ import {
   OneMoreNoteButton,
   SelectedBlocks,
   SwitchEdit,
+  NoteStateIndicator,
   } from './components';
 
-import { title } from './style';
 
 type Props = {
   css?: CSSObject;
   mode: Mode;
+  updatedAt: Date | undefined; 
   toggleEditBeteewnPreview: () => void;
   onOpenSelectBlocks: () => void;
   isNoteChange: boolean;
@@ -36,6 +35,7 @@ type Props = {
 
 export const ControlBox: VFC<Props> = ({ 
   mode, 
+  updatedAt,
   toggleEditBeteewnPreview,
   onOpenSelectBlocks,
   isNoteChange,
@@ -48,11 +48,17 @@ export const ControlBox: VFC<Props> = ({
   }) => {
   return (
       <div css={{ 
+        minWidth: '200px',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-between',
         alignItems: 'flex-start',
         }} {...rest}>
+        <NoteStateIndicator 
+          css={{ marginBottom: '16px' }}
+          isNoteExist={isNoteExist}
+          isNoteChange={isNoteChange}
+          updatedAt={updatedAt} />
         <SelectedTagsList css={{ marginBottom: '16px' }} />
         <SelectedBlocks 
           css={{ marginBottom: '16px' }}

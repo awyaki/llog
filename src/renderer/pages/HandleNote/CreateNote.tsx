@@ -61,6 +61,7 @@ export const CreateNote: VFC<Props> = ({ content }) => {
             isNoteChange={isNoteChange} />
           <ControlBox 
             css={{ width: '200px', position: 'sticky', top: '80px' }}
+            updatedAt={note?.updatedAt}
             mode={mode}
             toggleEditBeteewnPreview={toggleEditBetweenPreview}
             onOpenSelectBlocks={onOpenSelectBlocks}
