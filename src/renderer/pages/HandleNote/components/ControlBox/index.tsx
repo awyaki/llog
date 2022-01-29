@@ -5,7 +5,7 @@ import { CSSObject } from '@emotion/react';
 
 import { Mode } from '../../types';
 
-import { Box, VStack, HStack } from '@chakra-ui/react';
+import { Box, VStack } from '@chakra-ui/react';
 
 import {
   SelectedTagsList
