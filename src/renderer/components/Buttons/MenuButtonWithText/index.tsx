@@ -10,12 +10,12 @@ import { CSSObject } from '@emotion/react';
 
 import {
   colors,
-  font,
 } from '~/styleConfig';
 
 type Props = {
-  Icon: VFC<{ css?: CSSObject }>
+  Icon: VFC<{ css?: CSSObject }>;
   text: string;
+  onClick?: () => void;
 };
 
 
@@ -47,10 +47,12 @@ const icon: Variants = {
 
 export const MenuButtonWithText: VFC<Props> = ({ 
   Icon,
+  onClick,
   text
 }) => {
   return (
     <motion.button
+      onClick={onClick}
       variants={motions}
       initial="initial"
       whileHover="delta"
