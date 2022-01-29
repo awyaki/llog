@@ -50,7 +50,7 @@ export const CreateNote: VFC<Props> = ({ content }) => {
         onClose={onCloseSelectBlocks}
         blocks={content.blocks} />
       <>
-        <h2 css={{ ...pageTitle, marginBottom: '8px' }}>{content.name}</h2>
+        <h2 css={{ ...pageTitle, marginBottom: '16px' }}>{content.name}</h2>
         <div css={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'flex-start' }}>
           <Note 
             css={{ width: 'calc(100% - 200px)', maxWidth: '830px', marginRight: '32px' }}
