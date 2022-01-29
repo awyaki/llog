@@ -76,7 +76,7 @@ export const MenuButtonWithText: VFC<Props> = ({
           borderWidth: '1px',
           borderStyle: 'solid',
           textAlign: 'center',
-          marginRight: '8px',
+          marginRight: '16px',
         }}>
         <Icon css={{ 
           width: '20px', 
