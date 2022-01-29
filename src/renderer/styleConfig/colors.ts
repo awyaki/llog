@@ -16,6 +16,9 @@ const colors = {
   blue: {
     DEFAULT: '#039BE5',
   },
+  green: {
+    DEFAULT: '#00D965',
+  },
   gray: {
     LIGHT: '#DFE1E4',
     DEFAULT: '#898989',
