@@ -4,7 +4,7 @@ import { CSSObject } from '@emotion/react';
 
 import { 
   NotesIcon,
-  MenuButtonWrapper
+  MenuButtonWithText,
 } from '~/components';
 
 type Props = {
@@ -14,14 +14,11 @@ type Props = {
 
 export const NotesButton: VFC<Props> = ({ 
   onClick, 
-  ...rest
 }) => {
   return (
-    <MenuButtonWrapper 
-      secondary
-      onClick={onClick}
-      {...rest}>
-      <NotesIcon />
-    </MenuButtonWrapper>
+    <MenuButtonWithText 
+      Icon={NotesIcon}
+      text="Notes"
+      onClick={onClick} />
   );
 };
