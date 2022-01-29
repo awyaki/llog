@@ -38,7 +38,7 @@ export const Note: VFC<Props> = ({ note }) => {
   return (
     <div css={{
         minHeight: '500px',
-        padding: '50px',
+        padding: '40px',
         boxShadow: '0px 0px 80px -26px rgba(0, 0, 0, 0.5)',
         borderRadius: '25px',
     }}>
@@ -46,7 +46,7 @@ export const Note: VFC<Props> = ({ note }) => {
         css={{ 
           maxHeight: '500px' ,
           overflowY: 'hidden', 
-          padding: 0,
+          padding: '10px',
           boxShadow: '0 0 0 0 rgba(0, 0, 0, 0)',
           borderRadius: 0,
           }}
