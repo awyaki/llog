@@ -4,7 +4,7 @@ import { CSSObject } from '@emotion/react';
 
 import { 
   EditNoteIcon,
-  MenuButtonWrapper
+  MenuButtonWithText
 } from '~/components';
 
 type Props = {
@@ -14,14 +14,11 @@ type Props = {
 
 export const EditNoteButton: VFC<Props> = ({ 
   onClick, 
-  ...rest
 }) => {
   return (
-    <MenuButtonWrapper 
-      secondary
-      onClick={onClick}
-      {...rest}>
-      <EditNoteIcon />
-    </MenuButtonWrapper>
+    <MenuButtonWithText 
+      Icon={EditNoteIcon}
+      text="Write"
+      onClick={onClick} /> 
   );
 };
