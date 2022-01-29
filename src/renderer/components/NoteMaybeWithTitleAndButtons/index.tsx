@@ -51,8 +51,8 @@ export const NoteMaybeWithTitleAndButtons: INoteMaybeWithTitleAndButtons = ({
             {Buttons?.map((Button, i) => <li key={i} css={{ marginRight: '8px' }}>{Button}</li>)}
           </ul>
         </div>
-        <TagsList tags={tags} />
-        <BlockList blocks={blocks} />
+        <TagsList css={{ marginBottom: '8px' }} tags={tags} />
+        <BlockList css={{ marginBottom: '16px' }} blocks={blocks} />
         <div className="znc" dangerouslySetInnerHTML={{ __html: transformed }}></div>
       </div>
   );
