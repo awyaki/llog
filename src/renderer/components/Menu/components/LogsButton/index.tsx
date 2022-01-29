@@ -1,26 +1,19 @@
 import { VFC } from 'react';
 
-import { CSSObject } from '@emotion/react';
-
 import { 
   LogsIcon,
-  MenuButtonWrapper
+  MenuButtonWithText
   } from '~/components';
 
 type Props = {
-  css?: CSSObject;
   onClick?: () => void;
 };
 
 export const LogsButton: VFC<Props> = ({ 
   onClick,
-  ...rest
 }) => {
-  return (
-    <MenuButtonWrapper 
-      onClick={onClick}
-    {...rest}>
-      <LogsIcon />
-    </MenuButtonWrapper>
-  );
+  return <MenuButtonWithText 
+            text="Logs"
+            Icon={LogsIcon}
+            onClick={onClick} />;
 };
