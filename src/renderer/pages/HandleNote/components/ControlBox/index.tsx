@@ -47,27 +47,30 @@ export const ControlBox: VFC<Props> = ({
   ...rest
   }) => {
   return (
-    <div {...rest}>
-      <VStack alignItems="flex-start">
-          <Box pb="12px">
-            <h2 css={title}>Tags</h2>
-            <SelectedTagsList />
-          </Box>
-          <Box pb="12px">
-            <h2 css={title}>Blocks</h2>
-            <SelectedBlocks onOpenSelectBlocks={onOpenSelectBlocks} />
-          </Box>
-        <SwitchEdit 
+      <div css={{ 
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        alignItems: 'flex-start',
+        }} {...rest}>
+        <SelectedTagsList css={{ marginBottom: '16px' }} />
+        <SelectedBlocks 
+          css={{ marginBottom: '16px' }}
+          onOpenSelectBlocks={onOpenSelectBlocks} />
+        <SwitchEdit
+          css={{ marginBottom: '8px' }}
           isEdit={mode === 'edit'}
           onClick={toggleEditBeteewnPreview}/>
-        <CommitButton onClick={onCommitLog}/>
+        <CommitButton 
+          css={{ marginBottom: '8px' }}
+          onClick={onCommitLog}/>
         <SaveButton 
+          css={{ marginBottom: '8px' }}
           onClick={isNoteExist ? onUpdateNote : onCreateNote} 
           disabled={!isNoteChange} />
         <OneMoreNoteButton
           disabled={isNoteChange || !isNoteExist}
           onClick={onMoveToOtherNoteEdit} />
-      </VStack>
-    </div>
+      </div>
   );
 };
