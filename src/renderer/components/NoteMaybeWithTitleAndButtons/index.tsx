@@ -1,5 +1,7 @@
 import { VFC, ReactElement } from 'react';
 
+import { CSSObject } from '@emotion/react';
+
 import {
   colors,
   font
@@ -19,6 +21,7 @@ import 'zenn-content-css';
 
 type Props = {
   note: NoteWithRelation;
+  css?: CSSObject;
 };
 
 type INoteMaybeWithTitleAndButtons = (arg: { title?: string, Buttons?: ReactElement[]}) => VFC<Props>;
@@ -26,7 +29,7 @@ type INoteMaybeWithTitleAndButtons = (arg: { title?: string, Buttons?: ReactElem
 export const NoteMaybeWithTitleAndButtons: INoteMaybeWithTitleAndButtons = ({
   title,
   Buttons
-}) => ({ note }) => {
+}) => ({ note, ...rest }) => {
 
   const { updatedAt, tags, blocks, transformed } = note;
 
@@ -36,7 +39,7 @@ export const NoteMaybeWithTitleAndButtons: INoteMaybeWithTitleAndButtons = ({
         padding: '50px',
         boxShadow: '0px 0px 80px -26px rgba(0, 0, 0, 0.5)',
         borderRadius: '25px',
-      }}>
+      }} {...rest}>
         {title ? <h1 css={{ fontSize: font.size.M }}>{title}</h1> : undefined}
         <div css={{ display: 'flex', justifyContent: 'space-between' }}>
           <div css={{
