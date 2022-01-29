@@ -39,16 +39,21 @@ export const Menu: VFC = () => {
         alignItems: 'center',
         flexDirection: 'column',
         width: '160px', 
+        minWidth: '160px',
         padding: '90px 0 16px 0', 
         backgroundColor: colors.cyan.DEFAULT,
         zIndex: 100,
       }}>
       <div css={{ 
-          width: '100px',
+          width: '100%', 
           display: 'flex',
-          justifyContent: 'space-between',
+          justifyContent: 'flex-start',
+          alignItems: 'center',
+          padding: '16px 0 16px 24px',
+          marginBottom: '48px',
         }}>
         <BackButton 
+          css={{ marginRight: '16px' }}
           onClick={onClickBack} />
         <ForwardButton 
           onClick={onClickForward} />
