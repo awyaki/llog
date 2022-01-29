@@ -6,8 +6,9 @@ import { title } from './style/title';
 
 import { ContentWithRelation } from '~/pages/type';
 
+import { TagsList } from '~/components';
+
 import { 
-  TagList,
   NoteList,
   } from './components';
 
@@ -21,7 +22,9 @@ export const NotesOfContent: VFC<Props> = ({ content }) => {
   return (
     <>
       <h1 css={{ ...title, marginBottom: '8px' }}>{content.name}</h1>
-      <TagList tags={content.tags} />
+      <TagsList 
+        css={{ marginBottom: '16px' }}
+        tags={content.tags} />
       <NoteList notes={notes} />
     </>
   );
