@@ -5,18 +5,6 @@ import { colors } from '~/styleConfig';
 
 import { useMenu } from './hooks';
 
-import { 
-  HomeIcon,
-  LogsIcon,
-  BackIcon,
-  ForwardIcon,
-  TagsIcon
-} from '../Icons';
-
-import { 
-  MenuButtonWithText
-} from '../Buttons';
-
 import { motion } from 'framer-motion';
 
 import {
@@ -50,7 +38,7 @@ export const Menu: VFC = () => {
         justifyContent: 'flex-start',
         alignItems: 'center',
         flexDirection: 'column',
-        width: '130px', 
+        width: '160px', 
         padding: '90px 0 16px 0', 
         backgroundColor: colors.cyan.DEFAULT,
         zIndex: 100,

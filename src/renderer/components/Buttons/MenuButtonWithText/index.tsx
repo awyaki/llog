@@ -59,9 +59,9 @@ export const MenuButtonWithText: VFC<Props> = ({
       style={{
         width: '100%', 
         display: 'flex',
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
         alignItems: 'center',
-        padding: '16px 0',
+        padding: '16px 0 16px 24px',
       }}>
       <motion.div
         variants={icon}
