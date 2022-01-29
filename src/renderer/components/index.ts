@@ -16,3 +16,5 @@ export * from './Menu';
 export * from './ContentMenu';
 export * from './IsAllowTransitionContextProvider';
 export * from './Motions';
+export * from './NoteMaybeWithTitleAndButtons';
+export * from './BlockList';
