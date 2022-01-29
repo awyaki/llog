@@ -58,9 +58,9 @@ export const Menu: VFC = () => {
         <ForwardButton 
           onClick={onClickForward} />
       </div>
-      <HomeButton onClick={onClickHome} /> 
       <LogsButton onClick={onClickLogs} />
       <TagsButton onClick={onClickTags} />
+      <HomeButton onClick={onClickHome} /> 
     </motion.div>
   );
 };
