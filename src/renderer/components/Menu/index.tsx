@@ -2,7 +2,6 @@ import { VFC } from 'react';
 
 import { colors } from '~/styleConfig';
 
-import { menuButton } from './style';
 
 import { useMenu } from './hooks';
 
@@ -13,6 +12,10 @@ import {
   ForwardIcon,
   TagsIcon
 } from '../Icons';
+
+import { 
+  MenuButtonWithText
+} from '../Buttons';
 
 import { motion } from 'framer-motion';
 
@@ -47,23 +50,23 @@ export const Menu: VFC = () => {
         justifyContent: 'flex-start',
         alignItems: 'center',
         flexDirection: 'column',
-        width: '90px', 
-        padding: '90px 16px 16px 16px', 
+        width: '130px', 
+        padding: '90px 0 16px 0', 
         backgroundColor: colors.cyan.DEFAULT,
         zIndex: 100,
       }}>
-      <BackButton 
-        css={{ marginBottom: '16px' }}
-        onClick={onClickBack} />
-      <ForwardButton 
-        css={{ marginBottom: '32px' }}
-        onClick={onClickForward} />
-      <HomeButton 
-        css={{ marginBottom: '16px' }}
-        onClick={onClickHome} />
-      <LogsButton 
-        css={{ marginBottom: '16px' }}
-        onClick={onClickLogs} />
+      <div css={{ 
+          width: '100px',
+          display: 'flex',
+          justifyContent: 'space-between',
+        }}>
+        <BackButton 
+          onClick={onClickBack} />
+        <ForwardButton 
+          onClick={onClickForward} />
+      </div>
+      <HomeButton onClick={onClickHome} /> 
+      <LogsButton onClick={onClickLogs} />
       <TagsButton onClick={onClickTags} />
     </motion.div>
   );
