@@ -11,9 +11,9 @@ type Props = {
 };
 
 export const NoteList: VFC<Props> = ({ notes }) => { 
-  return (
-    <ul css={container}>
-      {notes.map((note) => <li key={note.id}><Note note={note} /></li>)}
-    </ul>
-  );
+  return notes.length !== 0
+      ? <ul css={container}>
+          {notes.map((note) => <li key={note.id}><Note note={note} /></li>)}
+        </ul>
+      : <h2>There are no notes.</h2>
 };
