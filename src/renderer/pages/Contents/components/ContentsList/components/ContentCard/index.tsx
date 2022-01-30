@@ -42,8 +42,8 @@ export const ContentCard: VFC<Props> = ({
         borderBottomWidth: '2px',
         borderStyle: 'solid',
         padding: '16px',
-        borderColor: colors.cyan.THIRD,
-        color: colors.cyan.DEFAULT,
+        borderColor: colors.cyan.DEFAULT,
+        color: colors.text,
       }}
       initial="normal"
       whileHover="delta"
