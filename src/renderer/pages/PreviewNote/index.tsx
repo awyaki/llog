@@ -19,7 +19,6 @@ export const PreviewNote: VFC = () => {
   const  { note, contentName, onCommitLog, onClickEdit } = usePreviewNote();
   if (note === null) return <NotFoundPage />;
 
-  
   const Buttons = [
             <NormalButtonAnimationWrapper onClick={onCommitLog}>
               <CommitIcon />
@@ -29,7 +28,8 @@ export const PreviewNote: VFC = () => {
             </NormalButtonAnimationWrapper>
   ];
 
-  const Note = NoteMaybeWithTitleAndButtons({ Buttons: Buttons });
+  const Note = NoteMaybeWithTitleAndButtons({ Buttons });
+  
 
   return (
     <>

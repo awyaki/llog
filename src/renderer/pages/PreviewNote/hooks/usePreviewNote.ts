@@ -29,7 +29,7 @@ export const usePreviewNote = () => {
       setNote(resultNote);
       setContent(resultContent);
     })();
-  }, [setNote, noteId, setContent, content, contentId]);
+  }, [setNote, noteId, setContent, contentId]);
 
   const onCommitLog = useCallback(async () => {
     if (note === null) return;
