@@ -40,7 +40,7 @@ export const Menu: VFC = () => {
         flexDirection: 'column',
         width: '160px', 
         minWidth: '160px',
-        padding: '90px 0 16px 0', 
+        padding: '24px 0 16px 0', 
         backgroundColor: colors.cyan.DEFAULT,
         zIndex: 100,
       }}>
@@ -49,7 +49,7 @@ export const Menu: VFC = () => {
           display: 'flex',
           justifyContent: 'flex-start',
           alignItems: 'center',
-          padding: '16px 0 16px 24px',
+          padding: '0 0 16px 24px',
           marginBottom: '48px',
         }}>
         <BackButton 
