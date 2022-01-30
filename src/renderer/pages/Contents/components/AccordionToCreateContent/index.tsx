@@ -107,6 +107,9 @@ export const AccordionToCreateContent: VFC = () => {
             <h2 css={{}}>Tags</h2>
             <SelectedTagsList />
           </div>
+          <NormalButton type="submit">
+            Create
+          </NormalButton>
         </form>
       </Collapse>
     </>
