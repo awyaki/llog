@@ -21,26 +21,26 @@ type Props = {
 
 const motions: Variants = {
   initial: {
-    color: colors.white,
+    color: colors.cyan.DEFAULT,
     backgroundColor: colors.cyan.SECOND,
     borderColor: colors.cyan.SECOND
   },
   delta: {
     color: colors.cyan.SECOND,
-    backgroundColor: colors.white,
-    borderColor: colors.white,
+    backgroundColor: colors.cyan.DEFAULT,
+    borderColor: colors.cyan.DEFAULT,
   }
 };
 
 const icon: Variants = {
   initial: {
-    color: colors.white,
+    color: colors.cyan.DEFAULT,
     backgroundColor: colors.cyan.SECOND,
-    borderColor: colors.white
+    borderColor: colors.cyan.DEFAULT
   },
   delta: {
     color: colors.cyan.SECOND,
-    backgroundColor: colors.white,
+    backgroundColor: colors.cyan.DEFAULT,
     borderColor: colors.cyan.SECOND,
   }
 };
