@@ -64,7 +64,7 @@ export const Contents: VFC = () => {
               border: `1px solid ${colors.cyan.DEFAULT}`,
               borderRadius: '4px',
             }}>
-              <h2 css={{ ...searchTitle, marginBottom: '8px' }}>Search</h2>
+              <h2 css={{ ...searchTitle, marginBottom: '8px' }}>Search by name</h2>
               <div css={{ display: 'flex', alignItems: 'flex-end', marginBottom: '16px' }}>
                 <input 
                   css={{ ...inputBox, marginRight: '4px' }}
