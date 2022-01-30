@@ -5,9 +5,9 @@ const colors = {
     LEVEL: ['#FFFFFF', '#EBEDF0', '#E87A30', '#C46728', '#A15421', '#6E3916'],
   }, 
   cyan: {
-    DEFAULT: '#0590A7',
+    DEFAULT: '#50AFBF',
     FIRST: '#06A9C4',
-    SECOND: '#07C8E8',
+    SECOND: '#CFF8FF',
     THIRD: '#CFF8FF',
     LEVEL: ['#FFFFFF', '#EBEDF0', '#07C8E8', '#06A9C4', '#058AA1', '#035F6E'],
   },
