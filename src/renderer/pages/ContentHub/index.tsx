@@ -29,35 +29,37 @@ export const ContentHub: VFC = () => {
   if (content === null) return <></>
   
   return (
-    <div css={{ 
-      width: '100%',
-      display: 'flex',
-      flexGrow: 1,
-      }}>
+    <div css={{ width: '100%' }}>
       <ContentMenu contentId={content.id} />
-      <PageMotion css={{ 
+      <div css={{ 
         width: '100%',
-        padding: '60px 20px 20px 40px',
+        display: 'flex',
         flexGrow: 1,
         }}>
-        <Switch>
-          <Route path={`${path}/notes`}>
-            <NotesOfContent content={content} />
-          </Route>
-          <Route path={`${path}/createnote`}>
-                <CreateNote content={content} />
-          </Route>
-          <Route path={`${path}/updatenote/:noteId`}>
-                <CreateNote content={content} />
-          </Route>
-          <Route path={`${path}/previewnote/:noteId`}>
-              <PreviewNote />
-          </Route>
-          <Route path={`${path}`}>
-                <Content content={content} />
-          </Route>
-        </Switch>
-      </PageMotion>
+        <PageMotion css={{ 
+          width: '100%',
+          padding: '60px 20px 20px 40px',
+          flexGrow: 1,
+          }}>
+          <Switch>
+            <Route path={`${path}/notes`}>
+              <NotesOfContent content={content} />
+            </Route>
+            <Route path={`${path}/createnote`}>
+                  <CreateNote content={content} />
+            </Route>
+            <Route path={`${path}/updatenote/:noteId`}>
+                  <CreateNote content={content} />
+            </Route>
+            <Route path={`${path}/previewnote/:noteId`}>
+                <PreviewNote />
+            </Route>
+            <Route path={`${path}`}>
+                  <Content content={content} />
+            </Route>
+          </Switch>
+        </PageMotion>
+      </div>
     </div>
   );
 };

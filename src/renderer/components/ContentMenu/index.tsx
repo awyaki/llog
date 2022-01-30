@@ -42,16 +42,13 @@ export const ContentMenu: VFC<Props> = ({
       animate="show"
       exit="hidden"
       css={{ 
-        height: '100vh',
+        width: '100%',
         position: 'sticky',
         display: 'flex',
         top: 0,
         justifyContent: 'flex-start',
         alignItems: 'center',
-        flexDirection: 'column',
-        width: '160px', 
         minWidth: '160px',
-        padding: '90px 0 16px 0', 
         backgroundColor: colors.cyan.SECOND,
       }}>
       <InfoButton 
