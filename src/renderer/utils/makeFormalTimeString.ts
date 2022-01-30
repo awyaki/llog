@@ -31,5 +31,5 @@ export const makeFormalTimeString = (dateObj: Date) => {
   const hour = dateObj.getHours(); 
   const preMinute = dateObj.getMinutes();
   const minute = preMinute <= 9 ? `0${preMinute}` : `${preMinute}`
-  return `${day}, ${date} ${month} ${year} at ${hour}:${minute}`
+  return `${day}, ${date} ${month} ${year} ${hour}:${minute}`
 };
