@@ -10,16 +10,16 @@ import {
   ModalToCreateTag,
   ModalToSelectTags,
   ModalToSearchTags,
-  SearchedTagsList,
   NormalButton,
   SearchIcon,
   PageMotion,
-  AccordionToSearchTags
+  AccordionToSearchTags,
 } from '~/components';
 
 import {
   ContentsList,
   DrawerToCreateContent,
+  AccordionToCreateContent,
 } from './components';
 
 import { 
@@ -59,6 +59,7 @@ export const Contents: VFC = () => {
               onClick={onOpenDrawerToCreateContent}>
               Add new
             </NormalButton>
+            <AccordionToCreateContent /> 
             <div css={{
               padding: '16px',
               border: `1px solid ${colors.cyan.DEFAULT}`,
