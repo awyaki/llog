@@ -45,9 +45,9 @@ export const TagsList: VFC<Props> = ({
             borderWidth: '1px',
             borderStyle: 'solid',
             padding: '2px 4px',
-            borderColor: secandary ? colors.white : colors.cyan.DEFAULT ,
-            backgroundColor: secandary ? colors.cyan.DEFAULT : colors.white,
-            color: secandary ? colors.white : colors.cyan.DEFAULT,
+            borderColor: colors.cyan.DEFAULT ,
+            backgroundColor: secandary ? colors.cyan.THIRD : colors.white,
+            color: colors.cyan.DEFAULT,
           }}>
           {name}
         </motion.li>)}

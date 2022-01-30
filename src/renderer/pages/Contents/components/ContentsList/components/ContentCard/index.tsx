@@ -22,30 +22,12 @@ type Props = Pick<ContentWithRelation, 'name' | 'createdAt' | 'tags'>;
 const containerMotions: Variants = {
   normal: {
     scale: 1,
-    borderColor: colors.cyan.DEFAULT,
-    backgroundColor: colors.cyan.DEFAULT,
-    color: colors.white,
   },
   delta: {
     scale: 1.01,
-    backgroundColor: colors.white,
-    borderColor: colors.cyan.DEFAULT,
-    color: colors.cyan.DEFAULT,
   },
 };
 
-const tagListMotions: Variants = {
-  normal: {
-    borderColor: colors.white,
-    backgroundColor: colors.cyan.DEFAULT,
-    color: colors.white,
-  },
-  delta: {
-    borderColor: colors.cyan.DEFAULT,
-    backgroundColor: colors.white,
-    color: colors.cyan.DEFAULT,
-  },
-};
 
 export const ContentCard: VFC<Props> = ({ 
   createdAt, 
@@ -59,9 +41,11 @@ export const ContentCard: VFC<Props> = ({
         width: '100%',
         borderWidth: '1px',
         borderStyle: 'solid',
-        boxShadow: '1px 1px 12px 1px rgba(0, 0, 0, .3)',
         borderRadius: '5px',
         padding: '16px',
+        borderColor: colors.cyan.THIRD,
+        backgroundColor: colors.cyan.THIRD,
+        color: colors.cyan.DEFAULT,
       }}
       initial="normal"
       whileHover="delta"
@@ -71,10 +55,9 @@ export const ContentCard: VFC<Props> = ({
         marginBottom: '6px',
       }}>{makeFormalTimeString(createdAt)}</div>
       <TagsList 
-        variants={tagListMotions}
+        secandary
         css={{ marginBottom: '8px' }}
-        tags={tags}
-        secandary />
+        tags={tags} />
       <h2 css={{ fontSize: font.size.M }}>{name}</h2>
     </motion.div>
   );
