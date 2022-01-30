@@ -12,7 +12,7 @@ const colors = {
     LEVEL: ['#FFFFFF', '#EBEDF0', '#07C8E8', '#06A9C4', '#058AA1', '#035F6E'],
   },
   red: {
-    DEFAULT: '#F70E20',
+    DEFAULT: '#F76874'
   },
   blue: {
     DEFAULT: '#039BE5',
