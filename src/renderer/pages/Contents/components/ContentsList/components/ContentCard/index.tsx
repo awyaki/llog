@@ -24,7 +24,7 @@ const containerMotions: Variants = {
     scale: 1,
   },
   delta: {
-    scale: 1.01,
+    scale: 1.1,
   },
 };
 
