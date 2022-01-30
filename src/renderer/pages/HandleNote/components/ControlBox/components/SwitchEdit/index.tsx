@@ -26,8 +26,8 @@ const buttonStyle: MotionStyle = {
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  width: '30px',
-  height: '30px',
+  width: '40px',
+  height: '40px',
   padding: '5px',
   textAlign: 'center',
   zIndex: 1
@@ -46,7 +46,7 @@ const previewButtonMotions: Variants = {
 
 const circleMotion: Variants = {
   edit: { x: 0 },
-  preview: { x: 38 }
+  preview: { x: 48 }
 };
 
 export const SwitchEdit: VFC<Props> = ({ 
@@ -83,8 +83,8 @@ export const SwitchEdit: VFC<Props> = ({
         animate={isEdit ? "eidit" : "preview"}
         style={{
           position: 'absolute',
-          width: '30px',
-          height: '30px',
+          width: '40px',
+          height: '40px',
           borderRadius: '20px',
           padding: '5px',
           borderWidth: '1px',

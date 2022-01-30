@@ -64,7 +64,7 @@ export const ControlBox: VFC<Props> = ({
           css={{ marginBottom: '16px' }}
           onOpenSelectBlocks={onOpenSelectBlocks} />
         <SwitchEdit
-          css={{ marginBottom: '8px' }}
+          css={{ marginBottom: '16px' }}
           isEdit={mode === 'edit'}
           onClick={toggleEditBeteewnPreview}/>
         <CommitButton 
