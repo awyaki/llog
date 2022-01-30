@@ -10,7 +10,6 @@ import {
   ModalToCreateTag,
   ModalToSelectTags,
   ModalToSearchTags,
-  NormalButton,
   SearchIcon,
   PageMotion,
   AccordionToSearchTags,
@@ -18,7 +17,6 @@ import {
 
 import {
   ContentsList,
-  DrawerToCreateContent,
   AccordionToCreateContent,
 } from './components';
 
@@ -33,18 +31,12 @@ export const Contents: VFC = () => {
     filtered,
     searchQuery,
     onChangeSearchQuery,
-    isOpenDrawerToCreateContent,
-    onOpenDrawerToCreateContent,
-    onCloseDrawerToCreateContent,
   } = useContents();
   return (
       <PageMotion css={container}>
         <ModalToSelectTags />
         <ModalToCreateTag />
         <ModalToSearchTags />
-        <DrawerToCreateContent 
-          isOpen={isOpenDrawerToCreateContent}
-          onClose={onCloseDrawerToCreateContent} />
 
         <div>
             <div css={{
@@ -54,11 +46,6 @@ export const Contents: VFC = () => {
               paddingBottom: '32px',
               zIndex: 1,
             }}>
-            <NormalButton 
-              css={{ display: 'block', marginBottom: '16px' }}
-              onClick={onOpenDrawerToCreateContent}>
-              Add new
-            </NormalButton>
             <AccordionToCreateContent /> 
             <div css={{
               padding: '16px',
