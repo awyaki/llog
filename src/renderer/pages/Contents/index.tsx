@@ -1,5 +1,7 @@
 import { VFC } from 'react';
 
+import { colors } from '~/styleConfig';
+
 import { Box } from '@chakra-ui/react';
 
 import { useContents } from './hooks';
@@ -23,7 +25,6 @@ import {
 import { 
   container,
   inputBox,
-  searchBox,
   searchTitle,
 } from './style';
 
@@ -50,7 +51,12 @@ export const Contents: VFC = () => {
             onClick={onOpenDrawerToCreateContent}>
             Add new
           </NormalButton>
-          <div css={searchBox}>
+          <div css={{
+            padding: '16px',
+            border: `1px solid ${colors.cyan.DEFAULT}`,
+            borderRadius: '4px',
+            marginBottom: '32px',
+          }}>
             <h2 css={{ ...searchTitle, marginBottom: '8px' }}>Search</h2>
             <div css={{ display: 'flex', alignItems: 'flex-end', marginBottom: '16px' }}>
               <input 

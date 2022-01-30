@@ -2,8 +2,6 @@ import { VFC } from 'react';
 
 import { ContentWithRelation } from '~/pages/type';
 
-import { list } from './style';
-
 import { Link } from 'react-router-dom';
 
 import { ContentCard } from './components';
@@ -15,7 +13,16 @@ type Props = {
 
 export const ContentsList: VFC<Props> = ({ contents }) => {
   return (
-    <ul css={list}>
+    <ul css={{
+      width: '45%',
+      minWidth: '400px',
+      '> li': {
+        marginBottom: '16px',
+      },
+      '> li:nth-last-of-type(1)': {
+        marginBottom: 0,
+      },
+    }}>
       {contents.map(({ id, name, createdAt, tags }) => <li key={id}>
                                         <Link to={`/content/${id}`}>
                                           <ContentCard 

@@ -1,6 +1,5 @@
 import { CSSObject } from '@emotion/react';
 export const list: CSSObject = {
-  display: 'flex',
   padding: '16px',
   flexWrap: 'wrap',
   '> li': {
