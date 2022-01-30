@@ -59,7 +59,7 @@ export const AccordionToSearchTags: VFC = () => {
     setSearchQueryAction,
   } = useContext(SelectedTagsContext);
   return (
-    <Accordion allowMultiple>
+    <Accordion allowToggle>
       <AccordionItem>
         <h2>
           <AccordionButton>
