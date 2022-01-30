@@ -13,6 +13,7 @@ import {
   SelectedTagsList,
   SelectedTagsContext,
   NotifierContext,
+  NormalButton
 } from '~/components';
 
 
@@ -70,14 +71,18 @@ export const AccordionToCreateContent: VFC = () => {
     return isOk || 'This name have already been existed.';
   }, [contents]);
 
+  const onToggleOpenAndClose = useCallback(() => {
+    setIsOpen((prev) => !prev);
+  }, []);
+
   return (
     <>
-      <button onClick={() => setIsOpen((p) => !p)}>
-        Toggle
-      </button>
+      <NormalButton 
+        css={{ marginBottom: '16px' }}
+        onClick={onToggleOpenAndClose}>
+        Add new
+      </NormalButton>
       <Collapse in={isOpen}>
-        <h2>Create Content</h2>
-
         <form id="content-create" onSubmit={handleSubmit(onSubmit)}>
           <label css={{}} htmlFor="contentName">Name</label>
           <input 
@@ -102,7 +107,6 @@ export const AccordionToCreateContent: VFC = () => {
             <h2 css={{}}>Tags</h2>
             <SelectedTagsList />
           </div>
-
         </form>
       </Collapse>
     </>
