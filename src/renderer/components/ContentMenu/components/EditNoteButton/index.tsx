@@ -4,7 +4,7 @@ import { CSSObject } from '@emotion/react';
 
 import { 
   EditNoteIcon,
-  MenuButtonWithText
+  ContentMenuButtonWithText
 } from '~/components';
 
 type Props = {
@@ -16,7 +16,7 @@ export const EditNoteButton: VFC<Props> = ({
   onClick, 
 }) => {
   return (
-    <MenuButtonWithText 
+    <ContentMenuButtonWithText 
       Icon={EditNoteIcon}
       text="Write"
       onClick={onClick} /> 

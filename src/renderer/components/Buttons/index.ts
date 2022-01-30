@@ -9,3 +9,4 @@ export * from './NormalButtonAnimationWrapper';
 export * from './DisabableButtonAnimationWrapper';
 export * from './TagAnimationButtonWrapper';
 export * from './MenuButtonWithText';
+export * from './ContentMenuButtonWithText';
