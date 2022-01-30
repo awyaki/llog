@@ -50,7 +50,7 @@ export const ContentCard: VFC<Props> = ({
       whileFocus="delta">
       <div css={{
         fontSize: font.size.SS,
-        marginBottom: '6px',
+        marginBottom: '16px',
       }}>{makeFormalTimeString(createdAt)}</div>
       <TagsList 
         css={{ marginBottom: '8px' }}
