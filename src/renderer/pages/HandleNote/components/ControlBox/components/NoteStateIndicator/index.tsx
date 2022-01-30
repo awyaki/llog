@@ -63,28 +63,28 @@ export const NoteStateIndicator: VFC<Props> = ({
       <div css={{
         display: 'flex',
         alignItems: 'center',
-        marginBottom: '4px',
+        marginBottom: '8px',
       }}>
         <motion.div
           variants={circleMotions}
           animate={noteSavedState.label}
           style={{ 
             marginRight: '8px',
-            width: '10px',
-            height: '10px',
-            borderRadius: '18px',
+            width: '20px',
+            height: '20px',
+            borderRadius: '20px',
           }}>
         </motion.div>
         <motion.div
           variants={descriptionMotions}
           animate={noteSavedState.label}
           style={{
-            fontSize: font.size.SS,
+            fontSize: font.size.S,
           }}>
           {noteSavedState.desc}
         </motion.div>
       </div>
-      <div css={{ fontSize: font.size.SS }}>{updatedAt ? makeFormalTimeString(updatedAt) : "No data"}</div>
+      <div css={{ fontSize: font.size.S }}>{updatedAt ? makeFormalTimeString(updatedAt) : "No data"}</div>
     </div>
   );
 };
