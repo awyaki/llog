@@ -11,7 +11,7 @@ import {
 import { CSSObject } from '@emotion/react';
 
 import {
-  SearchedTagsList,
+  SearchIcon,
   SelectedTagsContext
 } from '~/components';
 
@@ -59,7 +59,7 @@ export const AccordionToSearchTags: VFC = () => {
     setSearchQueryAction,
   } = useContext(SelectedTagsContext);
   return (
-    <Accordion>
+    <Accordion allowMultiple>
       <AccordionItem>
         <h2>
           <AccordionButton>
@@ -70,16 +70,18 @@ export const AccordionToSearchTags: VFC = () => {
           </AccordionButton>
         </h2>
         <AccordionPanel>
-            <input
-              css={{ 
-                width: '200px',
-                borderBottom: `2px solid ${colors.cyan.DEFAULT}`,
-                marginBottom: '10px'
-                }}
-              type="text"
-              value={searchQuery}
-              onChange={(e) => setSearchQueryAction(e.target.value)}
-            />
+            <div css={{ display: 'flex', alignItems: 'flex-end', marginBottom: '16px' }}>
+              <input
+                css={{ 
+                  width: '200px',
+                  borderBottom: `2px solid ${colors.cyan.DEFAULT}`,
+                  }}
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQueryAction(e.target.value)}
+              />
+              <SearchIcon />
+            </div>
             <ul css={{
               width: '100%',
               display: 'flex',
