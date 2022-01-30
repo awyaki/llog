@@ -57,13 +57,10 @@ export const ContentMenuButtonWithText: VFC<Props> = ({
       initial="initial"
       whileHover="delta"
       style={{
-        width: '150px', 
-        maxWidth: '150px',
-        minWidth: '150px',
         display: 'flex',
         justifyContent: 'flex-start',
         alignItems: 'center',
-        padding: '24px 16px 16px 24px',
+        padding: '24px 48px',
       }}>
       <motion.div
         variants={icon}
