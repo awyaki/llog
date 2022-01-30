@@ -8,6 +8,7 @@ const colors = {
     DEFAULT: '#0590A7',
     FIRST: '#06A9C4',
     SECOND: '#07C8E8',
+    THIRD: '#CFF8FF',
     LEVEL: ['#FFFFFF', '#EBEDF0', '#07C8E8', '#06A9C4', '#058AA1', '#035F6E'],
   },
   red: {
