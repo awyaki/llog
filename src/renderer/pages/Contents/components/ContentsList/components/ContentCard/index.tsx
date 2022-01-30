@@ -39,12 +39,10 @@ export const ContentCard: VFC<Props> = ({
       variants={containerMotions}
       style={{
         width: '100%',
-        borderWidth: '1px',
+        borderBottomWidth: '2px',
         borderStyle: 'solid',
-        borderRadius: '5px',
         padding: '16px',
         borderColor: colors.cyan.THIRD,
-        backgroundColor: colors.cyan.THIRD,
         color: colors.cyan.DEFAULT,
       }}
       initial="normal"
@@ -55,7 +53,6 @@ export const ContentCard: VFC<Props> = ({
         marginBottom: '6px',
       }}>{makeFormalTimeString(createdAt)}</div>
       <TagsList 
-        secandary
         css={{ marginBottom: '8px' }}
         tags={tags} />
       <h2 css={{ fontSize: font.size.M }}>{name}</h2>

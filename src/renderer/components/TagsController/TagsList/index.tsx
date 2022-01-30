@@ -3,8 +3,6 @@ import { VFC } from 'react';
 import { Tag } from '@prisma/client';
 
 import { 
-  tagStyle, 
-  reverseTagStyle,
   tagsContainer
 } from '../style';
 
