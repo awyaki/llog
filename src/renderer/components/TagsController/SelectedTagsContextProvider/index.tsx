@@ -41,6 +41,7 @@ type SelectedTagsContextType = {
   onCloseModalToUpdateContentTags: () => void;
   onReleaseSearchedTags: () => void;
   onToggleSelectedTags: (tag: Tag) => () => void;
+  onToggleSearchedTags: (tag: Tag) => () => void;
 };
 
 export const SelectedTagsContext = createContext<SelectedTagsContextType>({
@@ -67,6 +68,7 @@ export const SelectedTagsContext = createContext<SelectedTagsContextType>({
   onCloseModalToUpdateContentTags: () => {},
   onReleaseSearchedTags: () => {},
   onToggleSelectedTags: () => () => {},
+  onToggleSearchedTags: () => () => {},
 });
 
 
@@ -121,6 +123,17 @@ export const SelectedTagsContextProvider: FC = ({ children }) => {
       });
     };
   }, [setSelectedTags]);
+
+  const onToggleSearchedTags = useCallback((tag: Tag) => {
+    return () => {
+      setSearchedTags((prev) => {
+        const index = prev.findIndex(({ id }) => tag.id === id);
+        return index === -1 
+                  ? prev.concat({ ...tag })
+                  : prev.slice(0, index).concat(prev.slice(index+1));
+      });
+    };
+  }, [setSearchedTags]);
   
   const setTagsAction = useCallback((tags: Tag[]) => {
     dispatchTagsWithFiltering({ type: 'TAGS_CONTROLLER/SET_TAGS', tags: tags });
@@ -171,6 +184,7 @@ export const SelectedTagsContextProvider: FC = ({ children }) => {
       onCloseModalToUpdateContentTags: onCloseModalToUpdateContentTagsWithResetQuery,
       onReleaseSearchedTags,
       onToggleSelectedTags,
+      onToggleSearchedTags,
     }}>
       {children}
     </SelectedTagsContext.Provider>

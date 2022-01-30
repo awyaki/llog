@@ -14,6 +14,7 @@ import {
   NormalButton,
   SearchIcon,
   PageMotion,
+  AccordionToSearchTags
 } from '~/components';
 
 import {
@@ -72,7 +73,7 @@ export const Contents: VFC = () => {
                   onChange={onChangeSearchQuery} />
                 <SearchIcon />
               </div>
-              <SearchedTagsList />
+              <AccordionToSearchTags />
             </div>
           </div>
 

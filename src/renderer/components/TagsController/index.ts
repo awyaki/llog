@@ -10,3 +10,4 @@ export * from './SearchedTagsList';
 export * from './ModalToUpdateContentTags';
 export * from './OpenModalToUpdateContentTagsButton';
 export * from './TagsList';
+export * from './AccordionToSearchTags';
