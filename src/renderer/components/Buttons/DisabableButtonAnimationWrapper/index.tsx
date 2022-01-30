@@ -50,6 +50,7 @@ export const DisabableButtonAnimationWrapper: FC<Props> = ({
   console.log('DisabableButtonAnimationWrapper', disabled);
   return (
     <motion.button
+      initial={disabled ? "disableInitail" : "initial"}
       disabled={disabled}
       variants={containerMotions}
       animate={disabled ? "disableInitail" : "initial"}
