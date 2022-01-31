@@ -104,6 +104,7 @@ export const AccordionToCreateContent: VFC = () => {
   return (
     <>
       <AccordionButtonWithText 
+        css={{ marginBottom: '16px' }}
         isOpen={isOpen}
         text="Add new"
         onClick={onToggleOpenAndClose}/>
