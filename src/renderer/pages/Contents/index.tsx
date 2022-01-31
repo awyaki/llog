@@ -12,7 +12,7 @@ import {
   ModalToSearchTags,
   SearchIcon,
   PageMotion,
-  AccordionToSearchTags,
+  AccordionToSearchContentsByTags,
 } from '~/components';
 
 import {
@@ -61,7 +61,7 @@ export const Contents: VFC = () => {
                   onChange={onChangeSearchQuery} />
                 <SearchIcon />
               </div>
-              <AccordionToSearchTags />
+              <AccordionToSearchContentsByTags />
             </div>
           </div>
 

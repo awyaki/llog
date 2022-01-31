@@ -50,7 +50,7 @@ const reverseTagStyle: CSSObject = {
 };
 
 
-export const AccordionToSearchTags: VFC = () => {
+export const AccordionToSearchContentsByTags: VFC = () => {
   const {
     filteredTags,
     onToggleSearchedTags,
