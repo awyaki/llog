@@ -1,8 +1,12 @@
 import { 
   VFC,
+  useState,
+  useCallback
   } from 'react';
 
 import { colors } from '~/styleConfig';
+
+import { Collapse } from '@chakra-ui/transition';
 
 
 import { 
@@ -17,17 +21,18 @@ import {
 
 
 export const SelectTags: VFC = () => {
+  const [isOpen, setIsOpen] = useState(false); 
+  const toggleIsOpen = () => setIsOpen((prev) => !prev);
 
   return (
-    <div css={{
-    }}>
+    <>
       <ExpandButton 
         css={{
           marginBottom: '8px',
         }}
-        onClick={() => {}} />
-      <SelectedTagsList css={{ marginBottom: '16px' }} />
-      <div>
+        onClick={toggleIsOpen} />
+      <SelectedTagsList css={{ height: '23px', marginBottom: '8px' }} />
+      <Collapse in={isOpen}>
         <div css={{
           padding: '16px',
           border: `1px solid ${colors.cyan.DEFAULT}`,
@@ -38,7 +43,7 @@ export const SelectTags: VFC = () => {
           <SearchAndCreateInput />
           <TagListToSelect />
         </div>
-      </div>
-    </div>
+      </Collapse>
+    </>
   );
 };
