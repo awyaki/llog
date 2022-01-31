@@ -5,6 +5,7 @@ import { colors } from '~/styleConfig';
 export const WarningButton: FC<ButtonHTMLAttributes<HTMLButtonElement>> = ({ children, ...rest }) => {
   return (
     <button css={{
+      textAlign: 'center',
       padding: '5px 16px',
       transition: '.25s',
       color: colors.white,
