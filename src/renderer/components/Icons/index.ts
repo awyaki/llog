@@ -15,3 +15,4 @@ export * from './TagsIcon';
 export * from './SaveIcon';
 export * from './NoteAddIcon';
 export * from './AddIcon';
+export * from './ArrowUpIcon';
