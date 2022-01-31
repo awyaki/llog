@@ -1,3 +1,3 @@
 export * from './ExpandButton';
 export * from './TagListToSelect';
-export * from './CreateInput';
+export * from './SearchAndCreateInput';

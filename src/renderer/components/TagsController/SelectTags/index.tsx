@@ -1,12 +1,9 @@
 import { 
   VFC,
-  useContext,
-  useMemo
   } from 'react';
 
 import { colors } from '~/styleConfig';
 
-import { CSSObject } from '@emotion/react';
 
 import { 
   SelectedTagsList,
@@ -15,7 +12,7 @@ import {
 import {
   ExpandButton,
   TagListToSelect,
-  CreateInput,
+  SearchAndCreateInput,
 } from './components';
 
 
@@ -37,7 +34,7 @@ export const SelectTags: VFC = () => {
           borderRadius: '4px',
           marginBottom: '16px',
         }}>
-          <CreateInput />
+          <SearchAndCreateInput />
           <TagListToSelect />
         </div>
       </div>

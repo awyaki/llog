@@ -27,7 +27,7 @@ type Input = {
 };
 
 
-export const CreateInput: VFC = () => {
+export const SearchAndCreateInput: VFC = () => {
 
   const { 
     tags,
