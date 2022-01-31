@@ -22,12 +22,12 @@ type Props = {
 
 const container: Variants = {
   open: {
-    backgroundColor: colors.cyan.DEFAULT,
-    color: colors.white,
-  },
-  close: {
     backgroundColor: colors.white,
     color: colors.cyan.DEFAULT,
+  },
+  close: {
+    backgroundColor: colors.cyan.DEFAULT,
+    color: colors.white,
   },
 };
 
@@ -52,7 +52,7 @@ export const AccordionButtonWithText: VFC<Props> = ({
         borderWidth: '1px',
         borderStyle: 'solid',
         borderRadius: '4px',
-        border: colors.cyan.DEFAULT,
+        borderColor: colors.cyan.DEFAULT,
         textAlign: 'center',
       }}
       {...rest}>
