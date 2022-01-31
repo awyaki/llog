@@ -34,6 +34,7 @@ export const SelectTags: VFC = () => {
           borderRadius: '4px',
           marginBottom: '16px',
         }}>
+          <h2 css={{ marginBottom: '8px' }}>Search or Create tags</h2>
           <SearchAndCreateInput />
           <TagListToSelect />
         </div>

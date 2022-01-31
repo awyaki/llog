@@ -26,13 +26,10 @@ type Input = {
   newTagName: string;
 };
 
-
 export const SearchAndCreateInput: VFC = () => {
 
   const { 
     tags,
-    searchQuery,
-    filteredTags,
     setSearchQueryAction,
     setSelectedTags,
     setTagsAction,
@@ -52,7 +49,7 @@ export const SearchAndCreateInput: VFC = () => {
 
   const isAlreadyNameExist = useCallback<Validate<string>>((tagName) => {
     const isOk = !tags.some((tag) => tag.name === tagName);
-    return isOk || 'This name have already been existed.';
+    return isOk || 'Completely match!';
   }, [tags]);
 
   const onCreateTag = useCallback(async (data: Input) => {
@@ -69,12 +66,6 @@ export const SearchAndCreateInput: VFC = () => {
     setSearchQueryAction(inputValue)
   }, [inputValue]) 
   
-  const isShouldShowSearchIcon = (() => {
-    if (inputValue === '') return true;
-    if (filteredTags.length !== 0) return true;
-    return false;
-  })();
-
   return (
     <form id="create-tag" onSubmit={handleSubmit(onCreateTag)}>
       <input 
@@ -83,15 +74,15 @@ export const SearchAndCreateInput: VFC = () => {
         borderBottom: `2px solid ${colors.cyan.DEFAULT}`,
       }} 
       {...register('newTagName', { 
-        required: { value: true, message: 'You should fill in this field.'}, 
+        required: { value: true, message: '' },
         validate: { isAlreadyNameExist },
         })} />
-      {isShouldShowSearchIcon 
-        ? <SearchIcon />
-        : <button type="submit">Create</button>}
+      <button
+        hidden
+        type="submit"></button>
       <div css={{
         height: '24px',
-        color: colors.red.DEFAULT,
+        color: colors.cyan.DEFAULT,
         fontSize: font.size.SS,
       }}>{errors.newTagName?.message}</div>
     </form>
