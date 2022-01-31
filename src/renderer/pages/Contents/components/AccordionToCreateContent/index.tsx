@@ -32,8 +32,8 @@ import { useCreateContent } from './hooks'
 import { Collapse } from '@chakra-ui/transition';
 
 const labelStyle: CSSObject = {
-  width: '40px',
-  marginRight: '16px',
+  width: '50px',
+  marginRight: '8px',
 };
 
 const error: CSSObject = {
