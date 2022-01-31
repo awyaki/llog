@@ -83,6 +83,7 @@ export const AccordionToCreateContent: VFC = () => {
     setValue('numberOfBlocks', '');
     setValue('contentName', '');
     setMessage('A new Contet is created.');
+    setIsOpen(false);
   }, [selectedTags]);  
 
   const isAlreadyNameExist = useCallback<Validate<string>>((contentName) => {
