@@ -16,7 +16,8 @@ import {
   SelectedTagsContext,
   NotifierContext,
   NormalButton,
-  WarningButton
+  WarningButton,
+  AccordionButtonWithText
 } from '~/components';
 
 import {
@@ -102,11 +103,10 @@ export const AccordionToCreateContent: VFC = () => {
 
   return (
     <>
-      <NormalButton 
-        css={{ marginBottom: '16px' }}
-        onClick={onToggleOpenAndClose}>
-        Add new
-      </NormalButton>
+      <AccordionButtonWithText 
+        isOpen={isOpen}
+        text="Add new"
+        onClick={onToggleOpenAndClose}/>
       <Collapse in={isOpen}>
         <div css={{
           padding: '16px',
