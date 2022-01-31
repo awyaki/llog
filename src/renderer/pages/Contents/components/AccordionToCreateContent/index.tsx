@@ -108,15 +108,14 @@ export const AccordionToCreateContent: VFC = () => {
         Add new
       </NormalButton>
       <Collapse in={isOpen}>
-        <div>
+        <div css={{
+          padding: '16px',
+          border: `1px solid ${colors.cyan.DEFAULT}`,
+          borderRadius: '4px',
+          marginBottom: '16px',
+        }}>
         <form 
           id="content-create" 
-          css={{
-            padding: '16px',
-            border: `1px solid ${colors.cyan.DEFAULT}`,
-            borderRadius: '4px',
-            marginBottom: '16px',
-          }}
           onSubmit={handleSubmit(onSubmit)}>
             <label 
               css={labelStyle}
