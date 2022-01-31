@@ -1,6 +1,8 @@
 import { 
   VFC,
-  useContext
+  useState,
+  useContext,
+  useCallback
 } from 'react';
 
 import {
@@ -12,19 +14,11 @@ import { CSSObject } from '@emotion/react';
 
 import {
   SearchIcon,
-  SelectedTagsContext
+  SelectedTagsContext,
+  AccordionButtonWithText
 } from '~/components';
 
-import {
-  Accordion,
-  AccordionItem,
-  AccordionButton,
-  AccordionIcon,
-  AccordionPanel,
-  Box
-} from '@chakra-ui/react';
-
-
+import { Collapse } from '@chakra-ui/transition';
 
 const tagStyle: CSSObject = {
   minWidth: '80px',
@@ -49,8 +43,14 @@ const reverseTagStyle: CSSObject = {
   color: colors.white,
 };
 
+type Props = {
+  css?: CSSObject;
+};
 
-export const AccordionToSearchContentsByTags: VFC = () => {
+
+export const AccordionToSearchContentsByTags: VFC<Props> = ({ ...rest }) => {
+  const [isOpen, setIsOpen] = useState(false); 
+
   const {
     filteredTags,
     onToggleSearchedTags,
@@ -58,48 +58,55 @@ export const AccordionToSearchContentsByTags: VFC = () => {
     searchQuery,
     setSearchQueryAction,
   } = useContext(SelectedTagsContext);
+
+  
+  const toggleIsOpen = useCallback(() => setIsOpen((prev) => !prev), []);
+
   return (
-    <Accordion allowToggle>
-      <AccordionItem>
-        <h2>
-          <AccordionButton>
-            <Box flex="1" textAlign="left">
-              Search by Tags
-            </Box>
-            <AccordionIcon />
-          </AccordionButton>
-        </h2>
-        <AccordionPanel>
-            <div css={{ display: 'flex', alignItems: 'flex-end', marginBottom: '16px' }}>
-              <input
-                css={{ 
-                  width: '200px',
-                  borderBottom: `2px solid ${colors.cyan.DEFAULT}`,
-                  }}
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQueryAction(e.target.value)}
-              />
-              <SearchIcon />
-            </div>
-            <ul css={{
-              width: '100%',
-              display: 'flex',
-              flexWrap: 'wrap',
-              '> li': {
-                marginRight: '4px',
-                marginBottom: '4px',
-              },
-            }}>
-            {filteredTags.map(({ id, name }) => <li key={id}>
-                                          <button 
-                                            onClick={onToggleSearchedTags({ id, name })}
-                                            css={searchedTags.some((tag) => tag.id === id) ? reverseTagStyle : tagStyle}
-                                          >{name}</button>
-                                          </li>)}
-            </ul>
-        </AccordionPanel>
-      </AccordionItem>
-    </Accordion>
+        <div {...rest}>
+
+        <AccordionButtonWithText
+          isOpen={isOpen}
+          text="Search by tags"
+          onClick={toggleIsOpen}
+          css={{
+            marginBottom: '16px',
+          }}
+        />
+
+        <Collapse in={isOpen}>
+          <div css={{ 
+            display: 'flex', 
+            alignItems: 'flex-end', 
+            marginBottom: '16px' }}>
+            <input
+              css={{ 
+                width: '200px',
+                borderBottom: `2px solid ${colors.cyan.DEFAULT}`,
+                }}
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQueryAction(e.target.value)}
+            />
+            <SearchIcon />
+          </div>
+          <ul css={{
+            width: '100%',
+            display: 'flex',
+            flexWrap: 'wrap',
+            '> li': {
+              marginRight: '4px',
+              marginBottom: '4px',
+            },
+          }}>
+          {filteredTags.map(({ id, name }) => <li key={id}>
+                                        <button 
+                                          onClick={onToggleSearchedTags({ id, name })}
+                                          css={searchedTags.some((tag) => tag.id === id) ? reverseTagStyle : tagStyle}
+                                        >{name}</button>
+                                        </li>)}
+          </ul>
+        </Collapse>
+    </div>
   );
 };
