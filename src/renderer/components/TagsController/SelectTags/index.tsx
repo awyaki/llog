@@ -9,26 +9,17 @@ import { colors } from '~/styleConfig';
 import { CSSObject } from '@emotion/react';
 
 import { 
-  SearchIcon,
-  SelectedTagsContext,
   SelectedTagsList,
   } from '~/components';
 
 import {
   ExpandButton,
   TagListToSelect,
-  SearchInput,
   CreateInput,
 } from './components';
 
 
 export const SelectTags: VFC = () => {
-  const { 
-    searchQuery, 
-    filteredTags,
-    tags,
-    } = useContext(SelectedTagsContext); 
-  
 
   return (
     <div css={{
@@ -46,7 +37,6 @@ export const SelectTags: VFC = () => {
           borderRadius: '4px',
           marginBottom: '16px',
         }}>
-          {/* if searching result contains no tags, show interface to create tag*/}
           <CreateInput />
           <TagListToSelect />
         </div>
