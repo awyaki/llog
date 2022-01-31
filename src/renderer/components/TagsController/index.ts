@@ -11,3 +11,4 @@ export * from './ModalToUpdateContentTags';
 export * from './OpenModalToUpdateContentTagsButton';
 export * from './TagsList';
 export * from './AccordionToSearchContentsByTags';
+export * from './SelectTags';

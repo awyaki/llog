@@ -12,7 +12,7 @@ import {
   } from '~/pages/style';
 
 import {
-  SelectedTagsList,
+  SelectTags,
   SelectedTagsContext,
   NotifierContext,
   NormalButton,
@@ -141,10 +141,7 @@ export const AccordionToCreateContent: VFC = () => {
               pattern: { value: /^[0-9]+$/i, message: 'You should fill in this field with a number.' }})} />
             <div css={error}>{errors.numberOfBlocks?.message}</div>
 
-          <div css={{ marginBottom: '32px' }}>
-            <h2 css={{}}>Tags</h2>
-            <SelectedTagsList />
-          </div>
+          <SelectTags />
           <NormalButton 
             css={{ width: '84px', marginRight: '8px' }}
             type="submit">
