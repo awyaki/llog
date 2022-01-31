@@ -11,10 +11,10 @@ import { Collapse } from '@chakra-ui/transition';
 
 import { 
   SelectedTagsList,
+  AccordionButtonWithText
   } from '~/components';
 
 import {
-  ExpandButton,
   TagListToSelect,
   SearchAndCreateInput,
 } from './components';
@@ -26,11 +26,12 @@ export const SelectTags: VFC = () => {
 
   return (
     <>
-      <ExpandButton 
-        css={{
-          marginBottom: '8px',
-        }}
-        onClick={toggleIsOpen} />
+      <AccordionButtonWithText
+        isOpen={isOpen}
+        text="Add tags"
+        onClick={toggleIsOpen}
+        css={{ marginBottom: '16px' }}
+      />
       <SelectedTagsList css={{ height: '23px', marginBottom: '8px' }} />
       <Collapse in={isOpen}>
         <div css={{
