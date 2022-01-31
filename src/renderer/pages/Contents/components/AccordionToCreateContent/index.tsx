@@ -108,6 +108,7 @@ export const AccordionToCreateContent: VFC = () => {
         Add new
       </NormalButton>
       <Collapse in={isOpen}>
+        <div>
         <form 
           id="content-create" 
           css={{
@@ -140,10 +141,11 @@ export const AccordionToCreateContent: VFC = () => {
               max: { value: 1500, message: 'You should fill in this field with a number which is equal to or less than 1500.' },  // TODO: The number 1500 is not considered number. We should consider that how many blocks a content will have.
               pattern: { value: /^[0-9]+$/i, message: 'You should fill in this field with a number.' }})} />
             <div css={error}>{errors.numberOfBlocks?.message}</div>
-
+          </form>
           <SelectTags />
           <NormalButton 
             css={{ width: '84px', marginRight: '8px' }}
+            form="content-create"
             type="submit">
             Create
           </NormalButton>
@@ -153,7 +155,7 @@ export const AccordionToCreateContent: VFC = () => {
             type="button">
             Clear
           </WarningButton>
-        </form>
+        </div>
       </Collapse>
     </>
   );
