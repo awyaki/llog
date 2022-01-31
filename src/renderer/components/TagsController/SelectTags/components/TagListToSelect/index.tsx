@@ -38,10 +38,11 @@ export const TagListToSelect: VFC = () => {
 
   const { 
     filteredTags,
+    searchQuery,
     onToggleSelectedTags,
-    selectedTags
+    selectedTags,
     } = useContext(SelectedTagsContext);
-
+  
   return (
     <ul css={{
       width: '100%',
