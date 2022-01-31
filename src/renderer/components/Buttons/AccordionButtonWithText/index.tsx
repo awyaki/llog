@@ -2,7 +2,7 @@ import { VFC } from 'react';
 
 import { CSSObject } from '@emotion/react';
 
-import { colors } from '~/styleConfig';
+import { colors, font } from '~/styleConfig';
 
 import { ArrowUpIcon } from '~/components';
 
@@ -48,7 +48,7 @@ export const AccordionButtonWithText: VFC<Props> = ({
       variants={container}
       animate={isOpen ? "open" : "close"}
       style={{
-        padding: '5px 16px',
+        padding: '8px 16px',
         borderWidth: '1px',
         borderStyle: 'solid',
         borderRadius: '4px',
@@ -56,12 +56,20 @@ export const AccordionButtonWithText: VFC<Props> = ({
         textAlign: 'center',
       }}
       {...rest}>
-      <div css={{ marginRight: '4px' }}>{text}</div>
-      <motion.div
-        variants={icon}
-      >
-        <ArrowUpIcon />
-      </motion.div>
+      <div css={{
+        display: 'flex',
+      }}>
+        <div css={{ marginRight: '8px' }}>{text}</div>
+        <motion.div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+          }}
+          variants={icon}
+        >
+          <ArrowUpIcon css={{ fontSize: font.size.M }}/>
+        </motion.div>
+      </div>
     </motion.button>
   );
 };
