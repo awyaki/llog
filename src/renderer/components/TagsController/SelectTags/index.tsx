@@ -1,6 +1,5 @@
 import { 
   VFC,
-  useState,
   } from 'react';
 
 
@@ -13,16 +12,18 @@ import {
   CollapseToSelectTags,
 } from './components';
 
+import { useSelectTags } from './hooks';
 
 export * from './components';
+
+export * from './hooks';
 
 type Props = {
   isUpdate?: boolean;
 };
 
 export const SelectTags: VFC<Props> = ({ isUpdate }) => {
-  const [isOpen, setIsOpen] = useState(false); 
-  const toggleIsOpen = () => setIsOpen((prev) => !prev);
+  const { isOpen, toggleIsOpen } = useSelectTags();
 
   return (
     <>
