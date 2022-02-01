@@ -11,7 +11,6 @@ import {
 } from '~/styleConfig';
 
 import { 
-  TagAnimationButtonWrapper,
   EditIcon,
   ArrowUpIcon,
   } from '~/components';
@@ -29,12 +28,6 @@ type Props = {
   css?: CSSObject;
 };
 
-const variants: Variants = {
-  open: {
-  },
-  close: {
-  },
-};
 
 const editIcon: Variants = {
   open: {
