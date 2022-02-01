@@ -123,10 +123,11 @@ export const useUpdateContent = ({ content }: Props) => {
     return Number(numberOfBlocks) >= content.blocks.length || `You should update the number to more than the previous one, ${content.blocks.length} or remain.`
   }, [content]);
 
-  const onClearAllInput = useCallback(() => {
+  const onCancelUpdate = useCallback(() => {
     setSelectedTags([]);
     setValue('numberOfBlocks', '');
     setValue('contentName', '');
+    setIsOpen(false);
   }, []);
 
   
@@ -139,7 +140,7 @@ export const useUpdateContent = ({ content }: Props) => {
     errors,
     onToggleOpenAndClose,
     handleSubmitUpdation,
-    onClearAllInput,
+    onCancelUpdate,
     isAlreadyNameExist,
     isMoreThanEqaulToPreviousNumber,
   };

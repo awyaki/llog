@@ -52,7 +52,7 @@ export const AccordionToUpdateContent: VFC<Props> = ({ content }) => {
     errors,
     onToggleOpenAndClose,
     handleSubmitUpdation,
-    onClearAllInput,
+    onCancelUpdate,
     isAlreadyNameExist,
     isMoreThanEqaulToPreviousNumber
   } = useUpdateContent({ content });
@@ -109,9 +109,9 @@ export const AccordionToUpdateContent: VFC<Props> = ({ content }) => {
           </NormalButton>
           <WarningButton 
             css={{ width: '84px' }}
-            onClick={onClearAllInput}
+            onClick={onCancelUpdate}
             type="button">
-            Clear
+            Cancel
           </WarningButton>
         </div>
       </Collapse>
