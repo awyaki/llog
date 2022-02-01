@@ -19,8 +19,11 @@ import {
   SearchAndCreateInput,
 } from './components';
 
+type Props = {
+  isUpdate?: boolean;
+};
 
-export const SelectTags: VFC = () => {
+export const SelectTags: VFC<Props> = ({ isUpdate }) => {
   const [isOpen, setIsOpen] = useState(false); 
   const toggleIsOpen = () => setIsOpen((prev) => !prev);
 
@@ -28,7 +31,7 @@ export const SelectTags: VFC = () => {
     <>
       <AccordionButtonWithText
         isOpen={isOpen}
-        text="Add tags"
+        text={isUpdate ? "Update tags" : "Add tags"}
         onClick={toggleIsOpen}
         css={{ marginBottom: '16px' }}
       />
