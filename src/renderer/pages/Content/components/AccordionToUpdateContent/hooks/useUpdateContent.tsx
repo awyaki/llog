@@ -1,8 +1,10 @@
 import { 
   useState,
   useContext,
-  useCallback
+  useCallback,
+  useEffect
   } from 'react';
+
 
 import {
   useForm,
@@ -48,13 +50,17 @@ export const useUpdateContent = ({ content }: Props) => {
     formState: { errors }
   } = useForm<Inputs>({ 
     mode: 'onSubmit',
-    defaultValues: { 'contentName': '', 'numberOfBlocks': '' }
+    defaultValues: { 'contentName': content.name, 'numberOfBlocks': content.blocks.length.toString() }
   });
 
   const { 
     selectedTags,
     setSelectedTags,
     } = useContext(SelectedTagsContext);
+
+  useEffect(() => {
+    setSelectedTags(content.tags);
+  }, [content]);
  
   const onToggleOpenAndClose = useCallback(() => {
     setIsOpen((prev) => !prev);
