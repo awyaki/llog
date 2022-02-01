@@ -71,7 +71,7 @@ export const ExpandButton: VFC<Props> = ({ ...rest }) => {
               borderStyle: 'solid',
               borderColor: colors.cyan.DEFAULT,
               padding: '2px 4px',
-              marginRight: '16px',
+              marginRight: '8px',
             }}
             css={{ display: 'flex' }}>
           <EditIcon/>
@@ -79,7 +79,11 @@ export const ExpandButton: VFC<Props> = ({ ...rest }) => {
 
         <motion.div
           variants={arrowIcon}
-          style={{ color: colors.cyan.DEFAULT }}
+          style={{ 
+            display: 'flex',
+            alignItems: 'center',
+            color: colors.cyan.DEFAULT
+            }}
           animate={isOpen ? "open" : "close"}>
           <ArrowUpIcon css={{ fontSize: '20px' }}/>
         </motion.div>
