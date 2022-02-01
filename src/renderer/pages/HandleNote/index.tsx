@@ -4,6 +4,8 @@ import { NoteContextProvider } from '../NoteContextProvider';
 
 import { SelectedBlocksContextProvider } from './SelectedBlocksContextProvider';
 
+import { SelectBlocksContextProvder } from './components';
+
 import { CreateNote as SubCreateNote } from './CreateNote';
 
 import { ContentWithRelation } from '~/pages/type';
@@ -16,7 +18,9 @@ export const CreateNote: VFC<Props> = ({ content }) => {
   return (
       <NoteContextProvider>
         <SelectedBlocksContextProvider>
-            <SubCreateNote content={content} />
+            <SelectBlocksContextProvder>
+              <SubCreateNote content={content} />
+            </SelectBlocksContextProvder>
         </SelectedBlocksContextProvider>
       </NoteContextProvider>
   );

@@ -7,7 +7,7 @@ import { Mode } from '../../types';
 
 import {
   SelectedTagsList,
-  ExpandButton
+  ExpandButton as ExpandAddTagsButton
 } from '~/components';
 
 import { 
@@ -18,6 +18,8 @@ import {
   SwitchEdit,
   NoteStateIndicator,
   } from './components';
+
+import { ExpandAllBlocksButton } from '../SelectBlocks';
 
 
 type Props = {
@@ -60,8 +62,9 @@ export const ControlBox: VFC<Props> = ({
           isNoteExist={isNoteExist}
           isNoteChange={isNoteChange}
           updatedAt={updatedAt} />
-        <ExpandButton css={{ marginBottom: '8px' }} />
+        <ExpandAddTagsButton css={{ marginBottom: '8px' }} />
         <SelectedTagsList css={{ marginBottom: '16px' }} />
+        <ExpandAllBlocksButton />
         <SelectedBlocks 
           css={{ marginBottom: '16px' }}
           onOpenSelectBlocks={onOpenSelectBlocks} />

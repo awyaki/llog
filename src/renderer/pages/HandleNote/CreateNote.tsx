@@ -15,6 +15,8 @@ import {
 
 import { ContentWithRelation } from '~/pages/type';
 
+import { CollapseToSelectBlocks } from './components';
+
 type Props = {
   content: ContentWithRelation;
 };
@@ -41,6 +43,7 @@ export const CreateNote: VFC<Props> = ({ content }) => {
     <>
       <h2 css={{ ...pageTitle, marginBottom: '16px' }}>{content.name}</h2>
       <CollapseToSelectTags />
+      <CollapseToSelectBlocks blocks={content.blocks} />
       <div css={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'flex-start' }}>
         <Note 
           css={{ width: 'calc(100% - 200px)', maxWidth: '830px', marginRight: '32px' }}

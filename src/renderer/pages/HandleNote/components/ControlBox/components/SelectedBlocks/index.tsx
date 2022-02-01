@@ -6,7 +6,6 @@ import { SelectedBlocksContext } from '~/pages/HandleNote/SelectedBlocksContextP
 
 
 import { Block } from './components/Block';
-import { SelectBlockButton } from './components/SelectBlockButton';
 
 import { container } from './style/container';
 
@@ -18,14 +17,8 @@ type Props = {
 export const SelectedBlocks: VFC<Props> = ({ onOpenSelectBlocks, ...rest }) => {
   const { selectedBlocks } = useContext(SelectedBlocksContext);
   return (
-    <div {...rest}>
-
-      <SelectBlockButton 
-        css={{ marginBottom: '4px' }} 
-        onClick={onOpenSelectBlocks}/>
-      <ul css={container}>
-        {selectedBlocks.map(({ id, level, unitNumber }) => <li key={id}><Block level={level} unitNumber={unitNumber} /></li>)}
-      </ul>
-    </div>
+    <ul css={container} {...rest}>
+      {selectedBlocks.map(({ id, level, unitNumber }) => <li key={id}><Block level={level} unitNumber={unitNumber} /></li>)}
+    </ul>
   );
 };
