@@ -3,7 +3,10 @@ import {
   useContext
   } from 'react';
 
-import { EditIcon } from '~/components';
+import { 
+  EditIcon,
+  ArrowUpIcon 
+  } from '~/components';
 
 import { CSSObject } from '@emotion/react';
 
@@ -20,7 +23,7 @@ type Props = {
   css?: CSSObject;
 };
 
-const variants: Variants = {
+const editIcon: Variants = {
   open: {
     backgroundColor: colors.white,
     color: colors.cyan.DEFAULT,
@@ -33,6 +36,11 @@ const variants: Variants = {
   },
 };
 
+const arrowIcon: Variants = {
+  open: { rotate: 0 },
+  close: { rotate: 180 },
+};
+
 
 export const ExpandAllBlocksButton: VFC<Props> = ({ ...rest }) => {
   const { isOpen, toggleIsOpen } = useContext(SelectBlocksContext);
@@ -40,18 +48,32 @@ export const ExpandAllBlocksButton: VFC<Props> = ({ ...rest }) => {
   return (
     <motion.button
       onClick={toggleIsOpen}
-      variants={variants}
-      animate={isOpen ? 'open' : 'close'}
-      style={{
-        width: '36px', 
-        height: '36px', 
-        borderWidth: '1px',
-        borderStyle: 'solid',
-        display: 'flex', 
-        justifyContent: 'center', 
-        alignItems: 'center',
-      }} {...rest}>
-      <EditIcon />
+      style={{ display: 'flex', alignItems: 'center' }} {...rest}>
+      <motion.div
+        variants={editIcon}
+        animate={isOpen ? 'open' : 'close'}
+        style={{
+          width: '36px', 
+          height: '36px', 
+          borderWidth: '1px',
+          borderStyle: 'solid',
+          display: 'flex', 
+          justifyContent: 'center', 
+          alignItems: 'center',
+        }}>
+        <EditIcon />
+      </motion.div>
+      <motion.div
+        variants={arrowIcon}
+        style={{ 
+          display: 'flex',
+          color: colors.cyan.DEFAULT,
+          alignItems: 'center',
+          }}
+        animate={isOpen ? 'open' : 'close'}
+      >
+        <ArrowUpIcon css={{ fontSize: '20px' }}/>
+      </motion.div>
     </motion.button>
   );
 };
