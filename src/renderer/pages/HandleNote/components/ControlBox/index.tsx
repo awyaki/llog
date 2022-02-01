@@ -64,7 +64,7 @@ export const ControlBox: VFC<Props> = ({
           updatedAt={updatedAt} />
         <ExpandAddTagsButton css={{ marginBottom: '8px' }} />
         <SelectedTagsList css={{ marginBottom: '16px' }} />
-        <ExpandAllBlocksButton />
+        <ExpandAllBlocksButton css={{ marginBottom: '8px' }}/>
         <SelectedBlocks 
           css={{ marginBottom: '16px' }}
           onOpenSelectBlocks={onOpenSelectBlocks} />
