@@ -7,6 +7,8 @@ import {
 
 import { getContent } from '~/api';
 
+import { arrayeEqualWithId } from '~/utils';
+
 import {
   useForm,
   Validate
@@ -14,6 +16,7 @@ import {
 
 import { 
   updateContentTags,
+  deleteConnectContentTags,
   upsertContentBlocks,
   updateContentName
   } from '~/api';
@@ -85,10 +88,20 @@ export const useUpdateContent = ({ content }: Props) => {
   
   const onSubmit = useCallback(async (data: Inputs) => {
     const { contentName, numberOfBlocks } = data;
+    
     // TODD: These function should not call when each item not alter.   
-    await updateContentName({ id: content.id, name: contentName });
-    await updateContentTags(content.id, selectedTags);
-    await upsertContentBlocks(content.id, content.blocks.length, Number(numberOfBlocks) - content.blocks.length);
+    if (content.name !== contentName) await updateContentName({ id: content.id, name: contentName });
+    if (!arrayeEqualWithId(content.tags, selectedTags)) {
+      await deleteConnectContentTags(content.id);
+      await updateContentTags(content.id, selectedTags);
+    }
+
+
+    const currentBlocks = Number(content.blocks.length);
+    const inputBlocks = Number(numberOfBlocks);
+    const appendBlocks = inputBlocks - currentBlocks;
+
+    if (appendBlocks > 0) await upsertContentBlocks(content.id, content.blocks.length, appendBlocks);
     
     const updatedContent = await getContent(content.id);
     setContent(updatedContent);
@@ -107,8 +120,8 @@ export const useUpdateContent = ({ content }: Props) => {
   }, [contents]);
   
   const isMoreThanEqaulToPreviousNumber = useCallback<Validate<string>>((numberOfBlocks) => {
-    return Number(numberOfBlocks) > content.blocks.length || 'You should update the number to more than previous number.'
-  }, []);
+    return Number(numberOfBlocks) >= content.blocks.length || 'You should update the number to more than previous number.'
+  }, [content]);
 
   const onClearAllInput = useCallback(() => {
     setSelectedTags([]);
