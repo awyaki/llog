@@ -6,7 +6,8 @@ import { CSSObject } from '@emotion/react';
 import { Mode } from '../../types';
 
 import {
-  SelectedTagsList
+  SelectedTagsList,
+  ExpandButton
 } from '~/components';
 
 import { 
@@ -59,6 +60,7 @@ export const ControlBox: VFC<Props> = ({
           isNoteExist={isNoteExist}
           isNoteChange={isNoteChange}
           updatedAt={updatedAt} />
+        <ExpandButton css={{ marginBottom: '8px' }} />
         <SelectedTagsList css={{ marginBottom: '16px' }} />
         <SelectedBlocks 
           css={{ marginBottom: '16px' }}
