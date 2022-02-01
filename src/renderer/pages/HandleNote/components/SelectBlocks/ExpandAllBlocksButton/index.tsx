@@ -24,10 +24,12 @@ const variants: Variants = {
   open: {
     backgroundColor: colors.white,
     color: colors.cyan.DEFAULT,
+    borderColor: colors.cyan.DEFAULT,
   },
   close: {
-    backgroundColor: colors.white,
-    color: colors.cyan.DEFAULT,
+    backgroundColor: colors.cyan.DEFAULT,
+    color: colors.white,
+    borderColor: colors.cyan.DEFAULT,
   },
 };
 
