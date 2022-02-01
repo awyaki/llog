@@ -51,7 +51,7 @@ export const CreateNote: VFC<Props> = ({ content }) => {
           markdown={markdown}
           setMarkdown={setMarkdown} />
         <ControlBox 
-          css={{ width: '200px', position: 'sticky', top: '80px' }}
+          css={{ width: '200px', position: 'sticky', top: '104px' }}
           updatedAt={note?.updatedAt}
           mode={mode}
           toggleEditBeteewnPreview={toggleEditBetweenPreview}
