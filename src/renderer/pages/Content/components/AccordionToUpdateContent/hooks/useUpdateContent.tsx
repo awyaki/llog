@@ -5,6 +5,7 @@ import {
   useEffect
   } from 'react';
 
+import { getContent } from '~/api';
 
 import {
   useForm,
@@ -19,6 +20,7 @@ import {
 
 
 import {
+  ContentContext,
   ContentsContext,
   SelectedTagsContext,
   NotifierContext
@@ -40,6 +42,8 @@ export const useUpdateContent = ({ content }: Props) => {
   const [isOpen, setIsOpen] = useState(false);  
   
   const { contents } = useContext(ContentsContext);
+
+  const { setContent } = useContext(ContentContext);
   
   const { setMessage } = useContext(NotifierContext);
   
@@ -50,7 +54,7 @@ export const useUpdateContent = ({ content }: Props) => {
     formState: { errors }
   } = useForm<Inputs>({ 
     mode: 'onSubmit',
-    defaultValues: { 'contentName': content.name, 'numberOfBlocks': content.blocks.length.toString() }
+    defaultValues: { 'contentName': '', 'numberOfBlocks': '' }
   });
 
   const { 
@@ -63,8 +67,20 @@ export const useUpdateContent = ({ content }: Props) => {
   }, [content]);
  
   const onToggleOpenAndClose = useCallback(() => {
-    setIsOpen((prev) => !prev);
-  }, []); 
+    setIsOpen((isOpen) => {
+      if (isOpen) {
+        setSelectedTags([]);
+        setValue('contentName', '');
+        setValue('numberOfBlocks', '');
+        return !isOpen; 
+      } else {
+        setSelectedTags(content.tags);
+        setValue('contentName', content.name);
+        setValue('numberOfBlocks', content.blocks.length.toString());
+        return !isOpen;
+      }
+    });
+  }, [content]); 
 
   
   const onSubmit = useCallback(async (data: Inputs) => {
@@ -74,11 +90,14 @@ export const useUpdateContent = ({ content }: Props) => {
     await updateContentTags(content.id, selectedTags);
     await upsertContentBlocks(content.id, content.blocks.length, Number(numberOfBlocks) - content.blocks.length);
     
+    const updatedContent = await getContent(content.id);
+    setContent(updatedContent);
     setSelectedTags([]);
     setValue('numberOfBlocks', '');
     setValue('contentName', '');
     setMessage('updated!');
-  }, [selectedTags]);  
+    setIsOpen(false);
+  }, [selectedTags, content]);  
 
   const isAlreadyNameExist = useCallback<Validate<string>>((contentName) => {
     const isOk = !contents
@@ -99,6 +118,7 @@ export const useUpdateContent = ({ content }: Props) => {
 
   
   const handleSubmitUpdation = handleSubmit(onSubmit);
+  
 
   return {
     isOpen,
@@ -108,6 +128,6 @@ export const useUpdateContent = ({ content }: Props) => {
     handleSubmitUpdation,
     onClearAllInput,
     isAlreadyNameExist,
-    isMoreThanEqaulToPreviousNumber
+    isMoreThanEqaulToPreviousNumber,
   };
 };
