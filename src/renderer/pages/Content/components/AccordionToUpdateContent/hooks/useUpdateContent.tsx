@@ -120,7 +120,7 @@ export const useUpdateContent = ({ content }: Props) => {
   }, [contents]);
   
   const isMoreThanEqaulToPreviousNumber = useCallback<Validate<string>>((numberOfBlocks) => {
-    return Number(numberOfBlocks) >= content.blocks.length || 'You should update the number to more than previous number.'
+    return Number(numberOfBlocks) >= content.blocks.length || `You should update the number to more than the previous one, ${content.blocks.length} or remain.`
   }, [content]);
 
   const onClearAllInput = useCallback(() => {
