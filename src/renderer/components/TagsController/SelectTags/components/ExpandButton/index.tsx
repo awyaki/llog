@@ -20,6 +20,7 @@ type Props = {
 
 export const ExpandButton: VFC<Props> = ({ ...rest }) => {
   const { toggleIsOpen } = useContext(SelectTagsContext);
+
   return (
     <TagAnimationButtonWrapper 
       type="button"
