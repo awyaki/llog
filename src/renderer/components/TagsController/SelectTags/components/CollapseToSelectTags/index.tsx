@@ -1,4 +1,4 @@
-import { VFC } from 'react';
+import { VFC, useContext } from 'react';
 
 import { colors } from '~/styleConfig';
 
@@ -10,12 +10,15 @@ import { SearchAndCreateInput } from '../SearchAndCreateInput';
 
 import { TagListToSelect } from '../TagListToSelect';
 
+import { SelectTagsContext } from '../SelectTagsContextProvider';
+
 type Props = {
   css?: CSSObject;
-  isOpen: boolean;
 };
 
-export const CollapseToSelectTags: VFC<Props> = ({ isOpen, ...rest }) => {
+export const CollapseToSelectTags: VFC<Props> = ({ ...rest }) => {
+  const { isOpen } = useContext(SelectTagsContext);
+
   return (
     <Collapse in={isOpen} {...rest}>
       <div css={{

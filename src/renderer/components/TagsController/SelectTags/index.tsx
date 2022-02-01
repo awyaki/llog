@@ -1,5 +1,6 @@
 import { 
   VFC,
+  useContext
   } from 'react';
 
 
@@ -10,9 +11,9 @@ import {
 
 import {
   CollapseToSelectTags,
+  SelectTagsContext
 } from './components';
 
-import { useSelectTags } from './hooks';
 
 export * from './components';
 
@@ -23,7 +24,7 @@ type Props = {
 };
 
 export const SelectTags: VFC<Props> = ({ isUpdate }) => {
-  const { isOpen, toggleIsOpen } = useSelectTags();
+  const { isOpen, toggleIsOpen } = useContext(SelectTagsContext);
 
   return (
     <>
@@ -34,7 +35,7 @@ export const SelectTags: VFC<Props> = ({ isUpdate }) => {
         css={{ marginBottom: '16px' }}
       />
       <SelectedTagsList css={{ height: '23px', marginBottom: '8px' }} />
-      <CollapseToSelectTags isOpen={isOpen} />
+      <CollapseToSelectTags />
     </>
   );
 };

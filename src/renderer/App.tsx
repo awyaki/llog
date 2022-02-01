@@ -18,6 +18,7 @@ import {
   Notifier,
   SelectedTagsContextProvider,
   ContentContextProvider,
+  SelectTagsContextProvider,
   Menu
 } from './components';
 
@@ -39,7 +40,9 @@ export const App: VFC = () => {
         <Route path="/content/:contentId">
           <ContentContextProvider>
             <SelectedTagsContextProvider>
-              <ContentHub />
+                <SelectTagsContextProvider>
+                  <ContentHub />
+                </SelectTagsContextProvider>
             </SelectedTagsContextProvider>
           </ContentContextProvider>
         </Route>
@@ -48,7 +51,9 @@ export const App: VFC = () => {
         </Route>
         <Route path="/">
           <SelectedTagsContextProvider>
-            <Contents />
+            <SelectTagsContextProvider>
+              <Contents />
+            </SelectTagsContextProvider>
           </SelectedTagsContextProvider>
         </Route>
       </Switch>
