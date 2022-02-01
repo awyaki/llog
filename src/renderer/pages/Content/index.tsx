@@ -25,7 +25,8 @@ import { pageTitle } from '~/pages/style';
 import { 
   BasicInfo,
   ContentBlocks,
-  ViewSwitch
+  ViewSwitch,
+  AccordionToUpdateContent
 } from './components';
 
 
@@ -44,13 +45,8 @@ export const Content: VFC<Props> = ({ content }) => {
   if (content === null) return <></>;
 
   return (
-    <>
-      <ModalToUpdateContentTags contentId={content.id}/>
-      <ModalToCreateTag />
       <>
-        <NormalButton css={{ marginBottom: '16px' }}>
-          Update
-        </NormalButton>
+        <AccordionToUpdateContent content={content} />
         <h1 css={{ ...pageTitle, marginBottom: '8px' }}>{content.name}</h1>
         <Tabs>
           <TabList>
@@ -73,7 +69,6 @@ export const Content: VFC<Props> = ({ content }) => {
             </TabPanel>
           </TabPanels>
         </Tabs>
-      </>
     </>
   );
 }; 
