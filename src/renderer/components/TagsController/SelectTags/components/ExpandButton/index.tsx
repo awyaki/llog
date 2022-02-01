@@ -7,16 +7,18 @@ import {
   EditIcon
   } from '~/components';
 
+import { useSelectTags } from '~/components';
+
 type Props = {
   css?: CSSObject;
-  onClick?: () => void;
 };
 
-export const ExpandButton: VFC<Props> = ({ onClick, ...rest }) => {
+export const ExpandButton: VFC<Props> = ({ ...rest }) => {
+  const { toggleIsOpen } = useSelectTags();
   return (
     <TagAnimationButtonWrapper 
       type="button"
-      onClick={onClick} {...rest}>
+      onClick={toggleIsOpen} {...rest}>
       <EditIcon />
     </TagAnimationButtonWrapper>
   );
