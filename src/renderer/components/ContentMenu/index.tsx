@@ -50,6 +50,7 @@ export const ContentMenu: VFC<Props> = ({
         alignItems: 'center',
         minWidth: '160px',
         backgroundColor: colors.cyan.SECOND,
+        zIndex: 1,
       }}>
       <InfoButton 
         onClick={onClickInfoButton} />
