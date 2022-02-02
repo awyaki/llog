@@ -6,57 +6,40 @@ import { Tag } from '@prisma/client';
 
 type State = {
   tags: Tag[];
-  filteredTags: Tag[];
-  searchQuery: string,
+  filterTagsbyUserInput: (userInput: string) => Tag[];
   tokenMap: Map<string, Set<number>>;
 };
 
 type Action = {
   type: 'TAGS_CONTROLLER/SET_TAGS',
   tags: Tag[];
-} | {
-  type: 'TAGS_CONTROLLER/SET_SEARCH_QUERY';
-  searchQuery: string;
 };
 
 const reducer: Reducer<State, Action> = (state, action) => {
   switch (action.type) {
     case 'TAGS_CONTROLLER/SET_TAGS': {
       const newTokenMap = createNGramTokenMap(action.tags.map(({ id, name }) => ({ id, text: name })));
-      const setOfIds = newTokenMap.get(state.searchQuery) ?? new Set();
 
-      const isSearchQueryEmpty = state.searchQuery === '';
-      
-      const newFilteredTags = isSearchQueryEmpty 
+      const newFilterTagsByUserInput = (userInput: string): Tag[] => {
+
+        const setOfIds = newTokenMap.get(userInput) ?? new Set();
+
+        const isUserInputEmpty = userInput === '';
+        
+        const filteredTags = isUserInputEmpty 
                                 ? [...action.tags]
                                 : action.tags.filter(({ id }) => setOfIds.has(id));
-
+        return filteredTags;
+      };
 
       return {
         tags: [...action.tags],
-        filteredTags: newFilteredTags,
+        filterTagsbyUserInput: newFilterTagsByUserInput,
         searchQuery: '',
         tokenMap: newTokenMap,
       };
     }
 
-    case 'TAGS_CONTROLLER/SET_SEARCH_QUERY': {
-      const setOfIds = state.tokenMap.get(action.searchQuery) ?? new Set();
-
-      const isSearchQueryEmpty = action.searchQuery === '';
-
-      const newFilteredTags = isSearchQueryEmpty 
-                                ? [...state.tags]
-                                : state.tags.filter(({ id }) => setOfIds.has(id));
-      
-
-      return {
-        tags: [...state.tags],
-        filteredTags: newFilteredTags,
-        searchQuery: action.searchQuery,
-        tokenMap: state.tokenMap,
-      };
-    }
 
     default: {
       return state;
@@ -66,8 +49,7 @@ const reducer: Reducer<State, Action> = (state, action) => {
 
 const initialState: State = {
   tags: [],
-  filteredTags: [],
-  searchQuery: '',
+  filterTagsbyUserInput: () => [],
   tokenMap: new Map(),
 };
 

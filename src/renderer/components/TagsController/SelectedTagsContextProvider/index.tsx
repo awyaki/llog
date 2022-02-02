@@ -19,14 +19,12 @@ import { useDisclosure } from '@chakra-ui/react';
 
 type SelectedTagsContextType = {
   tags: Tag[],
-  filteredTags: Tag[],
+  filterTagsbyUserInput: (userInput: string) => Tag[];
   setTagsAction: (tags: Tag[]) => void;
-  setSearchQueryAction: (searchQuery: string) => void;
   selectedTags: Tag[];
   setSelectedTags: Dispatch<SetStateAction<Tag[]>>;
   searchedTags: Tag[],
   setSearchedTags: Dispatch<SetStateAction<Tag[]>>;
-  searchQuery: string;
   isOpenModalToSelectTags: boolean;
   onOpenModalToSelectTags: () => void;
   onCloseModalToSelectTags: () => void;
@@ -46,14 +44,12 @@ type SelectedTagsContextType = {
 
 export const SelectedTagsContext = createContext<SelectedTagsContextType>({
   tags: [],
-  filteredTags: [],
+  filterTagsbyUserInput: () => [],
   setTagsAction: () => {},
-  setSearchQueryAction: () => {},
   selectedTags: [],
   setSelectedTags: () => {},
   searchedTags: [],
   setSearchedTags: () => {},
-  searchQuery: '',
   isOpenModalToSelectTags: false,
   onOpenModalToSelectTags: () => {},
   onCloseModalToSelectTags: () => {},
@@ -76,7 +72,7 @@ export const SelectedTagsContextProvider: FC = ({ children }) => {
   const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
   const [searchedTags, setSearchedTags] = useState<Tag[]>([]);
 
-  const [{ tags, filteredTags, searchQuery }, dispatchTagsWithFiltering] = useFilterTags();
+  const [{ tags, filterTagsbyUserInput }, dispatchTagsWithFilterFunction] = useFilterTags();
 
   const { 
     isOpen: isOpenModalToSelectTags,
@@ -105,9 +101,9 @@ export const SelectedTagsContextProvider: FC = ({ children }) => {
   useEffect(() => {
     (async () => {
       const allTags = await getAllTag();
-      dispatchTagsWithFiltering({ type: 'TAGS_CONTROLLER/SET_TAGS', tags: allTags });
+      dispatchTagsWithFilterFunction({ type: 'TAGS_CONTROLLER/SET_TAGS', tags: allTags });
     })();
-  }, [dispatchTagsWithFiltering]);
+  }, [dispatchTagsWithFilterFunction]);
 
   const onReleaseSearchedTags = useCallback(() => {
     setSearchedTags([]);
@@ -136,40 +132,32 @@ export const SelectedTagsContextProvider: FC = ({ children }) => {
   }, [setSearchedTags]);
   
   const setTagsAction = useCallback((tags: Tag[]) => {
-    dispatchTagsWithFiltering({ type: 'TAGS_CONTROLLER/SET_TAGS', tags: tags });
-  }, [dispatchTagsWithFiltering]);
+    dispatchTagsWithFilterFunction({ type: 'TAGS_CONTROLLER/SET_TAGS', tags: tags });
+  }, [dispatchTagsWithFilterFunction]);
 
-  const setSearchQueryAction = useCallback((searchQuery: string) => {
-    dispatchTagsWithFiltering({ type: 'TAGS_CONTROLLER/SET_SEARCH_QUERY', searchQuery: searchQuery });
-  }, [dispatchTagsWithFiltering]);
   
   const onCloseModalToSearchTagsWithResetQuery = useCallback(() => {
     onCloseModalToSearchTags();
-    setSearchQueryAction('');
-  }, [onCloseModalToSearchTags, setSearchQueryAction]);
+  }, [onCloseModalToSearchTags]);
 
   const onCloseModalToSelectTagsWithResetQuery = useCallback(() => {
     onCloseModalToSelectTags();
-    setSearchQueryAction('');
-  }, [onCloseModalToSelectTags, setSearchQueryAction]);
+  }, [onCloseModalToSelectTags]);
 
 
   const onCloseModalToUpdateContentTagsWithResetQuery = useCallback(() => {
     onCloseModalToUpdateContentTags();
-    setSearchQueryAction('');
-  }, [onCloseModalToUpdateContentTags, setSearchQueryAction]);
+  }, [onCloseModalToUpdateContentTags]);
 
   return (
     <SelectedTagsContext.Provider value={{
       tags,
-      filteredTags,
+      filterTagsbyUserInput,
       setTagsAction,
-      setSearchQueryAction,
       selectedTags,
       setSelectedTags,
       searchedTags,
       setSearchedTags,
-      searchQuery,
       isOpenModalToSelectTags,
       onOpenModalToSelectTags,
       onCloseModalToSelectTags: onCloseModalToSelectTagsWithResetQuery,

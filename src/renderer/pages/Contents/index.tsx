@@ -7,9 +7,6 @@ import { useContents } from './hooks';
 
 
 import {
-  ModalToCreateTag,
-  ModalToSelectTags,
-  ModalToSearchTags,
   SearchIcon,
   PageMotion,
   AccordionToSearchContentsByTags,
@@ -34,10 +31,6 @@ export const Contents: VFC = () => {
   } = useContents();
   return (
       <PageMotion css={container}>
-        <ModalToSelectTags />
-        <ModalToCreateTag />
-        <ModalToSearchTags />
-
         <div>
             <div css={{
               top: '24px',

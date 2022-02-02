@@ -1,6 +1,6 @@
 import { 
   VFC,
-  useContext
+  useContext,
   } from 'react';
 
 import { colors, font } from '~/styleConfig';
@@ -34,15 +34,20 @@ const reverseTagStyle: CSSObject = {
 
 };
 
-export const TagListToSelect: VFC = () => {
+type Props = {
+  searchQuery: string;
+};
+
+export const TagListToSelect: VFC<Props> = ({ searchQuery }) => {
 
   const { 
-    filteredTags,
-    searchQuery,
+    filterTagsbyUserInput,
     onToggleSelectedTags,
     selectedTags,
     } = useContext(SelectedTagsContext);
   
+  const filteredTags = filterTagsbyUserInput(searchQuery); 
+
   return (
     <ul css={{
       width: '100%',

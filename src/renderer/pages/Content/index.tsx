@@ -4,11 +4,6 @@ import {
   useCallback,
 } from 'react';
 
-import { 
-  ModalToUpdateContentTags,
-  ModalToCreateTag,
-  NormalButton,
-} from '~/components';
 
 import {
   Tabs,
