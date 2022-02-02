@@ -61,6 +61,7 @@ model Block {
 model Log {
   id Int @id @default(autoincrement())
   createdAt DateTime @default(now())
+  title String
   markdown String
   html String
   blocks Block[]
