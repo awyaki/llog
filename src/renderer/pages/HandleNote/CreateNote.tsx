@@ -52,6 +52,7 @@ export const CreateNote: VFC<Props> = ({ content }) => {
     <>
       <h2 css={{ ...pageTitle, marginBottom: '16px' }}>{content.name}</h2>
       <CollapseToSelectTags 
+        setSearchQuery={setSearchQuery}
         searchQuery={searchQuery} 
         onChangeSearchQuery={onChangeSearchQuery} />
       <CollapseToSelectBlocks blocks={content.blocks} />

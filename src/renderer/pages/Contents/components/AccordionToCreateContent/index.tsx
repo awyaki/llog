@@ -82,6 +82,7 @@ export const AccordionToCreateContent: VFC = () => {
     const { contentName, numberOfBlocks } = data;
     await onCreateNewContent(contentName, selectedTags, Number(numberOfBlocks));
     setSelectedTags([]);
+    setSearchQuery('');
     setValue('numberOfBlocks', '');
     setValue('contentName', '');
     setMessage('A new Contet is created.');
@@ -151,6 +152,7 @@ export const AccordionToCreateContent: VFC = () => {
           </form>
           <SelectTags 
             searchQuery={searchQuery}
+            setSearchQuery={setSearchQuery}
             onChangeSearchQuery={onChangeSearchQuery} />
           <NormalButton 
             css={{ width: '84px', marginRight: '8px' }}

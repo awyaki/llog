@@ -109,6 +109,7 @@ export const AccordionToUpdateContent: VFC<Props> = ({ content }) => {
             <div css={error}>{errors.numberOfBlocks?.message}</div>
           </form>
           <SelectTags 
+            setSearchQuery={setSearchQuery}
             onChangeSearchQuery={onChangeSearchQuery}
             searchQuery={searchQuery}
             isUpdate />

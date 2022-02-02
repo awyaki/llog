@@ -2,6 +2,8 @@ import {
   VFC,
   useContext,
   useCallback,
+  Dispatch,
+  SetStateAction,
   ChangeEventHandler,
   } from 'react';
 
@@ -26,11 +28,13 @@ type Input = {
 };
 
 type Props = {
+  setSearchQuery: Dispatch<SetStateAction<string>>;
   onChangeSearchQuery: ChangeEventHandler<HTMLInputElement>;
 };
 
 export const SearchAndCreateInput: VFC<Props> = ({
-  onChangeSearchQuery
+  onChangeSearchQuery,
+  setSearchQuery
 }) => {
 
   const { 
@@ -59,6 +63,7 @@ export const SearchAndCreateInput: VFC<Props> = ({
     const allTags = await getAllTag();
     setSelectedTags((prev) => prev.concat(newTag));
     setTagsAction(allTags);
+    setSearchQuery('');
     setValue('newTagName', '');
     setMessage('A new Tag is Created.');
   }, []);

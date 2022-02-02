@@ -1,6 +1,8 @@
 import { 
   VFC, 
   useContext,
+  Dispatch,
+  SetStateAction,
   ChangeEventHandler
   } from 'react';
 
@@ -20,10 +22,12 @@ type Props = {
   css?: CSSObject;
   onChangeSearchQuery: ChangeEventHandler<HTMLInputElement>;
   searchQuery: string;
+  setSearchQuery: Dispatch<SetStateAction<string>>;
 };
 
 export const CollapseToSelectTags: VFC<Props> = ({ 
   searchQuery,
+  setSearchQuery,
   onChangeSearchQuery,
   ...rest }) => {
   const { isOpen } = useContext(SelectTagsContext);
@@ -38,6 +42,7 @@ export const CollapseToSelectTags: VFC<Props> = ({
       }}>
         <h2 css={{ marginBottom: '8px' }}>Search or Create tags</h2>
         <SearchAndCreateInput 
+          setSearchQuery={setSearchQuery}
           onChangeSearchQuery={onChangeSearchQuery} />
         <TagListToSelect 
           searchQuery={searchQuery} />
