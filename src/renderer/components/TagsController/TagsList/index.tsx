@@ -44,7 +44,7 @@ export const TagsList: VFC<Props> = ({
             borderStyle: 'solid',
             padding: '2px 4px',
             borderColor: colors.cyan.DEFAULT ,
-            backgroundColor: secandary ? colors.cyan.THIRD : colors.white,
+            backgroundColor: secandary ? colors.cyan.SECOND : 'transparent',
             color: colors.cyan.DEFAULT,
           }}>
           {name}
