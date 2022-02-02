@@ -1,4 +1,8 @@
-import { VFC } from 'react';
+import { 
+  VFC,
+  useState,
+  ChangeEventHandler,
+  } from 'react';
 
 import { useEditNote } from './hooks';
 
@@ -38,11 +42,18 @@ export const CreateNote: VFC<Props> = ({ content }) => {
           toggleEditBetweenPreview
         } = useEditNote(content);
   
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const onChangeSearchQuery: ChangeEventHandler<HTMLInputElement> = (e) => {
+    setSearchQuery(e.target.value);
+  };
 
   return (
     <>
       <h2 css={{ ...pageTitle, marginBottom: '16px' }}>{content.name}</h2>
-      <CollapseToSelectTags searchQuery="" />
+      <CollapseToSelectTags 
+        searchQuery={searchQuery} 
+        onChangeSearchQuery={onChangeSearchQuery} />
       <CollapseToSelectBlocks blocks={content.blocks} />
       <div css={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'flex-start' }}>
         <Note 

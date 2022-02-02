@@ -1,4 +1,8 @@
-import { VFC, useContext } from 'react';
+import { 
+  VFC, 
+  useContext,
+  ChangeEventHandler
+  } from 'react';
 
 import { colors } from '~/styleConfig';
 
@@ -14,10 +18,14 @@ import { SelectTagsContext } from '../SelectTagsContextProvider';
 
 type Props = {
   css?: CSSObject;
+  onChangeSearchQuery: ChangeEventHandler<HTMLInputElement>;
   searchQuery: string;
 };
 
-export const CollapseToSelectTags: VFC<Props> = ({ searchQuery, ...rest }) => {
+export const CollapseToSelectTags: VFC<Props> = ({ 
+  searchQuery,
+  onChangeSearchQuery,
+  ...rest }) => {
   const { isOpen } = useContext(SelectTagsContext);
 
   return (
@@ -29,8 +37,10 @@ export const CollapseToSelectTags: VFC<Props> = ({ searchQuery, ...rest }) => {
         marginBottom: '16px',
       }}>
         <h2 css={{ marginBottom: '8px' }}>Search or Create tags</h2>
-        <SearchAndCreateInput />
-        <TagListToSelect searchQuery={searchQuery} />
+        <SearchAndCreateInput 
+          onChangeSearchQuery={onChangeSearchQuery} />
+        <TagListToSelect 
+          searchQuery={searchQuery} />
       </div>
     </Collapse>
   );

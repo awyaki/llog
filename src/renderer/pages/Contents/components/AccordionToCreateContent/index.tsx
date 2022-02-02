@@ -2,7 +2,8 @@ import {
   VFC, 
   useState,
   useContext,
-  useCallback
+  useCallback,
+  ChangeEventHandler
   } from 'react';
 
 import { CSSObject } from '@emotion/react';
@@ -53,7 +54,7 @@ type Inputs = {
 
 export const AccordionToCreateContent: VFC = () => {
   const [isOpen, setIsOpen] = useState(false);
-
+  const [searchQuery, setSearchQuery] = useState('');
   const { 
     contents,
     onCreateNewContent,
@@ -68,6 +69,7 @@ export const AccordionToCreateContent: VFC = () => {
     mode: 'onSubmit',
     defaultValues: { 'contentName': '', 'numberOfBlocks': '' }
   });
+
   
   const { setMessage } = useContext(NotifierContext);
 
@@ -101,6 +103,10 @@ export const AccordionToCreateContent: VFC = () => {
   const onToggleOpenAndClose = useCallback(() => {
     setIsOpen((prev) => !prev);
   }, []);
+
+  const onChangeSearchQuery: ChangeEventHandler<HTMLInputElement> = (e) => {
+    setSearchQuery(e.target.value);
+  };
 
   return (
     <>
@@ -143,7 +149,9 @@ export const AccordionToCreateContent: VFC = () => {
               pattern: { value: /^[0-9]+$/i, message: 'You should fill in this field with a number.' }})} />
             <div css={error}>{errors.numberOfBlocks?.message}</div>
           </form>
-          <SelectTags searchQuery="" />
+          <SelectTags 
+            searchQuery={searchQuery}
+            onChangeSearchQuery={onChangeSearchQuery} />
           <NormalButton 
             css={{ width: '84px', marginRight: '8px' }}
             form="content-create"

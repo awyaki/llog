@@ -1,5 +1,7 @@
 import { 
-  VFC, 
+  VFC,
+  useState,
+  ChangeEventHandler
   } from 'react';
 
 import { CSSObject } from '@emotion/react';
@@ -56,6 +58,12 @@ export const AccordionToUpdateContent: VFC<Props> = ({ content }) => {
     isAlreadyNameExist,
     isMoreThanEqaulToPreviousNumber
   } = useUpdateContent({ content });
+  
+  const [searchQuery, setSearchQuery] = useState('');
+  
+  const onChangeSearchQuery: ChangeEventHandler<HTMLInputElement> = (e) => {
+    setSearchQuery(e.target.value);
+  };
 
   return (
     <>
@@ -100,7 +108,10 @@ export const AccordionToUpdateContent: VFC<Props> = ({ content }) => {
               })} />
             <div css={error}>{errors.numberOfBlocks?.message}</div>
           </form>
-          <SelectTags searchQuery="" isUpdate />
+          <SelectTags 
+            onChangeSearchQuery={onChangeSearchQuery}
+            searchQuery={searchQuery}
+            isUpdate />
           <NormalButton 
             css={{ width: '90px', marginRight: '8px' }}
             form="content-update"

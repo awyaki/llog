@@ -1,6 +1,7 @@
 import { 
   VFC,
-  useContext
+  useContext,
+  ChangeEventHandler
   } from 'react';
 
 
@@ -21,10 +22,14 @@ export * from './hooks';
 
 type Props = {
   searchQuery: string;
+  onChangeSearchQuery: ChangeEventHandler<HTMLInputElement>;
   isUpdate?: boolean;
 };
 
-export const SelectTags: VFC<Props> = ({ searchQuery, isUpdate }) => {
+export const SelectTags: VFC<Props> = ({ 
+  searchQuery, 
+  onChangeSearchQuery,
+  isUpdate }) => {
   const { isOpen, toggleIsOpen } = useContext(SelectTagsContext);
 
   return (
@@ -36,7 +41,9 @@ export const SelectTags: VFC<Props> = ({ searchQuery, isUpdate }) => {
         css={{ marginBottom: '16px' }}
       />
       <SelectedTagsList css={{ height: '23px', marginBottom: '8px' }} />
-      <CollapseToSelectTags searchQuery={searchQuery} />
+      <CollapseToSelectTags 
+        onChangeSearchQuery={onChangeSearchQuery}
+        searchQuery={searchQuery} />
     </>
   );
 };

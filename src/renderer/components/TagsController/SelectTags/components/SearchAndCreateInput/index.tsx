@@ -2,6 +2,7 @@ import {
   VFC,
   useContext,
   useCallback,
+  ChangeEventHandler,
   } from 'react';
 
 import { 
@@ -24,7 +25,13 @@ type Input = {
   newTagName: string;
 };
 
-export const SearchAndCreateInput: VFC = () => {
+type Props = {
+  onChangeSearchQuery: ChangeEventHandler<HTMLInputElement>;
+};
+
+export const SearchAndCreateInput: VFC<Props> = ({
+  onChangeSearchQuery
+}) => {
 
   const { 
     tags,
@@ -36,12 +43,9 @@ export const SearchAndCreateInput: VFC = () => {
     register,
     handleSubmit,
     setValue,
-    watch,
     formState: { errors }
   } = useForm<Input>({ defaultValues: { newTagName: '' } });
   
-  const inputValue = watch('newTagName');
-
   const { setMessage } = useContext(NotifierContext);
 
   const isAlreadyNameExist = useCallback<Validate<string>>((tagName) => {
@@ -62,12 +66,13 @@ export const SearchAndCreateInput: VFC = () => {
   
   return (
     <form id="create-tag" onSubmit={handleSubmit(onCreateTag)}>
-      <input 
+      <input
         css={{
         width: '200px',
         borderBottom: `2px solid ${colors.cyan.DEFAULT}`,
       }} 
       {...register('newTagName', { 
+        onChange: onChangeSearchQuery,
         required: { value: true, message: '' },
         validate: { isAlreadyNameExist },
         })} />
