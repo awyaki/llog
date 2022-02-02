@@ -143,7 +143,7 @@ export const AccordionToCreateContent: VFC = () => {
               pattern: { value: /^[0-9]+$/i, message: 'You should fill in this field with a number.' }})} />
             <div css={error}>{errors.numberOfBlocks?.message}</div>
           </form>
-          <SelectTags />
+          <SelectTags searchQuery="" />
           <NormalButton 
             css={{ width: '84px', marginRight: '8px' }}
             form="content-create"

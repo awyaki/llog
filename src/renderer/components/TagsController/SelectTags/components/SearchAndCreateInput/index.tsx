@@ -2,13 +2,11 @@ import {
   VFC,
   useContext,
   useCallback,
-  useEffect
   } from 'react';
 
 import { 
   SelectedTagsContext,
   NotifierContext,
-  SearchIcon
   } from '~/components';
 
 
@@ -30,7 +28,6 @@ export const SearchAndCreateInput: VFC = () => {
 
   const { 
     tags,
-    setSearchQueryAction,
     setSelectedTags,
     setTagsAction,
   } = useContext(SelectedTagsContext);
@@ -62,9 +59,6 @@ export const SearchAndCreateInput: VFC = () => {
     setMessage('A new Tag is Created.');
   }, []);
   
-  useEffect(() => {
-    setSearchQueryAction(inputValue)
-  }, [inputValue]) 
   
   return (
     <form id="create-tag" onSubmit={handleSubmit(onCreateTag)}>

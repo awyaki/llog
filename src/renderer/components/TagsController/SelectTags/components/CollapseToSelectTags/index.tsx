@@ -14,9 +14,10 @@ import { SelectTagsContext } from '../SelectTagsContextProvider';
 
 type Props = {
   css?: CSSObject;
+  searchQuery: string;
 };
 
-export const CollapseToSelectTags: VFC<Props> = ({ ...rest }) => {
+export const CollapseToSelectTags: VFC<Props> = ({ searchQuery, ...rest }) => {
   const { isOpen } = useContext(SelectTagsContext);
 
   return (
@@ -29,7 +30,7 @@ export const CollapseToSelectTags: VFC<Props> = ({ ...rest }) => {
       }}>
         <h2 css={{ marginBottom: '8px' }}>Search or Create tags</h2>
         <SearchAndCreateInput />
-        <TagListToSelect />
+        <TagListToSelect searchQuery={searchQuery} />
       </div>
     </Collapse>
   );

@@ -2,7 +2,7 @@ import {
   VFC,
   useState,
   useContext,
-  useCallback
+  useCallback,
 } from 'react';
 
 import {
@@ -50,17 +50,18 @@ type Props = {
 
 export const AccordionToSearchContentsByTags: VFC<Props> = ({ ...rest }) => {
   const [isOpen, setIsOpen] = useState(false); 
+  const [searchQuery, setSearchQuery] = useState('');
 
   const {
-    filteredTags,
     onToggleSearchedTags,
     searchedTags,
-    searchQuery,
-    setSearchQueryAction,
+    filterTagsbyUserInput,
   } = useContext(SelectedTagsContext);
 
   
   const toggleIsOpen = useCallback(() => setIsOpen((prev) => !prev), []);
+
+  const filteredTags = filterTagsbyUserInput(searchQuery); 
 
   return (
         <div {...rest}>
@@ -86,7 +87,7 @@ export const AccordionToSearchContentsByTags: VFC<Props> = ({ ...rest }) => {
                 }}
               type="text"
               value={searchQuery}
-              onChange={(e) => setSearchQueryAction(e.target.value)}
+              onChange={(e) => setSearchQuery(e.target.value)}
             />
             <SearchIcon />
           </div>

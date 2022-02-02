@@ -20,10 +20,11 @@ export * from './components';
 export * from './hooks';
 
 type Props = {
+  searchQuery: string;
   isUpdate?: boolean;
 };
 
-export const SelectTags: VFC<Props> = ({ isUpdate }) => {
+export const SelectTags: VFC<Props> = ({ searchQuery, isUpdate }) => {
   const { isOpen, toggleIsOpen } = useContext(SelectTagsContext);
 
   return (
@@ -35,7 +36,7 @@ export const SelectTags: VFC<Props> = ({ isUpdate }) => {
         css={{ marginBottom: '16px' }}
       />
       <SelectedTagsList css={{ height: '23px', marginBottom: '8px' }} />
-      <CollapseToSelectTags />
+      <CollapseToSelectTags searchQuery={searchQuery} />
     </>
   );
 };

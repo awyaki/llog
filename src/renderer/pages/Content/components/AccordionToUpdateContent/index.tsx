@@ -100,7 +100,7 @@ export const AccordionToUpdateContent: VFC<Props> = ({ content }) => {
               })} />
             <div css={error}>{errors.numberOfBlocks?.message}</div>
           </form>
-          <SelectTags isUpdate />
+          <SelectTags searchQuery="" isUpdate />
           <NormalButton 
             css={{ width: '90px', marginRight: '8px' }}
             form="content-update"

@@ -42,7 +42,7 @@ export const CreateNote: VFC<Props> = ({ content }) => {
   return (
     <>
       <h2 css={{ ...pageTitle, marginBottom: '16px' }}>{content.name}</h2>
-      <CollapseToSelectTags />
+      <CollapseToSelectTags searchQuery="" />
       <CollapseToSelectBlocks blocks={content.blocks} />
       <div css={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'flex-start' }}>
         <Note 
