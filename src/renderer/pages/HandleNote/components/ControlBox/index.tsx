@@ -32,7 +32,7 @@ type Props = {
   isNoteExist: boolean;
   onCreateNote: () => void;
   onUpdateNote: () => void;
-  onCommitLog: () => void;
+  onOpenModalToSubmitLog: () => void;
   onMoveToOtherNoteEdit: () => void;
 };
 
@@ -45,7 +45,7 @@ export const ControlBox: VFC<Props> = ({
   isNoteExist,
   onCreateNote,
   onUpdateNote,
-  onCommitLog,
+  onOpenModalToSubmitLog,
   onMoveToOtherNoteEdit,
   ...rest
   }) => {
@@ -74,7 +74,7 @@ export const ControlBox: VFC<Props> = ({
           onClick={toggleEditBeteewnPreview}/>
         <CommitButton 
           css={{ marginBottom: '8px' }}
-          onClick={onCommitLog}/>
+          onClick={onOpenModalToSubmitLog}/>
         <SaveButton 
           css={{ marginBottom: '8px' }}
           onClick={isNoteExist ? onUpdateNote : onCreateNote} 

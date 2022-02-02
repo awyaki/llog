@@ -4,10 +4,13 @@ import {
   ChangeEventHandler,
   } from 'react';
 
+import { useDisclosure } from '@chakra-ui/react';
+
 import { useEditNote } from './hooks';
 
 import { 
-  CollapseToSelectTags
+  CollapseToSelectTags,
+  ModalToSubmitLog
 } from '~/components';
 
 import { pageTitle } from '~/pages/style';
@@ -15,11 +18,11 @@ import { pageTitle } from '~/pages/style';
 import { 
   Note, 
   ControlBox,
+  CollapseToSelectBlocks
 } from './components';
 
 import { ContentWithRelation } from '~/pages/type';
 
-import { CollapseToSelectBlocks } from './components';
 
 type Props = {
   content: ContentWithRelation;
@@ -41,6 +44,12 @@ export const CreateNote: VFC<Props> = ({ content }) => {
           onMoveToOtherNoteEdit,
           toggleEditBetweenPreview
         } = useEditNote(content);
+
+  const { 
+    isOpen: isOpenModalToSubmitLog,
+    onClose: onCloseModalToSubmitLog,
+    onOpen: onOpenModalToSubmitLog
+    } = useDisclosure();
   
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -50,6 +59,10 @@ export const CreateNote: VFC<Props> = ({ content }) => {
 
   return (
     <>
+      <ModalToSubmitLog 
+        onSubmitLog={onCommitLog}
+        isOpen={isOpenModalToSubmitLog} 
+        onClose={onCloseModalToSubmitLog}/>
       <h2 css={{ ...pageTitle, marginBottom: '16px' }}>{content.name}</h2>
       <CollapseToSelectTags 
         setSearchQuery={setSearchQuery}
@@ -72,7 +85,7 @@ export const CreateNote: VFC<Props> = ({ content }) => {
           isNoteExist={isNoteExist}
           onUpdateNote={onUpdateNote}
           onCreateNote={onCreateNote}
-          onCommitLog={onCommitLog}
+          onOpenModalToSubmitLog={onOpenModalToSubmitLog}
           onMoveToOtherNoteEdit={onMoveToOtherNoteEdit} />
       </div>
     </>
