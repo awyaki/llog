@@ -21,7 +21,7 @@ import {
 
 type Props = {
   onSubmitLog: (title: string) => void;
-} & ModalProps;
+} & Omit<ModalProps, 'children'>;
 
 export const ModalToSubmitLog: VFC<Props> = ({ 
   onSubmitLog,
