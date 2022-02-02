@@ -39,9 +39,10 @@ export const ContentCard: VFC<Props> = ({
       variants={containerMotions}
       style={{
         width: '100%',
-        borderBottomWidth: '2px',
+        borderLeftWidth: '8px',
         borderStyle: 'solid',
         padding: '16px',
+        backgroundColor: colors.cyan.BACKGROUND,
         borderColor: colors.cyan.DEFAULT,
         color: colors.text,
       }}

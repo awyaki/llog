@@ -6,6 +6,7 @@ const colors = {
   }, 
   cyan: {
     DEFAULT: '#50AFBF',
+    BACKGROUND: '#F2FDFF',
     FIRST: '#06A9C4',
     SECOND: '#CFF8FF',
     THIRD: '#CFF8FF',
