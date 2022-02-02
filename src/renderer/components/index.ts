@@ -18,3 +18,4 @@ export * from './IsAllowTransitionContextProvider';
 export * from './Motions';
 export * from './NoteMaybeWithTitleAndButtons';
 export * from './BlockList';
+export * from './ModalToSubmitLog';
