@@ -7,6 +7,7 @@ export const create: CreateLog = (
   blocks,
   tags,
   contentName,
+  title,
   noteId,
   contentId
 ) => {
@@ -14,6 +15,7 @@ export const create: CreateLog = (
     data: {
       markdown: markdown,
       html: html,
+      title: title,
       tags: {
         connect: [...tags.map(({ id }) => ({ id: id }))],
       },

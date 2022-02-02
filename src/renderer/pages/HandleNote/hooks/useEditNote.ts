@@ -179,7 +179,8 @@ export const useEditNote = (content: ContentWithRelation) => {
     if (noteId === undefined) {
       // note creating
       const newNote = await createNote(markdown, html, selectedTags, selectedBlocks, content.id);
-      await createLog(markdown, html, selectedBlocks, selectedTags, content.name, newNote.id, content.id);
+      // TODO: crate logic of input title
+      await createLog(markdown, html, selectedBlocks, selectedTags, content.name,'', newNote.id, content.id);
       // update block level to 5 (max value)
       await asyncForEach(selectedBlocks, async (block) => {
         const { id, iteration } = block;
@@ -199,7 +200,8 @@ export const useEditNote = (content: ContentWithRelation) => {
       if (note === null) return;
       // note updating
       await updateNote(note.id, markdown, html, selectedTags, selectedBlocks, note.contentId, note.commitedAt, new Date()); 
-      await createLog(markdown, html, selectedBlocks, selectedTags, content.name, note.id, content.id);
+      // TODO: crate logic of input title
+      await createLog(markdown, html, selectedBlocks, selectedTags, content.name,'', note.id, content.id);
       // update block level to 5 (max value)
       await asyncForEach(selectedBlocks, async (block) => {
         const { id, iteration } = block;

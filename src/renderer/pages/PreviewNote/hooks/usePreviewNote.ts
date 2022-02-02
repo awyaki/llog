@@ -35,7 +35,8 @@ export const usePreviewNote = () => {
     if (note === null) return;
     if (content === null) return;
     const { origin: markdown, transformed: html, blocks, tags, contentId, id } = note;
-    await createLog(markdown, html, blocks, tags, content.name, id, contentId);
+    // TODO: the logic of input title. 
+    await createLog(markdown, html, blocks, tags, content.name, '', id, contentId);
     await asyncForEach(blocks, async (block) => {
       const { id, iteration } = block;
       await updateBlock({

@@ -13,6 +13,7 @@ type CreateLog = (
   html: string,
   blocks: Block[],
   tags: Tag[],
+  title: string,
   contentName: string,
   noteId: number,
   contentId: number,

@@ -35,7 +35,8 @@ export const useLogs = () => {
     console.log('useLogs runs', noteId, contentId);
     // ASSERTION: When a log is created, noteId isn't null and contentId isn't also null.
     if (noteId === null || contentId === null) return ; 
-    await createLog(markdown, html, blocks, tags, contentName, noteId, contentId);
+    //TODO: the logic of input tilte
+    await createLog(markdown, html, blocks, tags, contentName, '', noteId, contentId);
     const newLogs = await getAllLog();
     await asyncForEach(blocks, async (block) => {
       const { id, iteration  } = block;
