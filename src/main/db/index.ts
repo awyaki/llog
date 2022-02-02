@@ -111,7 +111,7 @@ export const useDBQueryOnClient = () => {
     noteId: number,
     contentId: number
     ) => {
-    const result = await createLog(markdown, html, blocks, tags, contentName, title, noteId, contentId);
+    const result = await createLog(markdown, html, blocks, tags, title, contentName, noteId, contentId);
     return result;
   });
   

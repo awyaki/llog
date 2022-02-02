@@ -6,8 +6,8 @@ export const create: CreateLog = (
   html,
   blocks,
   tags,
-  contentName,
   title,
+  contentName,
   noteId,
   contentId
 ) => {
