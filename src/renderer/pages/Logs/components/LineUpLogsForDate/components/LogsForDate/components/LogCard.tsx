@@ -1,7 +1,8 @@
 import { 
   VFC,
   useState,
-  useContext
+  useContext,
+  useEffect
   } from 'react';
 
 
@@ -11,7 +12,6 @@ import { colors, font } from '~/styleConfig';
 import { makeFormalTimeString } from '~/utils';
 
 import { LogWithRelation } from '~/pages/type';
-
 
 import { Collapse } from '@chakra-ui/transition';
 
@@ -24,6 +24,7 @@ import {
   CommitIcon,
   EditNoteIcon,
   ModalToSubmitLogContext,
+  LogContext
   } from '~/components';
 
 import 'zenn-content-css';
@@ -53,12 +54,17 @@ export const LogCard: VFC<Props> = ({ log }) => {
   const [isOpen, setIsOpen] = useState(false);
   
   const toggleIsOopen = () => setIsOpen((prev) => !prev);
+
+  const { setLog } = useContext(LogContext);
   
   const { 
-    isOpen: isOpenModal, 
     onOpen: onOpenModal
     } = useContext(ModalToSubmitLogContext);
-
+  
+  const onOpenModalWithSetLog = () => {
+    onOpenModal();
+    setLog(log);
+  };
 
   return (
     <>
@@ -122,7 +128,7 @@ export const LogCard: VFC<Props> = ({ log }) => {
             onClick={() => {}}
             Icon={EditNoteIcon} />
           <SquareButton 
-            onClick={onOpenModal}
+            onClick={onOpenModalWithSetLog}
             Icon={CommitIcon} />
           </div>
         </div>
