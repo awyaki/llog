@@ -1,11 +1,10 @@
-export const once = (fn: () => unknown) => {
+export const once = (fn: () => void) => {
   let isDone = false;
-  let result;
-  if (!isDone) {
-    isDone = true;
-    result = fn();
-    return result;
-  }
-  
-  return result;
+
+  return () => {
+    if (!isDone) {
+      isDone = true;
+      fn();
+    }
+  };
 };
