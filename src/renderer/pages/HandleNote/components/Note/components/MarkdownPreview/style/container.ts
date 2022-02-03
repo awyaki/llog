@@ -1,7 +1,9 @@
 import { CSSObject } from '@emotion/react';
 
+import { colors } from '~/styleConfig';
+
 export const container: CSSObject = {
+  border: `5px solid ${colors.cyan.DEFAULT}`,
   padding: '50px',
-  boxShadow: '0px 0px 80px -26px rgba(0, 0, 0, 0.5)',
-  borderRadius: '25px',
+  borderRadius: '10px',
 };

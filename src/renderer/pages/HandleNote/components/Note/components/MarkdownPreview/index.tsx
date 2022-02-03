@@ -1,7 +1,8 @@
 import { VFC, useEffect, useState } from 'react';
 
 import { Box } from '@chakra-ui/react';
-import { container } from './style/container';
+
+import { noteStyle } from '~/style';
 
 import { markdownToHTML } from '~/api';
 import 'zenn-content-css';
@@ -21,7 +22,7 @@ export const MarkdownPreview: VFC<Props> = ({ markdown }) => {
   }, [markdown]);
 
   return (
-    <Box __css={container}>
+    <Box __css={noteStyle}>
       <div className="znc" dangerouslySetInnerHTML={{ __html: html }}></div>
     </Box>
   );

@@ -4,7 +4,7 @@ import AceEditor from 'react-ace';
 
 import { Box } from '@chakra-ui/react';
 
-import { container } from './style/container';
+import { noteStyle } from '~/style';
 
 import "ace-builds/src-noconflict/mode-markdown";
 import "ace-builds/src-noconflict/theme-github";
@@ -44,7 +44,7 @@ export const MarkdownEditor: VFC<Props> = ({ markdown, setMarkdown }) => {
   }, [markdown]);
 
   return (
-      <Box __css={container}>
+      <Box __css={noteStyle}>
         <AceEditor
           ref={editorRef}
           mode="markdown"
