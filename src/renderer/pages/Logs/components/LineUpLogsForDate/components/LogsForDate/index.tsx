@@ -6,7 +6,7 @@ import { LogWithRelation } from '~/pages/type';
 
 import { NoteWithContentName } from '~/components';
 
-import { dateStyle, container, listStyle } from './style';
+import { dateStyle, listStyle } from './style';
 
 import { OnClickCommit } from '~/pages/Logs/type';
 
