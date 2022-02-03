@@ -19,3 +19,4 @@ export * from './Motions';
 export * from './NoteMaybeWithTitleAndButtons';
 export * from './BlockList';
 export * from './ModalToSubmitLog';
+export * from './MiniBlockList';

@@ -1,6 +1,6 @@
 import { VFC } from 'react';
 
-import { makeContainer } from './style/container';
+import { makeMiniBlockStyle } from '~/style';
 
 
 type Props = {
@@ -9,7 +9,7 @@ type Props = {
 
 export const BlocksForOverview: VFC<Props> = ({ level }) => {
   return (
-    <div css={makeContainer(level)}></div>
+    <div css={makeMiniBlockStyle(level)}></div>
   );
 };
 
