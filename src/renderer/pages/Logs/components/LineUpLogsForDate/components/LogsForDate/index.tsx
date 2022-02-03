@@ -6,19 +6,15 @@ import { makeFormalDateString, makeFormalTimeString } from '~/utils';
 
 import { LogWithRelation } from '~/pages/type';
 
-import { NoteWithContentName } from '~/components';
 
 import { LogCard } from './components';
-
-import { OnClickCommit } from '~/pages/Logs/type';
 
 
 type Props = {
   logs: LogWithRelation[];
-  onClickCommit: OnClickCommit;
 };
 
-export const LogsForDate: VFC<Props> = ({ logs, onClickCommit }) => {
+export const LogsForDate: VFC<Props> = ({ logs }) => {
   if (logs.length === 0) return <>No Logs</>;
 
   const { createdAt: createdDate } = logs[0];

@@ -1,6 +1,7 @@
 import { 
   VFC,
-  useState
+  useState,
+  useContext
   } from 'react';
 
 
@@ -21,7 +22,8 @@ import {
   NormalButton,
   SquareButton,
   CommitIcon,
-  EditNoteIcon
+  EditNoteIcon,
+  ModalToSubmitLogContext,
   } from '~/components';
 
 import 'zenn-content-css';
@@ -51,6 +53,11 @@ export const LogCard: VFC<Props> = ({ log }) => {
   const [isOpen, setIsOpen] = useState(false);
   
   const toggleIsOopen = () => setIsOpen((prev) => !prev);
+  
+  const { 
+    isOpen: isOpenModal, 
+    onOpen: onOpenModal
+    } = useContext(ModalToSubmitLogContext);
 
 
   return (
@@ -113,10 +120,9 @@ export const LogCard: VFC<Props> = ({ log }) => {
           <SquareButton
             css={{ marginRight: '8px' }}
             onClick={() => {}}
-            Icon={EditNoteIcon}
-          />
+            Icon={EditNoteIcon} />
           <SquareButton 
-            onClick={() => {}}
+            onClick={onOpenModal}
             Icon={CommitIcon} />
           </div>
         </div>

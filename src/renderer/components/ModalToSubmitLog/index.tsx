@@ -19,6 +19,8 @@ import {
   ModalOverlay,
   } from '@chakra-ui/react';
 
+export * from './ModalToSubmitLogContextProvider';
+
 type Props = {
   onSubmitLog: (title: string) => void;
 } & Omit<ModalProps, 'children'>;
