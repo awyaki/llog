@@ -29,7 +29,7 @@ export const Logs: VFC = () => {
         onClose={onClose}
         onSubmitLog={onSubmitLog}/>
         <div css={container}>
-          <h2 css={pageTitle}>Logs</h2>
+          <h2 css={{ ...pageTitle, marginBottom: '8px' }}>Logs</h2>
           <LineUpLogsForDate 
             logs={logs} />
         </div>

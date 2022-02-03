@@ -2,7 +2,7 @@ import { VFC } from 'react';
 
 import { colors, font } from '~/styleConfig';
 
-import { makeFormalDateString, makeFormalTimeString } from '~/utils';
+import { makeFormalDateString } from '~/utils';
 
 import { LogWithRelation } from '~/pages/type';
 

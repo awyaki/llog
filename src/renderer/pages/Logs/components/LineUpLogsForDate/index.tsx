@@ -6,7 +6,6 @@ import { divideLogsByDate } from '~/utils';
 
 import { LogsForDate } from './components';
 
-import { OnClickCommit } from '~/pages/Logs/type';
 
 type Props = {
   logs: LogWithRelation[];
