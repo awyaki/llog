@@ -36,6 +36,12 @@ export const ModalToSubmitLog: VFC<Props> = ({
     onClose();
   };
 
+  const onSubmitLogWithResetModal = () => {
+    onSubmitLog(title);
+    setTitle('');
+    onClose();
+  };
+
   return (
     <Modal onClose={onCloseModal} {...rest}>
       <ModalOverlay />
@@ -63,7 +69,7 @@ export const ModalToSubmitLog: VFC<Props> = ({
               css={{
                 marginRight: '8px',
               }}
-              onClick={() => onSubmitLog(title)}>
+              onClick={onSubmitLogWithResetModal}>
               Submit
             </NormalButton>
             <WarningButton 
