@@ -1,8 +1,8 @@
 import { VFC } from 'react';
 
-import { Box } from '@chakra-ui/react';
+import { pageTitle } from '~/pages/style';
 
-import { container, title } from './style';
+import { container } from './style';
 
 import { LineUpLogsForDate } from './components';
 
@@ -13,7 +13,7 @@ export const Logs: VFC = () => {
 
   return (
     <div css={container}>
-      <h2 css={{ ...title, marginBottom: '16px' }}>Logs</h2>
+      <h2 css={pageTitle}>Logs</h2>
       <LineUpLogsForDate 
         logs={logs}
         onClickCommit={onClickCommit} />
