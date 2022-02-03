@@ -19,7 +19,8 @@ import {
   SelectedTagsContextProvider,
   ContentContextProvider,
   SelectTagsContextProvider,
-  Menu
+  Menu,
+  LogContextProvider,
 } from './components';
 
 import { Box } from '@chakra-ui/react';
@@ -47,7 +48,9 @@ export const App: VFC = () => {
           </ContentContextProvider>
         </Route>
         <Route path="/logs">
-          <Logs />
+          <LogContextProvider>
+            <Logs />
+          </LogContextProvider>
         </Route>
         <Route path="/">
           <SelectedTagsContextProvider>
