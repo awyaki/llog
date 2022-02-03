@@ -6,6 +6,8 @@ import { makeFormalTimeString } from '~/utils';
 
 import { LogWithRelation } from '~/pages/type';
 
+import { Collapse } from '@chakra-ui/transition';
+
 import { TagsList } from '~/components';
 
 type Props = {
@@ -43,7 +45,9 @@ export const LogCard: VFC<Props> = ({ log }) => {
         fontSize: font.size.SS,
         marginBottom: '16px',
       }}>{makeFormalTimeString(createdAt)}</div>
-      <TagsList tags={tags} />
+      <TagsList 
+        css={{ marginBottom: '8px' }}
+        tags={tags} />
       <h2 css={{ fontSize: font.size.M }}>{title}</h2>
     </div>
   );
