@@ -6,14 +6,15 @@ import { LogWithRelation } from '~/pages/type';
 
 import { getAllLog, createLog, updateBlock } from '~/api';
 
-import { NotifierContext } from '~/components';
-
-
-import { Block, Tag } from '@prisma/client';
+import { 
+    NotifierContext,
+    LogContext
+} from '~/components';
 
 export const useLogs = () => {
   const [logs, setLogs] = useState<LogWithRelation[]>([]);
   const { setMessage } = useContext(NotifierContext);
+  const { log } = useContext(LogContext);
 
   useEffect(() => {
     (async () => {
@@ -23,20 +24,20 @@ export const useLogs = () => {
   }, []);
 
 
-  const onClickCommit = useCallback(async (
-    markdown: string,
-    html: string,
-    blocks: Block[],
-    tags: Tag[],
-    contentName: string,
-    noteId: number | null,
-    contentId: number | null
-  ) => {
-    console.log('useLogs runs', noteId, contentId);
+  const onSubmitLog= useCallback(async (title: string) => {
+    if (log === null) return;
+    const {
+      markdown,
+      html,
+      blocks,
+      tags,
+      contentName,
+      noteId,
+      contentId,
+    } = log;
     // ASSERTION: When a log is created, noteId isn't null and contentId isn't also null.
     if (noteId === null || contentId === null) return ; 
-    //TODO: the logic of input tilte
-    await createLog(markdown, html, blocks, tags, contentName, '', noteId, contentId);
+    await createLog(markdown, html, blocks, tags, contentName, title, noteId, contentId);
     const newLogs = await getAllLog();
     await asyncForEach(blocks, async (block) => {
       const { id, iteration  } = block;
@@ -47,9 +48,10 @@ export const useLogs = () => {
         commitedAt: new Date(),
       });
     });
-    setLogs(newLogs);
-    setMessage('submitted!');
-  }, []);
 
-  return { logs, onClickCommit };
+    setLogs(newLogs);
+    setMessage('Submit');
+  }, [log]);
+
+  return { logs, onSubmitLog };
 };
