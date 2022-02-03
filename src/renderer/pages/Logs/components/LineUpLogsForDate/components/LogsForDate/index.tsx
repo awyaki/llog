@@ -1,12 +1,14 @@
 import { VFC } from 'react';
 
+import { colors, font } from '~/styleConfig';
+
 import { makeFormalDateString, makeFormalTimeString } from '~/utils';
 
 import { LogWithRelation } from '~/pages/type';
 
 import { NoteWithContentName } from '~/components';
 
-import { dateStyle, listStyle } from './style';
+import { LogCard } from './components';
 
 import { OnClickCommit } from '~/pages/Logs/type';
 
@@ -27,17 +29,20 @@ export const LogsForDate: VFC<Props> = ({ logs, onClickCommit }) => {
       width: '100%',
       flexDirection: 'column',
     }}>
-      <div css={dateStyle}>{makeFormalDateString(createdDate)}</div>
-      <ul css={listStyle}>
-        {logs.map(({ id, markdown, html, contentName, tags, blocks, createdAt, noteId, contentId }) => <li key={id}>
-                                                            <NoteWithContentName 
-                                                              contentName={contentName}
-                                                              updatedAt={makeFormalTimeString(createdAt)}
-                                                              html={html}
-                                                              tags={tags}
-                                                              blocks={blocks}
-                                                              onClickCommit={() => onClickCommit(markdown, html, blocks, tags, contentName, noteId, contentId)} />
-                                                            </li>)}
+      <div css={{
+        color: colors.text,
+        fontSize: font.size.S,
+        marginBottom: '8px',
+      }}>{makeFormalDateString(createdDate)}</div>
+      <ul css={{
+        width: '70%',
+        '> li': {
+          marginBottom: '32px',
+        },
+      }}>
+        {logs.map((log) => <li key={log.id}>
+                                  <LogCard log={log} />
+                                </li>)}
       </ul>
     </div>
   );
