@@ -4,6 +4,6 @@ import { colors } from '~/styleConfig';
 
 export const noteStyle: CSSObject = {
   border: `5px solid ${colors.cyan.DEFAULT}`,
-  padding: '50px',
+  padding: '32px',
   borderRadius: '10px',
 };
