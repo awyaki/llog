@@ -18,7 +18,10 @@ import {
   TagsList,
   MiniBlockList,
   BlockList,
-  NormalButton
+  NormalButton,
+  SquareButton,
+  CommitIcon,
+  EditNoteIcon
   } from '~/components';
 
 import 'zenn-content-css';
@@ -50,7 +53,6 @@ export const LogCard: VFC<Props> = ({ log }) => {
   const toggleIsOopen = () => setIsOpen((prev) => !prev);
 
 
-  console.log('LogCard', title);
   return (
     <>
       <motion.button
@@ -100,9 +102,24 @@ export const LogCard: VFC<Props> = ({ log }) => {
           <div className="znc" dangerouslySetInnerHTML={{ __html: html }}></div>
           
         </div>
-        <NormalButton onClick={() => setIsOpen(false)}>
-          Close
-        </NormalButton>
+        <div css={{
+          display: 'flex',
+          justifyContent: 'space-between',
+        }}>
+          <NormalButton onClick={() => setIsOpen(false)}>
+            Close
+          </NormalButton>
+          <div css={{ display: 'flex' }}>
+          <SquareButton
+            css={{ marginRight: '8px' }}
+            onClick={() => {}}
+            Icon={EditNoteIcon}
+          />
+          <SquareButton 
+            onClick={() => {}}
+            Icon={CommitIcon} />
+          </div>
+        </div>
       </Collapse>
     </>
   );
