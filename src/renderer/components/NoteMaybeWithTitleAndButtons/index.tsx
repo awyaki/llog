@@ -50,7 +50,7 @@ export const NoteMaybeWithTitleAndButtons: INoteMaybeWithTitleAndButtons = ({
             <BlockList blocks={blocks} />
           </div>
           <ul css={{ display: 'flex' }}>
-            {Buttons?.map((Button, i) => <li key={i} css={{ marginRight: '8px' }}>{Button}</li>)}
+            {Buttons?.map((Button, i) => <li key={i} css={Buttons.length - 1 !== i ? ({ marginRight: '8px' }) : undefined}>{Button}</li>)}
           </ul>
         </div>
         <div className="znc" dangerouslySetInnerHTML={{ __html: transformed }}></div>
