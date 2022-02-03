@@ -15,8 +15,6 @@ import {
   ModalProps,
   ModalContent,
   ModalOverlay,
-  ModalBody,
-  ModalFooter,
   } from '@chakra-ui/react';
 
 type Props = {

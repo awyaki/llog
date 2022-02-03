@@ -173,14 +173,14 @@ export const useEditNote = (content: ContentWithRelation) => {
     }
   }, [history, content]);
 
-  const onCommitLog = useCallback(async () => {
+  const onCommitLog = useCallback(async (title: string) => {
     if (content === null) return;
     const html = await markdownToHTML(markdown);
     if (noteId === undefined) {
       // note creating
       const newNote = await createNote(markdown, html, selectedTags, selectedBlocks, content.id);
       // TODO: crate logic of input title
-      await createLog(markdown, html, selectedBlocks, selectedTags, content.name,'', newNote.id, content.id);
+      await createLog(markdown, html, selectedBlocks, selectedTags, content.name, title, newNote.id, content.id);
       // update block level to 5 (max value)
       await asyncForEach(selectedBlocks, async (block) => {
         const { id, iteration } = block;
@@ -201,7 +201,7 @@ export const useEditNote = (content: ContentWithRelation) => {
       // note updating
       await updateNote(note.id, markdown, html, selectedTags, selectedBlocks, note.contentId, note.commitedAt, new Date()); 
       // TODO: crate logic of input title
-      await createLog(markdown, html, selectedBlocks, selectedTags, content.name,'', note.id, content.id);
+      await createLog(markdown, html, selectedBlocks, selectedTags, content.name, title, note.id, content.id);
       // update block level to 5 (max value)
       await asyncForEach(selectedBlocks, async (block) => {
         const { id, iteration } = block;
