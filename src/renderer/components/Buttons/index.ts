@@ -11,3 +11,4 @@ export * from './TagAnimationButtonWrapper';
 export * from './MenuButtonWithText';
 export * from './ContentMenuButtonWithText';
 export * from './AccordionButtonWithText';
+export * from './SquareButton';
