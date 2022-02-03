@@ -57,6 +57,7 @@ export const ExpandAllBlocksButton: VFC<Props> = ({ ...rest }) => {
           height: '36px', 
           borderWidth: '1px',
           borderStyle: 'solid',
+          borderRadius: '4px',
           display: 'flex', 
           justifyContent: 'center', 
           alignItems: 'center',

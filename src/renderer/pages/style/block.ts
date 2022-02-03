@@ -18,6 +18,7 @@ export const makeContainer = (
     width: '36px',
     height: '36px',
     borderWidth: borderWidth,
+    borderRadius: '4px',
     fontSize: font.size.S,
     alignItems: 'center',
   };
