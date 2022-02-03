@@ -2,6 +2,8 @@ import {
   VFC,
   } from 'react';
 
+import { noteStyle } from '~/style';
+
 import { Link } from 'react-router-dom';
 
 import {
@@ -36,19 +38,12 @@ export const Note: VFC<Props> = ({ note }) => {
           ];
   const Note = NoteMaybeWithTitleAndButtons({ Buttons });
   return (
-    <div css={{
-        minHeight: '500px',
-        padding: '40px',
-        boxShadow: '0px 0px 80px -26px rgba(0, 0, 0, 0.5)',
-        borderRadius: '25px',
-    }}>
+    <div css={noteStyle}>
       <Note 
+        isNested
         css={{ 
           maxHeight: '500px' ,
           overflowY: 'hidden', 
-          padding: '10px',
-          boxShadow: '0 0 0 0 rgba(0, 0, 0, 0)',
-          borderRadius: 0,
           }}
         note={note} />
     </div>);
