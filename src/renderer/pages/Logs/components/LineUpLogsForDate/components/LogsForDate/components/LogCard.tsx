@@ -37,9 +37,6 @@ export const LogCard: VFC<Props> = ({ log }) => {
   return (
     <div
       css={{
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'flex-start',
         width: '100%',
         borderLeftWidth: '8px',
         borderStyle: 'solid',
@@ -49,17 +46,28 @@ export const LogCard: VFC<Props> = ({ log }) => {
         color: colors.text,
       }}
     >
-      <div css={{ width: '90%' }}>
-        <div css={{
-          fontSize: font.size.SS,
-          marginBottom: '16px',
-        }}>{makeFormalTimeString(createdAt)}</div>
-        <TagsList 
-          css={{ marginBottom: '8px' }}
-          tags={tags} />
-        <h2 css={{ fontSize: font.size.M }}>{title}</h2>
+      <div css={{
+        width: '100%',
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'flex-start',
+      }}>
+        <div css={{ width: '90%' }}>
+          <div css={{
+            fontSize: font.size.SS,
+            marginBottom: '8px',
+          }}>
+            {makeFormalTimeString(createdAt)}
+          </div>
+          <TagsList 
+            css={{ marginBottom: '4px' }}
+            tags={tags} />
+          <h2 css={{ fontSize: font.size.M }}>{title}</h2>
+        </div>
+        <MiniBlockList blocks={blocks} />
       </div>
-      <MiniBlockList blocks={blocks} />
+      
+      <div css={{ fontSize: font.size.SS, textAlign: 'end' }}>at {contentName}</div>
     </div>
   );
 };
