@@ -39,27 +39,38 @@ export const ModalToSubmitLog: VFC<Props> = ({
   return (
     <Modal onClose={onCloseModal} {...rest}>
       <ModalOverlay />
-      <ModalContent>
-        <ModalBody>
-          <h2 css={{ marginBottom: '8px' }}>Log title</h2>
+      <ModalContent css={{
+        color: colors.text,
+        padding: '16px',
+      }}>
+          <h2 css={{ 
+            marginBottom: '24px', 
+            fontSize: font.size.M,
+            }}>Log title</h2>
           <input 
             css={{
               width: '200px',
               borderBottom: `2px solid ${colors.cyan.DEFAULT}`,
+              marginBottom: '24px',
             }}
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)} />
-        </ModalBody>
-        <ModalFooter>
-          <NormalButton onClick={() => onSubmitLog(title)}>
-            Submit
-          </NormalButton>
-          <WarningButton 
-            onClick={onCloseModal}>
-            Cancel
-          </WarningButton>
-        </ModalFooter>
+          <div css={{
+            display: 'flex',
+          }}>
+            <NormalButton 
+              css={{
+                marginRight: '8px',
+              }}
+              onClick={() => onSubmitLog(title)}>
+              Submit
+            </NormalButton>
+            <WarningButton 
+              onClick={onCloseModal}>
+              Cancel
+            </WarningButton>
+          </div>
       </ModalContent>
     </Modal>
   )
