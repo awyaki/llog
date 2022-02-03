@@ -19,7 +19,7 @@ type Props = {
 };
 
 export const LogsForDate: VFC<Props> = ({ logs, onClickCommit }) => {
-  if (logs.length === 0) return <></>;
+  if (logs.length === 0) return <>No Logs</>;
 
   const { createdAt: createdDate } = logs[0];
 
