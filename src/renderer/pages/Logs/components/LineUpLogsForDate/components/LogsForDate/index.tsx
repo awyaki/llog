@@ -6,8 +6,6 @@ import { LogWithRelation } from '~/pages/type';
 
 import { NoteWithContentName } from '~/components';
 
-import { Box } from '@chakra-ui/react';
-
 import { dateStyle, container, listStyle } from './style';
 
 import { OnClickCommit } from '~/pages/Logs/type';
@@ -24,7 +22,11 @@ export const LogsForDate: VFC<Props> = ({ logs, onClickCommit }) => {
   const { createdAt: createdDate } = logs[0];
 
   return (
-    <Box css={container}>
+    <div css={{
+      display: 'flex',
+      width: '100%',
+      flexDirection: 'column',
+    }}>
       <div css={dateStyle}>{makeFormalDateString(createdDate)}</div>
       <ul css={listStyle}>
         {logs.map(({ id, markdown, html, contentName, tags, blocks, createdAt, noteId, contentId }) => <li key={id}>
@@ -37,6 +39,6 @@ export const LogsForDate: VFC<Props> = ({ logs, onClickCommit }) => {
                                                               onClickCommit={() => onClickCommit(markdown, html, blocks, tags, contentName, noteId, contentId)} />
                                                             </li>)}
       </ul>
-    </Box>
+    </div>
   );
 };
