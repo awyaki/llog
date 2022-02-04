@@ -61,7 +61,7 @@ export const ModalToSubmitLog: VFC<Props> = ({
             }}>
           <input 
             css={{
-              width: '200px',
+              width: '400px',
               borderBottom: `2px solid ${colors.cyan.DEFAULT}`,
               marginBottom: '24px',
             }}
