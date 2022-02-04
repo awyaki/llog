@@ -108,7 +108,7 @@ export const useUpdateContent = ({ content }: Props) => {
     setSelectedTags([]);
     setValue('numberOfBlocks', '');
     setValue('contentName', '');
-    setMessage('updated!');
+    setMessage('Update');
     setIsOpen(false);
   }, [selectedTags, content]);  
 

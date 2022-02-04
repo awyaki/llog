@@ -45,7 +45,7 @@ export const ContentBlocksForm: VFC<Props> = ({
     if (onSubmit) {
       onSubmit();
     }
-    setMessage('updated!');
+    setMessage('Update');
   }, [setMessage]);
 
   const isLarger = useCallback<Validate<string>>((newMaxUnitNumber) => {

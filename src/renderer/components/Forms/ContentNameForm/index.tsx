@@ -51,7 +51,7 @@ export const ContentNameForm: VFC<Props> = ({ id, defaultName, onSubmit, onClose
       onSubmit();
     }
     contentsActionDispatch({ type: 'CONTENTS/SET_CONTENTS', contents: updatedContents});
-    setMessage('updated!');
+    setMessage('Update');
     setValue('name', '');
   }, [onSubmit, contentsActionDispatch, setMessage, setValue]);
 

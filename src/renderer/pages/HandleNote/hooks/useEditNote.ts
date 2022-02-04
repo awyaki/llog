@@ -151,7 +151,7 @@ export const useEditNote = (content: ContentWithRelation) => {
         const html = await markdownToHTML(markdown);
         const newNote = await createNote(markdown, html, selectedTags, selectedBlocks, content.id);
         history.push(`/content/${newNote.contentId}/updatenote/${newNote.id}`);
-        setMessage('saved!');
+        setMessage('Saved');
       }
     })();
   }, [markdown, selectedTags, selectedBlocks, content]); 
@@ -162,7 +162,7 @@ export const useEditNote = (content: ContentWithRelation) => {
         const html = await markdownToHTML(markdown);
         const updatedNote = await updateNote(note.id, markdown, html, selectedTags, selectedBlocks, note.contentId, note.commitedAt, new Date()); 
         const newNote = await getNote(updatedNote.id); 
-        setMessage('saved!');
+        setMessage('Saved');
         setNote(newNote);
       }
     })();
@@ -227,7 +227,7 @@ export const useEditNote = (content: ContentWithRelation) => {
       setNote(null);
       history.push(`/content/${content.id}/createnote`);
     }
-    setMessage('submitted!');
+    setMessage('Submit');
   }, [content, contentId, noteId, history, markdown, note, selectedTags, selectedBlocks]);
 
   return {

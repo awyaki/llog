@@ -46,7 +46,7 @@ export const usePreviewNote = () => {
         commitedAt: new Date(),
       });
     });
-    setMessage('submitted!');
+    setMessage('Submit');
   }, [note, content, setNote, setContent, setMessage]);
   
   const onClickEdit = useCallback(() => {

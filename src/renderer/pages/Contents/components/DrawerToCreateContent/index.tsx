@@ -66,7 +66,7 @@ export const DrawerToCreateContent: VFC<Omit<DrawerProps, 'children'>> = ({
     setSelectedTags([]);
     setValue('numberOfBlocks', '');
     setValue('contentName', '');
-    setMessage('A new Contet is created.');
+    setMessage('Create');
     onClose();
   }, [selectedTags]);  
 
