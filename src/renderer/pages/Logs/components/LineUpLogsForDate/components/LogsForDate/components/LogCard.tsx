@@ -34,7 +34,6 @@ import 'zenn-content-css';
 
 import { 
   motion,
-  Variants,
   } from 'framer-motion';
 
 
@@ -67,7 +66,6 @@ export const LogCard: VFC<Props> = ({ log }) => {
   
   const onCreateNewNoteFromTheLog = useCallback(() => {
     setMarkdown(markdown);
-    console.log('onCreateNewNoteFromTheLog', blocks);
     dispatchBlocksAction({ type: 'SELECTED_BLOCKS/SET', blocks: blocks });
     setSelectedTags(tags);
     history.push(`/content/${contentId}/createnote`);
