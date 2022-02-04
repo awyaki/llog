@@ -79,6 +79,7 @@ export const ModalToSubmitLog: VFC<Props> = ({
               Submit
             </NormalButton>
             <WarningButton 
+              type="button"
               onClick={onCloseModal}>
               Cancel
             </WarningButton>
