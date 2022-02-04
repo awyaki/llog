@@ -9,15 +9,6 @@ import {
   Variants, 
   } from 'framer-motion';
 
-const miniStyle: CSSObject = {
-  width: '18px',
-  height: '18px',
-  borderWidth: '1px',
-  borderStyle: 'solid',
-  borderColor: colors.cyan.DEFAULT,
-  backgroundColor: colors.cyan.DEFAULT,
-};
-
 type Props = {
   css?: CSSObject;
   isOverView: boolean;
@@ -26,7 +17,10 @@ type Props = {
 
 const variants: Variants = {
   overview: { scale: 1 },
-  normal: { scale: 1.8 },
+  normal: {  
+    scale: 1.8,
+    borderRadius: '4px',
+    },
 };
 
 export const ViewSwitch: VFC<Props> = ({ 
@@ -35,17 +29,20 @@ export const ViewSwitch: VFC<Props> = ({
   ...rest
 }) => {
   return (
-    <button 
-      onClick={onSwitch}
-      css={{ 
-        padding: '16px',
-        border: `1px solid ${colors.cyan.DEFAULT}`}} {...rest}>
-      <motion.div
-        animate={isOverView ? 'overview' : 'normal'}
-        variants={variants}
-        transition={{ duration: 0.1 }}
-        css={miniStyle}>
-      </motion.div>
-    </button>
+    <motion.button
+      onClick={onSwitch} 
+      animate={isOverView ? 'overview' : 'normal'}
+      variants={variants}
+      transition={{ duration: 0.1 }}
+      style={{
+        width: '18px',
+        height: '18px',
+        borderWidth: '1px',
+        borderStyle: 'solid',
+        borderColor: colors.cyan.DEFAULT,
+        backgroundColor: colors.cyan.DEFAULT,
+      }}
+      {...rest}>
+    </motion.button>
   );
 };
