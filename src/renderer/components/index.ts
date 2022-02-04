@@ -23,3 +23,4 @@ export * from './MiniBlockList';
 export * from './LogContextProvider';
 export * from './MarkdownForHandleNoteContextProvider';
 export * from './SelectedBlocksForHandleNoteContextProvider';
+export * from './SelectedTagsForHandleNoteContextProvider';
