@@ -61,7 +61,7 @@ export const SwitchEdit: VFC<Props> = ({
         display: 'flex',
         padding: '8px',
         backgroundColor: colors.white,
-        borderRadius: '90px',
+        borderRadius: '4px',
         border: `1px solid ${colors.cyan.DEFAULT}`,
       }} {...rest}>
       <motion.div

@@ -62,7 +62,7 @@ export const DisabableButtonAnimationWrapper: FC<Props> = ({
         alignItems: 'center',
         width: '40px',
         height: '40px',
-        borderRadius: '20px',
+        borderRadius: '4px',
         padding: '5px',
         borderWidth: '1px',
         borderStyle: 'solid',
