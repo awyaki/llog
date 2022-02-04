@@ -34,7 +34,9 @@ import 'zenn-content-css';
 
 import { 
   motion,
+  Variants,
   } from 'framer-motion';
+
 
 type Props = {
   log: LogWithRelation;
@@ -42,7 +44,6 @@ type Props = {
 
 export const LogCard: VFC<Props> = ({ log }) => {
   const {
-    id,
     title,
     markdown,
     html,
@@ -84,6 +85,7 @@ export const LogCard: VFC<Props> = ({ log }) => {
   return (
     <>
       <motion.button
+        whileHover={{ scale: 1.01 }}
         onClick={toggleIsOopen}
         style={{
           width: '100%',
@@ -93,6 +95,7 @@ export const LogCard: VFC<Props> = ({ log }) => {
           backgroundColor: colors.cyan.BACKGROUND,
           borderColor: colors.cyan.DEFAULT,
           color: colors.text,
+          zIndex: 1,
         }}
       >
         <div css={{
