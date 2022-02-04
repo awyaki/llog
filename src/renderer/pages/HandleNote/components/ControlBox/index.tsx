@@ -66,8 +66,9 @@ export const ControlBox: VFC<Props> = ({
           isNoteChange={isNoteChange}
           updatedAt={updatedAt} />
         <ExpandAddTagsButton css={{ marginBottom: '8px' }} />
-        <SelectedTagsList css={{ marginBottom: '16px' }} />
-        <TagsList tags={selectedTagsForHandleNote} />
+        <TagsList 
+          css={{ marginBottom: '16px' }}
+          tags={selectedTagsForHandleNote} />
         <ExpandAllBlocksButton css={{ marginBottom: '8px' }}/>
         <SelectedBlocks 
           css={{ marginBottom: '16px' }}
