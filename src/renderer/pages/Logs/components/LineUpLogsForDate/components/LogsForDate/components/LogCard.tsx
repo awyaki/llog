@@ -2,10 +2,10 @@ import {
   VFC,
   useState,
   useContext,
-  useEffect
+  useCallback,
   } from 'react';
 
-
+import { useHistory } from 'react-router-dom';
 
 import { colors, font } from '~/styleConfig';
 
@@ -24,7 +24,10 @@ import {
   CommitIcon,
   EditNoteIcon,
   ModalToSubmitLogContext,
-  LogContext
+  LogContext,
+  MarkdownForHandleNoteContext,
+  SelectedBlocksForHandleNoteContext,
+  SelectedTagsContext
   } from '~/components';
 
 import 'zenn-content-css';
@@ -47,7 +50,6 @@ export const LogCard: VFC<Props> = ({ log }) => {
     tags,
     blocks,
     createdAt,
-    noteId,
     contentId,
   } = log;
   
@@ -57,6 +59,19 @@ export const LogCard: VFC<Props> = ({ log }) => {
 
   const { setLog } = useContext(LogContext);
   
+  const history = useHistory();
+  const { dispatch: dispatchBlocksAction } = useContext(SelectedBlocksForHandleNoteContext);
+  const { setMarkdown } = useContext(MarkdownForHandleNoteContext);
+  const { setSelectedTags } = useContext(SelectedTagsContext);
+  
+  const onCreateNewNoteFromTheLog = useCallback(() => {
+    setMarkdown(markdown);
+    console.log('onCreateNewNoteFromTheLog', blocks);
+    dispatchBlocksAction({ type: 'SELECTED_BLOCKS/SET', blocks: blocks });
+    setSelectedTags(tags);
+    history.push(`/content/${contentId}/createnote`);
+  }, [history, blocks, markdown, tags]);
+
   const { 
     onOpen: onOpenModal
     } = useContext(ModalToSubmitLogContext);
@@ -125,7 +140,7 @@ export const LogCard: VFC<Props> = ({ log }) => {
           <div css={{ display: 'flex' }}>
           <SquareButton
             css={{ marginRight: '8px' }}
-            onClick={() => {}}
+            onClick={onCreateNewNoteFromTheLog}
             Icon={EditNoteIcon} />
           <SquareButton 
             onClick={onOpenModalWithSetLog}

@@ -1,7 +1,5 @@
 import { VFC } from 'react';
 
-import { SelectedBlocksForHandleNoteContextProvider } from '~/components';
-
 import { NoteContextProvider } from '../NoteContextProvider';
 
 
@@ -18,11 +16,9 @@ type Props = {
 export const CreateNote: VFC<Props> = ({ content }) => {
   return (
       <NoteContextProvider>
-        <SelectedBlocksForHandleNoteContextProvider>
-            <CollapseToSelectBlocksIsOpenContextProvider>
-              <SubCreateNote content={content} />
-            </CollapseToSelectBlocksIsOpenContextProvider>
-        </SelectedBlocksForHandleNoteContextProvider>
+        <CollapseToSelectBlocksIsOpenContextProvider>
+          <SubCreateNote content={content} />
+        </CollapseToSelectBlocksIsOpenContextProvider>
       </NoteContextProvider>
   );
 };

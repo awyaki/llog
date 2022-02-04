@@ -3,7 +3,6 @@ import { VFC } from 'react';
 import { 
   ContentMenu,
   PageMotion,
-  MarkdownForHandleNoteContextProvider
   } from '~/components';
 
 import { 
@@ -37,7 +36,7 @@ export const ContentHub: VFC = () => {
         display: 'flex',
         flexGrow: 1,
         }}>
-        <PageMotion css={{ 
+        <PageMotion css={{
           width: '100%',
           padding: '60px 20px 20px 40px',
           flexGrow: 1,

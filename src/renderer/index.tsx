@@ -11,7 +11,8 @@ import {
   NotifierContextProvider,
   ContentsContextProvider,
   IsAllowTransitionContextProvider,
-  MarkdownForHandleNoteContextProvider
+  MarkdownForHandleNoteContextProvider,
+  SelectedBlocksForHandleNoteContextProvider,
 } from './components';
 import { theme } from './theme';
 
@@ -24,7 +25,9 @@ ReactDOM.render(
           <ContentsContextProvider>
             <IsAllowTransitionContextProvider>
               <MarkdownForHandleNoteContextProvider>
-                <App />
+                <SelectedBlocksForHandleNoteContextProvider>
+                  <App />
+                </SelectedBlocksForHandleNoteContextProvider>
               </MarkdownForHandleNoteContextProvider>
             </IsAllowTransitionContextProvider>
           </ContentsContextProvider>
