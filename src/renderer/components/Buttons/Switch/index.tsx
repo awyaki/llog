@@ -21,6 +21,11 @@ const makevariants = (color: string): Variants => {
     };
   };
 
+const circle: Variants = {
+  on: { x: 19 },
+  off: { x: 0 },
+};
+
 type Props = {
   css?: CSSObject;
   isOn: boolean;
@@ -41,18 +46,18 @@ export const Switch: VFC<Props> = ({
     <motion.button
       onClick={onClick}
       variants={variants}
-      animate={isOn ? "on" : "off"}
+      animate={isOn ? 'on' : 'off'}
       style={{
         width: '50px',
         padding: '5px',
         display: 'flex',
-        justifyContent: isOn ? 'flex-end' : 'flex-start',
         alignItems: 'center',
         borderWidth: '1px',
         borderRadius: '20px',
       }} {...rest}>
       <motion.div
-        layout
+        variants={circle}
+        animate={isOn ? 'on' : 'off' }
         style={{
           width: '20px',
           height: '20px',
