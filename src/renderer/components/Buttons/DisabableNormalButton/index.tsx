@@ -18,7 +18,8 @@ type ColorOptions = {
 type Props = {
   css?: CSSObject;
   text: string;
-  colorOptions: ColorOptions;
+  onClick: () => void;
+  colorOptions?: ColorOptions;
   isDisable: boolean;
 };
 
@@ -29,10 +30,12 @@ const makeVariants = ({ primary, secondary }: ColorOptions): Variants => {
       backgroundColor: primary,
       borderColor: primary,
       color: secondary,
+      transition: { duration: 0.1, ease: 'linear'  }
     },
     hover: {
       backgroundColor: secondary,
-      color: primary
+      color: primary,
+      transition: { duration: 0.1, ease: 'linear'  }
     },
     disabled: {
       backgroundColor: colors.gray.DEFAULT,
@@ -45,6 +48,7 @@ const makeVariants = ({ primary, secondary }: ColorOptions): Variants => {
 
 export const DisabableNormalButton: VFC<Props>  = ({
   isDisable,
+  onClick,
   text,
   colorOptions = { primary: colors.cyan.DEFAULT, secondary: colors.white },
   ...rest
@@ -54,8 +58,10 @@ export const DisabableNormalButton: VFC<Props>  = ({
 
   return (
     <motion.button
+      onClick={onClick}
       variants={variants}
       disabled={isDisable}
+      animate={isDisable ? "disabled" : "normal"}
       initial={isDisable ? "disabled" : "normal"}
       whileHover={isDisable ? undefined : "hover"}
       style={{
@@ -65,6 +71,7 @@ export const DisabableNormalButton: VFC<Props>  = ({
         borderWidth: '1px',
         borderStyle: 'solid',
         borderRadius: '4px',
+        
     }} {...rest}>
       {text}
     </motion.button>

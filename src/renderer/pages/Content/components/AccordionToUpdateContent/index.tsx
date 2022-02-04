@@ -14,7 +14,9 @@ import {
   SelectTags,
   NormalButton,
   WarningButton,
-  AccordionButtonWithText
+  AccordionButtonWithText,
+  DisabableNormalButton,
+  Switch,
 } from '~/components';
 
 import { ContentWithRelation } from '~/pages/type';
@@ -28,6 +30,41 @@ import {
 import { useUpdateContent } from './hooks'
 
 import { Collapse } from '@chakra-ui/transition';
+
+type DeleteButtonProps = {
+  css?: CSSObject;
+  onClick: () => void;
+};
+
+const DeleteButton: VFC<DeleteButtonProps> = ({ onClick, ...rest }) => {
+  const [isDisable, setDisable] = useState(true);
+
+  const toggleIsDisable = () => setDisable((p) => !p);
+
+  return (
+    <div css={{
+      display: 'flex',
+      justifyContent: 'flex-start',
+      alignItems: 'center',
+    }} {...rest}>
+      <DisabableNormalButton
+        css={{ marginRight: '16px' }}
+        colorOptions={{
+          primary: colors.red.DEFAULT,
+          secondary: colors.white
+        }}
+        text="Delete"
+        isDisable={isDisable}
+        onClick={onClick} />
+      <Switch 
+        color={colors.red.DEFAULT}
+        isOn={!isDisable} 
+        onClick={toggleIsDisable} />
+    </div>
+  );
+};
+
+
 
 const labelStyle: CSSObject = {
   width: '50px',
@@ -113,18 +150,24 @@ export const AccordionToUpdateContent: VFC<Props> = ({ content }) => {
             onChangeSearchQuery={onChangeSearchQuery}
             searchQuery={searchQuery}
             isUpdate />
-          <NormalButton 
-            css={{ width: '90px', marginRight: '8px' }}
-            form="content-update"
-            type="submit">
-            Update
-          </NormalButton>
-          <WarningButton 
-            css={{ width: '84px' }}
-            onClick={onCancelUpdate}
-            type="button">
-            Cancel
-          </WarningButton>
+
+          <div css={{ marginBottom: '16px', paddingBottom: '16px', borderBottom: `1px solid ${colors.red.DEFAULT}` }}>
+            <NormalButton 
+              css={{ width: '90px', marginRight: '8px' }}
+              form="content-update"
+              type="submit">
+              Update
+            </NormalButton>
+
+            <WarningButton 
+              css={{ width: '84px' }}
+              onClick={onCancelUpdate}
+              type="button">
+              Cancel
+            </WarningButton>
+          </div>
+          <DeleteButton 
+            onClick={() => {}} />
         </div>
       </Collapse>
     </>
