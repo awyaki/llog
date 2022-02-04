@@ -1,4 +1,4 @@
-import { VFC } from 'react';
+import { VFC, useContext } from 'react';
 
 import { CSSObject } from '@emotion/react';
 
@@ -7,7 +7,9 @@ import { Mode } from '../../types';
 
 import {
   SelectedTagsList,
-  ExpandButton as ExpandAddTagsButton
+  ExpandButton as ExpandAddTagsButton,
+  TagsList,
+  SelectedTagsForHandleNoteContext,
 } from '~/components';
 
 import { 
@@ -49,6 +51,7 @@ export const ControlBox: VFC<Props> = ({
   onMoveToOtherNoteEdit,
   ...rest
   }) => {
+  const { selectedTagsForHandleNote } = useContext(SelectedTagsForHandleNoteContext);
   return (
       <div css={{ 
         minWidth: '200px',
@@ -64,6 +67,7 @@ export const ControlBox: VFC<Props> = ({
           updatedAt={updatedAt} />
         <ExpandAddTagsButton css={{ marginBottom: '8px' }} />
         <SelectedTagsList css={{ marginBottom: '16px' }} />
+        <TagsList tags={selectedTagsForHandleNote} />
         <ExpandAllBlocksButton css={{ marginBottom: '8px' }}/>
         <SelectedBlocks 
           css={{ marginBottom: '16px' }}

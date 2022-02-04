@@ -1,10 +1,12 @@
-import { 
+import {
   VFC, 
   useContext,
   Dispatch,
   SetStateAction,
   ChangeEventHandler
   } from 'react';
+
+import { Tag } from '@prisma/client';
 
 import { colors } from '~/styleConfig';
 
@@ -23,12 +25,14 @@ type Props = {
   onChangeSearchQuery: ChangeEventHandler<HTMLInputElement>;
   searchQuery: string;
   setSearchQuery: Dispatch<SetStateAction<string>>;
+  selectedTags: Tag[];
 };
 
 export const CollapseToSelectTags: VFC<Props> = ({ 
   searchQuery,
   setSearchQuery,
   onChangeSearchQuery,
+  selectedTags,
   ...rest }) => {
   const { isOpen } = useContext(SelectTagsContext);
 
@@ -45,6 +49,7 @@ export const CollapseToSelectTags: VFC<Props> = ({
           setSearchQuery={setSearchQuery}
           onChangeSearchQuery={onChangeSearchQuery} />
         <TagListToSelect 
+          selectedTags={selectedTags}
           searchQuery={searchQuery} />
       </div>
     </Collapse>

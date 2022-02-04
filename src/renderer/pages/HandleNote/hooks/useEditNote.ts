@@ -233,6 +233,7 @@ export const useEditNote = (content: ContentWithRelation) => {
     content,
     note,
     markdown,
+    selectedTags,
     setMarkdown,
     mode,
     isNoteChange,

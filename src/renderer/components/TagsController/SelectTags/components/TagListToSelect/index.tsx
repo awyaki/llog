@@ -5,6 +5,8 @@ import {
 
 import { colors, font } from '~/styleConfig';
 
+import { Tag } from '@prisma/client';
+
 import { CSSObject } from '@emotion/react';
 
 import { SelectedTagsContext } from '~/components';
@@ -36,14 +38,14 @@ const reverseTagStyle: CSSObject = {
 
 type Props = {
   searchQuery: string;
+  selectedTags: Tag[];
 };
 
-export const TagListToSelect: VFC<Props> = ({ searchQuery }) => {
+export const TagListToSelect: VFC<Props> = ({ searchQuery, selectedTags }) => {
 
   const { 
     filterTagsbyUserInput,
     onToggleSelectedTags,
-    selectedTags,
     } = useContext(SelectedTagsContext);
   
   const filteredTags = filterTagsbyUserInput(searchQuery); 

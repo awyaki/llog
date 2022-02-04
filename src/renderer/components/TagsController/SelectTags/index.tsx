@@ -10,11 +10,12 @@ import {
 import { 
   SelectedTagsList,
   AccordionButtonWithText,
+  SelectedTagsContext
   } from '~/components';
 
 import {
   CollapseToSelectTags,
-  SelectTagsContext
+  SelectTagsContext,
 } from './components';
 
 
@@ -35,7 +36,7 @@ export const SelectTags: VFC<Props> = ({
   onChangeSearchQuery,
   isUpdate }) => {
   const { isOpen, toggleIsOpen } = useContext(SelectTagsContext);
-
+  const { selectedTags } = useContext(SelectedTagsContext);
   return (
     <>
       <AccordionButtonWithText
@@ -46,6 +47,7 @@ export const SelectTags: VFC<Props> = ({
       />
       <SelectedTagsList css={{ height: '23px', marginBottom: '8px' }} />
       <CollapseToSelectTags 
+        selectedTags={selectedTags}
         setSearchQuery={setSearchQuery}
         onChangeSearchQuery={onChangeSearchQuery}
         searchQuery={searchQuery} />
