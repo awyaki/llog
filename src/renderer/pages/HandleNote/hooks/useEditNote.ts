@@ -49,7 +49,8 @@ export const useEditNote = (content: ContentWithRelation) => {
   const { markdown, setMarkdown } = useContext(MarkdownForHandleNoteContext);
   const { 
       selectedTagsForHandleNote: selectedTags,
-      setSelectedTagsForHandleNote: setSelectedTags
+      setSelectedTagsForHandleNote: setSelectedTags,
+      toggleSelectedTagsForHandleNote,
   } = useContext(SelectedTagsForHandleNoteContext);
 
   const { selectedBlocks, dispatch: selectedBlocksDispatch } = useContext(SelectedBlocksForHandleNoteContext);
@@ -234,6 +235,7 @@ export const useEditNote = (content: ContentWithRelation) => {
     note,
     markdown,
     selectedTags,
+    toggleSelectedTagsForHandleNote,
     setMarkdown,
     mode,
     isNoteChange,

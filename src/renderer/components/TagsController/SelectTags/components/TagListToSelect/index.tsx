@@ -39,13 +39,17 @@ const reverseTagStyle: CSSObject = {
 type Props = {
   searchQuery: string;
   selectedTags: Tag[];
+  onToggleSelectedTags: (tag: Tag) => () => void;
 };
 
-export const TagListToSelect: VFC<Props> = ({ searchQuery, selectedTags }) => {
+export const TagListToSelect: VFC<Props> = ({ 
+  searchQuery, 
+  selectedTags,
+  onToggleSelectedTags,
+  }) => {
 
   const { 
     filterTagsbyUserInput,
-    onToggleSelectedTags,
     } = useContext(SelectedTagsContext);
   
   const filteredTags = filterTagsbyUserInput(searchQuery); 

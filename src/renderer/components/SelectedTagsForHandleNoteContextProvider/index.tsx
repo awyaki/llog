@@ -24,12 +24,14 @@ export const SelectedTagsForHandleNoteContextProvider: FC = ({ children }) => {
   const [selectedTagsForHandleNote, setSelectedTagsForHandleNote] = useState<Tag[]>([]);
   
   const toggleSelectedTagsForHandleNote = (tag: Tag) => () => {
-    const index = selectedTagsForHandleNote.findIndex((t) => t.id === tag.id);
-    return index === -1
-            ? selectedTagsForHandleNote.concat({...tag})
-            : selectedTagsForHandleNote
-                .slice(0, index)
-                .concat(selectedTagsForHandleNote.slice(index+1));
+    setSelectedTagsForHandleNote((prev) => {
+      const index = prev.findIndex((t) => t.id === tag.id);
+      return index === -1
+              ? prev.concat({...tag})
+              : prev
+                  .slice(0, index)
+                  .concat(selectedTagsForHandleNote.slice(index+1));
+    });
   };
 
 

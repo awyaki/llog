@@ -36,7 +36,7 @@ export const SelectTags: VFC<Props> = ({
   onChangeSearchQuery,
   isUpdate }) => {
   const { isOpen, toggleIsOpen } = useContext(SelectTagsContext);
-  const { selectedTags } = useContext(SelectedTagsContext);
+  const { selectedTags, onToggleSelectedTags } = useContext(SelectedTagsContext);
   return (
     <>
       <AccordionButtonWithText
@@ -48,6 +48,7 @@ export const SelectTags: VFC<Props> = ({
       <SelectedTagsList css={{ height: '23px', marginBottom: '8px' }} />
       <CollapseToSelectTags 
         selectedTags={selectedTags}
+        onToggleSelectedTags={onToggleSelectedTags}
         setSearchQuery={setSearchQuery}
         onChangeSearchQuery={onChangeSearchQuery}
         searchQuery={searchQuery} />
