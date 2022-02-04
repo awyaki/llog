@@ -59,7 +59,7 @@ export const ContentDetails: VFC<Props> = ({  ...rest }) => {
 
   const onDeleteContent = useCallback(async () => {
     if (content === null) return;
-    setMessage('The Content is deleted!');
+    setMessage('Deleted');
     history.push('/');
     await deleteContent(content.id);
   }, [content]); 
