@@ -26,7 +26,7 @@ export const SelectedTagsForHandleNoteContextProvider: FC = ({ children }) => {
   const toggleSelectedTagsForHandleNote = (tag: Tag) => () => {
     const index = selectedTagsForHandleNote.findIndex((t) => t.id === tag.id);
     return index === -1
-            ? selectedTagsForHandleNote.concat(tag)
+            ? selectedTagsForHandleNote.concat({...tag})
             : selectedTagsForHandleNote
                 .slice(0, index)
                 .concat(selectedTagsForHandleNote.slice(index+1));

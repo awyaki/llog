@@ -25,7 +25,7 @@ import { NoteContext } from '~/pages/NoteContextProvider';
 import { 
   NotifierContext,
   ContentContext, 
-  SelectedTagsContext,
+  SelectedTagsForHandleNoteContext,
   IsAllowTransitionContext,
   SelectedBlocksForHandleNoteContext,
   MarkdownForHandleNoteContext
@@ -47,7 +47,11 @@ export const useEditNote = (content: ContentWithRelation) => {
   const { note, setNote } = useContext(NoteContext);
   const { setMessage } = useContext(NotifierContext);
   const { markdown, setMarkdown } = useContext(MarkdownForHandleNoteContext);
-  const { selectedTags, setSelectedTags } = useContext(SelectedTagsContext);
+  const { 
+      selectedTagsForHandleNote: selectedTags,
+      setSelectedTagsForHandleNote: setSelectedTags
+  } = useContext(SelectedTagsForHandleNoteContext);
+
   const { selectedBlocks, dispatch: selectedBlocksDispatch } = useContext(SelectedBlocksForHandleNoteContext);
   
   console.log('useEditNote selectedBlocks', selectedBlocks);
