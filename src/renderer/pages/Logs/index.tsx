@@ -30,6 +30,7 @@ export const Logs: VFC = () => {
         onSubmitLog={onSubmitLog}/>
         <div css={container}>
           <h2 css={{ ...pageTitle, marginBottom: '8px' }}>Logs</h2>
+          {logs.length === 0 ? <p>No logs</p> : undefined}
           <LineUpLogsForDate 
             logs={logs} />
         </div>
