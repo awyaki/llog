@@ -14,3 +14,5 @@ export * from './AccordionButtonWithText';
 export * from './SquareButton';
 export * from './DangerousOperationButton';
 export * from './Switch';
+export * from './Switch';
+export * from './DisabableNormalButton';
