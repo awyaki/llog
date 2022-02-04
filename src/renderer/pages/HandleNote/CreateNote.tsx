@@ -35,6 +35,7 @@ export const CreateNote: VFC<Props> = ({ content }) => {
           mode, 
           markdown,
           selectedTags,
+          setSelectedTags,
           toggleSelectedTagsForHandleNote,
           setMarkdown,
           isNoteChange,
@@ -68,6 +69,7 @@ export const CreateNote: VFC<Props> = ({ content }) => {
       <h2 css={{ ...pageTitle, marginBottom: '16px' }}>{content.name}</h2>
       <CollapseToSelectTags 
         selectedTags={selectedTags}
+        setSelectedTags={setSelectedTags}
         onToggleSelectedTags={toggleSelectedTagsForHandleNote}
         setSearchQuery={setSearchQuery}
         searchQuery={searchQuery} 

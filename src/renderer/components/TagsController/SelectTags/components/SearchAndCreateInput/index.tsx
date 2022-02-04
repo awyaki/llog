@@ -7,6 +7,8 @@ import {
   ChangeEventHandler,
   } from 'react';
 
+import { Tag } from '@prisma/client';
+
 import { 
   SelectedTagsContext,
   NotifierContext,
@@ -29,17 +31,18 @@ type Input = {
 
 type Props = {
   setSearchQuery: Dispatch<SetStateAction<string>>;
+  setSelectedTags: Dispatch<SetStateAction<Tag[]>>;
   onChangeSearchQuery: ChangeEventHandler<HTMLInputElement>;
 };
 
 export const SearchAndCreateInput: VFC<Props> = ({
   onChangeSearchQuery,
+  setSelectedTags,
   setSearchQuery
 }) => {
 
   const { 
     tags,
-    setSelectedTags,
     setTagsAction,
   } = useContext(SelectedTagsContext);
 

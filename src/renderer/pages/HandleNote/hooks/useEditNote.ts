@@ -235,6 +235,7 @@ export const useEditNote = (content: ContentWithRelation) => {
     note,
     markdown,
     selectedTags,
+    setSelectedTags,
     toggleSelectedTagsForHandleNote,
     setMarkdown,
     mode,

@@ -26,6 +26,7 @@ type Props = {
   searchQuery: string;
   setSearchQuery: Dispatch<SetStateAction<string>>;
   selectedTags: Tag[];
+  setSelectedTags: Dispatch<SetStateAction<Tag[]>>;
   onToggleSelectedTags: (tag: Tag) => () => void;
 };
 
@@ -34,6 +35,7 @@ export const CollapseToSelectTags: VFC<Props> = ({
   setSearchQuery,
   onChangeSearchQuery,
   selectedTags,
+  setSelectedTags,
   onToggleSelectedTags,
   ...rest }) => {
   const { isOpen } = useContext(SelectTagsContext);
@@ -48,6 +50,7 @@ export const CollapseToSelectTags: VFC<Props> = ({
       }}>
         <h2 css={{ marginBottom: '8px' }}>Search or Create tags</h2>
         <SearchAndCreateInput 
+          setSelectedTags={setSelectedTags}
           setSearchQuery={setSearchQuery}
           onChangeSearchQuery={onChangeSearchQuery} />
         <TagListToSelect 
