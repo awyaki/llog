@@ -12,3 +12,5 @@ export * from './MenuButtonWithText';
 export * from './ContentMenuButtonWithText';
 export * from './AccordionButtonWithText';
 export * from './SquareButton';
+export * from './DangerousOperationButton';
+export * from './Switch';
