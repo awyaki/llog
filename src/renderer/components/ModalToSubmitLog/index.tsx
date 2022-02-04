@@ -55,6 +55,10 @@ export const ModalToSubmitLog: VFC<Props> = ({
             marginBottom: '24px', 
             fontSize: font.size.M,
             }}>Log title</h2>
+          <form onSubmit={(e) => { 
+            e.preventDefault();
+            once(onSubmitLogWithResetModal)();
+            }}>
           <input 
             css={{
               width: '200px',
@@ -68,10 +72,10 @@ export const ModalToSubmitLog: VFC<Props> = ({
             display: 'flex',
           }}>
             <NormalButton 
+              type="submit"
               css={{
                 marginRight: '8px',
-              }}
-              onClick={once(onSubmitLogWithResetModal)}>
+              }}>
               Submit
             </NormalButton>
             <WarningButton 
@@ -79,6 +83,7 @@ export const ModalToSubmitLog: VFC<Props> = ({
               Cancel
             </WarningButton>
           </div>
+          </form>
       </ModalContent>
     </Modal>
   )
