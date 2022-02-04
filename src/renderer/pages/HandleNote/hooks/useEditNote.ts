@@ -26,10 +26,10 @@ import {
   NotifierContext,
   ContentContext, 
   SelectedTagsContext,
-  IsAllowTransitionContext
+  IsAllowTransitionContext,
+  SelectedBlocksForHandleNoteContext
 } from '~/components';
 
-import { SelectedBlocksContext } from '../SelectedBlocksContextProvider';
 
 
 import { useDisclosure } from '@chakra-ui/react';
@@ -47,7 +47,7 @@ export const useEditNote = (content: ContentWithRelation) => {
   const { setMessage } = useContext(NotifierContext);
   const [markdown, setMarkdown] = useState('');
   const { selectedTags, setSelectedTags } = useContext(SelectedTagsContext);
-  const { selectedBlocks, dispatch: selectedBlocksDispatch } = useContext(SelectedBlocksContext);
+  const { selectedBlocks, dispatch: selectedBlocksDispatch } = useContext(SelectedBlocksForHandleNoteContext);
 
   const [mode, setMode] = useState<Mode>('edit');
   const { 

@@ -2,7 +2,7 @@ import { VFC, useContext, useCallback, memo } from 'react';
 
 import { Block as BlockType } from '@prisma/client';
 
-import { SelectedBlocksContext } from '~/pages/HandleNote/SelectedBlocksContextProvider';
+import { SelectedBlocksForHandleNoteContext } from '~/components';
 
 import { makeContainer } from '~/pages/style/block';
 
@@ -11,7 +11,7 @@ type Props = {
 };
 
 export const Block: VFC<Props> = memo(({ block }) => {
-  const { selectedBlocks, dispatch } = useContext(SelectedBlocksContext);
+  const { selectedBlocks, dispatch } = useContext(SelectedBlocksForHandleNoteContext);
   const { level, unitNumber } = block; 
 
   const isSlected = selectedBlocks.findIndex(({ id }) => id === block.id) !== -1;

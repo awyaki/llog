@@ -34,4 +34,4 @@ const reduer: Reducer<State, Action> = (state, action) => {
   }
 };
 
-export const useSlectedBlocks = () => useReducer(reduer, []);
+export const useSlectedBlocksForHandleNote = () => useReducer(reduer, []);

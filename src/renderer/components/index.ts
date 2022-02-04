@@ -22,3 +22,4 @@ export * from './ModalToSubmitLog';
 export * from './MiniBlockList';
 export * from './LogContextProvider';
 export * from './MarkdownForHandleNoteContextProvider';
+export * from './SelectedBlocksForHandleNoteContextProvider';

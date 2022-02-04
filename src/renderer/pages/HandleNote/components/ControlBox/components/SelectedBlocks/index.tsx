@@ -2,7 +2,7 @@ import { VFC, useContext } from 'react';
 
 import { CSSObject } from '@emotion/react';
 
-import { SelectedBlocksContext } from '~/pages/HandleNote/SelectedBlocksContextProvider';
+import { SelectedBlocksForHandleNoteContext } from '~/components';
 
 
 import { Block } from './components/Block';
@@ -15,7 +15,7 @@ type Props = {
 };
 
 export const SelectedBlocks: VFC<Props> = ({ onOpenSelectBlocks, ...rest }) => {
-  const { selectedBlocks } = useContext(SelectedBlocksContext);
+  const { selectedBlocks } = useContext(SelectedBlocksForHandleNoteContext);
   return (
     <ul css={container} {...rest}>
       {selectedBlocks.map(({ id, level, unitNumber }) => <li key={id}><Block level={level} unitNumber={unitNumber} /></li>)}
