@@ -27,7 +27,8 @@ import {
   ContentContext, 
   SelectedTagsContext,
   IsAllowTransitionContext,
-  SelectedBlocksForHandleNoteContext
+  SelectedBlocksForHandleNoteContext,
+  MarkdownForHandleNoteContext
 } from '~/components';
 
 
@@ -45,7 +46,7 @@ export const useEditNote = (content: ContentWithRelation) => {
   const { noteId, contentId } = useParams<{ noteId: string | undefined, contentId: string }>();
   const { note, setNote } = useContext(NoteContext);
   const { setMessage } = useContext(NotifierContext);
-  const [markdown, setMarkdown] = useState('');
+  const { markdown, setMarkdown } = useContext(MarkdownForHandleNoteContext);
   const { selectedTags, setSelectedTags } = useContext(SelectedTagsContext);
   const { selectedBlocks, dispatch: selectedBlocksDispatch } = useContext(SelectedBlocksForHandleNoteContext);
 

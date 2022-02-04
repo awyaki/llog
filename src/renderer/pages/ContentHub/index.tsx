@@ -2,7 +2,8 @@ import { VFC } from 'react';
 
 import { 
   ContentMenu,
-  PageMotion
+  PageMotion,
+  MarkdownForHandleNoteContextProvider
   } from '~/components';
 
 import { 

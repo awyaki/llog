@@ -10,7 +10,8 @@ import { TagContextProvider } from './DBContextProviders';
 import { 
   NotifierContextProvider,
   ContentsContextProvider,
-  IsAllowTransitionContextProvider
+  IsAllowTransitionContextProvider,
+  MarkdownForHandleNoteContextProvider
 } from './components';
 import { theme } from './theme';
 
@@ -22,7 +23,9 @@ ReactDOM.render(
         <NotifierContextProvider>
           <ContentsContextProvider>
             <IsAllowTransitionContextProvider>
-              <App />
+              <MarkdownForHandleNoteContextProvider>
+                <App />
+              </MarkdownForHandleNoteContextProvider>
             </IsAllowTransitionContextProvider>
           </ContentsContextProvider>
         </NotifierContextProvider>
