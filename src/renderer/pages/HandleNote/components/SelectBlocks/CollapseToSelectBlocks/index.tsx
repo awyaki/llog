@@ -14,7 +14,7 @@ import { Collapse } from '@chakra-ui/transition';
 import { SelectBlocksList } from '../SelectBlocksList';
 
 
-import { SelectBlocksContext } from '../SelectBlocksContextProvider';
+import { CollapseToSelectBlocksIsOpenContext } from '../CollapseToSelectBlocksIsOpenContextProvider';
 
 type Props = {
   css?: CSSObject;
@@ -22,7 +22,7 @@ type Props = {
 };
 
 export const CollapseToSelectBlocks: VFC<Props> = ({ blocks, ...rest }) => {
-  const { isOpen } = useContext(SelectBlocksContext);
+  const { isOpen } = useContext(CollapseToSelectBlocksIsOpenContext);
 
   return (
     <Collapse in={isOpen} {...rest}>

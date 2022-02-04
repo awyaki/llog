@@ -17,7 +17,7 @@ import {
   Variants
   } from 'framer-motion';
 
-import { SelectBlocksContext } from '../SelectBlocksContextProvider';
+import { CollapseToSelectBlocksIsOpenContext } from '../CollapseToSelectBlocksIsOpenContextProvider';
 
 type Props = {
   css?: CSSObject;
@@ -43,7 +43,7 @@ const arrowIcon: Variants = {
 
 
 export const ExpandAllBlocksButton: VFC<Props> = ({ ...rest }) => {
-  const { isOpen, toggleIsOpen } = useContext(SelectBlocksContext);
+  const { isOpen, toggleIsOpen } = useContext(CollapseToSelectBlocksIsOpenContext);
 
   return (
     <motion.button

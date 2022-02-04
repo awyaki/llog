@@ -5,7 +5,7 @@ import {
   useCallback
   } from 'react';
 
-export const SelectBlocksContext = createContext<{
+export const CollapseToSelectBlocksIsOpenContext= createContext<{
   isOpen: boolean;
   toggleIsOpen: () => void;
 }>({
@@ -14,7 +14,7 @@ export const SelectBlocksContext = createContext<{
 }); 
 
 
-export const SelectBlocksContextProvder: FC = ({ children }) => {
+export const CollapseToSelectBlocksIsOpenContextProvider: FC = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);
   
   const toggleIsOpen = useCallback(() => {
@@ -22,8 +22,8 @@ export const SelectBlocksContextProvder: FC = ({ children }) => {
   }, []);
 
   return (
-    <SelectBlocksContext.Provider value={{ isOpen, toggleIsOpen }}>
+    <CollapseToSelectBlocksIsOpenContext.Provider value={{ isOpen, toggleIsOpen }}>
       {children}
-    </SelectBlocksContext.Provider>
+    </CollapseToSelectBlocksIsOpenContext.Provider>
   );
 };

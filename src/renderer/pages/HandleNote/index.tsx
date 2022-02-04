@@ -4,7 +4,7 @@ import { NoteContextProvider } from '../NoteContextProvider';
 
 import { SelectedBlocksContextProvider } from './SelectedBlocksContextProvider';
 
-import { SelectBlocksContextProvder } from './components';
+import { CollapseToSelectBlocksIsOpenContextProvider } from './components';
 
 import { CreateNote as SubCreateNote } from './CreateNote';
 
@@ -18,9 +18,9 @@ export const CreateNote: VFC<Props> = ({ content }) => {
   return (
       <NoteContextProvider>
         <SelectedBlocksContextProvider>
-            <SelectBlocksContextProvder>
+            <CollapseToSelectBlocksIsOpenContextProvider>
               <SubCreateNote content={content} />
-            </SelectBlocksContextProvder>
+            </CollapseToSelectBlocksIsOpenContextProvider>
         </SelectedBlocksContextProvider>
       </NoteContextProvider>
   );
