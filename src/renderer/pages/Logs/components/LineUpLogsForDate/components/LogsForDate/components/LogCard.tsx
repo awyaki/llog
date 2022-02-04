@@ -117,7 +117,7 @@ export const LogCard: VFC<Props> = ({ log }) => {
           <MiniBlockList blocks={blocks} />
         </div>
         
-        <div css={{ fontSize: font.size.SS, textAlign: 'end' }}>at {contentName}</div>
+        <div css={{ fontSize: font.size.SS, textAlign: 'end' }}>from {contentName}</div>
       </motion.button>
       <Collapse in={isOpen}>
         <div css={{
