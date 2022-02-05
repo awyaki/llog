@@ -39,7 +39,7 @@ export const ModalToSubmitLog: VFC<Props> = ({
   };
 
   const onSubmitLogWithResetModal = () => {
-    onSubmitLog(title);
+    onSubmitLog(title === '' ? 'No title' : title);
     setTitle('');
     onClose();
   };
