@@ -85,7 +85,7 @@ export const AccordionToCreateContent: VFC = () => {
     setSearchQuery('');
     setValue('numberOfBlocks', '');
     setValue('contentName', '');
-    setMessage('A new Contet is created.');
+    setMessage('Create');
     setIsOpen(false);
   }, [selectedTags]);  
 
