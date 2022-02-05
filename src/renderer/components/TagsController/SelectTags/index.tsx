@@ -45,7 +45,7 @@ export const SelectTags: VFC<Props> = ({
         onClick={toggleIsOpen}
         css={{ marginBottom: '16px' }}
       />
-      <SelectedTagsList css={{ height: '23px', marginBottom: '8px' }} />
+      <SelectedTagsList css={{ marginBottom: '8px' }} />
       <CollapseToSelectTags 
         selectedTags={selectedTags}
         setSelectedTags={setSelectedTags}
