@@ -3,8 +3,6 @@ import {
   useState
   } from 'react';
 
-import { once } from '~/utils';
-
 import { 
   NormalButton,
   WarningButton
@@ -57,7 +55,7 @@ export const ModalToSubmitLog: VFC<Props> = ({
             }}>Log title</h2>
           <form onSubmit={(e) => { 
             e.preventDefault();
-            once(onSubmitLogWithResetModal)();
+            onSubmitLogWithResetModal();
             }}>
           <input 
             css={{
