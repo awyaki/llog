@@ -4,7 +4,7 @@ import { font } from '~/styleConfig';
 
 import { 
   CommitIcon,
-  NormalButtonAnimationWrapper,
+  SquareButton,
   EditIcon,
   NoteMaybeWithTitleAndButtons
 } from '~/components';
@@ -20,12 +20,12 @@ export const PreviewNote: VFC = () => {
   if (note === null) return <NotFoundPage />;
 
   const Buttons = [
-            <NormalButtonAnimationWrapper onClick={onCommitLog}>
-              <CommitIcon />
-            </NormalButtonAnimationWrapper>,
-            <NormalButtonAnimationWrapper onClick={onClickEdit}>
-                <EditIcon />
-            </NormalButtonAnimationWrapper>
+            <SquareButton 
+              Icon={CommitIcon}
+              onClick={onCommitLog} />,
+            <SquareButton 
+              Icon={EditIcon}
+              onClick={onClickEdit}/>
   ];
 
   const Note = NoteMaybeWithTitleAndButtons({ Buttons });
