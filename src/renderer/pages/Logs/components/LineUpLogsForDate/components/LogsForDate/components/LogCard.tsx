@@ -24,6 +24,7 @@ import {
   CommitIcon,
   EditNoteIcon,
   ModalToSubmitLogContext,
+  ModalToUpdateLogTitleContext,
   LogContext,
   MarkdownForHandleNoteContext,
   SelectedBlocksForHandleNoteContext,
@@ -72,11 +73,22 @@ export const LogCard: VFC<Props> = ({ log }) => {
   }, [history, blocks, markdown, tags]);
 
   const { 
-    onOpen: onOpenModal
+    onOpen: onOpenModalToSubmit
     } = useContext(ModalToSubmitLogContext);
   
-  const onOpenModalWithSetLog = () => {
-    onOpenModal();
+  const onOpenModalToSubmitWithSetLog = () => {
+    onOpenModalToSubmit();
+    setLog(log);
+  };
+
+  const {
+    setTitle,
+    onOpen: onOpenModalToUpdate
+  } = useContext(ModalToUpdateLogTitleContext);
+  
+  const onOpenModalToUpdateWithSetLog = () => {
+    onOpenModalToUpdate();
+    setTitle(log.title);
     setLog(log);
   };
 
@@ -127,7 +139,14 @@ export const LogCard: VFC<Props> = ({ log }) => {
           borderLeftWidth: '8px',
           marginBottom: '16px',
         }}>
+          <NormalButton
+            css={{ marginBottom: '16px' }}
+            onClick={onOpenModalToUpdateWithSetLog}>
+            Update title
+          </NormalButton>
+
           <BlockList blocks={blocks} /> 
+
           <div className="znc" dangerouslySetInnerHTML={{ __html: html }}></div>
           
         </div>
@@ -144,7 +163,7 @@ export const LogCard: VFC<Props> = ({ log }) => {
             onClick={onCreateNewNoteFromTheLog}
             Icon={EditNoteIcon} />
           <SquareButton 
-            onClick={onOpenModalWithSetLog}
+            onClick={onOpenModalToSubmitWithSetLog}
             Icon={CommitIcon} />
           </div>
         </div>

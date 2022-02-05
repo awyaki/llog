@@ -1,11 +1,13 @@
 import { 
   VFC,
-  useState
+  useState,
+  useContext
   } from 'react';
 
 import { 
   NormalButton,
-  WarningButton
+  WarningButton,
+  ModalToUpdateLogTitleContext
   } from '~/components';
 
 import { colors, font } from '~/styleConfig';
@@ -28,8 +30,7 @@ export const ModalToUpdateLogTitle: VFC<Props> = ({
   onClose,
   ...rest
   }) => {
-
-  const [title, setTitle] = useState('');
+  const { title, setTitle } = useContext(ModalToUpdateLogTitleContext);
 
   const onCloseModal = () => {
     setTitle('');
