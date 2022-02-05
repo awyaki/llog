@@ -20,7 +20,6 @@ const motions: Variants = {
 export const Notifier: VFC = () => {
   const { isShow, message, setMessage } = useContext(NotifierContext); 
   
-  console.log('Notifier isShow, message', isShow, message);
   useEffect(() => {
     const timerId = setTimeout(() => {
       if (isShow) {
@@ -45,7 +44,7 @@ export const Notifier: VFC = () => {
         borderRadius: '4px',
         position: 'fixed',
         top: '85vh',
-        left: '80vw',
+        left: '85vw',
         padding: '20px',
         zIndex: 3,
         textAlign: 'center',
