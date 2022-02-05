@@ -49,6 +49,9 @@ export const useUpdateContent = ({ content }: Props) => {
   const { setContent } = useContext(ContentContext);
   
   const { setMessage } = useContext(NotifierContext);
+
+  const [isDisable, setIsDisable] = useState(true);
+  
   
   const {
     register,
@@ -109,6 +112,7 @@ export const useUpdateContent = ({ content }: Props) => {
     setValue('numberOfBlocks', '');
     setValue('contentName', '');
     setMessage('Update');
+    setIsDisable(true);
     setIsOpen(false);
   }, [selectedTags, content]);  
 
@@ -124,6 +128,7 @@ export const useUpdateContent = ({ content }: Props) => {
   }, [content]);
 
   const onCancelUpdate = useCallback(() => {
+    setIsDisable(true);
     setSelectedTags([]);
     setValue('numberOfBlocks', '');
     setValue('contentName', '');
@@ -132,6 +137,10 @@ export const useUpdateContent = ({ content }: Props) => {
 
   
   const handleSubmitUpdation = handleSubmit(onSubmit);
+
+  const onToggleIsDisable = useCallback(() => {
+    setIsDisable((p) => !p);
+  }, []);
   
 
   return {
@@ -143,5 +152,7 @@ export const useUpdateContent = ({ content }: Props) => {
     onCancelUpdate,
     isAlreadyNameExist,
     isMoreThanEqaulToPreviousNumber,
+    isDisable,
+    onToggleIsDisable,
   };
 };

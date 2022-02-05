@@ -1,7 +1,8 @@
 import { 
   VFC,
   useState,
-  ChangeEventHandler
+  ChangeEventHandler,
+  useCallback
   } from 'react';
 
 import { CSSObject } from '@emotion/react';
@@ -33,13 +34,18 @@ import { Collapse } from '@chakra-ui/transition';
 
 type DeleteButtonProps = {
   css?: CSSObject;
-  onClick: () => void;
+  isDisable: boolean;
+  onToggleIsDisable: () => void;
+  onDeleteContent: () => void;
 };
 
-const DeleteButton: VFC<DeleteButtonProps> = ({ onClick, ...rest }) => {
-  const [isDisable, setDisable] = useState(true);
+const DeleteButton: VFC<DeleteButtonProps> = ({ 
+  isDisable,
+  onToggleIsDisable,
+  onDeleteContent,
+  ...rest
+  }) => {
 
-  const toggleIsDisable = () => setDisable((p) => !p);
 
   return (
     <div css={{
@@ -55,11 +61,11 @@ const DeleteButton: VFC<DeleteButtonProps> = ({ onClick, ...rest }) => {
         }}
         text="Delete"
         isDisable={isDisable}
-        onClick={onClick} />
+        onClick={onDeleteContent} />
       <Switch 
         color={colors.red.DEFAULT}
         isOn={!isDisable} 
-        onClick={toggleIsDisable} />
+        onClick={onToggleIsDisable} />
     </div>
   );
 };
@@ -93,7 +99,9 @@ export const AccordionToUpdateContent: VFC<Props> = ({ content }) => {
     handleSubmitUpdation,
     onCancelUpdate,
     isAlreadyNameExist,
-    isMoreThanEqaulToPreviousNumber
+    isMoreThanEqaulToPreviousNumber,
+    isDisable,
+    onToggleIsDisable,
   } = useUpdateContent({ content });
   
   const [searchQuery, setSearchQuery] = useState('');
@@ -101,6 +109,7 @@ export const AccordionToUpdateContent: VFC<Props> = ({ content }) => {
   const onChangeSearchQuery: ChangeEventHandler<HTMLInputElement> = (e) => {
     setSearchQuery(e.target.value);
   };
+
 
   return (
     <>
@@ -167,7 +176,9 @@ export const AccordionToUpdateContent: VFC<Props> = ({ content }) => {
             </WarningButton>
           </div>
           <DeleteButton 
-            onClick={() => {}} />
+            isDisable={isDisable}
+            onDeleteContent={() => {}} 
+            onToggleIsDisable={onToggleIsDisable} />
         </div>
       </Collapse>
     </>
