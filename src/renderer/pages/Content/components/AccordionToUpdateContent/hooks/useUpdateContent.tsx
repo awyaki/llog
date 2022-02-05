@@ -5,6 +5,8 @@ import {
   useEffect
   } from 'react';
 
+import { useHistory } from 'react-router-dom';
+
 import { getContent } from '~/api';
 
 import { arrayeEqualWithId } from '~/utils';
@@ -18,7 +20,8 @@ import {
   updateContentTags,
   deleteConnectContentTags,
   upsertContentBlocks,
-  updateContentName
+  updateContentName,
+  deleteContent,
   } from '~/api';
 
 
@@ -52,7 +55,8 @@ export const useUpdateContent = ({ content }: Props) => {
 
   const [isDisable, setIsDisable] = useState(true);
   
-  
+  const history = useHistory();
+
   const {
     register,
     handleSubmit,
@@ -142,6 +146,11 @@ export const useUpdateContent = ({ content }: Props) => {
     setIsDisable((p) => !p);
   }, []);
   
+  const onDeleteContent = useCallback(async () => {
+    await deleteContent(content.id); 
+    setMessage('Delete');
+    history.push('/');
+  }, [history, content]);
 
   return {
     isOpen,
@@ -154,5 +163,6 @@ export const useUpdateContent = ({ content }: Props) => {
     isMoreThanEqaulToPreviousNumber,
     isDisable,
     onToggleIsDisable,
+    onDeleteContent,
   };
 };

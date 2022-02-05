@@ -2,7 +2,6 @@ import {
   VFC,
   useState,
   ChangeEventHandler,
-  useCallback
   } from 'react';
 
 import { CSSObject } from '@emotion/react';
@@ -102,6 +101,7 @@ export const AccordionToUpdateContent: VFC<Props> = ({ content }) => {
     isMoreThanEqaulToPreviousNumber,
     isDisable,
     onToggleIsDisable,
+    onDeleteContent,
   } = useUpdateContent({ content });
   
   const [searchQuery, setSearchQuery] = useState('');
@@ -177,7 +177,7 @@ export const AccordionToUpdateContent: VFC<Props> = ({ content }) => {
           </div>
           <DeleteButton 
             isDisable={isDisable}
-            onDeleteContent={() => {}} 
+            onDeleteContent={onDeleteContent} 
             onToggleIsDisable={onToggleIsDisable} />
         </div>
       </Collapse>
