@@ -68,7 +68,7 @@ export const SearchAndCreateInput: VFC<Props> = ({
     setTagsAction(allTags);
     setSearchQuery('');
     setValue('newTagName', '');
-    setMessage('A new Tag is Created.');
+    setMessage('Create');
   }, []);
   
   
