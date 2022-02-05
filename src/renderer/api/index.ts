@@ -107,3 +107,6 @@ export const markdownToHTML = async (markdown: string) => {
   return await window.electronAPI.markdownToHTML(markdown);
 };
 
+export const updateLogTitle = async (id: number, title: string) => {
+  return await window.electronAPI.updateLogTitle(id, title);
+};

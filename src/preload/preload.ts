@@ -48,5 +48,6 @@ contextBridge.exposeInMainWorld('electronAPI', {
   deleteConnectContentTags: (id: number) => ipcRenderer.invoke('deleteConnectContentTags', id),
   deleteContent: (id: number) => ipcRenderer.invoke('deleteContent', id),
   markdownToHTML: (markdown: string) => ipcRenderer.invoke('markdownToHTML', markdown),
+  updateLogTitle: (id: number, title: string) => ipcRenderer.invoke('updateLogTitle', id, title),
 });
 
