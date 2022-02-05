@@ -227,6 +227,7 @@ export const useEditNote = (content: ContentWithRelation) => {
       setNote(null);
       history.push(`/content/${content.id}/createnote`);
     }
+    setMode('edit');
     setMessage('Submit');
   }, [content, contentId, noteId, history, markdown, note, selectedTags, selectedBlocks]);
 
