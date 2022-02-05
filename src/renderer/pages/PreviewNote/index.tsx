@@ -6,7 +6,8 @@ import {
   CommitIcon,
   SquareButton,
   EditIcon,
-  NoteMaybeWithTitleAndButtons
+  NoteMaybeWithTitleAndButtons,
+  ModalToSubmitLog,
 } from '~/components';
 
 import { NotFoundPage } from '~/pages';
@@ -16,13 +17,21 @@ import { usePreviewNote } from './hooks';
 import 'zenn-content-css';
 
 export const PreviewNote: VFC = () => {
-  const  { note, contentName, onCommitLog, onClickEdit } = usePreviewNote();
+  const  { 
+    isOpen,
+    onOpenModal,
+    onCloseModal,
+    note, 
+    contentName, 
+    onSubmitLog,
+    onClickEdit } = usePreviewNote();
+
   if (note === null) return <NotFoundPage />;
 
   const Buttons = [
             <SquareButton 
               Icon={CommitIcon}
-              onClick={onCommitLog} />,
+              onClick={onOpenModal} />,
             <SquareButton 
               Icon={EditIcon}
               onClick={onClickEdit}/>
@@ -33,6 +42,11 @@ export const PreviewNote: VFC = () => {
 
   return (
     <>
+      <ModalToSubmitLog
+        isOpen={isOpen}
+        onClose={onCloseModal}
+        onSubmitLog={onSubmitLog}
+      />
       <h1 css={{ 
         fontSize: font.size.L,
         marginBottom: '16px',

@@ -16,10 +16,16 @@ import { getNote, getContent } from '~/api';
 
 
 export const usePreviewNote = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
   const { contentId, noteId } = useParams<{ contentId: string, noteId: string}>();
+
   const [note, setNote] = useState<NoteWithRelation | null>(null);
+
   const [content, setContent] = useState<ContentWithRelation | null>(null);
+
   const { setMessage } = useContext(NotifierContext); 
+
   const history = useHistory();
 
   useEffect(() => {
@@ -31,12 +37,11 @@ export const usePreviewNote = () => {
     })();
   }, [setNote, noteId, setContent, contentId]);
 
-  const onCommitLog = useCallback(async () => {
+  const onSubmitLog = useCallback(async (title: string) => {
     if (note === null) return;
     if (content === null) return;
     const { origin: markdown, transformed: html, blocks, tags, contentId, id } = note;
-    // TODO: the logic of input title. 
-    await createLog(markdown, html, blocks, tags, content.name, '', id, contentId);
+    await createLog(markdown, html, blocks, tags, content.name, title, id, contentId);
     await asyncForEach(blocks, async (block) => {
       const { id, iteration } = block;
       await updateBlock({
@@ -46,6 +51,7 @@ export const usePreviewNote = () => {
         commitedAt: new Date(),
       });
     });
+    setIsOpen(false);
     setMessage('Submit');
   }, [note, content, setNote, setContent, setMessage]);
   
@@ -53,10 +59,21 @@ export const usePreviewNote = () => {
     history.push(`/content/${contentId}/updatenote/${noteId}`);
   }, []);
 
+  const onCloseModal = useCallback(() => {
+    setIsOpen(false);
+  }, []);
+
+  const onOpenModal = useCallback(() => {
+    setIsOpen(true);
+  }, []);
+
   return { 
-    note: note ?? null,
+    note: note,
     contentName: content?.name ?? '',
-    onCommitLog,
+    onSubmitLog,
     onClickEdit,
+    isOpen,
+    onCloseModal,
+    onOpenModal,
   };
 };
