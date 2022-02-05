@@ -20,7 +20,7 @@ import { LineUpLogsForDate } from './components';
 import { useLogs } from './hooks';
 
 export const Logs: VFC = () => {
-  const { logs, onSubmitLog } = useLogs()
+  const { logs, onSubmitLog, onUpdateLogTitle } = useLogs()
 
   const { isOpen: isOpenSubmit, onClose: onCloseSubmit } = useContext(ModalToSubmitLogContext);
   const { isOpen: isOpenUpdate, onClose: onCloseUpdate } = useContext(ModalToUpdateLogTitleContext);
@@ -33,7 +33,7 @@ export const Logs: VFC = () => {
         <ModalToUpdateLogTitle 
           isOpen={isOpenUpdate}
           onClose={onCloseUpdate}
-          onUpdateLogTilte={() => {}}
+          onUpdateLogTilte={onUpdateLogTitle}
         />
         <div css={container}>
           <h2 css={{ ...pageTitle, marginBottom: '8px' }}>Logs</h2>

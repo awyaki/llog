@@ -4,7 +4,12 @@ import { asyncForEach } from '~/utils';
 
 import { LogWithRelation } from '~/pages/type';
 
-import { getAllLog, createLog, updateBlock } from '~/api';
+import { 
+  getAllLog, 
+  createLog, 
+  updateBlock,
+  updateLogTitle,
+} from '~/api';
 
 import { 
     NotifierContext,
@@ -53,5 +58,18 @@ export const useLogs = () => {
     setMessage('Submit');
   }, [log]);
 
-  return { logs, onSubmitLog };
+  const onUpdateLogTitle = useCallback(async (title: string)=> {
+    if (log === null) return;
+    const { id } = log;
+    await updateLogTitle(id, title);
+    const newLogs = await getAllLog();
+    setLogs(newLogs);
+    setMessage('Update');
+  }, [log]);
+
+  return { 
+    logs, 
+    onSubmitLog,
+    onUpdateLogTitle
+  };
 };
