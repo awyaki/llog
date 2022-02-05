@@ -7,9 +7,8 @@ import { noteStyle } from '~/style';
 import { Link } from 'react-router-dom';
 
 import {
-  EditIcon,
   PreviewNoteIcon,
-  NormalButtonAnimationWrapper,
+  SquareButton,
   NoteMaybeWithTitleAndButtons
 } from '~/components';
 
@@ -25,15 +24,9 @@ export const Note: VFC<Props> = ({ note }) => {
   const { id, contentId } = note;
   
   const Buttons = [
-          <Link to={`/content/${contentId}/updatenote/${id}`}>
-            <NormalButtonAnimationWrapper>
-              <EditIcon />
-            </NormalButtonAnimationWrapper>
-          </Link>,
           <Link to={`/content/${contentId}/previewnote/${id}`}>
-            <NormalButtonAnimationWrapper>
-              <PreviewNoteIcon />
-            </NormalButtonAnimationWrapper>
+            <SquareButton 
+              Icon={PreviewNoteIcon} />
           </Link>
           ];
   const Note = NoteMaybeWithTitleAndButtons({ Buttons });
