@@ -71,10 +71,6 @@ const DeleteButton: VFC<DeleteButtonProps> = ({
 
 
 
-const labelStyle: CSSObject = {
-  width: '50px',
-  marginRight: '8px',
-};
 
 const error: CSSObject = {
   height: '32px',
@@ -129,7 +125,9 @@ export const AccordionToUpdateContent: VFC<Props> = ({ content }) => {
           id="content-update" 
           onSubmit={handleSubmitUpdation}>
             <label 
-              css={labelStyle}
+              css={{
+                display: 'block',
+              }}
               htmlFor="contentName">
                 Name</label>
             <input 
@@ -141,7 +139,9 @@ export const AccordionToUpdateContent: VFC<Props> = ({ content }) => {
           <div css={error}>{errors.contentName?.message}</div>
 
           <label 
-            css={labelStyle} 
+            css={{
+              display: 'block',
+            }} 
             htmlFor="numberOfBlocks">Blocks</label>
           <input 
             css={inputBox}

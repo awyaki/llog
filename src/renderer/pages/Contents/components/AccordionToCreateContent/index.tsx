@@ -33,10 +33,6 @@ import { useCreateContent } from './hooks'
 
 import { Collapse } from '@chakra-ui/transition';
 
-const labelStyle: CSSObject = {
-  width: '50px',
-  marginRight: '8px',
-};
 
 const error: CSSObject = {
   height: '32px',
@@ -127,7 +123,9 @@ export const AccordionToCreateContent: VFC = () => {
           id="content-create" 
           onSubmit={handleSubmit(onSubmit)}>
             <label 
-              css={labelStyle}
+              css={{
+                display: 'block',
+              }}
               htmlFor="contentName">
                 Name</label>
             <input 
@@ -139,7 +137,9 @@ export const AccordionToCreateContent: VFC = () => {
           <div css={error}>{errors.contentName?.message}</div>
 
           <label 
-            css={labelStyle} 
+            css={{
+              display: 'block',
+            }} 
             htmlFor="numberOfBlocks">Blocks</label>
           <input 
             css={inputBox}
