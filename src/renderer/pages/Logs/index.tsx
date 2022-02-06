@@ -26,7 +26,10 @@ export const Logs: VFC = () => {
   const { 
     logs, 
     filteredLogs, 
+    sinceQuery,
     setSinceQuery,
+    untilQuery,
+    setUntilQuery,
     onSubmitLog, 
     onUpdateLogTitle
     } = useLogs()
@@ -50,7 +53,11 @@ export const Logs: VFC = () => {
           <h2 css={{ ...pageTitle, marginBottom: '16px' }}>Logs</h2>
           {logs.length === 0 ? <p>No logs</p> : undefined}
           <SearchLogs  
-            setSinceQuery={setSinceQuery} />
+            sinceQuery={sinceQuery}
+            untilQuery={untilQuery}
+            setSinceQuery={setSinceQuery}
+            setUntilQuery={setUntilQuery}
+          />
           <LineUpLogsForDate 
             logs={filteredLogs} />
         </div>

@@ -28,10 +28,11 @@ export const useLogs = () => {
   const { 
     filteredLogs, 
     sinceQuery,
-    setSinceQuery } = useSearchLogs(logs);
+    setSinceQuery,
+    untilQuery,
+    setUntilQuery,
+  } = useSearchLogs(logs);
 
-  console.log('useLogs logs', logs);
-  console.log('useLogs filterdLogs', filteredLogs);
 
   useEffect(() => {
     (async () => {
@@ -83,6 +84,8 @@ export const useLogs = () => {
     logs, 
     sinceQuery,
     setSinceQuery,
+    untilQuery,
+    setUntilQuery,
     filteredLogs,
     onSubmitLog,
     onUpdateLogTitle

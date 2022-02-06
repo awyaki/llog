@@ -1,4 +1,4 @@
-import { 
+import {
   VFC,
   useCallback,
   ChangeEventHandler,
@@ -6,7 +6,7 @@ import {
 
 import { CSSObject } from '@emotion/react';
 
-import { colors, font } from '~/styleConfig';
+import { colors } from '~/styleConfig';
 
 const labelStyle: CSSObject = {
   display: 'block',
@@ -14,12 +14,19 @@ const labelStyle: CSSObject = {
 };
 
 
+
 type Props = {
+  sinceQuery: Date | null;
   setSinceQuery: (arg: Date | null) => void;
+  untilQuery: Date | null;
+  setUntilQuery: (arg: Date | null) => void;
 };
 
 export const SearchLogs: VFC<Props> = ({
+  sinceQuery,
+  untilQuery,
   setSinceQuery,
+  setUntilQuery
 }) => {
   
 
@@ -28,6 +35,12 @@ export const SearchLogs: VFC<Props> = ({
     const dateSince = sinceQueryInput === '' ? null : new Date(sinceQueryInput);
     setSinceQuery(dateSince);
   }, [setSinceQuery]);
+
+  const onChangeUntilInput: ChangeEventHandler<HTMLInputElement> = useCallback((e) => {
+    const untilQueryInput =  e.target.value;
+    const dateUntil = untilQueryInput === '' ? null : new Date(untilQueryInput);
+    setUntilQuery(dateUntil);
+  }, [setUntilQuery]);
 
   return (
     <div css={{
@@ -58,7 +71,7 @@ export const SearchLogs: VFC<Props> = ({
             css={labelStyle}>Until</label>
           <input 
             id="until-query"
-            onChange={() => {}}
+            onChange={onChangeUntilInput}
             type="date" />
         </div>
       </div>
