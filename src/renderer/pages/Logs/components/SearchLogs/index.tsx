@@ -1,5 +1,7 @@
 import { 
   VFC,
+  useCallback,
+  ChangeEventHandler,
   } from 'react';
 
 import { CSSObject } from '@emotion/react';
@@ -13,12 +15,19 @@ const labelStyle: CSSObject = {
 
 
 type Props = {
-  setSinceQuery: (arg: Date) => void;
+  setSinceQuery: (arg: Date | null) => void;
 };
 
 export const SearchLogs: VFC<Props> = ({
   setSinceQuery,
 }) => {
+  
+
+  const onChangeSinceInput: ChangeEventHandler<HTMLInputElement> = useCallback((e) => {
+    const sinceQueryInput =  e.target.value;
+    const dateSince = sinceQueryInput === '' ? null : new Date(sinceQueryInput);
+    setSinceQuery(dateSince);
+  }, [setSinceQuery]);
 
   return (
     <div css={{
@@ -40,7 +49,7 @@ export const SearchLogs: VFC<Props> = ({
             css={labelStyle}>Since</label>
           <input 
             id="since-query"
-            onChange={(e) => setSinceQuery(new Date(e.target.value))}
+            onChange={onChangeSinceInput}
             type="date" />
         </div>
         <div>
