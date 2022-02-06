@@ -11,6 +11,8 @@ import {
   updateLogTitle,
 } from '~/api';
 
+import { useSearchLogs } from './useSearchLogs';
+
 import { 
     NotifierContext,
     LogContext
@@ -18,8 +20,18 @@ import {
 
 export const useLogs = () => {
   const [logs, setLogs] = useState<LogWithRelation[]>([]);
+
   const { setMessage } = useContext(NotifierContext);
+
   const { log } = useContext(LogContext);
+
+  const { 
+    filteredLogs, 
+    sinceQuery,
+    setSinceQuery } = useSearchLogs(logs);
+
+  console.log('useLogs logs', logs);
+  console.log('useLogs filterdLogs', filteredLogs);
 
   useEffect(() => {
     (async () => {
@@ -69,6 +81,9 @@ export const useLogs = () => {
 
   return { 
     logs, 
+    sinceQuery,
+    setSinceQuery,
+    filteredLogs,
     onSubmitLog,
     onUpdateLogTitle
   };
