@@ -26,7 +26,6 @@ export const Logs: VFC = () => {
   const { 
     logs, 
     filteredLogs, 
-    sinceQuery,
     setSinceQuery,
     onSubmitLog, 
     onUpdateLogTitle
@@ -35,6 +34,7 @@ export const Logs: VFC = () => {
 
   const { isOpen: isOpenSubmit, onClose: onCloseSubmit } = useContext(ModalToSubmitLogContext);
   const { isOpen: isOpenUpdate, onClose: onCloseUpdate } = useContext(ModalToUpdateLogTitleContext);
+
   return (
     <>
       <ModalToSubmitLog 
@@ -47,14 +47,10 @@ export const Logs: VFC = () => {
           onUpdateLogTilte={onUpdateLogTitle}
         />
         <div css={container}>
-          <h2 css={{ ...pageTitle, marginBottom: '8px' }}>Logs</h2>
+          <h2 css={{ ...pageTitle, marginBottom: '16px' }}>Logs</h2>
           {logs.length === 0 ? <p>No logs</p> : undefined}
           <SearchLogs  
-            sinceQuery={sinceQuery}
-            setSinceQuery={(date: Date | null) => {
-              console.log('setSinceQuery is called');
-              setSinceQuery(date);
-            }} />
+            setSinceQuery={setSinceQuery} />
           <LineUpLogsForDate 
             logs={filteredLogs} />
         </div>
