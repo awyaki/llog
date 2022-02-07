@@ -11,7 +11,7 @@ import { Tag } from '@prisma/client';
 type ProvidedSelectedTagsForHandleNoteContext = {
   selectedTagsForHandleNote: Tag[],
   setSelectedTagsForHandleNote: Dispatch<SetStateAction<Tag[]>>;
-  toggleSelectedTagsForHandleNote: (tag: Tag) => () => void;
+  toggleSelectedTagsForHandleNote: (tag: Tag) => void;
 };
 
 export const SelectedTagsForHandleNoteContext = createContext<ProvidedSelectedTagsForHandleNoteContext>({
@@ -23,7 +23,7 @@ export const SelectedTagsForHandleNoteContext = createContext<ProvidedSelectedTa
 export const SelectedTagsForHandleNoteContextProvider: FC = ({ children }) => {
   const [selectedTagsForHandleNote, setSelectedTagsForHandleNote] = useState<Tag[]>([]);
   
-  const toggleSelectedTagsForHandleNote = (tag: Tag) => () => {
+  const toggleSelectedTagsForHandleNote = (tag: Tag) => {
     setSelectedTagsForHandleNote((prev) => {
       const index = prev.findIndex((t) => t.id === tag.id);
       return index === -1
