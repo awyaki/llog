@@ -26,6 +26,8 @@ export const useLogs = () => {
   const { log } = useContext(LogContext);
 
   const { 
+    titleQuery,
+    setTitleQuery,
     filteredLogs, 
     sinceQuery,
     setSinceQuery,
@@ -82,6 +84,8 @@ export const useLogs = () => {
 
   return { 
     logs, 
+    titleQuery,
+    setTitleQuery,
     sinceQuery,
     setSinceQuery,
     untilQuery,

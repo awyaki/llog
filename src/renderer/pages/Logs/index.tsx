@@ -26,6 +26,8 @@ export const Logs: VFC = () => {
   const { 
     logs, 
     filteredLogs, 
+    titleQuery,
+    setTitleQuery,
     sinceQuery,
     setSinceQuery,
     untilQuery,
@@ -52,6 +54,8 @@ export const Logs: VFC = () => {
         <div css={container}>
           <h2 css={{ ...pageTitle, marginBottom: '16px' }}>Logs</h2>
           <SearchLogs  
+            titleQuery={titleQuery}
+            setTitleQuery={setTitleQuery}
             sinceQuery={sinceQuery}
             untilQuery={untilQuery}
             setSinceQuery={setSinceQuery}

@@ -1,8 +1,8 @@
 import {
   VFC,
   useCallback,
-  ChangeEventHandler,
   forwardRef,
+  ChangeEventHandler
   } from 'react';
 
 
@@ -22,6 +22,8 @@ const labelStyle: CSSObject = {
 
 
 type Props = {
+  titleQuery: string,
+  setTitleQuery: (title: string) => void;
   sinceQuery: Date | null;
   setSinceQuery: (arg: Date | null) => void;
   untilQuery: Date | null;
@@ -53,6 +55,8 @@ const CustomStyledDateInput = forwardRef<HTMLButtonElement, { value?: string, on
 
 
 export const SearchLogs: VFC<Props> = ({
+  titleQuery,
+  setTitleQuery,
   sinceQuery,
   untilQuery,
   setSinceQuery,
@@ -67,6 +71,9 @@ export const SearchLogs: VFC<Props> = ({
     setUntilQuery(null);
   }, []);
 
+  const onChangeTitleQuery = useCallback<ChangeEventHandler<HTMLInputElement>>((e) => {
+    setTitleQuery(e.target.value);
+  }, []); 
 
   return (
     <div css={{
@@ -83,6 +90,13 @@ export const SearchLogs: VFC<Props> = ({
           paddingRight: '24px',
           marginRight: '24px',
           }}>
+          <label 
+            htmlFor="title-query" 
+            css={labelStyle}>Title</label>
+          <input
+            onChange={onChangeTitleQuery}
+            value={titleQuery}
+          />
           <label 
             htmlFor="since-query" 
             css={labelStyle}>Since</label>

@@ -10,8 +10,10 @@ import { LogWithRelation } from '~/pages/type';
 
 
 export const useSearchLogs = (initialLogs: LogWithRelation[]) => {
-  const [{ sinceQuery, untilQuery, filteredLogs }, dispatch ] = useReducer(searchLogsReducer, {
+  const [{ titleQuery, sinceQuery, untilQuery, filteredLogs }, dispatch ] = useReducer(searchLogsReducer, {
     logs: [],
+    titleQuery: '',
+    titlesTokenMap: new Map(),
     sinceQuery: null,
     untilQuery: null,
     filteredLogs: [],
@@ -26,6 +28,10 @@ export const useSearchLogs = (initialLogs: LogWithRelation[]) => {
     dispatch({ type: 'SEARCH_LOGS/SET_UNTIL', untilQuery: untilQuery });
   }, []);
 
+  const setTitleQuery = useCallback((titleQuery: string) => {
+    dispatch({ type: 'SEARCH_LOGS/SET_TITLE_QUERY', titleQuery: titleQuery });
+  }, []);
+
   const setLogsOnSearchLogs = useCallback((logs: LogWithRelation[]) => {
     dispatch({ type: 'SEARCH_LOGS/SET_LOGS', logs: logs });
   }, []);
@@ -35,6 +41,8 @@ export const useSearchLogs = (initialLogs: LogWithRelation[]) => {
   }, [initialLogs]);
   
   return {
+    titleQuery,
+    setTitleQuery,
     sinceQuery,
     setSinceQuery,
     untilQuery,
