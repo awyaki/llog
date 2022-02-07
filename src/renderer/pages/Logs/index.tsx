@@ -51,13 +51,13 @@ export const Logs: VFC = () => {
         />
         <div css={container}>
           <h2 css={{ ...pageTitle, marginBottom: '16px' }}>Logs</h2>
-          {logs.length === 0 ? <p>No logs</p> : undefined}
           <SearchLogs  
             sinceQuery={sinceQuery}
             untilQuery={untilQuery}
             setSinceQuery={setSinceQuery}
             setUntilQuery={setUntilQuery}
           />
+          {logs.length === 0 ? <p>No logs</p> : undefined}
           <LineUpLogsForDate 
             logs={filteredLogs} />
         </div>

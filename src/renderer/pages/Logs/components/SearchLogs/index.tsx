@@ -2,7 +2,13 @@ import {
   VFC,
   useCallback,
   ChangeEventHandler,
+  forwardRef,
   } from 'react';
+
+
+import DatePicker from 'react-datepicker';
+
+import 'react-datepicker/dist/react-datepicker.css';
 
 import { CSSObject } from '@emotion/react';
 
@@ -22,6 +28,30 @@ type Props = {
   setUntilQuery: (arg: Date | null) => void;
 };
 
+
+
+const CustomStyledDateInput = forwardRef<HTMLButtonElement, { value?: string, onClick?: () => void, onRemove: () => void }>(({ value, onClick, onRemove }, ref) => {
+  return (
+    <>
+      <button 
+        css={{
+          width: '140px',
+          borderBottom: `2px solid ${colors.cyan.DEFAULT}`,
+          marginRight: '8px',
+        }}
+        ref={ref} 
+        onClick={onClick}>
+        {value === '' ? 'Month/Day/Year' : value}
+      </button>
+      <button onClick={onRemove}>
+        x
+      </button>
+    </>
+  );
+});
+
+
+
 export const SearchLogs: VFC<Props> = ({
   sinceQuery,
   untilQuery,
@@ -29,18 +59,14 @@ export const SearchLogs: VFC<Props> = ({
   setUntilQuery
 }) => {
   
+  const onRemoveSinceQuery = useCallback(() => {
+    setSinceQuery(null);
+  }, []);
 
-  const onChangeSinceInput: ChangeEventHandler<HTMLInputElement> = useCallback((e) => {
-    const sinceQueryInput =  e.target.value;
-    const dateSince = sinceQueryInput === '' ? null : new Date(sinceQueryInput);
-    setSinceQuery(dateSince);
-  }, [setSinceQuery]);
+  const onRemoveUntilQuery = useCallback(() => {
+    setUntilQuery(null);
+  }, []);
 
-  const onChangeUntilInput: ChangeEventHandler<HTMLInputElement> = useCallback((e) => {
-    const untilQueryInput =  e.target.value;
-    const dateUntil = untilQueryInput === '' ? null : new Date(untilQueryInput);
-    setUntilQuery(dateUntil);
-  }, [setUntilQuery]);
 
   return (
     <div css={{
@@ -60,19 +86,25 @@ export const SearchLogs: VFC<Props> = ({
           <label 
             htmlFor="since-query" 
             css={labelStyle}>Since</label>
-          <input 
+          <DatePicker 
             id="since-query"
-            onChange={onChangeSinceInput}
-            type="date" />
+            startDate={null}
+            selected={sinceQuery}
+            onChange={setSinceQuery}
+            customInput={<CustomStyledDateInput onRemove={onRemoveSinceQuery}/>}
+          />
         </div>
         <div>
           <label 
             htmlFor="until-query" 
             css={labelStyle}>Until</label>
-          <input 
+          <DatePicker 
             id="until-query"
-            onChange={onChangeUntilInput}
-            type="date" />
+            startDate={null}
+            selected={untilQuery}
+            onChange={setUntilQuery}
+            customInput={<CustomStyledDateInput onRemove={onRemoveUntilQuery}/>}
+          />
         </div>
       </div>
     </div>
