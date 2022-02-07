@@ -67,7 +67,7 @@ export const TagListToSelect: VFC<Props> = ({
       {filteredTags.map(({ id, name }) => 
                           <li key={id}>
                               <button 
-                                onClick={() => { onToggleSelectedTags({ id, name }); console.log('onToggleSelectedTags') }}
+                                onClick={() => onToggleSelectedTags({ id, name })}
                                 css={selectedTags.some((tag) => tag.id === id) ? reverseTagStyle : tagStyle}
                               >{name}</button>
                           </li>)}

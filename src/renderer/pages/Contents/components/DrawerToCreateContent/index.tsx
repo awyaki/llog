@@ -112,7 +112,7 @@ export const DrawerToCreateContent: VFC<Omit<DrawerProps, 'children'>> = ({
 
           <div css={{ marginBottom: '32px' }}>
             <h2 css={labelStyle}>Tags</h2>
-            <SelectedTagsList />
+            <SelectedTagsList selectedTags={selectedTags} />
           </div>
 
         </form>

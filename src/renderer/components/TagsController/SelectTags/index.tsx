@@ -45,7 +45,6 @@ export const SelectTags: VFC<Props> = ({
   isUpdate
   }) => {
   
-  console.log('SelectTags', isOpen);
   return (
     <>
       <AccordionButtonWithText
@@ -54,7 +53,9 @@ export const SelectTags: VFC<Props> = ({
         onClick={toggleIsOpen}
         css={{ marginBottom: '16px' }}
       />
-      <SelectedTagsList css={{ marginBottom: '8px' }} />
+      <SelectedTagsList 
+        selectedTags={selectedTags}
+        css={{ marginBottom: '8px' }} />
       <CollapseToSelectTags 
         isOpen={isOpen}
         selectedTags={selectedTags}
