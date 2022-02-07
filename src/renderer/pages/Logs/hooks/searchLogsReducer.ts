@@ -66,7 +66,7 @@ export const searchLogsReducer: Reducer<State, Action> = (state, action) => {
 
 
       nextState.filteredLogs = newFiltered;
-      nextState.sinceQuery = newUntilQuery;
+      nextState.untilQuery = newUntilQuery;
 
       return nextState; 
     }
