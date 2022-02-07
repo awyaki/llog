@@ -26,6 +26,8 @@ import {
 
 type Props = {
   css?: CSSObject;
+  isOpen: boolean;
+  toggleIsOpen: () => void;
 };
 
 
@@ -45,8 +47,10 @@ const arrowIcon: Variants = {
   close: { rotate: 180 },
 };
 
-export const ExpandButton: VFC<Props> = ({ ...rest }) => {
-  const { isOpen, toggleIsOpen } = useContext(SelectTagsContext);
+export const ExpandButton: VFC<Props> = ({ 
+  isOpen,
+  toggleIsOpen,
+  ...rest }) => {
 
   return (
     <motion.button 

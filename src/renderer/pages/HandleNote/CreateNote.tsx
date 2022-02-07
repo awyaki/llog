@@ -2,6 +2,7 @@ import {
   VFC,
   useState,
   ChangeEventHandler,
+  useCallback,
   } from 'react';
 
 import { useDisclosure } from '@chakra-ui/react';
@@ -55,10 +56,16 @@ export const CreateNote: VFC<Props> = ({ content }) => {
     } = useDisclosure();
   
   const [searchQuery, setSearchQuery] = useState('');
+  
+  const [isOpenSelectTgsCollapse, setIsOpenSelectTagsCollapse] = useState(false);
 
   const onChangeSearchQuery: ChangeEventHandler<HTMLInputElement> = (e) => {
     setSearchQuery(e.target.value);
   };
+  
+  const toggleIsOpenSelectTagsCollapse = useCallback(() => {
+    setIsOpenSelectTagsCollapse((p) => !p);
+  }, []);
 
   return (
     <>
@@ -68,6 +75,7 @@ export const CreateNote: VFC<Props> = ({ content }) => {
         onClose={onCloseModalToSubmitLog}/>
       <h2 css={{ ...pageTitle, marginBottom: '16px' }}>{content.name}</h2>
       <CollapseToSelectTags 
+        isOpen={isOpenSelectTgsCollapse}
         selectedTags={selectedTags}
         setSelectedTags={setSelectedTags}
         onToggleSelectedTags={toggleSelectedTagsForHandleNote}
@@ -86,6 +94,8 @@ export const CreateNote: VFC<Props> = ({ content }) => {
           updatedAt={note?.updatedAt}
           mode={mode}
           toggleEditBeteewnPreview={toggleEditBetweenPreview}
+          isOpenSelectTgsCollapse={isOpenSelectTgsCollapse}
+          toggleIsOpenSelectTagsCollapse={toggleIsOpenSelectTagsCollapse}
           onOpenSelectBlocks={onOpenSelectBlocks}
           isNoteChange={isNoteChange}
           isNoteExist={isNoteExist}

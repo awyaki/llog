@@ -1,21 +1,19 @@
 import { 
   VFC,
-  useContext,
   Dispatch,
   SetStateAction,
   ChangeEventHandler
   } from 'react';
 
+import { Tag } from '@prisma/client';
 
 import { 
   SelectedTagsList,
   AccordionButtonWithText,
-  SelectedTagsContext
   } from '~/components';
 
 import {
   CollapseToSelectTags,
-  SelectTagsContext,
 } from './components';
 
 
@@ -24,19 +22,29 @@ export * from './components';
 export * from './hooks';
 
 type Props = {
+  isOpen: boolean,
+  toggleIsOpen: () => void;
   searchQuery: string;
   setSearchQuery: Dispatch<SetStateAction<string>>;
   onChangeSearchQuery: ChangeEventHandler<HTMLInputElement>;
+  selectedTags: Tag[];
+  onToggleSelectedTags: (tag: Tag) => void;
+  setSelectedTags: Dispatch<SetStateAction<Tag[]>>;
   isUpdate?: boolean;
 };
 
 export const SelectTags: VFC<Props> = ({ 
+  isOpen,
+  toggleIsOpen,
   searchQuery, 
   setSearchQuery,
   onChangeSearchQuery,
-  isUpdate }) => {
-  const { isOpen, toggleIsOpen } = useContext(SelectTagsContext);
-  const { selectedTags, onToggleSelectedTags, setSelectedTags } = useContext(SelectedTagsContext);
+  selectedTags,
+  onToggleSelectedTags,
+  setSelectedTags,
+  isUpdate
+  }) => {
+  
   return (
     <>
       <AccordionButtonWithText
@@ -45,8 +53,11 @@ export const SelectTags: VFC<Props> = ({
         onClick={toggleIsOpen}
         css={{ marginBottom: '16px' }}
       />
-      <SelectedTagsList css={{ marginBottom: '8px' }} />
+      <SelectedTagsList 
+        selectedTags={selectedTags}
+        css={{ marginBottom: '8px' }} />
       <CollapseToSelectTags 
+        isOpen={isOpen}
         selectedTags={selectedTags}
         setSelectedTags={setSelectedTags}
         onToggleSelectedTags={onToggleSelectedTags}

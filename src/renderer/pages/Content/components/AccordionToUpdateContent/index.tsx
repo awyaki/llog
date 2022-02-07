@@ -2,6 +2,8 @@ import {
   VFC,
   useState,
   ChangeEventHandler,
+  useContext,
+  useCallback
   } from 'react';
 
 import { CSSObject } from '@emotion/react';
@@ -20,6 +22,8 @@ import {
 } from '~/components';
 
 import { ContentWithRelation } from '~/pages/type';
+
+import { SelectedTagsContext } from '~/components';
 
 import {
   colors,
@@ -100,12 +104,17 @@ export const AccordionToUpdateContent: VFC<Props> = ({ content }) => {
     onDeleteContent,
   } = useUpdateContent({ content });
   
+  const { selectedTags, setSelectedTags, onToggleSelectedTags } = useContext(SelectedTagsContext);
   const [searchQuery, setSearchQuery] = useState('');
+  const [isOpenSelectTgs, setIsOpenSelectTags] = useState(false);
   
   const onChangeSearchQuery: ChangeEventHandler<HTMLInputElement> = (e) => {
     setSearchQuery(e.target.value);
   };
-
+  
+  const toggleIsOpenSelectTags = useCallback(() => {
+    setIsOpenSelectTags((p) => !p);
+  }, []);
 
   return (
     <>
@@ -155,6 +164,11 @@ export const AccordionToUpdateContent: VFC<Props> = ({ content }) => {
             <div css={error}>{errors.numberOfBlocks?.message}</div>
           </form>
           <SelectTags 
+            isOpen={isOpenSelectTgs}
+            toggleIsOpen={toggleIsOpenSelectTags} 
+            selectedTags={selectedTags}
+            setSelectedTags={setSelectedTags}
+            onToggleSelectedTags={onToggleSelectedTags}
             setSearchQuery={setSearchQuery}
             onChangeSearchQuery={onChangeSearchQuery}
             searchQuery={searchQuery}

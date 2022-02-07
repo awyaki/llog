@@ -38,7 +38,7 @@ type SelectedTagsContextType = {
   onOpenModalToUpdateContentTags: () => void;
   onCloseModalToUpdateContentTags: () => void;
   onReleaseSearchedTags: () => void;
-  onToggleSelectedTags: (tag: Tag) => () => void;
+  onToggleSelectedTags: (tag: Tag) => void;
   onToggleSearchedTags: (tag: Tag) => () => void;
 };
 
@@ -63,7 +63,7 @@ export const SelectedTagsContext = createContext<SelectedTagsContextType>({
   onOpenModalToUpdateContentTags: () => {},
   onCloseModalToUpdateContentTags: () => {},
   onReleaseSearchedTags: () => {},
-  onToggleSelectedTags: () => () => {},
+  onToggleSelectedTags: () => {},
   onToggleSearchedTags: () => () => {},
 });
 
@@ -110,14 +110,12 @@ export const SelectedTagsContextProvider: FC = ({ children }) => {
   }, []);
 
   const onToggleSelectedTags = useCallback((tag: Tag) => {
-    return () => {
       setSelectedTags((prev) => {
         const index = prev.findIndex(({ id }) => tag.id === id);
         return index === -1 
                   ? prev.concat({ ...tag })
                   : prev.slice(0, index).concat(prev.slice(index+1));
       });
-    };
   }, [setSelectedTags]);
 
   const onToggleSearchedTags = useCallback((tag: Tag) => {

@@ -36,6 +36,8 @@ type Props = {
   onUpdateNote: () => void;
   onOpenModalToSubmitLog: () => void;
   onMoveToOtherNoteEdit: () => void;
+  isOpenSelectTgsCollapse: boolean;
+  toggleIsOpenSelectTagsCollapse: () => void;
 };
 
 export const ControlBox: VFC<Props> = ({ 
@@ -49,9 +51,13 @@ export const ControlBox: VFC<Props> = ({
   onUpdateNote,
   onOpenModalToSubmitLog,
   onMoveToOtherNoteEdit,
+  isOpenSelectTgsCollapse,
+  toggleIsOpenSelectTagsCollapse,
   ...rest
   }) => {
+
   const { selectedTagsForHandleNote } = useContext(SelectedTagsForHandleNoteContext);
+
   return (
       <div css={{ 
         minWidth: '200px',
@@ -65,7 +71,10 @@ export const ControlBox: VFC<Props> = ({
           isNoteExist={isNoteExist}
           isNoteChange={isNoteChange}
           updatedAt={updatedAt} />
-        <ExpandAddTagsButton css={{ marginBottom: '8px' }} />
+        <ExpandAddTagsButton 
+          isOpen={isOpenSelectTgsCollapse}
+          toggleIsOpen={toggleIsOpenSelectTagsCollapse}
+          css={{ marginBottom: '8px' }} />
         <TagsList 
           css={{ marginBottom: '16px' }}
           tags={selectedTagsForHandleNote} />
