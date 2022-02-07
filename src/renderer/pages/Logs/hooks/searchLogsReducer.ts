@@ -2,16 +2,20 @@ import {
   Reducer
 } from 'react';
 
+import { Tag } from '@prisma/client';
+
 import { createNGramTokenMap } from '~/utils';
 
 import { LogWithRelation } from '~/pages/type';
 
+
 type State = {
   titleQuery: string;
   titlesTokenMap: ReturnType<typeof createNGramTokenMap>;
-  logs: LogWithRelation[];
+  tagsQuery: Tag[];
   sinceQuery: Date | null;
   untilQuery: Date | null;
+  logs: LogWithRelation[];
   filteredLogs: LogWithRelation[];
 };
 
@@ -27,6 +31,9 @@ type Action = {
 } | {
   type: 'SEARCH_LOGS/SET_TITLE_QUERY';
   titleQuery: string;
+} | {
+  type: 'SEARCH_LOGS/TOGGLE_TAGS_QUERY';
+  tag: Tag;
 };
 
 
@@ -71,6 +78,20 @@ const titleFilter = ({
 };
 
 
+type TagsFilterArguments = Pick<State, 'logs' | 'tagsQuery'>;
+
+const tagsFilter = ({
+  logs,
+  tagsQuery,
+}: TagsFilterArguments) => {
+  const tagsQueryIdSet = new Set(tagsQuery.map(({ id }) => id));
+
+  return tagsQuery.length === 0
+          ? logs 
+          : logs.filter(({ tags }) => tags.some(({ id }) => tagsQueryIdSet.has(id)));
+};
+
+
 type FilterByAllQueriesArguments = Omit<State, 'filteredLogs'>;
 
 const filterByAllQueries = ({
@@ -79,6 +100,7 @@ const filterByAllQueries = ({
   untilQuery,
   titleQuery,
   titlesTokenMap,
+  tagsQuery,
 }: FilterByAllQueriesArguments) => {
 
     const idSetForTitleQuery = titlesTokenMap.get(titleQuery) ?? new Set();
@@ -98,7 +120,11 @@ const filterByAllQueries = ({
                                             titleQuery, 
                                             idSet: idSetForTitleQuery })
 
-    return filteredBySinceAndUntilAndTitle;
+    const filteredBySinceAndUntilAndTitleAndTags = tagsFilter({
+      logs: filteredBySinceAndUntilAndTitle,
+      tagsQuery: tagsQuery,
+    });
+    return filteredBySinceAndUntilAndTitleAndTags;
 };
 
 
@@ -117,15 +143,12 @@ export const searchLogsReducer: Reducer<State, Action> = (state, action) => {
       const nextState = { ...state };
 
       const { sinceQuery: nextSinceQuery } = action;
-      const { logs, titleQuery, titlesTokenMap, untilQuery } = state;
+      const { sinceQuery, filteredLogs, ...rest } = state;
       
 
       nextState.filteredLogs = filterByAllQueries({
-        logs: logs,
-        titleQuery: titleQuery,
-        titlesTokenMap: titlesTokenMap,
         sinceQuery: nextSinceQuery,
-        untilQuery: untilQuery,
+        ...rest,
       });
 
       nextState.sinceQuery = nextSinceQuery;
@@ -136,14 +159,11 @@ export const searchLogsReducer: Reducer<State, Action> = (state, action) => {
     case 'SEARCH_LOGS/SET_UNTIL': {
       const nextState = { ...state };
       const { untilQuery: nextUntilQuery } = action;
-      const { logs, titleQuery, titlesTokenMap, sinceQuery } = state; 
+      const { untilQuery, filteredLogs, ...rest } = state; 
 
       nextState.filteredLogs = filterByAllQueries({
-        logs: logs,
-        titleQuery: titleQuery,
-        titlesTokenMap: titlesTokenMap,
-        sinceQuery: sinceQuery,
-        untilQuery: nextUntilQuery 
+        untilQuery: nextUntilQuery,
+        ...rest,
       });
 
       nextState.untilQuery = nextUntilQuery;
@@ -154,16 +174,36 @@ export const searchLogsReducer: Reducer<State, Action> = (state, action) => {
     case 'SEARCH_LOGS/SET_TITLE_QUERY': {
       const nextState = { ...state };
       const { titleQuery: nextTitleQuery } = action; 
-      const { logs, titlesTokenMap, sinceQuery, untilQuery} = state;  
+      const { titleQuery, filteredLogs, ...rest } = state;  
 
       nextState.filteredLogs = filterByAllQueries({
-        logs: logs,
         titleQuery: nextTitleQuery,
-        titlesTokenMap: titlesTokenMap,
-        sinceQuery: sinceQuery,
-        untilQuery: untilQuery,
+        ...rest,
       });
       nextState.titleQuery = nextTitleQuery;
+
+      return nextState;
+    }
+    
+    case 'SEARCH_LOGS/TOGGLE_TAGS_QUERY': {
+      const nextState = { ...state };
+      const { tag } = action;
+      const { tagsQuery, filteredLogs, ...rest } = state; 
+
+      const nextTagsQuery = (() => {
+        const index = tagsQuery.findIndex(({ id }) => id === tag.id);
+        return index === -1
+                ? tagsQuery.concat({ ...tag })
+                : tagsQuery.slice(0, index)
+                            .concat(tagsQuery.slice(index + 1));
+      })();
+
+      nextState.filteredLogs = filterByAllQueries({
+        tagsQuery: nextTagsQuery,
+        ...rest,
+      });
+
+      nextState.tagsQuery = nextTagsQuery;
 
       return nextState;
     }
