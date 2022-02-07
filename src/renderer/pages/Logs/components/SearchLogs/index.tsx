@@ -22,6 +22,7 @@ const labelStyle: CSSObject = {
 
 
 type Props = {
+  css?: CSSObject;
   titleQuery: string,
   setTitleQuery: (title: string) => void;
   sinceQuery: Date | null;
@@ -53,6 +54,99 @@ const CustomStyledDateInput = forwardRef<HTMLButtonElement, { value?: string, on
 });
 
 
+type TitleInputProps = Pick<Props, 'titleQuery' | 'setTitleQuery' | 'css'>;
+
+const TitleInput: VFC<TitleInputProps> = ({
+  titleQuery,
+  setTitleQuery,
+  ...rest
+}) => {
+
+  const onChangeTitleQuery = useCallback<ChangeEventHandler<HTMLInputElement>>((e) => {
+    setTitleQuery(e.target.value);
+  }, [setTitleQuery]); 
+  
+  const onRemoveTitleQuery = useCallback(() => {
+    setTitleQuery('');
+  }, [setTitleQuery]);
+
+  return (
+    <div {...rest}>
+      <label 
+        htmlFor="title-query" 
+        css={labelStyle}>Title</label>
+      <input
+        css={{
+          width: '140px',
+          borderBottom: `2px solid ${colors.cyan.DEFAULT}`,
+          marginRight: '8px',
+        }}
+        onChange={onChangeTitleQuery}
+        value={titleQuery} />
+      <button
+        onClick={onRemoveTitleQuery}
+      >x</button>
+    </div>
+  );
+};
+
+
+
+type DateInputsProps = Pick<Props, 'sinceQuery' | 'setSinceQuery' | 'untilQuery' | 'setUntilQuery' | 'css'>;
+
+const DateInputs: VFC<DateInputsProps> = ({
+  sinceQuery,
+  setSinceQuery,
+  untilQuery,
+  setUntilQuery,
+  ...rest
+}) => {
+
+  const onRemoveSinceQuery = useCallback(() => {
+    setSinceQuery(null);
+  }, []);
+
+  const onRemoveUntilQuery = useCallback(() => {
+    setUntilQuery(null);
+  }, []);
+
+  return (
+       <div 
+        css={{ display: 'flex' }}
+        {...rest}>
+         <div css={{ 
+            borderRight: `1px solid ${colors.cyan.DEFAULT}`, 
+            paddingRight: '24px',
+            marginRight: '24px',
+            }}>
+            <label 
+              htmlFor="since-query" 
+              css={labelStyle}>Since</label>
+            <DatePicker 
+              id="since-query"
+              startDate={null}
+              selected={sinceQuery}
+              onChange={setSinceQuery}
+              customInput={<CustomStyledDateInput onRemove={onRemoveSinceQuery}/>}
+            />
+          </div>
+          <div>
+            <label 
+              htmlFor="until-query" 
+              css={labelStyle}>Until</label>
+            <DatePicker 
+              id="until-query"
+              startDate={null}
+              selected={untilQuery}
+              onChange={setUntilQuery}
+              customInput={<CustomStyledDateInput onRemove={onRemoveUntilQuery}/>}
+            />
+          </div>
+      </div>
+  );
+};
+
+
 
 export const SearchLogs: VFC<Props> = ({
   titleQuery,
@@ -63,18 +157,6 @@ export const SearchLogs: VFC<Props> = ({
   setUntilQuery
 }) => {
   
-  const onRemoveSinceQuery = useCallback(() => {
-    setSinceQuery(null);
-  }, []);
-
-  const onRemoveUntilQuery = useCallback(() => {
-    setUntilQuery(null);
-  }, []);
-
-  const onChangeTitleQuery = useCallback<ChangeEventHandler<HTMLInputElement>>((e) => {
-    setTitleQuery(e.target.value);
-  }, []); 
-
   return (
     <div css={{
       padding: '16px',
@@ -82,45 +164,15 @@ export const SearchLogs: VFC<Props> = ({
       borderRadius: '4px',
       marginBottom: '32px',
     }}>
-      <div css={{
-        display: 'flex',
-      }}>
-        <div css={{ 
-          borderRight: `1px solid ${colors.cyan.DEFAULT}`, 
-          paddingRight: '24px',
-          marginRight: '24px',
-          }}>
-          <label 
-            htmlFor="title-query" 
-            css={labelStyle}>Title</label>
-          <input
-            onChange={onChangeTitleQuery}
-            value={titleQuery}
-          />
-          <label 
-            htmlFor="since-query" 
-            css={labelStyle}>Since</label>
-          <DatePicker 
-            id="since-query"
-            startDate={null}
-            selected={sinceQuery}
-            onChange={setSinceQuery}
-            customInput={<CustomStyledDateInput onRemove={onRemoveSinceQuery}/>}
-          />
-        </div>
-        <div>
-          <label 
-            htmlFor="until-query" 
-            css={labelStyle}>Until</label>
-          <DatePicker 
-            id="until-query"
-            startDate={null}
-            selected={untilQuery}
-            onChange={setUntilQuery}
-            customInput={<CustomStyledDateInput onRemove={onRemoveUntilQuery}/>}
-          />
-        </div>
-      </div>
+      <TitleInput 
+        css={{ marginBottom: '16px' }}
+        titleQuery={titleQuery}
+        setTitleQuery={setTitleQuery} />
+      <DateInputs 
+        sinceQuery={sinceQuery}
+        setSinceQuery={setSinceQuery}
+        untilQuery={untilQuery}
+        setUntilQuery={setUntilQuery} />
     </div>
   );
 };
