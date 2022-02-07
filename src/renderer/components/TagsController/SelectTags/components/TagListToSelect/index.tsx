@@ -39,7 +39,7 @@ const reverseTagStyle: CSSObject = {
 type Props = {
   searchQuery: string;
   selectedTags: Tag[];
-  onToggleSelectedTags: (tag: Tag) => () => void;
+  onToggleSelectedTags: (tag: Tag) => void;
 };
 
 export const TagListToSelect: VFC<Props> = ({ 
@@ -67,7 +67,7 @@ export const TagListToSelect: VFC<Props> = ({
       {filteredTags.map(({ id, name }) => 
                           <li key={id}>
                               <button 
-                                onClick={onToggleSelectedTags({ id, name })}
+                                onClick={() => { onToggleSelectedTags({ id, name }); console.log('onToggleSelectedTags') }}
                                 css={selectedTags.some((tag) => tag.id === id) ? reverseTagStyle : tagStyle}
                               >{name}</button>
                           </li>)}

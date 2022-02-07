@@ -50,6 +50,9 @@ type Inputs = {
 
 export const AccordionToCreateContent: VFC = () => {
   const [isOpen, setIsOpen] = useState(false);
+
+  const [isOpenSelectTgs, setIsOpenSelectTags] = useState(false);
+
   const [searchQuery, setSearchQuery] = useState('');
   const { 
     contents,
@@ -72,6 +75,7 @@ export const AccordionToCreateContent: VFC = () => {
   const { 
     selectedTags,
     setSelectedTags,
+    onToggleSelectedTags,
     } = useContext(SelectedTagsContext);
   
   const onSubmit = useCallback(async (data: Inputs) => {
@@ -100,10 +104,14 @@ export const AccordionToCreateContent: VFC = () => {
   const onToggleOpenAndClose = useCallback(() => {
     setIsOpen((prev) => !prev);
   }, []);
-
+  
   const onChangeSearchQuery: ChangeEventHandler<HTMLInputElement> = (e) => {
     setSearchQuery(e.target.value);
   };
+  
+  const toggleIsOpenSelectTags = useCallback(() => {
+    setIsOpenSelectTags((p) => !p);
+  }, []);
 
   return (
     <>
@@ -151,6 +159,11 @@ export const AccordionToCreateContent: VFC = () => {
             <div css={error}>{errors.numberOfBlocks?.message}</div>
           </form>
           <SelectTags 
+            isOpen={isOpenSelectTgs}
+            toggleIsOpen={toggleIsOpenSelectTags}
+            selectedTags={selectedTags}
+            setSelectedTags={setSelectedTags}
+            onToggleSelectedTags={onToggleSelectedTags}
             searchQuery={searchQuery}
             setSearchQuery={setSearchQuery}
             onChangeSearchQuery={onChangeSearchQuery} />

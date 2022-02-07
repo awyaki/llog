@@ -18,19 +18,20 @@ import { SearchAndCreateInput } from '../SearchAndCreateInput';
 
 import { TagListToSelect } from '../TagListToSelect';
 
-import { SelectTagsContext } from '../SelectTagsContextProvider';
 
 type Props = {
   css?: CSSObject;
+  isOpen: boolean;
   onChangeSearchQuery: ChangeEventHandler<HTMLInputElement>;
   searchQuery: string;
   setSearchQuery: Dispatch<SetStateAction<string>>;
   selectedTags: Tag[];
   setSelectedTags: Dispatch<SetStateAction<Tag[]>>;
-  onToggleSelectedTags: (tag: Tag) => () => void;
+  onToggleSelectedTags: (tag: Tag) => void;
 };
 
 export const CollapseToSelectTags: VFC<Props> = ({ 
+  isOpen,
   searchQuery,
   setSearchQuery,
   onChangeSearchQuery,
@@ -38,7 +39,6 @@ export const CollapseToSelectTags: VFC<Props> = ({
   setSelectedTags,
   onToggleSelectedTags,
   ...rest }) => {
-  const { isOpen } = useContext(SelectTagsContext);
 
   return (
     <Collapse in={isOpen} {...rest}>
