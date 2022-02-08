@@ -34,6 +34,9 @@ type Action = {
 } | {
   type: 'SEARCH_LOGS/TOGGLE_TAGS_QUERY';
   tag: Tag;
+} | {
+  type: 'SEARCH_LOGS/SET_TAGS_QUERY';
+  tagsQuery: Tag[];
 };
 
 
@@ -185,6 +188,20 @@ export const searchLogsReducer: Reducer<State, Action> = (state, action) => {
       return nextState;
     }
     
+    case 'SEARCH_LOGS/SET_TAGS_QUERY': {
+      const nextState = { ...state };
+      const { tagsQuery: nextTagsQuery} = action;
+      
+      const { tagsQuery, filteredLogs, ...rest } = state;
+      nextState.filteredLogs = filterByAllQueries({
+        tagsQuery: nextTagsQuery,
+        ...rest
+      });
+      nextState.tagsQuery = nextTagsQuery;
+
+      return nextState;
+    }
+
     case 'SEARCH_LOGS/TOGGLE_TAGS_QUERY': {
       const nextState = { ...state };
       const { tag } = action;

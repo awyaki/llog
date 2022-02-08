@@ -33,6 +33,9 @@ export const useLogs = () => {
     setSinceQuery,
     untilQuery,
     setUntilQuery,
+    tagsQuery,
+    setTagsQuery,
+    toggleTagsQuery,
   } = useSearchLogs(logs);
 
 
@@ -92,6 +95,9 @@ export const useLogs = () => {
     setUntilQuery,
     filteredLogs,
     onSubmitLog,
-    onUpdateLogTitle
+    onUpdateLogTitle,
+    tagsQuery,
+    setTagsQuery,
+    toggleTagsQuery,
   };
 };

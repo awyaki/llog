@@ -35,6 +35,11 @@ export const useSearchLogs = (initialLogs: LogWithRelation[]) => {
     dispatch({ type: 'SEARCH_LOGS/SET_TITLE_QUERY', titleQuery: titleQuery });
   }, []);
   
+  
+  const setTagsQuery = useCallback((tags: Tag[]) => {
+    dispatch({ type: 'SEARCH_LOGS/SET_TAGS_QUERY', tagsQuery: tags });
+  }, []);
+
   const toggleTagsQuery = useCallback((tag: Tag) => {
     dispatch({ type: 'SEARCH_LOGS/TOGGLE_TAGS_QUERY', tag: tag });
   }, []);
@@ -55,6 +60,7 @@ export const useSearchLogs = (initialLogs: LogWithRelation[]) => {
     untilQuery,
     setUntilQuery,
     tagsQuery,
+    setTagsQuery,
     toggleTagsQuery,
     filteredLogs
   };
