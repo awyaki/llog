@@ -25,3 +25,4 @@ export * from './MarkdownForHandleNoteContextProvider';
 export * from './SelectedBlocksForHandleNoteContextProvider';
 export * from './SelectedTagsForHandleNoteContextProvider';
 export * from './ModalToUpdateLogTitle';
+export * from './ControlTagSelectionWithSearch';
