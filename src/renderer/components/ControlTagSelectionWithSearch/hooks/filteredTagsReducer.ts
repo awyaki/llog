@@ -4,19 +4,19 @@ import { createNGramTokenMap } from '~/utils';
 
 import { Tag } from '@prisma/client';
 
-type State = {
+export type State = {
+  tags: Tag[];
   tagNameQuery: string;
   filteredTags: Tag[];
-  tagNameToken: Map<string, Set<number>>;
+  tagNameTokenMap: Map<string, Set<number>>;
 };
 
-type Action = {
+export type Action = {
   type: 'FILTERED_TAGS/CALCULATE_WITH_NEW_TAGS';
   tags: Tag[];
 } | {
   type: 'FILTERED_TAGS/CALCULATE_WITH_NEW_TAG_NAME_QUERY'
   tagNameQuery: string;
-  tags: Tag[];
 };
 
 export const filteredTagsReducer: Reducer<State, Action> = (state, action) => {
@@ -30,15 +30,15 @@ export const filteredTagsReducer: Reducer<State, Action> = (state, action) => {
                                   .filter(({ id }) => tagIdsSet.has(id));
 
       nextState.filteredTags = nextFilteredTags;
-      nextState.tagNameToken = nextTagNameToken;
+      nextState.tagNameTokenMap = nextTagNameToken;
 
       return nextState;
     }
     case 'FILTERED_TAGS/CALCULATE_WITH_NEW_TAG_NAME_QUERY': {
       const nextState = { ...state };
-      const tagIdSet = state.tagNameToken.get(action.tagNameQuery) ?? new Set();
+      const tagIdSet = state.tagNameTokenMap.get(action.tagNameQuery) ?? new Set();
 
-      const nextFilteredTags = action.tags
+      const nextFilteredTags = state.tags
                                 .filter(({ id }) => tagIdSet.has(id));
 
       nextState.filteredTags = nextFilteredTags;
