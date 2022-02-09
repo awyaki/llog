@@ -202,7 +202,6 @@ export const SearchLogs: VFC<SearchLogsProps> = ({
           onToggleSelectedTags={toggleTagsQuery}
           onSetSelectedTags={setTagsQuery}
         /> : undefined}
-      <h2 css={{ marginBottom: '8px' }}>Block</h2>
       <ControlSelectionOfBlockLevels
         selectedLevels={levelsQuery}
         onSetSelectedLevels={setLevelsQuery}

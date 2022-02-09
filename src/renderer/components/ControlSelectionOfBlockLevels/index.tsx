@@ -2,7 +2,7 @@ import { VFC } from 'react';
 
 import { range } from '~/utils';
 
-import { colors, font } from '~/styleConfig';
+import { colors } from '~/styleConfig';
 
 import { makeMiniBlockStyle } from '~/style';
 
@@ -111,13 +111,11 @@ export const ControlSelectionOfBlockLevels: VFC<ControlSelectionOfBlockLevelsPro
   onToggleSelectedLevels,
   ...rest
 }) => {
-  console.log(selectedLevels);
   return (
     <div {...rest}>
       <h3 css={{ 
         marginBottom: '8px',
-        fontSize: font.size.S, 
-        }}>Level</h3>
+        }}>Block Levels</h3>
       <div css={{ display: 'flex', alignItems: 'flex-start' }}>
         <SelectionControler 
           css={{ marginRight: '8px' }}
