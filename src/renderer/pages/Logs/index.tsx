@@ -25,11 +25,15 @@ import { useLogs } from './hooks';
 export const Logs: VFC = () => {
   const { 
     logs, 
+    tags,
     filteredLogs, 
     titleQuery,
     setTitleQuery,
     sinceQuery,
     setSinceQuery,
+    tagsQuery,
+    setTagsQuery,
+    toggleTagsQuery,
     untilQuery,
     setUntilQuery,
     onSubmitLog, 
@@ -57,9 +61,13 @@ export const Logs: VFC = () => {
             titleQuery={titleQuery}
             setTitleQuery={setTitleQuery}
             sinceQuery={sinceQuery}
-            untilQuery={untilQuery}
             setSinceQuery={setSinceQuery}
+            untilQuery={untilQuery}
             setUntilQuery={setUntilQuery}
+            tags={tags}
+            tagsQuery={tagsQuery}
+            setTagsQuery={setTagsQuery}
+            toggleTagsQuery={toggleTagsQuery}
           />
           {logs.length === 0 ? <p>No logs</p> : undefined}
           <LineUpLogsForDate 

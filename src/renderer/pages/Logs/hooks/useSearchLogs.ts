@@ -2,7 +2,10 @@ import {
   useReducer, 
   useCallback,
   useEffect,
+  useState,
 } from 'react';
+
+import { getAllTag } from '~/api';
 
 import { Tag } from '@prisma/client';
 
@@ -22,6 +25,7 @@ export const useSearchLogs = (initialLogs: LogWithRelation[]) => {
     filteredLogs: [],
   });
   
+  const [tags, setTags] = useState<Tag[]>([]);
 
   const setSinceQuery = useCallback((sinceQuery: Date | null) => {
     dispatch({ type: 'SEARCH_LOGS/SET_SINCE', sinceQuery: sinceQuery });
@@ -52,6 +56,12 @@ export const useSearchLogs = (initialLogs: LogWithRelation[]) => {
     setLogsOnSearchLogs(initialLogs);
   }, [initialLogs]);
   
+  useEffect(() => {
+    (async () => {
+      const allTags = await getAllTag();
+      setTags(allTags);
+    })();
+  }, []);
   return {
     titleQuery,
     setTitleQuery,
@@ -59,6 +69,7 @@ export const useSearchLogs = (initialLogs: LogWithRelation[]) => {
     setSinceQuery,
     untilQuery,
     setUntilQuery,
+    tags,
     tagsQuery,
     setTagsQuery,
     toggleTagsQuery,

@@ -203,6 +203,8 @@ export const ControlTagSelectionWithSearch: VFC<ControlTagSelectionWithSearchPro
     setTagNameQuery,
     } = useSearchTagsByName({ tags });
 
+  console.log('ControlTagSelectionWithSearch tags', tags);
+
   return (
     <div 
       css={{

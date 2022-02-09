@@ -5,6 +5,9 @@ import {
   ChangeEventHandler
   } from 'react';
 
+import { Tag } from '@prisma/client';
+
+import { ControlTagSelectionWithSearch } from '~/components';
 
 import DatePicker from 'react-datepicker';
 
@@ -21,7 +24,7 @@ const labelStyle: CSSObject = {
 
 
 
-type Props = {
+type SearchLogsProps = {
   css?: CSSObject;
   titleQuery: string,
   setTitleQuery: (title: string) => void;
@@ -29,6 +32,10 @@ type Props = {
   setSinceQuery: (arg: Date | null) => void;
   untilQuery: Date | null;
   setUntilQuery: (arg: Date | null) => void;
+  tags: Tag[];
+  tagsQuery: Tag[];
+  setTagsQuery: (tags: Tag[]) => void;
+  toggleTagsQuery: (tag: Tag) => void; 
 };
 
 
@@ -54,7 +61,7 @@ const CustomStyledDateInput = forwardRef<HTMLButtonElement, { value?: string, on
 });
 
 
-type TitleInputProps = Pick<Props, 'titleQuery' | 'setTitleQuery' | 'css'>;
+type TitleInputProps = Pick<SearchLogsProps, 'titleQuery' | 'setTitleQuery' | 'css'>;
 
 const TitleInput: VFC<TitleInputProps> = ({
   titleQuery,
@@ -92,7 +99,7 @@ const TitleInput: VFC<TitleInputProps> = ({
 
 
 
-type DateInputsProps = Pick<Props, 'sinceQuery' | 'setSinceQuery' | 'untilQuery' | 'setUntilQuery' | 'css'>;
+type DateInputsProps = Pick<SearchLogsProps, 'sinceQuery' | 'setSinceQuery' | 'untilQuery' | 'setUntilQuery' | 'css'>;
 
 const DateInputs: VFC<DateInputsProps> = ({
   sinceQuery,
@@ -148,13 +155,17 @@ const DateInputs: VFC<DateInputsProps> = ({
 
 
 
-export const SearchLogs: VFC<Props> = ({
+export const SearchLogs: VFC<SearchLogsProps> = ({
   titleQuery,
   setTitleQuery,
   sinceQuery,
-  untilQuery,
   setSinceQuery,
-  setUntilQuery
+  untilQuery,
+  setUntilQuery,
+  tags,
+  tagsQuery,
+  setTagsQuery,
+  toggleTagsQuery
 }) => {
   
   return (
@@ -169,10 +180,17 @@ export const SearchLogs: VFC<Props> = ({
         titleQuery={titleQuery}
         setTitleQuery={setTitleQuery} />
       <DateInputs 
+        css={{ marginBottom: '16px' }}
         sinceQuery={sinceQuery}
         setSinceQuery={setSinceQuery}
         untilQuery={untilQuery}
         setUntilQuery={setUntilQuery} />
+      <ControlTagSelectionWithSearch 
+        tags={tags}
+        selectedTags={tagsQuery}
+        onToggleSelectedTags={toggleTagsQuery}
+        onSelectedTags={setTagsQuery}
+      />
     </div>
   );
 };
