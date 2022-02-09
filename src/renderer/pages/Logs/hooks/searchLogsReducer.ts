@@ -15,6 +15,7 @@ type State = {
   tagsQuery: Tag[];
   sinceQuery: Date | null;
   untilQuery: Date | null;
+  levelsQuery: Set<number>;
   logs: LogWithRelation[];
   filteredLogs: LogWithRelation[];
 };
@@ -37,6 +38,12 @@ type Action = {
 } | {
   type: 'SEARCH_LOGS/SET_TAGS_QUERY';
   tagsQuery: Tag[];
+} | {
+  type: 'SEARCH_LOGS/SET_LEVELS_QUERY';
+  levelsQuery: Set<number>;
+} | {
+  type: 'SEARCH_LOGS/TOGGLE_LEVELS_QUERY';
+  level: number;
 };
 
 
@@ -94,6 +101,16 @@ const tagsFilter = ({
           : logs.filter(({ tags }) => tags.some(({ id }) => tagsQueryIdSet.has(id)));
 };
 
+type LevelsFilterArguments = Pick<State, 'logs' | 'levelsQuery'>;
+
+const levelsFilter = ({
+  logs,
+  levelsQuery
+}: LevelsFilterArguments) => {
+  return levelsQuery.size === 0
+          ? logs
+          : logs.filter(({ blocks }) => blocks.some(({ level }) => levelsQuery.has(level)));
+};
 
 type FilterByAllQueriesArguments = Omit<State, 'filteredLogs'>;
 
@@ -104,6 +121,7 @@ const filterByAllQueries = ({
   titleQuery,
   titlesTokenMap,
   tagsQuery,
+  levelsQuery,
 }: FilterByAllQueriesArguments) => {
 
     const idSetForTitleQuery = titlesTokenMap.get(titleQuery) ?? new Set();
@@ -127,7 +145,13 @@ const filterByAllQueries = ({
       logs: filteredBySinceAndUntilAndTitle,
       tagsQuery: tagsQuery,
     });
-    return filteredBySinceAndUntilAndTitleAndTags;
+
+    const filteredBySinceAndUntilAndTitleAndTagsAndLevels = levelsFilter({
+      logs: filteredBySinceAndUntilAndTitleAndTags,
+      levelsQuery: levelsQuery,
+    });
+
+    return filteredBySinceAndUntilAndTitleAndTagsAndLevels;
 };
 
 
@@ -224,7 +248,46 @@ export const searchLogsReducer: Reducer<State, Action> = (state, action) => {
 
       return nextState;
     }
+    
+    case 'SEARCH_LOGS/SET_LEVELS_QUERY': {
+      const nextState = { ...state };
+      const { levelsQuery, filteredLogs, ...rest } = state;
+      
+      const nextLevelsQuery = new Set(action.levelsQuery);
 
+      nextState.levelsQuery = nextLevelsQuery;
+      nextState.filteredLogs = filterByAllQueries({
+        levelsQuery: nextLevelsQuery,
+        ...rest
+      });
+
+      return nextState;
+    }
+    
+    case 'SEARCH_LOGS/TOGGLE_LEVELS_QUERY': {
+      const nextState = { ...state };
+      const { levelsQuery, filteredLogs, ...rest } = state;
+      
+      const nextLevelsQuery = (() => {
+        if (state.levelsQuery.has(action.level)) {
+          const nextLevelsQuery = new Set(state.levelsQuery);
+          nextLevelsQuery.delete(action.level);
+          return nextLevelsQuery;
+        } else {
+          const nextLevelsQuery = new Set(state.levelsQuery);
+          nextLevelsQuery.add(action.level);
+          return nextLevelsQuery;
+        }
+      })();
+
+      nextState.levelsQuery = nextLevelsQuery;
+      nextState.filteredLogs = filterByAllQueries({
+        levelsQuery: nextLevelsQuery,
+        ...rest
+      });
+
+      return nextState;
+    }
     default:
       return state;
   }

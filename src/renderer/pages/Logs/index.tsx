@@ -37,7 +37,10 @@ export const Logs: VFC = () => {
     untilQuery,
     setUntilQuery,
     onSubmitLog, 
-    onUpdateLogTitle
+    onUpdateLogTitle,
+    levelsQuery,
+    setLevelsQuery,
+    toggleLevelsQuery,
     } = useLogs()
  
   
@@ -68,6 +71,9 @@ export const Logs: VFC = () => {
             tagsQuery={tagsQuery}
             setTagsQuery={setTagsQuery}
             toggleTagsQuery={toggleTagsQuery}
+            levelsQuery={levelsQuery}
+            setLevelsQuery={setLevelsQuery}
+            toggleLevelsQuery={toggleLevelsQuery}
           />
           {logs.length === 0 ? <p>No logs</p> : undefined}
           <LineUpLogsForDate 

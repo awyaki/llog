@@ -16,7 +16,7 @@ import {
 type ControlSelectionOfBlockLevelsProps = {
   css?: CSSObject;
   selectedLevels: Set<number>;
-  onSetSelectedLevels: (levels: number[]) => void;
+  onSetSelectedLevels: (levels: Set<number>) => void;
   onToggleSelectedLevels: (level: number) => void;
 };
 
@@ -30,6 +30,11 @@ type MotionBlockProps = {
 
 type SelectedAreaProps = {
   css?: CSSObject;
+};
+
+type ClearSelectionButton = {
+  css?: CSSObject;
+  onClick: () => void;
 };
 
 const blockVariants: Variants = {
@@ -66,6 +71,14 @@ const SelectedArea: VFC<SelectedAreaProps> = ({ ...rest }) => {
       }} {...rest}></div>);
 };
 
+const ClearSelectionButton: VFC<ClearSelectionButton> = ({ onClick, ...rest }) => {
+  return (
+    <button onClick={onClick} {...rest}>
+      x
+    </button>
+  );
+};
+
 export const ControlSelectionOfBlockLevels: VFC<ControlSelectionOfBlockLevelsProps> = ({
   selectedLevels,
   onSetSelectedLevels,
@@ -81,7 +94,9 @@ export const ControlSelectionOfBlockLevels: VFC<ControlSelectionOfBlockLevelsPro
         marginBottom: '8px',
         fontSize: font.size.S, 
         }}>Level</h3>
-      <SelectedArea css={{ marginBottom: '8px' }}/> 
+
+        <ClearSelectionButton onClick={() => onSetSelectedLevels(new Set())} />
+      <SelectedArea css={{ marginRight: '8px' }}/> 
       <div css={{
         padding: '0 16px',
         display: 'flex',

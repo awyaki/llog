@@ -37,6 +37,9 @@ export const useLogs = () => {
     tagsQuery,
     setTagsQuery,
     toggleTagsQuery,
+    levelsQuery,
+    setLevelsQuery,
+    toggleLevelsQuery,
   } = useSearchLogs(logs);
 
 
@@ -101,5 +104,8 @@ export const useLogs = () => {
     tagsQuery,
     setTagsQuery,
     toggleTagsQuery,
+    levelsQuery,
+    setLevelsQuery,
+    toggleLevelsQuery,
   };
 };

@@ -39,6 +39,9 @@ type SearchLogsProps = {
   tagsQuery: Tag[];
   setTagsQuery: (tags: Tag[]) => void;
   toggleTagsQuery: (tag: Tag) => void; 
+  levelsQuery: Set<number>;
+  setLevelsQuery: (levels: Set<number>) => void;
+  toggleLevelsQuery: (level: number) => void;
 };
 
 
@@ -168,7 +171,10 @@ export const SearchLogs: VFC<SearchLogsProps> = ({
   tags,
   tagsQuery,
   setTagsQuery,
-  toggleTagsQuery
+  toggleTagsQuery,
+  levelsQuery,
+  setLevelsQuery,
+  toggleLevelsQuery,
 }) => {
   
   return (
@@ -198,9 +204,9 @@ export const SearchLogs: VFC<SearchLogsProps> = ({
         /> : undefined}
       <h2 css={{ marginBottom: '8px' }}>Block</h2>
       <ControlSelectionOfBlockLevels
-        selectedLevels={new Set([2, 5])}
-        onSetSelectedLevels={() => {}}
-        onToggleSelectedLevels={() => {}}
+        selectedLevels={levelsQuery}
+        onSetSelectedLevels={setLevelsQuery}
+        onToggleSelectedLevels={toggleLevelsQuery}
         
       />
     </div>
