@@ -43,8 +43,10 @@ export const filteredTagsReducer: Reducer<State, Action> = (state, action) => {
       const nextState = { ...state };
       const tagIdSet = state.tagNameTokenMap.get(action.tagNameQuery) ?? new Set();
 
-      const nextFilteredTags = state.tags
-                                .filter(({ id }) => tagIdSet.has(id));
+      const nextFilteredTags = action.tagNameQuery === ''
+                                ? state.tags
+                                : state.tags
+                                  .filter(({ id }) => tagIdSet.has(id));
 
       nextState.filteredTags = nextFilteredTags;
       nextState.tagNameQuery = action.tagNameQuery;
