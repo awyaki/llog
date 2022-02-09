@@ -72,7 +72,7 @@ type SearchQueryInputBoxProps = {
 const tagVariants: Variants = {
   nonSelected: {
     color: colors.cyan.DEFAULT,
-    backgroundColor: 'transparent'
+    backgroundColor: colors.white,
   },
   selected: {
     color: colors.white,
