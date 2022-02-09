@@ -1,5 +1,6 @@
 import { 
   VFC,
+  useCallback
   } from 'react';
 
 import { SearchIcon } from '~/components';
@@ -47,7 +48,7 @@ type ControlTagSelectionWithSearchProps = {
   css?: CSSObject;
   tags: Tag[];
   selectedTags: Tag[];
-  onSelectedTags: (tags: Tag[]) => void;
+  onSetSelectedTags: (tags: Tag[]) => void;
   onToggleSelectedTags: (tag: Tag) => void;
 };
 
@@ -68,6 +69,12 @@ type SearchQueryInputBoxProps = {
   searchQuery: string;
   setSearchQuery: (query: string) => void;
 };
+
+type ClearSelectionButtonProps = {
+  css?: CSSObject;
+  clearSelection: () => void;
+};
+
 
 const tagVariants: Variants = {
   nonSelected: {
@@ -191,10 +198,32 @@ const SearchQueryInputBox: VFC<SearchQueryInputBoxProps> = ({
   );
 };
 
+
+const ClearSelectionButton: VFC<ClearSelectionButtonProps> = ({ clearSelection, ...rest }) => {
+  return (
+    <button 
+      css={{
+          minWidth: '80px',
+          textAlign: 'center',
+          fontSize: font.size.SS,
+          borderRadius: '4px',
+          borderWidth: '1px',
+          borderStyle: 'solid',
+          borderColor: colors.red.DEFAULT,
+          backgroundColor: colors.red.DEFAULT,
+          color: colors.white,
+          padding: '2px 4px',
+      }}
+      onClick={clearSelection} {...rest}>
+      Clear 
+    </button>
+  );
+};
+
 export const ControlTagSelectionWithSearch: VFC<ControlTagSelectionWithSearchProps> = ({
   tags,
   selectedTags,
-  onSelectedTags,
+  onSetSelectedTags,
   onToggleSelectedTags,
   ...rest
 }) => {
@@ -203,11 +232,18 @@ export const ControlTagSelectionWithSearch: VFC<ControlTagSelectionWithSearchPro
     tagNameQuery,
     setTagNameQuery,
     } = useSearchTagsByName({ tags });
-
+  
+  const clearSelection = useCallback(() => {
+    onSetSelectedTags([]);
+  }, []);
 
   return (
     <div {...rest}>
-      <h2 css={{ marginBottom: '16px' }}>Tags</h2>
+      <h2 css={{ marginBottom: '8px' }}>Tags</h2>
+      <ClearSelectionButton 
+        css={{ marginBottom: '8px' }}
+        clearSelection={clearSelection}
+      />
       <SelectedTags 
         css={{ marginBottom: '4px' }}
         selectedTags={selectedTags} />

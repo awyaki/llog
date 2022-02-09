@@ -190,7 +190,7 @@ export const SearchLogs: VFC<SearchLogsProps> = ({
           tags={tags}
           selectedTags={tagsQuery}
           onToggleSelectedTags={toggleTagsQuery}
-          onSelectedTags={setTagsQuery}
+          onSetSelectedTags={setTagsQuery}
         /> : undefined}
     </div>
   );
