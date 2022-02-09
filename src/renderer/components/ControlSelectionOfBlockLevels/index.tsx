@@ -37,6 +37,8 @@ type ClearSelectionButton = {
   onClick: () => void;
 };
 
+type SelectionControlerProps = Pick<ControlSelectionOfBlockLevelsProps, 'selectedLevels' | 'onToggleSelectedLevels' | 'css'>;
+
 const blockVariants: Variants = {
   selected: { y: -33 },
   nonSelected: { y: 0 }
@@ -79,6 +81,30 @@ const ClearSelectionButton: VFC<ClearSelectionButton> = ({ onClick, ...rest }) =
   );
 };
 
+const SelectionControler: VFC<SelectionControlerProps> = ({
+  selectedLevels,
+  onToggleSelectedLevels,
+  ...rest
+}) => {
+  return (
+    <div css={{ width: '216px' }} {...rest}>
+    <SelectedArea css={{ marginBottom: '8px' }}/> 
+    <div css={{
+      padding: '0 16px',
+      display: 'flex',
+      justifyContent: 'space-between',
+    }} {...rest}>
+      {[...range(0, 6)].map((level) => <MotionBlock 
+                        key={level}
+                        level={level}
+                        isSelected={selectedLevels.has(level)}
+                        onToggleSelected={() => onToggleSelectedLevels(level)}
+                        />)}
+    </div>
+  </div>
+  );
+};
+
 export const ControlSelectionOfBlockLevels: VFC<ControlSelectionOfBlockLevelsProps> = ({
   selectedLevels,
   onSetSelectedLevels,
@@ -87,27 +113,21 @@ export const ControlSelectionOfBlockLevels: VFC<ControlSelectionOfBlockLevelsPro
 }) => {
   console.log(selectedLevels);
   return (
-    <div css={{
-      width: '216px',
-    }} {...rest}>
+    <div {...rest}>
       <h3 css={{ 
         marginBottom: '8px',
         fontSize: font.size.S, 
         }}>Level</h3>
-
-        <ClearSelectionButton onClick={() => onSetSelectedLevels(new Set())} />
-      <SelectedArea css={{ marginRight: '8px' }}/> 
-      <div css={{
-        padding: '0 16px',
-        display: 'flex',
-        justifyContent: 'space-between',
-      }}{...rest}>
-        {[...range(0, 6)].map((level) => <MotionBlock 
-                          key={level}
-                          level={level}
-                          isSelected={selectedLevels.has(level)}
-                          onToggleSelected={() => onToggleSelectedLevels(level)}
-                          />)}
+      <div css={{ display: 'flex', alignItems: 'flex-start' }}>
+        <SelectionControler 
+          css={{ marginRight: '8px' }}
+          selectedLevels={selectedLevels}
+          onToggleSelectedLevels={onToggleSelectedLevels}
+        />
+        <ClearSelectionButton 
+          css={{ marginTop: '4px' }}
+          onClick={() => onSetSelectedLevels(new Set())} 
+        />
       </div>
     </div>
   );
