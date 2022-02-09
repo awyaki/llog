@@ -1,12 +1,21 @@
 import { 
   VFC,
-  useState,
-  useCallback,
-  useReducer,
   } from 'react';
 
+import { SearchIcon } from '~/components';
+
+import { CSSObject } from '@emotion/react';
+
+import { colors, font } from '~/styleConfig';
+
+import { 
+  motion,
+  Variants
+  } from 'framer-motion';
 
 import { Tag } from '@prisma/client';
+
+import { useSearchTagsByName } from './hooks';
 
 /**
  *
@@ -34,28 +43,184 @@ import { Tag } from '@prisma/client';
 
 
 type ControlTagSelectionWithSearchProps = {
+  css?: CSSObject;
   tags: Tag[];
   selectedTags: Tag[];
   onSelectedTags: (tags: Tag[]) => void;
   onToggleSelectedTags: (tag: Tag) => void;
 };
 
-
-const reducer = () => {
-
+type AllTagsProps = {
+  css?: CSSObject;
+  tags: Tag[];
+  selectedTags: Tag[];
+  onToggleSeletedTag?: (tag: Tag) => void;
 };
 
-const useSearchTagsByName = () => {
+type SelectedTagsProps = {
+  css?: CSSObject;
+  selectedTags: Tag[];
+};
 
+type SearchQueryInputBoxProps = {
+  css?: CSSObject;
+  searchQuery: string;
+  setSearchQuery: (query: string) => void;
+};
+
+const tagVariants: Variants = {
+  nonSelected: {
+    color: colors.cyan.DEFAULT,
+    backgroundColor: 'transparent'
+  },
+  selected: {
+    color: colors.white,
+    backgroundColor: colors.cyan.DEFAULT,
+  },
+};
+
+const AllTags: VFC<AllTagsProps> = ({
+  tags,
+  selectedTags,
+  onToggleSeletedTag = () => {},
+  ...rest
+}) => {
+  return (
+    <ul 
+      css={{
+        width: '100%',
+        display: 'flex',
+        flexWrap: 'wrap',
+        '> li': {
+          marginRight: '4px',
+          marginBottom: '4px',
+        },
+      }}
+    {...rest}>
+      {tags.map(({ id, name }) => {
+        const isSelected = selectedTags.some((tag) => tag.id === id);
+        return (
+          <li key={id}>
+            <motion.button
+              variants={tagVariants}
+              initial={isSelected ? 'selected' : 'nonSelected'}
+              animate={isSelected ? 'selected' : 'nonSelected'} 
+              onClick={() => onToggleSeletedTag({ id, name })}
+              style={{
+                minWidth: '80px',
+                textAlign: 'center',
+                fontSize: font.size.SS,
+                borderRadius: '4px',
+                borderWidth: '1px',
+                borderStyle: 'solid',
+                borderColor: colors.cyan.DEFAULT,
+                padding: '2px 4px',
+              }}>
+              {name}
+            </motion.button>
+          </li>
+        );
+      })}
+    </ul>
+  );
 };
 
 
+const SelectedTags: VFC<SelectedTagsProps> = ({
+  selectedTags,
+  ...rest
+}) => {
+  return (
+    <ul 
+      css={{
+        width: '100%',
+        display: 'flex',
+        flexWrap: 'wrap',
+        '> li': {
+          marginRight: '4px',
+          marginBottom: '4px',
+        },
+      }}
+    {...rest}>
+      {selectedTags.map(({ id, name }) => {
+        return (
+          <li key={id}
+              css={{
+                minWidth: '80px',
+                textAlign: 'center',
+                fontSize: font.size.SS,
+                borderRadius: '4px',
+                borderWidth: '1px',
+                borderStyle: 'solid',
+                borderColor: colors.cyan.DEFAULT,
+                color: colors.cyan.DEFAULT,
+                padding: '2px 4px',
+              }}>
+              {name}
+          </li>
+        );
+      })}
+    </ul>
+  );
+};
+
+
+const SearchQueryInputBox: VFC<SearchQueryInputBoxProps> = ({
+  searchQuery,
+  setSearchQuery,
+  ...rest
+}) => {
+  return (
+    <div css={{ 
+      display: 'flex', 
+      alignItems: 'flex-end', 
+      marginBottom: '16px'
+      }} {...rest}>
+      <input 
+        css={{ 
+          width: '200px',
+          borderBottom: `2px solid ${colors.cyan.DEFAULT}`,
+          marginRight: '4px'
+          }}
+        type="text" 
+        value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value)} />
+      <SearchIcon />
+    </div>
+  );
+};
 
 export const ControlTagSelectionWithSearch: VFC<ControlTagSelectionWithSearchProps> = ({
   tags,
+  selectedTags,
+  onSelectedTags,
+  onToggleSelectedTags,
+  ...rest
 }) => {
+  const { 
+    filteredTags,
+    tagNameQuery,
+    setTagNameQuery,
+    } = useSearchTagsByName({ tags });
+
   return (
-    <>
-    </>
+    <div 
+      css={{
+        padding: '16px',
+        border: `1px solid ${colors.cyan.DEFAULT}`,
+        borderRadius: '4px',
+      }}
+      {...rest}>
+      <SearchQueryInputBox 
+        searchQuery={tagNameQuery}
+        setSearchQuery={setTagNameQuery}
+      />
+      <SelectedTags selectedTags={selectedTags} />
+      <AllTags 
+        tags={filteredTags}
+        selectedTags={selectedTags}
+        onToggleSeletedTag={onToggleSelectedTags}
+      />
+    </div>
   );
 };

@@ -10,18 +10,19 @@ import { Tag } from '@prisma/client';
 import { 
     filteredTagsReducer, 
     Action,
-    State } from './filteredTagsReducer';
+    State
+} from './filteredTagsReducer';
 
 
-type Props = {
+type UseSearchTagsByNameArgument = {
   tags: Tag[];
 };
 
-export const useSearchTagsByName = ({ tags }: Props) => {
+export const useSearchTagsByName = ({ tags }: UseSearchTagsByNameArgument) => {
 
   const [{ filteredTags, tagNameQuery }, dispatch] = useReducer<Reducer<State, Action>, State>(filteredTagsReducer, { 
-    tags: tags,
-    filteredTags: tags,
+    tags: [...tags],
+    filteredTags: [...tags],
     tagNameTokenMap: new Map(),
     tagNameQuery: '',
   }, ({ tags, filteredTags }) => {
@@ -38,6 +39,7 @@ export const useSearchTagsByName = ({ tags }: Props) => {
   const setTagNameQuery = (tagNameQuery: string) => {
     dispatch({ type: 'FILTERED_TAGS/CALCULATE_WITH_NEW_TAG_NAME_QUERY', tagNameQuery: tagNameQuery });
   };
+
 
   return {
     filteredTags,

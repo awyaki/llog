@@ -1,1 +1,1 @@
-export * from './filteredTagsReducer';
+export * from './useSearchByTagName';
