@@ -34,7 +34,7 @@ export const TagsList: VFC<Props> = ({
       css={tagsContainer} 
       {...rest}>
       {tags.map(({ id, name }) => 
-        <li>
+        <li key={id}>
           <motion.button
             onClick={() => onClickTag(id)}
             key={id}
