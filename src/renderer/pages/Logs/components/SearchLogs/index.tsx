@@ -32,7 +32,7 @@ type SearchLogsProps = {
   setSinceQuery: (arg: Date | null) => void;
   untilQuery: Date | null;
   setUntilQuery: (arg: Date | null) => void;
-  tags: Tag[];
+  tags: Tag[] | null;
   tagsQuery: Tag[];
   setTagsQuery: (tags: Tag[]) => void;
   toggleTagsQuery: (tag: Tag) => void; 
@@ -185,12 +185,13 @@ export const SearchLogs: VFC<SearchLogsProps> = ({
         setSinceQuery={setSinceQuery}
         untilQuery={untilQuery}
         setUntilQuery={setUntilQuery} />
-      <ControlTagSelectionWithSearch 
-        tags={tags}
-        selectedTags={tagsQuery}
-        onToggleSelectedTags={toggleTagsQuery}
-        onSelectedTags={setTagsQuery}
-      />
+      {tags !== null ?
+        <ControlTagSelectionWithSearch 
+          tags={tags}
+          selectedTags={tagsQuery}
+          onToggleSelectedTags={toggleTagsQuery}
+          onSelectedTags={setTagsQuery}
+        /> : undefined}
     </div>
   );
 };

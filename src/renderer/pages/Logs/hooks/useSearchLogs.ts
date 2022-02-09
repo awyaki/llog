@@ -25,7 +25,7 @@ export const useSearchLogs = (initialLogs: LogWithRelation[]) => {
     filteredLogs: [],
   });
   
-  const [tags, setTags] = useState<Tag[]>([]);
+  const [tags, setTags] = useState<Tag[] | null>(null);
 
   const setSinceQuery = useCallback((sinceQuery: Date | null) => {
     dispatch({ type: 'SEARCH_LOGS/SET_SINCE', sinceQuery: sinceQuery });

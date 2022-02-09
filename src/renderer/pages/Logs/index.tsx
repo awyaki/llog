@@ -39,8 +39,8 @@ export const Logs: VFC = () => {
     onSubmitLog, 
     onUpdateLogTitle
     } = useLogs()
+ 
   
-
   const { isOpen: isOpenSubmit, onClose: onCloseSubmit } = useContext(ModalToSubmitLogContext);
   const { isOpen: isOpenUpdate, onClose: onCloseUpdate } = useContext(ModalToUpdateLogTitleContext);
 
