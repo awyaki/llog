@@ -2,7 +2,7 @@ import { VFC } from 'react';
 
 import { range } from '~/utils';
 
-import { colors } from '~/styleConfig';
+import { colors, font } from '~/styleConfig';
 
 import { makeMiniBlockStyle } from '~/style';
 
@@ -28,10 +28,13 @@ type MotionBlockProps = {
   onToggleSelected: () => void;
 };
 
+type SelectedAreaProps = {
+  css?: CSSObject;
+};
 
 const blockVariants: Variants = {
-  selected: { alignSelf: 'flex-start' },
-  nonSelected: { alignSelf: 'flex-end' }
+  selected: { y: -33 },
+  nonSelected: { y: 0 }
 };
 
 
@@ -53,6 +56,15 @@ const MotionBlock: VFC<MotionBlockProps> = ({
   );
 };
 
+const SelectedArea: VFC<SelectedAreaProps> = ({ ...rest }) => {
+  return (
+      <div css={{
+        height: '32px',
+        borderRadius: '4px',
+        backgroundColor: colors.cyan.BACKGROUND,
+        border: `1px solid ${colors.cyan.DEFAULT}`,
+      }} {...rest}></div>);
+};
 
 export const ControlSelectionOfBlockLevels: VFC<ControlSelectionOfBlockLevelsProps> = ({
   selectedLevels,
@@ -60,24 +72,28 @@ export const ControlSelectionOfBlockLevels: VFC<ControlSelectionOfBlockLevelsPro
   onToggleSelectedLevels,
   ...rest
 }) => {
+  console.log(selectedLevels);
   return (
-    <ul css={{
-      width: '300px',
-      display: 'flex',
-      justifyContent: 'space-between',
-    }}{...rest}>
+    <div css={{
+      width: '216px',
+    }} {...rest}>
+      <h3 css={{ 
+        marginBottom: '8px',
+        fontSize: font.size.S, 
+        }}>Level</h3>
+      <SelectedArea css={{ marginBottom: '8px' }}/> 
       <div css={{
-        height: '40px',
-        boder: `1px solid ${colors.cyan.DEFAULT}`,
-        boderRadius: '4px',
-      }}></div>
-      {[...range(0, 6)].map((level) => <li key={level}>
-                                          <MotionBlock 
-                                            level={level}
-                                            isSelected={selectedLevels.has(level)}
-                                            onToggleSelected={() => onToggleSelectedLevels(level)}
-                                            />
-                                      </li>)}
-    </ul>
+        padding: '0 16px',
+        display: 'flex',
+        justifyContent: 'space-between',
+      }}{...rest}>
+        {[...range(0, 6)].map((level) => <MotionBlock 
+                          key={level}
+                          level={level}
+                          isSelected={selectedLevels.has(level)}
+                          onToggleSelected={() => onToggleSelectedLevels(level)}
+                          />)}
+      </div>
+    </div>
   );
 };

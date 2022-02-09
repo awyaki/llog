@@ -7,7 +7,10 @@ import {
 
 import { Tag } from '@prisma/client';
 
-import { ControlTagSelectionWithSearch } from '~/components';
+import { 
+  ControlTagSelectionWithSearch,
+  ControlSelectionOfBlockLevels,
+  } from '~/components';
 
 import DatePicker from 'react-datepicker';
 
@@ -187,11 +190,19 @@ export const SearchLogs: VFC<SearchLogsProps> = ({
         setUntilQuery={setUntilQuery} />
       {tags !== null ?
         <ControlTagSelectionWithSearch 
+          css={{ marginBottom: '16px' }}
           tags={tags}
           selectedTags={tagsQuery}
           onToggleSelectedTags={toggleTagsQuery}
           onSetSelectedTags={setTagsQuery}
         /> : undefined}
+      <h2 css={{ marginBottom: '8px' }}>Block</h2>
+      <ControlSelectionOfBlockLevels
+        selectedLevels={new Set([2, 5])}
+        onSetSelectedLevels={() => {}}
+        onToggleSelectedLevels={() => {}}
+        
+      />
     </div>
   );
 };
