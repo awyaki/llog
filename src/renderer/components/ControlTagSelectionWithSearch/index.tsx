@@ -27,6 +27,7 @@ import { useSearchTagsByName } from './hooks';
  *   - Search tags by tags name from user input.
  *
  *   ## Interface for developers (the `props` of `ControlTagSelectionWithSearch` and the returned value of view)
+ *   - `css?: CSSObject` - For styling
  *   - `tags: Tag[]` - All tags may be selected by the user.
  *   - `selectedTags: Tag[]` - Tags are selected by the user.
  *   - `onSetSelectedTags: (tags: Tag[]) => void` - Set the value of `slectedTags` into the `tags` argument.
@@ -205,19 +206,21 @@ export const ControlTagSelectionWithSearch: VFC<ControlTagSelectionWithSearchPro
 
 
   return (
-    <div 
-      css={{
-        padding: '16px',
-        border: `1px solid ${colors.cyan.DEFAULT}`,
-        borderRadius: '4px',
-      }}
-      {...rest}>
+    <div {...rest}>
+      <h2 css={{ marginBottom: '16px' }}>Tags</h2>
+      <SelectedTags 
+        css={{ marginBottom: '4px' }}
+        selectedTags={selectedTags} />
       <SearchQueryInputBox 
         searchQuery={tagNameQuery}
         setSearchQuery={setTagNameQuery}
       />
-      <SelectedTags selectedTags={selectedTags} />
       <AllTags 
+        css={{
+          padding: '16px',
+          border: `1px solid ${colors.cyan.DEFAULT}`,
+          borderRadius: '4px',
+        }}
         tags={filteredTags}
         selectedTags={selectedTags}
         onToggleSeletedTag={onToggleSelectedTags}
