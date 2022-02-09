@@ -5,6 +5,10 @@ import {
   useCallback,
   } from 'react';
 
+import { CSSObject } from '@emotion/react';
+
+import { Tag } from '@prisma/client';
+
 import { useHistory } from 'react-router-dom';
 
 import { colors, font } from '~/styleConfig';
@@ -16,7 +20,6 @@ import { LogWithRelation } from '~/pages/type';
 import { Collapse } from '@chakra-ui/transition';
 
 import { 
-  TagsList,
   MiniBlockList,
   BlockList,
   NormalButton,
@@ -28,7 +31,7 @@ import {
   LogContext,
   MarkdownForHandleNoteContext,
   SelectedBlocksForHandleNoteContext,
-  SelectedTagsContext
+  SelectedTagsContext,
   } from '~/components';
 
 import 'zenn-content-css';
@@ -38,11 +41,53 @@ import {
   } from 'framer-motion';
 
 
-type Props = {
+type LogCardProps = {
   log: LogWithRelation;
 };
 
-export const LogCard: VFC<Props> = ({ log }) => {
+type TagListOfLogCardProps = {
+  css?: CSSObject;
+  tags: Tag[];
+};
+
+
+const TagListOfLogCard: VFC<TagListOfLogCardProps> = ({
+  tags,
+  ...rest
+}) => {
+  return (
+    <ul 
+      css={{
+        width: '100%',
+        display: 'flex',
+        flexWrap: 'wrap',
+        '> li': {
+          marginRight: '4px',
+          marginBottom: '4px',
+        },
+      }}
+    {...rest}>
+      {tags.map(({ id, name }) => <li 
+                                    css={{
+                                      minWidth: '80px',
+                                      textAlign: 'center',
+                                      fontSize: font.size.SS,
+                                      borderRadius: '4px',
+                                      borderWidth: '1px',
+                                      borderStyle: 'solid',
+                                      borderColor: colors.cyan.DEFAULT,
+                                      backgroundColor: colors.cyan.BACKGROUND,
+                                      color: colors.cyan.DEFAULT,
+                                      padding: '2px 4px',
+                                    }}
+                                    key={id}>{name}</li>)}
+    </ul>
+  );
+};
+
+
+
+export const LogCard: VFC<LogCardProps> = ({ log }) => {
   const {
     title,
     markdown,
@@ -121,9 +166,10 @@ export const LogCard: VFC<Props> = ({ log }) => {
             }}>
               {makeFormalTimeString(createdAt)}
             </div>
-            <TagsList 
+            <TagListOfLogCard
               css={{ marginBottom: '4px' }}
-              tags={tags} />
+              tags={tags}
+            />
             <h2 css={{ fontSize: font.size.M }}>{title}</h2>
           </div>
           <MiniBlockList blocks={blocks} />
