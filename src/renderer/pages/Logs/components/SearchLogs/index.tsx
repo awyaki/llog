@@ -20,6 +20,8 @@ import { CSSObject } from '@emotion/react';
 
 import { colors } from '~/styleConfig';
 
+import { ContentNameAndId } from '../../hooks';
+
 const labelStyle: CSSObject = {
   display: 'block',
   marginBottom: '8px',
@@ -42,6 +44,9 @@ type SearchLogsProps = {
   levelsQuery: Set<number>;
   setLevelsQuery: (levels: Set<number>) => void;
   toggleLevelsQuery: (level: number) => void;
+  contentNameQuery: ContentNameAndId[];
+  setContentNameQuery: (contentNameQuery: ContentNameAndId[]) => void;
+  toggleContentNameQuery: (contentNameAndId: ContentNameAndId) => void;
 };
 
 

@@ -18,6 +18,8 @@ import {
     LogContext
 } from '~/components';
 
+export type { ContentNameAndId } from './searchLogsReducer';
+
 export const useLogs = () => {
   const [logs, setLogs] = useState<LogWithRelation[]>([]);
 
@@ -41,6 +43,8 @@ export const useLogs = () => {
     setLevelsQuery,
     toggleLevelsQuery,
     contentNameQuery,
+    setContentNameQuery,
+    toggleContentNameQuery,
   } = useSearchLogs(logs);
 
 
@@ -108,5 +112,8 @@ export const useLogs = () => {
     levelsQuery,
     setLevelsQuery,
     toggleLevelsQuery,
+    contentNameQuery,
+    setContentNameQuery,
+    toggleContentNameQuery,
   };
 };
