@@ -16,6 +16,7 @@ type State = {
   sinceQuery: Date | null;
   untilQuery: Date | null;
   levelsQuery: Set<number>;
+  contentNameQuery: Set<number>;
   logs: LogWithRelation[];
   filteredLogs: LogWithRelation[];
 };
@@ -44,6 +45,9 @@ type Action = {
 } | {
   type: 'SEARCH_LOGS/TOGGLE_LEVELS_QUERY';
   level: number;
+} | {
+  type: 'SEARCH_LOGS/SET_CONTENT_NAME_QUERY';
+  contentNameQuery: Set<number>;
 };
 
 
@@ -112,6 +116,20 @@ const levelsFilter = ({
           : logs.filter(({ blocks }) => blocks.some(({ level }) => levelsQuery.has(level)));
 };
 
+type ContentNameFilterArguments = Pick<State, 'logs' | 'contentNameQuery'>;
+
+const contentNameFilter = ({
+  logs,
+  contentNameQuery
+}: ContentNameFilterArguments) => {
+  return contentNameQuery.size === 0
+            ? logs
+            : logs.filter(({ contentId }) => {
+              if (contentId === null) return false;
+              return contentNameQuery.has(contentId);
+            });
+};
+
 type FilterByAllQueriesArguments = Omit<State, 'filteredLogs'>;
 
 const filterByAllQueries = ({
@@ -122,6 +140,7 @@ const filterByAllQueries = ({
   titlesTokenMap,
   tagsQuery,
   levelsQuery,
+  contentNameQuery
 }: FilterByAllQueriesArguments) => {
 
     const idSetForTitleQuery = titlesTokenMap.get(titleQuery) ?? new Set();
@@ -150,6 +169,7 @@ const filterByAllQueries = ({
       logs: filteredBySinceAndUntilAndTitleAndTags,
       levelsQuery: levelsQuery,
     });
+
 
     return filteredBySinceAndUntilAndTitleAndTagsAndLevels;
 };
