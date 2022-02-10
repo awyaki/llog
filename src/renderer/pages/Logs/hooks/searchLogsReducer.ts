@@ -312,6 +312,20 @@ export const searchLogsReducer: Reducer<State, Action> = (state, action) => {
 
       return nextState;
     }
+
+    case 'SEARCH_LOGS/SET_CONTENT_NAME_QUERY': {
+      const nextState = { ...state };
+      const { contentNameQuery, filteredLogs, ...rest } = state;
+      const nextContentNameQuery = new Set(action.contentNameQuery);
+      
+      nextState.contentNameQuery = nextContentNameQuery;
+      nextState.filteredLogs = filterByAllQueries({
+        contentNameQuery: nextContentNameQuery, 
+        ...rest
+      });
+
+      return nextState;
+    }
     default:
       return state;
   }

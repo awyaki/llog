@@ -40,6 +40,7 @@ export const useLogs = () => {
     levelsQuery,
     setLevelsQuery,
     toggleLevelsQuery,
+    contentNameQuery,
   } = useSearchLogs(logs);
 
 
