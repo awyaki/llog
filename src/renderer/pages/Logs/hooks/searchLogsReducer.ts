@@ -169,9 +169,13 @@ const filterByAllQueries = ({
       logs: filteredBySinceAndUntilAndTitleAndTags,
       levelsQuery: levelsQuery,
     });
+    
+    const filteredBySinceAndUntilAndTitleAndTagsAndLevelsAndContentName = contentNameFilter({
+      logs: filteredBySinceAndUntilAndTitleAndTagsAndLevels,
+      contentNameQuery: contentNameQuery,
+    });
 
-
-    return filteredBySinceAndUntilAndTitleAndTagsAndLevels;
+    return filteredBySinceAndUntilAndTitleAndTagsAndLevelsAndContentName;
 };
 
 
