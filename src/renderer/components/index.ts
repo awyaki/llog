@@ -27,3 +27,4 @@ export * from './SelectedTagsForHandleNoteContextProvider';
 export * from './ModalToUpdateLogTitle';
 export * from './ControlTagSelectionWithSearch';
 export * from './ControlSelectionOfBlockLevels';
+export * from './ControlSelectionOfContentNameWithSearch';
