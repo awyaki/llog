@@ -8,7 +8,7 @@ import { createNGramTokenMap } from '~/utils';
 
 import { LogWithRelation } from '~/pages/type';
 
-type ContentNameAndId = {
+export type ContentNameAndId = {
   id: number;
   name: string;
 };
