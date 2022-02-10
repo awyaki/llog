@@ -54,7 +54,7 @@ type Action = {
   contentNameQuery: ContentNameAndId[];
 } | {
   type: 'SEARCH_LOGS/TOGGLE_CONTENT_NAME_QUERY';
-  contentId: number;
+  contentNameAndId: ContentNameAndId;
 };
 
 
@@ -328,6 +328,28 @@ export const searchLogsReducer: Reducer<State, Action> = (state, action) => {
       nextState.contentNameQuery = nextContentNameQuery;
       nextState.filteredLogs = filterByAllQueries({
         contentNameQuery: nextContentNameQuery, 
+        ...rest
+      });
+
+      return nextState;
+    }
+    
+    case 'SEARCH_LOGS/TOGGLE_CONTENT_NAME_QUERY': {
+      const nextState = { ...state };
+      const { contentNameQuery, filteredLogs, ...rest } = state;
+
+      const nextContentNameQuery = (() => {
+        const index = contentNameQuery.findIndex(({ id }) => id === action.contentNameAndId.id);
+        return index === -1
+                ? contentNameQuery.concat({ ...action.contentNameAndId })
+                : contentNameQuery
+                    .slice(0, index)
+                    .concat(contentNameQuery.slice(index + 1));
+      })();
+      
+      nextState.contentNameQuery = nextContentNameQuery;
+      nextState.filteredLogs = filterByAllQueries({
+        contentNameQuery: nextContentNameQuery,
         ...rest
       });
 
