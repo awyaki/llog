@@ -8,6 +8,10 @@ import { createNGramTokenMap } from '~/utils';
 
 import { LogWithRelation } from '~/pages/type';
 
+type ContentNameAndId = {
+  id: number;
+  name: string;
+};
 
 type State = {
   titleQuery: string;
@@ -16,7 +20,7 @@ type State = {
   sinceQuery: Date | null;
   untilQuery: Date | null;
   levelsQuery: Set<number>;
-  contentNameQuery: Set<number>;
+  contentNameQuery: ContentNameAndId[];
   logs: LogWithRelation[];
   filteredLogs: LogWithRelation[];
 };
@@ -47,7 +51,10 @@ type Action = {
   level: number;
 } | {
   type: 'SEARCH_LOGS/SET_CONTENT_NAME_QUERY';
-  contentNameQuery: Set<number>;
+  contentNameQuery: ContentNameAndId[];
+} | {
+  type: 'SEARCH_LOGS/TOGGLE_CONTENT_NAME_QUERY';
+  contentId: number;
 };
 
 
@@ -122,11 +129,11 @@ const contentNameFilter = ({
   logs,
   contentNameQuery
 }: ContentNameFilterArguments) => {
-  return contentNameQuery.size === 0
+  return contentNameQuery.length === 0
             ? logs
             : logs.filter(({ contentId }) => {
               if (contentId === null) return false;
-              return contentNameQuery.has(contentId);
+              return contentNameQuery.some(({ id }) => contentId === id);
             });
 };
 
@@ -316,7 +323,7 @@ export const searchLogsReducer: Reducer<State, Action> = (state, action) => {
     case 'SEARCH_LOGS/SET_CONTENT_NAME_QUERY': {
       const nextState = { ...state };
       const { contentNameQuery, filteredLogs, ...rest } = state;
-      const nextContentNameQuery = new Set(action.contentNameQuery);
+      const nextContentNameQuery = [...action.contentNameQuery];
       
       nextState.contentNameQuery = nextContentNameQuery;
       nextState.filteredLogs = filterByAllQueries({
@@ -326,6 +333,7 @@ export const searchLogsReducer: Reducer<State, Action> = (state, action) => {
 
       return nextState;
     }
+
     default:
       return state;
   }
