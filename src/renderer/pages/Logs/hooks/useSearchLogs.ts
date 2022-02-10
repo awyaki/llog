@@ -15,7 +15,7 @@ import { LogWithRelation } from '~/pages/type';
 
 
 export const useSearchLogs = (initialLogs: LogWithRelation[]) => {
-  const [{ titleQuery, sinceQuery, untilQuery, tagsQuery, levelsQuery, filteredLogs }, dispatch ] = useReducer(searchLogsReducer, {
+  const [{ titleQuery, sinceQuery, untilQuery, tagsQuery, levelsQuery, contentNameQuery, filteredLogs }, dispatch ] = useReducer(searchLogsReducer, {
     logs: [],
     titleQuery: '',
     titlesTokenMap: new Map<string, Set<number>>(),
@@ -23,6 +23,7 @@ export const useSearchLogs = (initialLogs: LogWithRelation[]) => {
     sinceQuery: null,
     untilQuery: null,
     levelsQuery: new Set<number>(),
+    contentNameQuery: new Set<number>(),
     filteredLogs: [],
   });
   
@@ -85,6 +86,7 @@ export const useSearchLogs = (initialLogs: LogWithRelation[]) => {
     setLevelsQuery,
     levelsQuery,
     toggleLevelsQuery,
+    contentNameQuery,
     filteredLogs
   };
 
