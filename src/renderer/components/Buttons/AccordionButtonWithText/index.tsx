@@ -46,7 +46,8 @@ export const AccordionButtonWithText: VFC<Props> = ({
     <motion.button 
       onClick={onClick}
       variants={container}
-      animate={isOpen ? "open" : "close"}
+      initial={isOpen ? 'open' : 'close'}
+      animate={isOpen ? 'open' : 'close'}
       style={{
         padding: '8px 16px',
         borderWidth: '1px',
