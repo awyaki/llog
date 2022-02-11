@@ -6,3 +6,4 @@ export * from './upsertContentBlocks';
 export * from './updateContentTags';
 export * from './deleteConnectContentTags';
 export * from './deleteContent';
+export * from './getAllContentName';
