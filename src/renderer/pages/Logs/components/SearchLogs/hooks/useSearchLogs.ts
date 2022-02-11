@@ -7,7 +7,7 @@ import {
 
 import { ContentNameWithId } from '~/components';
 
-import { getAllTag } from '~/api';
+import { getAllTag, getAllContentName } from '~/api';
 
 import { Tag } from '@prisma/client';
 
@@ -30,6 +30,7 @@ export const useSearchLogs = (initialLogs: LogWithRelation[]) => {
   });
   
   const [tags, setTags] = useState<Tag[] | null>(null);
+  const [contentNames, setContentNames] = useState<ContentNameWithId[] | null>(null);
 
   const setSinceQuery = useCallback((sinceQuery: Date | null) => {
     dispatch({ type: 'SEARCH_LOGS/SET_SINCE', sinceQuery: sinceQuery });
@@ -83,6 +84,13 @@ export const useSearchLogs = (initialLogs: LogWithRelation[]) => {
     })();
   }, []);
 
+  useEffect(() => {
+    (async () => {
+      const allContentNames = await getAllContentName();
+      setContentNames(allContentNames);
+    })();
+  }, []);
+
   return {
     titleQuery,
     setTitleQuery,
@@ -97,6 +105,7 @@ export const useSearchLogs = (initialLogs: LogWithRelation[]) => {
     setLevelsQuery,
     levelsQuery,
     toggleLevelsQuery,
+    contentNames,
     contentNameQuery,
     setContentNameQuery,
     toggleContentNameQuery,

@@ -186,6 +186,7 @@ export const SearchLogs: VFC<SearchLogsProps> = ({
     setLevelsQuery,
     levelsQuery,
     toggleLevelsQuery,
+    contentNames,
     contentNameQuery,
     setContentNameQuery,
     toggleContentNameQuery,
@@ -213,12 +214,13 @@ export const SearchLogs: VFC<SearchLogsProps> = ({
         setSinceQuery={setSinceQuery}
         untilQuery={untilQuery}
         setUntilQuery={setUntilQuery} />
-      <ControlSelectionOfContentNameWithSearch 
-          contentNames={logs.map(({ id, contentName }) => ({ id, contentName }))}
+      {contentNames !== null ?
+        <ControlSelectionOfContentNameWithSearch 
+          contentNames={contentNames}
           selectedContentNames={contentNameQuery}
           setSelectedContentNames={setContentNameQuery}
           toggleSelectedContentNames={toggleContentNameQuery}
-      />
+      /> : undefined}
       {tags !== null ?
         <ControlTagSelectionWithSearch 
           css={{ marginBottom: '16px' }}
