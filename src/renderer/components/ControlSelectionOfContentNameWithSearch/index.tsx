@@ -1,5 +1,6 @@
 import { 
   VFC,
+  useCallback,
   } from 'react';
 
 import { CSSObject } from '@emotion/react';
@@ -43,6 +44,12 @@ type SearchQueryInputBoxProps = {
   css?: CSSObject;
   searchContentNameQuery: string;
   setSearchContentNameQuery: (query: string) => void;
+};
+
+
+type ClearSelectionButtonProps = {
+  css?: CSSObject;
+  clearSelection: () => void;
 };
 
 const contentNameItemVariants: Variants = {
@@ -138,6 +145,27 @@ const SearchQueryInputBox: VFC<SearchQueryInputBoxProps> = ({
 };
 
 
+const ClearSelectionButton: VFC<ClearSelectionButtonProps> = ({ clearSelection, ...rest }) => {
+  return (
+    <button 
+      css={{
+          minWidth: '80px',
+          textAlign: 'center',
+          fontSize: font.size.SS,
+          borderRadius: '4px',
+          borderWidth: '1px',
+          borderStyle: 'solid',
+          borderColor: colors.red.DEFAULT,
+          backgroundColor: colors.red.DEFAULT,
+          color: colors.white,
+          padding: '2px 4px',
+      }}
+      onClick={clearSelection} {...rest}>
+      Clear 
+    </button>
+  );
+};
+
 export const ControlSelectionOfContentNameWithSearch: VFC<ControlSelectionOfContentNameWithSearchProps> = ({
   contentNames,
   selectedContentNames,
@@ -151,22 +179,24 @@ export const ControlSelectionOfContentNameWithSearch: VFC<ControlSelectionOfCont
     searchContentNameQuery,
     setSearchContentNameQuery
     } = useSearchByContentName({ contentNames });
+  
+  const clearSelection = useCallback(() => {
+    setSelectedContentNames([]);
+  }, []); 
 
   return (
     <div {...rest}>
-      <h2 css={{ marginBottom: '4px' }}>Contents</h2>
+      <h2 css={{ marginBottom: '8px' }}>Contents</h2>
+      <ClearSelectionButton 
+        css={{ marginBottom: '8px' }}
+        clearSelection={clearSelection}
+      />
       <SearchQueryInputBox 
         css={{ marginBottom: '16px' }}
         searchContentNameQuery={searchContentNameQuery}
         setSearchContentNameQuery={setSearchContentNameQuery}
       />
       <ContentNameItemList
-        css={{
-          padding: '16px',
-          border: `1px solid ${colors.cyan.DEFAULT}`,
-          borderRadius: '4px',
-          marginBottom: '32px',
-        }}
         contentNames={filteredContentNames}
         selectedContentNames={selectedContentNames}
         toggleSelectedContentNames={toggleSelectedContentNames}

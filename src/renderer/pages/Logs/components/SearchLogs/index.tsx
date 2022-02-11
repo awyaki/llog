@@ -209,7 +209,7 @@ export const SearchLogs: VFC<SearchLogsProps> = ({
         titleQuery={titleQuery}
         setTitleQuery={setTitleQuery} />
       <DateInputs 
-        css={{ marginBottom: '16px' }}
+        css={{ marginBottom: '32px' }}
         sinceQuery={sinceQuery}
         setSinceQuery={setSinceQuery}
         untilQuery={untilQuery}
