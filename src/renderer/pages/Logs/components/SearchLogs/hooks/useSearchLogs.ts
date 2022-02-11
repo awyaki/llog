@@ -82,6 +82,7 @@ export const useSearchLogs = (initialLogs: LogWithRelation[]) => {
       setTags(allTags);
     })();
   }, []);
+
   return {
     titleQuery,
     setTitleQuery,

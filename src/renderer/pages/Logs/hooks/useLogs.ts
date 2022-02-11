@@ -11,7 +11,6 @@ import {
   updateLogTitle,
 } from '~/api';
 
-import { useSearchLogs } from './useSearchLogs';
 
 import { 
     NotifierContext,
@@ -20,31 +19,13 @@ import {
 
 
 export const useLogs = () => {
-  const [logs, setLogs] = useState<LogWithRelation[]>([]);
-
+  const [logs, setLogs] = useState<LogWithRelation[] | null>(null);
+  
+  const [filteredLogs, _setFilteredLogs] = useState<LogWithRelation[]>([]);
+  
   const { setMessage } = useContext(NotifierContext);
 
   const { log } = useContext(LogContext);
-
-  const { 
-    titleQuery,
-    setTitleQuery,
-    filteredLogs, 
-    sinceQuery,
-    setSinceQuery,
-    untilQuery,
-    setUntilQuery,
-    tags,
-    tagsQuery,
-    setTagsQuery,
-    toggleTagsQuery,
-    levelsQuery,
-    setLevelsQuery,
-    toggleLevelsQuery,
-    contentNameQuery,
-    setContentNameQuery,
-    toggleContentNameQuery,
-  } = useSearchLogs(logs);
 
 
   useEffect(() => {
@@ -92,27 +73,16 @@ export const useLogs = () => {
     setLogs(newLogs);
     setMessage('Update');
   }, [log]);
+  
+  const setFilteredLogs = useCallback((logs: LogWithRelation[]) => {
+    _setFilteredLogs(logs);
+  }, []); 
 
   return { 
     logs, 
-    titleQuery,
-    setTitleQuery,
-    sinceQuery,
-    setSinceQuery,
-    untilQuery,
-    setUntilQuery,
-    filteredLogs,
     onSubmitLog,
     onUpdateLogTitle,
-    tags,
-    tagsQuery,
-    setTagsQuery,
-    toggleTagsQuery,
-    levelsQuery,
-    setLevelsQuery,
-    toggleLevelsQuery,
-    contentNameQuery,
-    setContentNameQuery,
-    toggleContentNameQuery,
+    filteredLogs,
+    setFilteredLogs
   };
 };

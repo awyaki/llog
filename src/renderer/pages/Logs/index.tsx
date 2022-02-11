@@ -25,25 +25,10 @@ import { useLogs } from './hooks';
 export const Logs: VFC = () => {
   const { 
     logs, 
-    tags,
     filteredLogs, 
-    titleQuery,
-    setTitleQuery,
-    sinceQuery,
-    setSinceQuery,
-    tagsQuery,
-    setTagsQuery,
-    toggleTagsQuery,
-    untilQuery,
-    setUntilQuery,
+    setFilteredLogs,
     onSubmitLog, 
     onUpdateLogTitle,
-    levelsQuery,
-    setLevelsQuery,
-    toggleLevelsQuery,
-    contentNameQuery,
-    setContentNameQuery,
-    toggleContentNameQuery,
     } = useLogs()
  
   
@@ -63,27 +48,14 @@ export const Logs: VFC = () => {
         />
         <div css={container}>
           <h2 css={{ ...pageTitle, marginBottom: '16px' }}>Logs</h2>
-          <SearchLogs  
-            titleQuery={titleQuery}
-            setTitleQuery={setTitleQuery}
-            sinceQuery={sinceQuery}
-            setSinceQuery={setSinceQuery}
-            untilQuery={untilQuery}
-            setUntilQuery={setUntilQuery}
-            tags={tags}
-            tagsQuery={tagsQuery}
-            setTagsQuery={setTagsQuery}
-            toggleTagsQuery={toggleTagsQuery}
-            levelsQuery={levelsQuery}
-            setLevelsQuery={setLevelsQuery}
-            toggleLevelsQuery={toggleLevelsQuery}
-            contentNames={null}
-            contentNameQuery={contentNameQuery}
-            setContentNameQuery={setContentNameQuery}
-            toggleContentNameQuery={toggleContentNameQuery}
-          />
+          {logs !== null 
+            ? <SearchLogs  
+                logs={logs}
+                setFilteredLogs={setFilteredLogs}
+                />
+            : undefined}
           {logs === null ? <></> : undefined}
-          {logs.length === 0 ? <p>No logs</p> : undefined}
+          {filteredLogs.length === 0 ? <p>No logs</p> : undefined}
           <LineUpLogsForDate 
             logs={filteredLogs} />
         </div>

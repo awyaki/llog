@@ -2,10 +2,14 @@ import {
   VFC,
   useCallback,
   forwardRef,
-  ChangeEventHandler
+  ChangeEventHandler,
+  useEffect
   } from 'react';
 
-import { Tag } from '@prisma/client';
+
+import { useSearchLogs } from './hooks';
+
+import { LogWithRelation } from '~/pages/type';
 
 import { 
   ControlTagSelectionWithSearch,
@@ -32,23 +36,8 @@ const labelStyle: CSSObject = {
 
 type SearchLogsProps = {
   css?: CSSObject;
-  titleQuery: string,
-  setTitleQuery: (title: string) => void;
-  sinceQuery: Date | null;
-  setSinceQuery: (arg: Date | null) => void;
-  untilQuery: Date | null;
-  setUntilQuery: (arg: Date | null) => void;
-  tags: Tag[] | null;
-  tagsQuery: Tag[];
-  setTagsQuery: (tags: Tag[]) => void;
-  toggleTagsQuery: (tag: Tag) => void; 
-  levelsQuery: Set<number>;
-  setLevelsQuery: (levels: Set<number>) => void;
-  toggleLevelsQuery: (level: number) => void;
-  contentNames: ContentNameWithId[] | null;
-  contentNameQuery: ContentNameWithId[];
-  setContentNameQuery: (contentNameQuery: ContentNameWithId[]) => void;
-  toggleContentNameQuery: (contentNameAndId: ContentNameWithId) => void;
+  logs: LogWithRelation[];
+  setFilteredLogs: (logs: LogWithRelation[]) => void;
 };
 
 
@@ -74,7 +63,11 @@ const CustomStyledDateInput = forwardRef<HTMLButtonElement, { value?: string, on
 });
 
 
-type TitleInputProps = Pick<SearchLogsProps, 'titleQuery' | 'setTitleQuery' | 'css'>;
+type TitleInputProps = {
+  css?: CSSObject;
+  titleQuery: string,
+  setTitleQuery: (title: string) => void;
+};
 
 const TitleInput: VFC<TitleInputProps> = ({
   titleQuery,
@@ -112,7 +105,13 @@ const TitleInput: VFC<TitleInputProps> = ({
 
 
 
-type DateInputsProps = Pick<SearchLogsProps, 'sinceQuery' | 'setSinceQuery' | 'untilQuery' | 'setUntilQuery' | 'css'>;
+type DateInputsProps = {
+  css?: CSSObject;
+  sinceQuery: Date | null;
+  setSinceQuery: (arg: Date | null) => void;
+  untilQuery: Date | null;
+  setUntilQuery: (arg: Date | null) => void;
+};
 
 const DateInputs: VFC<DateInputsProps> = ({
   sinceQuery,
@@ -169,25 +168,34 @@ const DateInputs: VFC<DateInputsProps> = ({
 
 
 export const SearchLogs: VFC<SearchLogsProps> = ({
-  titleQuery,
-  setTitleQuery,
-  sinceQuery,
-  setSinceQuery,
-  untilQuery,
-  setUntilQuery,
-  tags,
-  tagsQuery,
-  setTagsQuery,
-  toggleTagsQuery,
-  levelsQuery,
-  setLevelsQuery,
-  toggleLevelsQuery,
-  contentNames,
-  contentNameQuery,
-  setContentNameQuery,
-  toggleContentNameQuery
+  logs,
+  setFilteredLogs,
 }) => {
-  
+
+  const {
+    titleQuery,
+    setTitleQuery,
+    sinceQuery,
+    setSinceQuery,
+    untilQuery,
+    setUntilQuery,
+    tags,
+    tagsQuery,
+    setTagsQuery,
+    toggleTagsQuery,
+    setLevelsQuery,
+    levelsQuery,
+    toggleLevelsQuery,
+    contentNameQuery,
+    setContentNameQuery,
+    toggleContentNameQuery,
+    filteredLogs
+  } = useSearchLogs(logs);
+
+  useEffect(() => {
+    setFilteredLogs(filteredLogs);
+  }, [filteredLogs]);
+
   return (
     <div css={{
       padding: '16px',
@@ -205,14 +213,12 @@ export const SearchLogs: VFC<SearchLogsProps> = ({
         setSinceQuery={setSinceQuery}
         untilQuery={untilQuery}
         setUntilQuery={setUntilQuery} />
-      {contentNames !==null
-        ? <ControlSelectionOfContentNameWithSearch 
-            contentNames={contentNames}
-            selectedContentNames={contentNameQuery}
-            setSelectedContentNames={setContentNameQuery}
-            toggleSelectedContentNames={toggleContentNameQuery}
-          />
-        : undefined}
+      <ControlSelectionOfContentNameWithSearch 
+          contentNames={logs.map(({ id, contentName }) => ({ id, contentName }))}
+          selectedContentNames={contentNameQuery}
+          setSelectedContentNames={setContentNameQuery}
+          toggleSelectedContentNames={toggleContentNameQuery}
+      />
       {tags !== null ?
         <ControlTagSelectionWithSearch 
           css={{ marginBottom: '16px' }}
