@@ -75,6 +75,12 @@ export const useEditNote = (content: ContentWithRelation) => {
         }
       }
     })();
+    return () => {
+        setMarkdown('');
+        setSelectedTags([]);
+        selectedBlocksDispatch({ type: 'SELECTED_BLOCKS/SET', blocks: [] });
+        setNote(null);
+    };
   }, [noteId]);
 
   const isNoteExist = useMemo(() => note !== null, [note]);
