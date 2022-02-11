@@ -4,7 +4,9 @@ import {
 
 import { CSSObject } from '@emotion/react';
 
-import { colors } from '~/styleConfig';
+import { SearchIcon } from '~/components';
+
+import { colors, font } from '~/styleConfig';
 
 import {
   motion,
@@ -26,6 +28,7 @@ type ControlSelectionOfContentNameWithSearchProps = {
 };
 
 type ContentNameItemProps = {
+  css?: CSSObject;
   isSelected: boolean;
   contentName: ContentNameWithId;
   onToggleSelectedContentNames: () => void;
@@ -43,7 +46,12 @@ type SearchQueryInputBoxProps = {
 };
 
 const contentNameItemVariants: Variants = {
-
+  selected: {
+    borderLeftColor: colors.cyan.DEFAULT,
+  },
+  nonSelected: {
+    borderLeftColor: colors.cyan.BACKGROUND,
+  }
 };
 
 
@@ -55,13 +63,18 @@ const ContentNameItem: VFC<ContentNameItemProps> = ({
 }) => {
   return (
     <motion.button 
+      variants={contentNameItemVariants}
+      initial={isSelected ? 'selected' : 'nonSelected'}
+      animate={isSelected ? 'selected' : 'nonSelected'}
       style={{
-        width: '100%',
+        minWidth: '120px',
         borderLeftWidth: '8px',
+        borderRightWidth: '8px',
+        borderRightColor: colors.cyan.BACKGROUND,
         borderStyle: 'solid',
-        padding: '16px',
+        padding: '8px',
         backgroundColor: colors.cyan.BACKGROUND,
-        borderColor: colors.cyan.DEFAULT,
+        fontSize: font.size.S,
         color: colors.text,
       }}
       onClick={onToggleSelectedContentNames}
@@ -79,11 +92,16 @@ const ContentNameItemList: VFC<ContentNameItemListProps> = ({
   ...rest
 }) => {
   return (
-    <div {...rest}>
+    <div css={{
+      display: 'flex',
+      flexWrap: 'wrap',
+    }} {...rest}>
       {contentNames.map((contentName) => {
         const isSelected = selectedContentNames.some(({ id }) => contentName.id === id);
         return (
           <ContentNameItem 
+            key={contentName.id}
+            css={{ marginBottom: '8px', marginRight: '8px' }}
             isSelected={isSelected}
             contentName={contentName}
             onToggleSelectedContentNames={() => toggleSelectedContentNames(contentName)}
@@ -100,15 +118,22 @@ const SearchQueryInputBox: VFC<SearchQueryInputBoxProps> = ({
   ...rest
 }) => {
   return (
-    <input 
-      css={{
-        width: '200px',
-        borderBottom: `2px solid ${colors.cyan.DEFAULT}`,
-      }}
-      value={searchContentNameQuery}
-      onChange={(e) => setSearchContentNameQuery(e.target.value)}
-      type="text"
-    {...rest} />
+    <div css={{
+      display: 'flex', 
+      alignItems: 'flex-end', 
+      marginBottom: '16px'
+    }} {...rest}>
+      <input 
+        css={{
+          width: '200px',
+          borderBottom: `2px solid ${colors.cyan.DEFAULT}`,
+          marginRight: '4px',
+        }}
+        value={searchContentNameQuery}
+        onChange={(e) => setSearchContentNameQuery(e.target.value)}
+        type="text" />
+      <SearchIcon />
+    </div>
   );
 };
 
@@ -131,11 +156,17 @@ export const ControlSelectionOfContentNameWithSearch: VFC<ControlSelectionOfCont
     <div {...rest}>
       <h2 css={{ marginBottom: '4px' }}>Contents</h2>
       <SearchQueryInputBox 
-        css={{ marginBottom: '8px' }}
+        css={{ marginBottom: '16px' }}
         searchContentNameQuery={searchContentNameQuery}
         setSearchContentNameQuery={setSearchContentNameQuery}
       />
       <ContentNameItemList
+        css={{
+          padding: '16px',
+          border: `1px solid ${colors.cyan.DEFAULT}`,
+          borderRadius: '4px',
+          marginBottom: '32px',
+        }}
         contentNames={filteredContentNames}
         selectedContentNames={selectedContentNames}
         toggleSelectedContentNames={toggleSelectedContentNames}
