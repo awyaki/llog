@@ -4,14 +4,18 @@ import {
 
 import { CSSObject } from '@emotion/react';
 
-import { colors, font } from '~/styleConfig';
+import { colors } from '~/styleConfig';
 
 import {
   motion,
   Variants,
 } from 'framer-motion';
 
+
+
 import { ContentNameWithId, useSearchByContentName } from './hooks';
+
+export type { ContentNameWithId } from './hooks';
 
 type ControlSelectionOfContentNameWithSearchProps = {
   css?: CSSObject; 

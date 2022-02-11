@@ -8,10 +8,8 @@ import { createNGramTokenMap } from '~/utils';
 
 import { LogWithRelation } from '~/pages/type';
 
-export type ContentNameAndId = {
-  id: number;
-  name: string;
-};
+import { ContentNameWithId } from '~/components';
+
 
 type State = {
   titleQuery: string;
@@ -20,7 +18,7 @@ type State = {
   sinceQuery: Date | null;
   untilQuery: Date | null;
   levelsQuery: Set<number>;
-  contentNameQuery: ContentNameAndId[];
+  contentNameQuery: ContentNameWithId[];
   logs: LogWithRelation[];
   filteredLogs: LogWithRelation[];
 };
@@ -51,10 +49,10 @@ type Action = {
   level: number;
 } | {
   type: 'SEARCH_LOGS/SET_CONTENT_NAME_QUERY';
-  contentNameQuery: ContentNameAndId[];
+  contentNameQuery: ContentNameWithId[];
 } | {
   type: 'SEARCH_LOGS/TOGGLE_CONTENT_NAME_QUERY';
-  contentNameAndId: ContentNameAndId;
+  contentNameWithId: ContentNameWithId;
 };
 
 
@@ -339,9 +337,9 @@ export const searchLogsReducer: Reducer<State, Action> = (state, action) => {
       const { contentNameQuery, filteredLogs, ...rest } = state;
 
       const nextContentNameQuery = (() => {
-        const index = contentNameQuery.findIndex(({ id }) => id === action.contentNameAndId.id);
+        const index = contentNameQuery.findIndex(({ id }) => id === action.contentNameWithId.id);
         return index === -1
-                ? contentNameQuery.concat({ ...action.contentNameAndId })
+                ? contentNameQuery.concat({ ...action.contentNameWithId })
                 : contentNameQuery
                     .slice(0, index)
                     .concat(contentNameQuery.slice(index + 1));

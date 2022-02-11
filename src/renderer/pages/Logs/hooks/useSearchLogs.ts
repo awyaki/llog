@@ -5,11 +5,13 @@ import {
   useState,
 } from 'react';
 
+import { ContentNameWithId } from '~/components';
+
 import { getAllTag } from '~/api';
 
 import { Tag } from '@prisma/client';
 
-import { searchLogsReducer, ContentNameAndId } from './searchLogsReducer';
+import { searchLogsReducer } from './searchLogsReducer';
 
 import { LogWithRelation } from '~/pages/type';
 
@@ -62,12 +64,12 @@ export const useSearchLogs = (initialLogs: LogWithRelation[]) => {
     dispatch({ type: 'SEARCH_LOGS/TOGGLE_LEVELS_QUERY', level: level });
   }, []);
 
-  const setContentNameQuery = useCallback((contentNameQuery: ContentNameAndId[]) => {
+  const setContentNameQuery = useCallback((contentNameQuery: ContentNameWithId[]) => {
     dispatch({ type: 'SEARCH_LOGS/SET_CONTENT_NAME_QUERY', contentNameQuery: contentNameQuery });
   }, []);
   
-  const toggleContentNameQuery = useCallback((contentNameAndId: ContentNameAndId) => {
-    dispatch({ type: 'SEARCH_LOGS/TOGGLE_CONTENT_NAME_QUERY', contentNameAndId: contentNameAndId });
+  const toggleContentNameQuery = useCallback((contentNameWithId: ContentNameWithId) => {
+    dispatch({ type: 'SEARCH_LOGS/TOGGLE_CONTENT_NAME_QUERY', contentNameWithId: contentNameWithId });
   }, []);
 
   useEffect(() => {

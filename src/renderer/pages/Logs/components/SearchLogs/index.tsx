@@ -10,6 +10,8 @@ import { Tag } from '@prisma/client';
 import { 
   ControlTagSelectionWithSearch,
   ControlSelectionOfBlockLevels,
+  ControlSelectionOfContentNameWithSearch,
+  ContentNameWithId,
   } from '~/components';
 
 import DatePicker from 'react-datepicker';
@@ -20,7 +22,6 @@ import { CSSObject } from '@emotion/react';
 
 import { colors } from '~/styleConfig';
 
-import { ContentNameAndId } from '../../hooks';
 
 const labelStyle: CSSObject = {
   display: 'block',
@@ -44,9 +45,10 @@ type SearchLogsProps = {
   levelsQuery: Set<number>;
   setLevelsQuery: (levels: Set<number>) => void;
   toggleLevelsQuery: (level: number) => void;
-  contentNameQuery: ContentNameAndId[];
-  setContentNameQuery: (contentNameQuery: ContentNameAndId[]) => void;
-  toggleContentNameQuery: (contentNameAndId: ContentNameAndId) => void;
+  contentNameQuery: ContentNameWithId[];
+  setContentNameQuery: (contentNameQuery: ContentNameWithId[]) => void;
+  toggleContentNameQuery: (contentNameAndId: ContentNameWithId) => void;
+  contentNames: ContentNameWithId[] | null;
 };
 
 
@@ -90,7 +92,7 @@ const TitleInput: VFC<TitleInputProps> = ({
 
   return (
     <div {...rest}>
-      <label 
+      <label
         htmlFor="title-query" 
         css={labelStyle}>Title</label>
       <input
@@ -180,6 +182,7 @@ export const SearchLogs: VFC<SearchLogsProps> = ({
   levelsQuery,
   setLevelsQuery,
   toggleLevelsQuery,
+  contentNames,
 }) => {
   
   return (
@@ -199,6 +202,14 @@ export const SearchLogs: VFC<SearchLogsProps> = ({
         setSinceQuery={setSinceQuery}
         untilQuery={untilQuery}
         setUntilQuery={setUntilQuery} />
+      {contentNames !==null
+        ? <ControlSelectionOfContentNameWithSearch 
+            contentNames={contentNames}
+            selectedContentNames={[]}
+            setSelectedContentNames={() => {}}
+            toggleSelectedContentNames={() => {}}
+          />
+        : undefined}
       {tags !== null ?
         <ControlTagSelectionWithSearch 
           css={{ marginBottom: '16px' }}

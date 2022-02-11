@@ -18,7 +18,6 @@ import {
     LogContext
 } from '~/components';
 
-export type { ContentNameAndId } from './searchLogsReducer';
 
 export const useLogs = () => {
   const [logs, setLogs] = useState<LogWithRelation[]>([]);
