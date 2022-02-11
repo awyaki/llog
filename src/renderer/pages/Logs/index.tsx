@@ -1,5 +1,6 @@
 import { 
   VFC,
+  useState,
   useContext,
   } from 'react';
 
@@ -12,7 +13,8 @@ import {
   ModalToSubmitLogContext,
   ModalToSubmitLog,
   ModalToUpdateLogTitle,
-  ModalToUpdateLogTitleContext
+  ModalToUpdateLogTitleContext,
+  AccordionButtonWithText,
   } from '~/components';
 
 import { 
@@ -31,7 +33,7 @@ export const Logs: VFC = () => {
     onUpdateLogTitle,
     } = useLogs()
  
-  
+  const [isOpenSearchLogs, setIsOpenSearchLogs] = useState(false); 
   const { isOpen: isOpenSubmit, onClose: onCloseSubmit } = useContext(ModalToSubmitLogContext);
   const { isOpen: isOpenUpdate, onClose: onCloseUpdate } = useContext(ModalToUpdateLogTitleContext);
 
@@ -48,11 +50,17 @@ export const Logs: VFC = () => {
         />
         <div css={container}>
           <h2 css={{ ...pageTitle, marginBottom: '16px' }}>Logs</h2>
+          <AccordionButtonWithText
+            css={{ marginBottom: '32px' }}
+            text="Search"
+            isOpen={isOpenSearchLogs}
+            onClick={() => setIsOpenSearchLogs((p) => !p)}
+          />
           {logs !== null 
             ? <SearchLogs  
+                isOpen={isOpenSearchLogs}
                 logs={logs}
-                setFilteredLogs={setFilteredLogs}
-                />
+                setFilteredLogs={setFilteredLogs} />
             : undefined}
           {logs === null ? <></> : undefined}
           {filteredLogs.length === 0 ? <p>No logs</p> : undefined}
