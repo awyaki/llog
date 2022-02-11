@@ -15,7 +15,6 @@ import {
   ControlTagSelectionWithSearch,
   ControlSelectionOfBlockLevels,
   ControlSelectionOfContentNameWithSearch,
-  ContentNameWithId,
   } from '~/components';
 
 import DatePicker from 'react-datepicker';
