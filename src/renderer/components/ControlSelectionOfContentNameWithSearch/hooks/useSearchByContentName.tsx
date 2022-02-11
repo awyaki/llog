@@ -46,11 +46,13 @@ action
     case 'SEARCH_CONTENT_NAME/SET_SEARCH_CONTENT_NAME_QUERY': {
       const nextState = { ...state };
       const nextSearchContentNameQuery = action.searchContentNameQuery;
-      const idSetOfContentName = state.tokenMapOfContentNames.get(action.searchContentNameQuery) ?? new Set();
       
-      const nextFilteredContentNames = idSetOfContentName.size === 0
-                                        ? [...state.contentNames]
-                                        : state.contentNames.filter(({ id }) => idSetOfContentName.has(id));
+      const nextFilteredContentNames = (() => {
+        if (nextSearchContentNameQuery === '') return [...state.contentNames];
+        const idSetOfContentName = state.tokenMapOfContentNames.get(action.searchContentNameQuery);
+        if (idSetOfContentName === undefined) return [];
+        return state.contentNames.filter(({ id }) => idSetOfContentName.has(id));
+      })(); 
       
       nextState.searchContentNameQuery = nextSearchContentNameQuery;
       nextState.filteredContentNames = nextFilteredContentNames;
