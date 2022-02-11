@@ -77,10 +77,12 @@ export const Logs: VFC = () => {
             levelsQuery={levelsQuery}
             setLevelsQuery={setLevelsQuery}
             toggleLevelsQuery={toggleLevelsQuery}
+            contentNames={null}
             contentNameQuery={contentNameQuery}
             setContentNameQuery={setContentNameQuery}
             toggleContentNameQuery={toggleContentNameQuery}
           />
+          {logs === null ? <></> : undefined}
           {logs.length === 0 ? <p>No logs</p> : undefined}
           <LineUpLogsForDate 
             logs={filteredLogs} />

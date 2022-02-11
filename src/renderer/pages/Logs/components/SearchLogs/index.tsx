@@ -45,10 +45,10 @@ type SearchLogsProps = {
   levelsQuery: Set<number>;
   setLevelsQuery: (levels: Set<number>) => void;
   toggleLevelsQuery: (level: number) => void;
+  contentNames: ContentNameWithId[] | null;
   contentNameQuery: ContentNameWithId[];
   setContentNameQuery: (contentNameQuery: ContentNameWithId[]) => void;
   toggleContentNameQuery: (contentNameAndId: ContentNameWithId) => void;
-  contentNames: ContentNameWithId[] | null;
 };
 
 
@@ -183,6 +183,9 @@ export const SearchLogs: VFC<SearchLogsProps> = ({
   setLevelsQuery,
   toggleLevelsQuery,
   contentNames,
+  contentNameQuery,
+  setContentNameQuery,
+  toggleContentNameQuery
 }) => {
   
   return (
@@ -205,9 +208,9 @@ export const SearchLogs: VFC<SearchLogsProps> = ({
       {contentNames !==null
         ? <ControlSelectionOfContentNameWithSearch 
             contentNames={contentNames}
-            selectedContentNames={[]}
-            setSelectedContentNames={() => {}}
-            toggleSelectedContentNames={() => {}}
+            selectedContentNames={contentNameQuery}
+            setSelectedContentNames={setContentNameQuery}
+            toggleSelectedContentNames={toggleContentNameQuery}
           />
         : undefined}
       {tags !== null ?
