@@ -73,6 +73,15 @@ export const useSearchLogs = (initialLogs: LogWithRelation[]) => {
     dispatch({ type: 'SEARCH_LOGS/TOGGLE_CONTENT_NAME_QUERY', contentNameWithId: contentNameWithId });
   }, []);
 
+  const clearAllConditions = useCallback(() => {
+    setSinceQuery(null);
+    setUntilQuery(null);
+    setTitleQuery('');
+    setTagsQuery([]);
+    setLevelsQuery(new Set());
+    setContentNameQuery([]);
+  }, []);
+
   useEffect(() => {
     setLogsOnSearchLogs(initialLogs);
   }, [initialLogs]);
@@ -109,7 +118,8 @@ export const useSearchLogs = (initialLogs: LogWithRelation[]) => {
     contentNameQuery,
     setContentNameQuery,
     toggleContentNameQuery,
-    filteredLogs
+    filteredLogs,
+    clearAllConditions
   };
 
 

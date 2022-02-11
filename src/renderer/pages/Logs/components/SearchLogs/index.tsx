@@ -17,6 +17,7 @@ import {
   ControlTagSelectionWithSearch,
   ControlSelectionOfBlockLevels,
   ControlSelectionOfContentNameWithSearch,
+  WarningButton,
   } from '~/components';
 
 import DatePicker from 'react-datepicker';
@@ -194,6 +195,7 @@ export const SearchLogs: VFC<SearchLogsProps> = ({
     contentNameQuery,
     setContentNameQuery,
     toggleContentNameQuery,
+    clearAllConditions,
     filteredLogs
   } = useSearchLogs(logs);
 
@@ -235,11 +237,15 @@ export const SearchLogs: VFC<SearchLogsProps> = ({
             onSetSelectedTags={setTagsQuery}
           /> : undefined}
         <ControlSelectionOfBlockLevels
+          css={{ marginBottom: '32px' }}
           selectedLevels={levelsQuery}
           onSetSelectedLevels={setLevelsQuery}
           onToggleSelectedLevels={toggleLevelsQuery}
           
         />
+        <WarningButton onClick={clearAllConditions}>
+          Clear all conditions 
+        </WarningButton>
       </div>
     </Collapse>
   );
