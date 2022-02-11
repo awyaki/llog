@@ -1,6 +1,5 @@
 import { VFC } from 'react';
 
-import { container } from './style/container';
 
 import { Note } from './components/Note';
 
@@ -12,8 +11,11 @@ type Props = {
 
 export const NoteList: VFC<Props> = ({ notes }) => { 
   return notes.length !== 0
-      ? <ul css={container}>
+      ? <ul css={{
+          '> li': { marginBottom: '16px' },
+          '> li:nth-last-of-type(1)': { marginBottom: 0 }
+        }}>
           {notes.map((note) => <li key={note.id}><Note note={note} /></li>)}
         </ul>
-      : <h2>There are no notes.</h2>
+      : <p>No notes.</p>
 };
