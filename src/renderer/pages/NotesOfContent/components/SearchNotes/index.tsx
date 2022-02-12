@@ -1,4 +1,4 @@
-import { VFC } from 'react';
+import { VFC, useEffect } from 'react';
 
 import { CSSObject } from '@emotion/react';
 
@@ -24,14 +24,17 @@ type SearchNotesProps = {
   css?: CSSObject;
   isOpen: boolean;
   notes: NoteWithRelation[];
+  setFilteredNotes: (notes: NoteWithRelation[]) => void;
 };
 
 export const SearchNotes: VFC<SearchNotesProps> = ({
   isOpen,
   notes,
+  setFilteredNotes,
   ...rest
 }) => {
   const {
+    filteredNotes,
     tags,
     tagsQuery,
     setTagsQuery,
@@ -45,6 +48,11 @@ export const SearchNotes: VFC<SearchNotesProps> = ({
     toggleLevelsQuery,
     clearAllConditions,
   } = useSearchNotes(notes);
+
+  
+  useEffect(() => {
+    setFilteredNotes(filteredNotes);
+  }, [filteredNotes]);
 
   return (
     <Collapse in={isOpen}>

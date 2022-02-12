@@ -10,7 +10,6 @@ import { SearchNotes } from './components';
 
 import { TagsList, AccordionButtonWithText } from '~/components';
 
-import {} from './hooks';
 
 import { 
   NoteList,
@@ -21,13 +20,20 @@ type Props = {
 };
 
 export const NotesOfContent: VFC<Props> = ({ content }) => {
-  const { notes } = useNotesOfContent(content.id);
-  
+  const { 
+    notes,
+    filteredNotes,
+    setFilteredNotes
+    } = useNotesOfContent(content.id);
+   
   const [isOpenSearchNotes, setIsOpenSearchNotes] = useState(false);
   
   return (
     <>
-      <h1 css={{ ...title, marginBottom: '16px' }}>{content.name}</h1>
+      <h1 css={{ ...title, marginBottom: '8px' }}>{content.name}</h1>
+      <TagsList 
+        css={{ marginBottom: '16px' }}
+        tags={content.tags} />
       <AccordionButtonWithText 
         css={{ marginBottom: '32px' }}
         text="Search"
@@ -38,11 +44,9 @@ export const NotesOfContent: VFC<Props> = ({ content }) => {
         ? <SearchNotes 
             isOpen={isOpenSearchNotes}
             notes={notes}
+            setFilteredNotes={setFilteredNotes}
           /> : undefined}
-      <TagsList 
-        css={{ marginBottom: '16px' }}
-        tags={content.tags} />
-      <NoteList notes={notes} />
+      <NoteList notes={filteredNotes} />
     </>
   );
 };

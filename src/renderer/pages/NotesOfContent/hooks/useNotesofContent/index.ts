@@ -1,6 +1,7 @@
 import { 
     useState, 
     useEffect,
+    useCallback
 } from 'react';
 
 import { getNoteWithContentId } from '~/api'
@@ -9,7 +10,9 @@ import { NoteWithRelation } from '~/pages/type';
 
 
 export const useNotesOfContent = (contentId: number) => {
-  const [notes, setNotes] = useState<NoteWithRelation[]>([]);
+  const [notes, setNotes] = useState<NoteWithRelation[] | null>(null);
+
+  const [filteredNotes, _setFilteredNotes] = useState<NoteWithRelation[]>([]);
 
   useEffect(() => {
     (async () => {
@@ -17,5 +20,14 @@ export const useNotesOfContent = (contentId: number) => {
       setNotes(fetchedNotes);
     })();
   }, [contentId])
-  return { notes };
+
+  const setFilteredNotes = useCallback((notes: NoteWithRelation[]) => {
+    _setFilteredNotes(notes);
+  }, []);
+  
+  return { 
+    notes,
+    filteredNotes,
+    setFilteredNotes
+  };
 };
