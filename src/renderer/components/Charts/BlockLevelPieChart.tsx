@@ -25,33 +25,6 @@ type BlocksLevelLabelsProps = {
   data: BlockLevelPieChartData;
 };
 
-const sampleData = [
-  {
-    "name": "Group A",
-    "value": 400
-  },
-  {
-    "name": "Group B",
-    "value": 300
-  },
-  {
-    "name": "Group C",
-    "value": 200
-  },
-  {
-    "name": "Group D",
-    "value": 200
-  },
-  {
-    "name": "Group E",
-    "value": 260
-  },
-  {
-    "name": "Group F",
-    "value": 100
-  },
-];
-
 
 const BlocksLevelLabels: VFC<BlocksLevelLabelsProps> = ({
   data,
@@ -80,6 +53,7 @@ const BlocksLevelLabels: VFC<BlocksLevelLabelsProps> = ({
 };
 
 export const BlockLevelPieChart: VFC<BlockLevelPieChartProps> = ({
+  data,
   ...rest
 }) => {
   return (
@@ -93,18 +67,18 @@ export const BlockLevelPieChart: VFC<BlockLevelPieChartProps> = ({
         <Pie 
           startAngle={90}
           endAngle={-270}
-          data={sampleData} 
+          data={data} 
           dataKey="value" 
           nameKey="name" 
           cx="50%" 
           cy="50%" 
           outerRadius={100}>
-          {sampleData.map((_, index) => (<Cell key={`cell-${index}`} fill={colors.cyan.LEVEL[index]}/>))}
+          {data.map((_, index) => (<Cell key={`cell-${index}`} fill={colors.cyan.LEVEL[index]}/>))}
         </Pie>
         <Tooltip />
       </PieChart>
       <BlocksLevelLabels 
-        data={sampleData} />
+        data={data} />
     </div>
   );
 };

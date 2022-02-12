@@ -66,7 +66,7 @@ export const Content: VFC<Props> = ({ content }) => {
                 css={{ marginBottom: '32px' }}
                 content={content} />
               <h2 css={{ marginBottom: '32px' }}>Levels Chart</h2>
-              <BlockLevelPieChart data={[]} />
+              <BlockLevelPieChart data={blockLevelPieChartData} />
             </TabPanel>
             <TabPanel>
               <ViewSwitch 
