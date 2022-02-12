@@ -31,7 +31,6 @@ import {
 import { 
   BasicInfo,
   ContentBlocks,
-  ViewSwitch,
   AccordionToUpdateContent
 } from './components';
 
