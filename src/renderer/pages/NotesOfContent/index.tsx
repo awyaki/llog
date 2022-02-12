@@ -1,4 +1,4 @@
-import { VFC } from 'react';
+import { VFC, useState } from 'react';
 
 import { useNotesOfContent } from './hooks';
 
@@ -8,7 +8,9 @@ import { ContentWithRelation } from '~/pages/type';
 
 import { SearchNotes } from './components';
 
-import { TagsList } from '~/components';
+import { TagsList, AccordionButtonWithText } from '~/components';
+
+import {} from './hooks';
 
 import { 
   NoteList,
@@ -21,9 +23,22 @@ type Props = {
 export const NotesOfContent: VFC<Props> = ({ content }) => {
   const { notes } = useNotesOfContent(content.id);
   
+  const [isOpenSearchNotes, setIsOpenSearchNotes] = useState(false);
+  
   return (
     <>
-      <h1 css={{ ...title, marginBottom: '8px' }}>{content.name}</h1>
+      <h1 css={{ ...title, marginBottom: '16px' }}>{content.name}</h1>
+      <AccordionButtonWithText 
+        css={{ marginBottom: '32px' }}
+        text="Search"
+        isOpen={isOpenSearchNotes}
+        onClick={() => setIsOpenSearchNotes((p) => !p)}
+      />
+      {notes !== null
+        ? <SearchNotes 
+            isOpen={isOpenSearchNotes}
+            notes={notes}
+          /> : undefined}
       <TagsList 
         css={{ marginBottom: '16px' }}
         tags={content.tags} />
