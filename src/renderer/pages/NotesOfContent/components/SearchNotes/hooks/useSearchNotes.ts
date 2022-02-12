@@ -2,6 +2,7 @@ import {
   useReducer,
   useCallback,
   useEffect,
+  useState,
 } from 'react';
 
 import { NoteWithRelation } from '~/pages/type';
@@ -27,6 +28,8 @@ export const useSearchNotes = (initialNotes: NoteWithRelation[]) => {
     tagsQuery: [],
     levelsQuery: new Set<number>(),
   });
+
+  const [tags, setAllTagsOnSearchNotes] = useState<Tag[] | null>(null);
 
   const setSinceQuery = useCallback((sinceQuery: Date | null) => {
     dispatch({ type: 'SEARCH_NOTES/SET_SINCE', sinceQuery: sinceQuery });
@@ -57,7 +60,7 @@ export const useSearchNotes = (initialNotes: NoteWithRelation[]) => {
   useEffect(() => {
     (async () => {
       const allTags = await getAllTag();
-      setTagsQuery(allTags);
+      setAllTagsOnSearchNotes(allTags);
     })();
   }, []);
 
@@ -70,6 +73,7 @@ export const useSearchNotes = (initialNotes: NoteWithRelation[]) => {
 
 
   return {
+    tags,
     filteredNotes,
     sinceQuery,
     untilQuery,

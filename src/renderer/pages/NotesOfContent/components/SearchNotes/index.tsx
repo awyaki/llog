@@ -14,13 +14,34 @@ import {
   WarningButton
 } from '~/components';
 
+import { useSearchNotes } from './hooks';
+
+import { NoteWithRelation } from '~/pages/type';
+
 type SearchNotesProps = {
   css?: CSSObject;
+  notes: NoteWithRelation[];
 };
 
 export const SearchNotes: VFC<SearchNotesProps> = ({
+  notes,
   ...rest
 }) => {
+  const {
+    tags,
+    tagsQuery,
+    setTagsQuery,
+    toggleTagsQuery,
+    sinceQuery,
+    setSinceQuery,
+    untilQuery,
+    setUntilQuery,
+    levelsQuery,
+    setLevelsQuery,
+    toggleLevelsQuery,
+    clearAllConditions,
+  } = useSearchNotes(notes);
+
   return (
     <div css={{
       padding: '16px',
