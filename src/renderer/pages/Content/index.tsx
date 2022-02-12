@@ -62,7 +62,10 @@ export const Content: VFC<Props> = ({ content }) => {
           </TabList>
           <TabPanels>
             <TabPanel>
-              <BasicInfo content={content} />
+              <BasicInfo 
+                css={{ marginBottom: '32px' }}
+                content={content} />
+              <h2 css={{ marginBottom: '32px' }}>Levels Chart</h2>
               <BlockLevelPieChart data={[]} />
             </TabPanel>
             <TabPanel>

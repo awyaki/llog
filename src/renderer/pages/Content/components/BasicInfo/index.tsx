@@ -1,5 +1,7 @@
 import { VFC } from 'react';
 
+import { CSSObject } from '@emotion/react';
+
 import { ContentWithRelation } from '~/pages/type';
 
 import { TagsList } from '~/components';
@@ -15,15 +17,17 @@ import {
 } from '@chakra-ui/react';
 
 type Props = {
+  css?: CSSObject;
   content: ContentWithRelation;
 };
 
 export const BasicInfo: VFC<Props> = ({  
-  content
+  content,
+  ...rest
 }) => {
   const { tags, blocks, createdAt, notes } = content;
   return (
-    <>
+    <div {...rest}>
       <TagsList 
         css={{ marginBottom: '16px' }}
         tags={tags} />
@@ -45,6 +49,6 @@ export const BasicInfo: VFC<Props> = ({
           </Tr>
         </Tbody>
       </Table>
-    </>
+    </div>
   );
 };
