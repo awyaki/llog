@@ -27,15 +27,9 @@ export const makeContainer = (
     ...base,
     borderWidth: borderWidth,
     borderStyle: 'solid',
-    borderColor: isSelected ? colors.blue.DEFAULT : colors.text,
-  };
-
-  const one: CSSObject = {
-    ...base,
-    borderStyle: 'solid',
-    borderColor: isSelected ? colors.blue.DEFAULT : colors.gray.DEFAULT,
-    backgroundColor: colors.gray.LIGHT,
+    backgroundColor: color,
     color: colors.text,
+    borderColor: isSelected ? colors.blue.DEFAULT : colors.text,
   };
 
 
@@ -48,6 +42,5 @@ export const makeContainer = (
   };
 
   if (level === 0) return zero;
-  if (level === 1) return one;
   return others;
 };
