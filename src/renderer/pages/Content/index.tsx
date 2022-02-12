@@ -5,6 +5,8 @@ import {
   useMemo,
 } from 'react';
 
+import { Switch } from '~/components';
+
 
 import { calculateNumberArrayOfEachLevel } from '~/functions';
 
@@ -69,10 +71,10 @@ export const Content: VFC<Props> = ({ content }) => {
               <BlockLevelPieChart data={blockLevelPieChartData} />
             </TabPanel>
             <TabPanel>
-              <ViewSwitch 
-                css={{ marginBottom: '16px' }}
-                isOverView={isOverView} 
-                onSwitch={onSwitch} />
+            <Switch 
+              css={{ marginBottom: '16px' }}
+              isOn={!isOverView}
+              onClick={onSwitch} />
               <ContentBlocks 
                 css={{ overflowY: 'scroll', height: '60vh' }}
                 isOverView={isOverView}
