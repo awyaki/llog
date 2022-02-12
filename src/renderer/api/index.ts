@@ -114,3 +114,7 @@ export const getAllContentName = async () => {
 export const updateLogTitle = async (id: number, title: string) => {
   return await window.electronAPI.updateLogTitle(id, title);
 };
+
+export const deleteTag = async (id: number) => {
+  return await window.electronAPI.deleteTag(id);
+};

@@ -78,6 +78,7 @@ interface IElectronAPI {
   updateContentTags: (id: number, tags: Tag[]) => Prisma.Prisma__ContentClient<Content>;
   deleteConnectContentTags: (id: number) => Prisma.Prisma__ContentClient<Content>;
   deleteContent: (id: number) => Prisma.Prisma__ContentClient<Content>;
+  deleteTag: (id: number) => Prisma.Prisma__TagClient<Tag>;
   markdownToHTML: (markdown: string) => Promise<string>;
 }
 

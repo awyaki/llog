@@ -25,6 +25,7 @@ import {
   deleteNote,
   updateLogTitle,
   getAllContentName,
+  deleteTag,
 } from './api';
 
 
@@ -164,6 +165,11 @@ export const useDBQueryOnClient = () => {
   
   ipcMain.handle('getAllContentName', async (_) => {
     const result = await getAllContentName();
+    return result;
+  });
+
+  ipcMain.handle('deleteTag', async (_, id) => {
+    const result = await deleteTag(id);
     return result;
   });
 };
