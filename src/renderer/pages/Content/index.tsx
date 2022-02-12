@@ -17,6 +17,8 @@ import { ContentWithRelation } from '~/pages/type';
 
 import { pageTitle } from '~/pages/style';
 
+import { BlockLevelPieChart } from '~/components/Charts';
+
 import { 
   BasicInfo,
   ContentBlocks,
@@ -51,6 +53,8 @@ export const Content: VFC<Props> = ({ content }) => {
           <TabPanels>
             <TabPanel>
               <BasicInfo content={content} />
+              <BlockLevelPieChart data={[]} />
+
             </TabPanel>
             <TabPanel>
               <ViewSwitch 
