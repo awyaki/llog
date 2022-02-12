@@ -1,9 +1,14 @@
 import { 
   VFC,
   useContext,
+  useCallback,
+  Dispatch,
+  SetStateAction
   } from 'react';
 
 import { colors, font } from '~/styleConfig';
+
+import { deleteTag, getAllTag } from '~/api';
 
 import { Tag } from '@prisma/client';
 
@@ -39,20 +44,32 @@ const reverseTagStyle: CSSObject = {
 type Props = {
   searchQuery: string;
   selectedTags: Tag[];
+  setSelectedTags: Dispatch<SetStateAction<Tag[]>>;
   onToggleSelectedTags: (tag: Tag) => void;
 };
 
 export const TagListToSelect: VFC<Props> = ({ 
   searchQuery, 
   selectedTags,
+  setSelectedTags,
   onToggleSelectedTags,
   }) => {
 
   const { 
     filterTagsbyUserInput,
+    setTagsAction
     } = useContext(SelectedTagsContext);
   
   const filteredTags = filterTagsbyUserInput(searchQuery); 
+  
+  const deleteTagWithId = useCallback(async (id: number) => {
+    await deleteTag(id);
+    const newAlltags = await getAllTag();
+    setSelectedTags((tags) => {
+      return tags.filter((tag) => tag.id !== id);
+    });
+    setTagsAction(newAlltags);
+  }, []);
 
   return (
     <ul css={{
@@ -64,13 +81,17 @@ export const TagListToSelect: VFC<Props> = ({
         marginBottom: '4px',
       },
     }}>
-      {filteredTags.map(({ id, name }) => 
-                          <li key={id}>
+      {filteredTags.map(({ id, name }) => {
+                          const style = selectedTags.some((tag) => tag.id === id) ? reverseTagStyle : tagStyle
+                          return <li key={id}>
                               <button 
                                 onClick={() => onToggleSelectedTags({ id, name })}
-                                css={selectedTags.some((tag) => tag.id === id) ? reverseTagStyle : tagStyle}
+                                css={{ ...style, marginRight: '4px' }}
                               >{name}</button>
-                          </li>)}
+                              <button onClick={() => deleteTagWithId(id)}>
+                                x
+                              </button>
+                            </li>})}
     </ul>
   );
 };

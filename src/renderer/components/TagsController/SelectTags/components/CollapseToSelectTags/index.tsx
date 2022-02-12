@@ -55,6 +55,7 @@ export const CollapseToSelectTags: VFC<Props> = ({
         <TagListToSelect 
           onToggleSelectedTags={onToggleSelectedTags}
           selectedTags={selectedTags}
+          setSelectedTags={setSelectedTags}
           searchQuery={searchQuery} />
       </div>
     </Collapse>
