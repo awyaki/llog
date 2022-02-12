@@ -6,6 +6,8 @@ import { title } from './style/title';
 
 import { ContentWithRelation } from '~/pages/type';
 
+import { SearchNotes } from './components';
+
 import { TagsList } from '~/components';
 
 import { 

@@ -4,6 +4,8 @@ import { CSSObject } from '@emotion/react';
 
 import { colors } from '~/styleConfig';
 
+import { Collapse } from '@chakra-ui/react';
+
 import { 
   DateInputs,
   } from '~/components/UserInputInterfaces';
@@ -20,10 +22,12 @@ import { NoteWithRelation } from '~/pages/type';
 
 type SearchNotesProps = {
   css?: CSSObject;
+  isOpen: boolean;
   notes: NoteWithRelation[];
 };
 
 export const SearchNotes: VFC<SearchNotesProps> = ({
+  isOpen,
   notes,
   ...rest
 }) => {
@@ -43,36 +47,38 @@ export const SearchNotes: VFC<SearchNotesProps> = ({
   } = useSearchNotes(notes);
 
   return (
-    <div css={{
-      padding: '16px',
-      border: `1px solid ${colors.cyan.DEFAULT}`,
-      borderRadius: '4px',
-      marginBottom: '32px',
-    }} {...rest}>
-      <DateInputs 
-        css={{ marginBottom: '32px' }}
-        sinceQuery={sinceQuery}
-        setSinceQuery={setSinceQuery}
-        untilQuery={untilQuery}
-        setUntilQuery={setUntilQuery} />
-      {tags !== null ?
-        <ControlTagSelectionWithSearch 
-          css={{ marginBottom: '16px' }}
-          tags={tags}
-          selectedTags={tagsQuery}
-          onToggleSelectedTags={toggleTagsQuery}
-          onSetSelectedTags={setTagsQuery}
-        /> : undefined}
-      <ControlSelectionOfBlockLevels
-        css={{ marginBottom: '32px' }}
-        selectedLevels={levelsQuery}
-        onSetSelectedLevels={setLevelsQuery}
-        onToggleSelectedLevels={toggleLevelsQuery}
-        
-      />
-      <WarningButton onClick={clearAllConditions}>
-        Clear all conditions 
-      </WarningButton>
-    </div>
+    <Collapse in={isOpen}>
+      <div css={{
+        padding: '16px',
+        border: `1px solid ${colors.cyan.DEFAULT}`,
+        borderRadius: '4px',
+        marginBottom: '32px',
+      }} {...rest}>
+        <DateInputs 
+          css={{ marginBottom: '32px' }}
+          sinceQuery={sinceQuery}
+          setSinceQuery={setSinceQuery}
+          untilQuery={untilQuery}
+          setUntilQuery={setUntilQuery} />
+        {tags !== null ?
+          <ControlTagSelectionWithSearch 
+            css={{ marginBottom: '16px' }}
+            tags={tags}
+            selectedTags={tagsQuery}
+            onToggleSelectedTags={toggleTagsQuery}
+            onSetSelectedTags={setTagsQuery}
+          /> : undefined}
+        <ControlSelectionOfBlockLevels
+          css={{ marginBottom: '32px' }}
+          selectedLevels={levelsQuery}
+          onSetSelectedLevels={setLevelsQuery}
+          onToggleSelectedLevels={toggleLevelsQuery}
+          
+        />
+        <WarningButton onClick={clearAllConditions}>
+          Clear all conditions 
+        </WarningButton>
+      </div>
+    </Collapse>
     );
 };
