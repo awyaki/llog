@@ -49,7 +49,6 @@ export const NoteStateIndicator: VFC<Props> = ({
   isNoteExist,
   ...rest
 }) => {
-  console.log('NoteStateIndicator isNoteExist isNoteChange', isNoteExist, isNoteChange);
   const noteSavedState = (() => {
     if (!isNoteExist && isNoteChange) return { label: "warning", desc: 'Not saved' };
     if (!isNoteExist && !isNoteChange) return { label: "normal", desc: 'New note' };

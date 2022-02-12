@@ -20,7 +20,6 @@ export const useCreateContent = () => {
     await createContent(name, tags, numberOfBlocks);
     const allContents = await getAllContent();
     dispatch({ type: 'CONTENTS/SET_CONTENTS', contents: allContents });
-    console.log('Contents: onCreateNewContent haven not between implemented.');
   }, []);
   
   return {

@@ -39,11 +39,6 @@ export const testCalculateLevel = (
   const timePassed = now.getTime() - committedAt.getTime();
   
   const interval = (MinutesToms(spanMap.get(iteration) ?? 0)) / 5; 
-  console.log('now', now.getTime());
-  console.log('committedAt', committedAt.getTime());
-  console.log(`timePassed`, timePassed);
-  console.log('spanMap', spanMap.get(iteration));
-  console.log('interval', interval);
   if (0 <= timePassed && timePassed < interval) { console.log('1');return 5; }
   if (interval <= timePassed && timePassed < 2 * interval) { console.log('2'); return 4; }
   if (2 * interval <= timePassed && timePassed < 3 * interval) { console.log('3'); return 3; }

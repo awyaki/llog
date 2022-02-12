@@ -55,7 +55,6 @@ export const useEditNote = (content: ContentWithRelation) => {
 
   const { selectedBlocks, dispatch: selectedBlocksDispatch } = useContext(SelectedBlocksForHandleNoteContext);
   
-  console.log('useEditNote selectedBlocks', selectedBlocks);
   const [mode, setMode] = useState<Mode>('edit');
   const { 
     setIsAllowTransition,

@@ -18,7 +18,6 @@ export const useContentHub = () => {
     (async () => {
       if (contentId === undefined) return;
       const fetchedContent = await getContent(Number(contentId));
-      console.log('useContentHub useEffect fetchedContent', fetchedContent);
       setContent(fetchedContent);
     })();
   }, [contentId]);

@@ -22,7 +22,6 @@ import { useContentHub } from './hooks';
 
 export const ContentHub: VFC = () => {
   const { path } = useRouteMatch();
-  console.log(`ContentHub path`, path);
 
   const { content } = useContentHub();
   

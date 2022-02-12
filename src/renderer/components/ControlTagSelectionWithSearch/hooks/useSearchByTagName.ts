@@ -66,7 +66,6 @@ type UseSearchTagsByNameArgument = {
 
 
 const init = (tags: Tag[]): State => {
-  console.log('init is called. tags', tags);
   const tagNameTokenMap = createNGramTokenMap((tags.map(({ id, name }) => ({ id, text: name }))));
 
   return {

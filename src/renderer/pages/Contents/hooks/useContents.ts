@@ -35,7 +35,6 @@ export const useContents = () => {
   }, []);
   
   useEffect(() => {
-    console.log('useContents searchedTags', searchedTags);
     dispatch({ type: 'CONTENTS/SET_SEARCHED_TAG_IDS', searchedTagIds: searchedTags.map(({ id }) => id)});
   }, [searchedTags]);
 

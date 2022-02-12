@@ -95,7 +95,6 @@ export const ConditionItem: VFC<Props> = ({ condition, dispatch }) => {
   };
 
   const handleChangeInput: ChangeEventHandler<HTMLInputElement> = (e) => {
-    console.log(e.target.value);
     dispatch({ type: 'MODAL/CHANGE_INPUT', id: id, newInput: e.target.value });
   };
   

@@ -93,7 +93,6 @@ const reducer: Reducer<State, Action> = (state, action) => {
                             ? [...state.contents]
                             : state.contents.filter((content) => setOfId.has(content.id));
                               
-      console.log('useContentListWithFiltering setOfSearchedTagIds', setOfSearchedTagIds);
       const filteredBySearchQueryAndTags = isSearchedTagIdsEmpty
                                             ? filteredBySearchQuery
                                             : filteredBySearchQuery

@@ -71,7 +71,6 @@ export const DrawerToCreateContent: VFC<Omit<DrawerProps, 'children'>> = ({
   }, [selectedTags]);  
 
   const isAlreadyNameExist = useCallback<Validate<string>>((contentName) => {
-    console.log('CreateNewContent isAlreadyNameExist contents', contents);
     const isOk = !contents.some((content) => content.name === contentName);
     return isOk || 'This name have already been existed.';
   }, [contents]);
