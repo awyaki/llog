@@ -2,8 +2,11 @@ import {
   VFC, 
   useState,
   useCallback,
+  useMemo,
 } from 'react';
 
+
+import { calculateNumberArrayOfEachLevel } from '~/functions';
 
 import {
   Tabs,
@@ -15,9 +18,13 @@ import {
 
 import { ContentWithRelation } from '~/pages/type';
 
+
 import { pageTitle } from '~/pages/style';
 
-import { BlockLevelPieChart } from '~/components/Charts';
+import { 
+  BlockLevelPieChart,
+  BlockLevelPieChartData
+  } from '~/components/Charts';
 
 import { 
   BasicInfo,
@@ -32,14 +39,17 @@ type Props = {
 };
 
 export const Content: VFC<Props> = ({ content }) => {
-  console.log(`Content`, content);
   const [isOverView, setIsOverView] = useState(true);
+  
 
   const onSwitch = useCallback(() => {
     setIsOverView((prev) => !prev);
   }, []); 
-
-  if (content === null) return <></>;
+  
+  const blockLevelPieChartData: BlockLevelPieChartData = useMemo(() => {
+    return calculateNumberArrayOfEachLevel(content.blocks)
+              .map((value, index) => ({ name: `Level ${index}`, value }));
+  }, [content]);
 
   return (
       <>
@@ -54,7 +64,6 @@ export const Content: VFC<Props> = ({ content }) => {
             <TabPanel>
               <BasicInfo content={content} />
               <BlockLevelPieChart data={[]} />
-
             </TabPanel>
             <TabPanel>
               <ViewSwitch 
