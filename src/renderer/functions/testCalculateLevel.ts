@@ -16,6 +16,8 @@ export const testCalculateLevel = (
   type Iteration = number;
   type Minutes = number;
   
+  console.log('testCalculateLevel iteration', iteration);
+
   if (iteration === 0) return 0;
   if (iteration >= 8) return 5;
 
@@ -23,12 +25,12 @@ export const testCalculateLevel = (
   //     if value of iteration is 5, the level changes 5 to 1 while 30 days pass.
   const spanMap = new Map<Iteration, Minutes>([
     [1, 1],
-    [2, 3],
-    [3, 7],
-    [4, 14],
-    [5, 30],
-    [6, 60],
-    [7, 90],
+    [2, 1],
+    [3, 1],
+    [4, 1],
+    [5, 1],
+    [6, 1],
+    [7, 1],
   ]);
 
   const MinutesToms = (mins: Minutes): number => {
@@ -46,5 +48,5 @@ export const testCalculateLevel = (
   if (4 * interval <= timePassed && timePassed < 5 * interval) { console.log('5'); return 1; }
   
   console.log('6');
-  return 5;
+  return 1;
 };

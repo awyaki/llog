@@ -46,5 +46,5 @@ export const calculateLevel = (
   if (3 * interval <= timePassed && timePassed < 4 * interval) return 2;
   if (4 * interval <= timePassed && timePassed < 5 * interval) return 1;
 
-  return 5;
+  return 1;
 };
