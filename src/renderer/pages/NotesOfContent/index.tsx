@@ -35,7 +35,7 @@ export const NotesOfContent: VFC<Props> = ({ content }) => {
         css={{ marginBottom: '16px' }}
         tags={content.tags} />
       <AccordionButtonWithText 
-        css={{ marginBottom: '32px' }}
+        css={{ marginBottom: '16px' }}
         text="Search"
         isOpen={isOpenSearchNotes}
         onClick={() => setIsOpenSearchNotes((p) => !p)}
