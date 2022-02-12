@@ -13,16 +13,8 @@ export const makeMiniBlockStyle = (level: number): CSSObject => {
   const zero: CSSObject = {
     ...base,
     borderWidth: '1px',
-    backgroundColor: colors.white,
+    backgroundColor: color,
     borderStyle: 'solid',
-    borderColor: colors.text,
-  };
-
-  const one: CSSObject = {
-    ...base,
-    borderStyle: 'solid',
-    borderColor: colors.gray.DEFAULT,
-    backgroundColor: colors.gray.LIGHT,
   };
 
   const others: CSSObject = {
@@ -33,6 +25,5 @@ export const makeMiniBlockStyle = (level: number): CSSObject => {
   };
 
   if (level === 0) return zero;
-  if (level === 1) return one;
   return others;
 };
