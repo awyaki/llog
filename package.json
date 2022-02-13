@@ -74,9 +74,6 @@
       }
     ],
     "asar": false,
-    "extraResources": [
-      "dist/dev.db"
-    ],
     "directories": {
       "output": "build"
     }
