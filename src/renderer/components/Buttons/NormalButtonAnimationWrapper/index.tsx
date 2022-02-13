@@ -13,18 +13,13 @@ import {
 
 const containerMotions: Variants = {
   initial: {
-    scale: 1,
     borderColor: colors.cyan.DEFAULT,
     color: colors.white,
     backgroundColor: colors.cyan.DEFAULT,
   },
   delta: {
-    scale: 1.1,
     backgroundColor: colors.white,
     color: colors.cyan.DEFAULT,
-  },
-  tap: {
-    scale: 0.7
   },
 };
 
@@ -42,7 +37,6 @@ export const NormalButtonAnimationWrapper: FC<Props> = ({
       variants={containerMotions}
       initial="initial"
       whileHover="delta"
-      whileTap="tap"
       style={{
         display: 'flex',
         justifyContent: 'center',

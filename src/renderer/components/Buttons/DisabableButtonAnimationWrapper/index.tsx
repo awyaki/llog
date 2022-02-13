@@ -13,13 +13,11 @@ import {
 
 const containerMotions: Variants = {
   initial: {
-    scale: 1,
     borderColor: colors.cyan.DEFAULT,
     color: colors.white,
     backgroundColor: colors.cyan.DEFAULT,
   },
   hover: {
-    scale: 1.1,
     backgroundColor: colors.white,
     color: colors.cyan.DEFAULT,
   },
@@ -27,12 +25,6 @@ const containerMotions: Variants = {
     borderColor: colors.gray.DEFAULT,
     backgroundColor: colors.gray.DEFAULT,
     color: colors.white,
-  },
-  disableHover: {
-    scale: 1.1,
-  },
-  tap: {
-    scale: 0.7,
   },
 };
 
@@ -54,7 +46,6 @@ export const DisabableButtonAnimationWrapper: FC<Props> = ({
       variants={containerMotions}
       animate={disabled ? "disableInitail" : "initial"}
       whileHover={disabled ? "disableHover" : "hover"}
-      whileTap="tap"
       style={{
         display: 'flex',
         justifyContent: 'center',
