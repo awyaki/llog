@@ -1,5 +1,5 @@
 {
-  "name": "llog-electron",
+  "name": "llog",
   "version": "1.0.0",
   "description": "",
   "main": "./dist/main.js",
@@ -9,7 +9,7 @@
     "build": "npx webpack --config webpack.prod.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "awyaki",
   "license": "ISC",
   "dependencies": {
     "@chakra-ui/react": "^1.7.1",
