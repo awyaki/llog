@@ -12,7 +12,6 @@ import {
   BackButton,
   HomeButton,
   LogsButton,
-  TagsButton,
 } from './components';
 
 
@@ -22,7 +21,6 @@ export const Menu: VFC = () => {
     onClickForward,
     onClickHome,
     onClickLogs,
-    onClickTags
   } = useMenu();
 
   return (
@@ -59,7 +57,6 @@ export const Menu: VFC = () => {
       </div>
       <div css={{ width: '100%' }}>
         <LogsButton onClick={onClickLogs} />
-        <TagsButton onClick={onClickTags} />
         <HomeButton onClick={onClickHome} /> 
       </div>
     </motion.div>

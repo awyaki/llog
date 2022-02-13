@@ -70,27 +70,10 @@ export const useMenu = () => {
     return;
   }, [isAllowTransition, confirmer, history]);
 
-  const onClickTags = useCallback(() => {
-    const path = '/tags';
-
-    if (isAllowTransition) {
-      history.push(path);
-      return;
-    }
-    
-    if (confirmer()) {
-      history.push(path);
-      return;
-    }
-    
-    return;
-  }, [isAllowTransition, confirmer, history]);
-
   return {
     onClickForward,
     onClickBack,
     onClickHome,
     onClickLogs,
-    onClickTags,
   };
 };
