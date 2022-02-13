@@ -1,6 +1,8 @@
 import { VFC  } from 'react';
 
-import { font } from '~/styleConfig';
+import { font, colors } from '~/styleConfig';
+
+import { CSSObject } from '@emotion/react';
 
 import { 
   CommitIcon,
@@ -14,7 +16,50 @@ import { NotFoundPage } from '~/pages';
 
 import { usePreviewNote } from './hooks';
 
+import { 
+  Switch, 
+  DisabableNormalButton
+  } from '~/components';
+
 import 'zenn-content-css';
+
+
+
+type DeleteNoteButtonWithLimitationProps = {
+  css?: CSSObject;
+  onDeleteNote: () => void;
+  isDisable: boolean;
+  onToggleIsDisable: () => void;
+};
+
+const DeleteNoteButtonWithLimitation: VFC<DeleteNoteButtonWithLimitationProps> = ({
+  onDeleteNote,
+  isDisable,
+  onToggleIsDisable,
+  ...rest
+}) => {
+  return (
+    <div css={{
+      display: 'flex',
+      justifyContent: 'flex-start',
+      alignItems: 'center',
+    }} {...rest}>
+      <DisabableNormalButton
+        css={{ marginRight: '8px' }}
+        colorOptions={{
+          primary: colors.red.DEFAULT,
+          secondary: colors.white
+        }}
+        text="Delete"
+        isDisable={isDisable}
+        onClick={onDeleteNote} />
+      <Switch 
+        color={colors.red.DEFAULT}
+        isOn={!isDisable} 
+        onClick={onToggleIsDisable} />
+    </div>
+  );
+};
 
 export const PreviewNote: VFC = () => {
   const  { 
@@ -24,7 +69,11 @@ export const PreviewNote: VFC = () => {
     note, 
     contentName, 
     onSubmitLog,
-    onClickEdit } = usePreviewNote();
+    onClickEdit,
+    isDisableDeleteButton,
+    onDeleteNote,
+    onToggleIsDisableDeleteButton,
+    } = usePreviewNote();
 
   if (note === null) return <NotFoundPage />;
 
@@ -51,6 +100,12 @@ export const PreviewNote: VFC = () => {
         fontSize: font.size.L,
         marginBottom: '16px',
         }}>{contentName}</h1>
+      <DeleteNoteButtonWithLimitation 
+        css={{ marginBottom: '16px' }}
+        isDisable={isDisableDeleteButton}
+        onDeleteNote={onDeleteNote}
+        onToggleIsDisable={onToggleIsDisableDeleteButton}
+      />
       <Note note={note} />
     </>
   );

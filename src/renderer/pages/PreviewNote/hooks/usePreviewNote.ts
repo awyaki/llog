@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 
 import { asyncForEach } from '~/utils';
 
-import { createLog, updateBlock } from '~/api';
+import { createLog, updateBlock, deleteNote } from '~/api';
 
 import { NotifierContext } from '~/components';
 
@@ -17,6 +17,8 @@ import { getNote, getContent } from '~/api';
 
 export const usePreviewNote = () => {
   const [isOpen, setIsOpen] = useState(false);
+  
+  const [isDisableDeleteButton, setIsDisableDeleteButton] = useState(true);
 
   const { contentId, noteId } = useParams<{ contentId: string, noteId: string}>();
 
@@ -66,6 +68,18 @@ export const usePreviewNote = () => {
   const onOpenModal = useCallback(() => {
     setIsOpen(true);
   }, []);
+  
+  const onDeleteNote = useCallback(async () => {
+    if (note === null) return;
+    await deleteNote(note.id);
+    setNote(null);
+    setMessage('Delete');
+    history.push(`/content/${contentId}/notes`);
+  }, [contentId, note]);
+
+  const onToggleIsDisableDeleteButton = useCallback(() => {
+    setIsDisableDeleteButton((p) => !p);
+  }, [])
 
   return { 
     note: note,
@@ -75,5 +89,8 @@ export const usePreviewNote = () => {
     isOpen,
     onCloseModal,
     onOpenModal,
+    isDisableDeleteButton,
+    onDeleteNote,
+    onToggleIsDisableDeleteButton,
   };
 };
