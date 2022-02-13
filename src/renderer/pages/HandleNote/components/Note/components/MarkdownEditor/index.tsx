@@ -46,6 +46,7 @@ export const MarkdownEditor: VFC<Props> = ({ markdown, setMarkdown }) => {
   return (
       <Box __css={noteStyle}>
         <AceEditor
+          focus={true}
           ref={editorRef}
           mode="markdown"
           theme="github"
