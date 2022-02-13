@@ -1,5 +1,9 @@
 import path from 'path'
-import { app, BrowserWindow }  from 'electron';
+import { 
+    app, 
+    BrowserWindow,
+    shell,
+}  from 'electron';
 import { useDBQueryOnClient } from './db';
 import { useMarkdownToHTML } from './useMarkdownToHTML';
 
@@ -15,9 +19,13 @@ function createWindow() {
       sandbox: true,
     },
   });
-
+   
   win.loadFile(path.resolve(__dirname, 'index.html'));
   win.webContents.openDevTools();
+  win.webContents.on('will-navigate', (e, url) => {
+    e.preventDefault();
+    shell.openExternal(url);
+  });
 }
 
 app.whenReady().then(createWindow);
@@ -27,6 +35,7 @@ app.on('window-all-closed', () => {
     app.quit();
   }
 });
+
 
 app.on('activate', () => {
   if (BrowserWindow.getAllWindows().length === 0) {
