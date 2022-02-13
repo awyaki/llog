@@ -68,12 +68,19 @@
       "dist/**/*",
       "node_modules/**/*",
       "package.json",
+      "!dist/dev.db",
       {
         "from": "node_modules/.prisma",
         "to": "node_modules/.prisma"
       }
     ],
-    "asar": false,
+    "extraResources": [
+      {
+        "from": "dist/dev.db",
+        "to": "dist/dev.db" 
+      }
+    ],
+    "asar": true,
     "directories": {
       "output": "build"
     }
