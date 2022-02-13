@@ -67,9 +67,13 @@
     "files": [
       "dist/**/*",
       "node_modules/**/*",
-      "package.json"
+      "package.json",
+      {
+        "from": "node_modules/.prisma",
+        "to": "node_modules/.prisma"
+      }
     ],
-    "asar": true,
+    "asar": false,
     "extraResources": [
       "dist/dev.db"
     ],
