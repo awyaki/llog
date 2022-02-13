@@ -38,7 +38,7 @@ export const Menu: VFC = () => {
         flexDirection: 'column',
         width: '142px', 
         minWidth: '142px',
-        padding: '24px 0 48px 0', 
+        padding: '24px 0 0 0', 
         backgroundColor: colors.cyan.DEFAULT,
         zIndex: 100,
       }}>
@@ -55,7 +55,12 @@ export const Menu: VFC = () => {
         <ForwardButton 
           onClick={onClickForward} />
       </div>
-      <div css={{ width: '100%' }}>
+      <div css={{ 
+        position: 'relative',
+        top: '-10%',
+        width: '100%',
+        marginTop: '16px',
+        }}>
         <LogsButton onClick={onClickLogs} />
         <HomeButton onClick={onClickHome} /> 
       </div>
