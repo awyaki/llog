@@ -21,7 +21,7 @@ function createWindow() {
   });
    
   win.loadFile(path.resolve(__dirname, 'index.html'));
-  win.webContents.openDevTools();
+  // win.webContents.openDevTools();
   win.webContents.on('will-navigate', (e, url) => {
     e.preventDefault();
     shell.openExternal(url);
