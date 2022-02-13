@@ -33,9 +33,10 @@ export const Contents: VFC = () => {
       <PageMotion css={container}>
         <div>
             <div css={{
-              top: '24px',
+              top: 0,
               position: 'sticky',
               backgroundColor: colors.white,
+              paddingTop: '24px',
               paddingBottom: '32px',
               zIndex: 1,
             }}>
