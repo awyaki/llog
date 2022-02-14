@@ -4,11 +4,20 @@ import {
     BrowserWindow,
     shell,
 }  from 'electron';
+
+
 import { useDBQueryOnClient } from './db';
+
 import { useMarkdownToHTML } from './useMarkdownToHTML';
 
 useDBQueryOnClient();
 useMarkdownToHTML();
+
+const handleURLOpen = (e: Electron.Event, url: string) => {
+    e.preventDefault();
+    shell.openExternal(url);
+};
+
 
 function createWindow() {
   const win = new BrowserWindow({
@@ -22,11 +31,10 @@ function createWindow() {
    
   win.loadFile(path.resolve(__dirname, 'index.html'));
   // win.webContents.openDevTools();
-  win.webContents.on('will-navigate', (e, url) => {
-    e.preventDefault();
-    shell.openExternal(url);
-  });
-}
+  
+  win.webContents.on('will-navigate', handleURLOpen);
+  win.webContents.on('new-window', handleURLOpen);
+};
 
 app.whenReady().then(createWindow);
 
