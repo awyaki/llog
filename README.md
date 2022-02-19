@@ -11,7 +11,7 @@ You can manage "what and when you learn" and know "when you should review what y
 - You can make a log and know when you should review what you learned.
 - You can search contents, notes, and logs with multiple conditions.
 
-## How to install and start using Llog.
+## How to　start using Llog.
 Operation confirmation of this application was only on mac OS Monterey.
 1. Clone this repository.
 ```
