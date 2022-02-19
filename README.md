@@ -17,7 +17,7 @@ Operation confirmation of this application was only on mac OS Monterey.
 ```
 git clone https://github.com/awyaki/llog.git
 ```
-2. Move to the created directory and install all depending libruaries.
+2. Move to the created directory and install all depending libraries.
 ```
 cd llog && npm install
 ```
