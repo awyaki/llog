@@ -27,6 +27,7 @@ const mainConfig = {
     new CopyPlugin({
       patterns: [
         { from: 'prisma/dev.db', to: path.resolve(__dirname, 'dist') }, // TODO: use https://www.npmjs.com/package/webpack-node-externals
+        { from: 'icons/Icon-Llog.icns', to: path.resolve(__dirname, 'dist')}
       ]
     }),
   ],

@@ -83,7 +83,8 @@
     "asar": true,
     "directories": {
       "output": "build"
-    }
+    },
+    "icon": "dist/Icon-Llog.icns"
   },
   "prisma": {
     "seed": "ts-node --project tsconfig-seed.json prisma/seed.ts"
