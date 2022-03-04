@@ -50,7 +50,6 @@ export const useLogs = () => {
     // ASSERTION: When a log is created, noteId isn't null and contentId isn't also null.
     if (noteId === null || contentId === null) return ; 
     await createLog(markdown, html, blocks, tags, contentName, title, noteId, contentId);
-    const newLogs = await getAllLog();
     await asyncForEach(blocks, async (block) => {
       const { id, iteration  } = block;
       await updateBlock({
@@ -61,6 +60,7 @@ export const useLogs = () => {
       });
     });
 
+    const newLogs = await getAllLog();
     setLogs(newLogs);
     setMessage('Submit');
   }, [log]);
