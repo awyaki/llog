@@ -1,7 +1,7 @@
 In the current version, I have only implemented some basic features of the application and this application is prototyping.  So the app's UI and features can be often changed or updated. 
 
-## What is Llog?
-"Llog" is abbreviated for "learning logs" and is an application for managing your learning progress by logging. 
+## What is LLog?
+"LLog" is abbreviated for "learning logs" and is an application for managing your learning progress by logging. 
 
 You can manage "what and when you learn" and know "when you should review what you learned" by this application.
 
@@ -11,7 +11,7 @@ You can manage "what and when you learn" and know "when you should review what y
 - You can make a log and know when you should review what you learned.
 - You can search contents, notes, and logs with multiple conditions.
 
-## How to　start using Llog.
+## How to　start using LLog.
 Operation confirmation of this application was only on mac OS Monterey.
 1. Clone this repository.
 ```
