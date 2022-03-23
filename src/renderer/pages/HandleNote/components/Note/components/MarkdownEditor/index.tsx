@@ -1,4 +1,4 @@
-import { VFC, useRef, useEffect, Dispatch, SetStateAction } from 'react';
+import { VFC, useRef, useLayoutEffect, Dispatch, SetStateAction } from 'react';
 import AceEditor from 'react-ace';
 
 
@@ -22,7 +22,7 @@ export const MarkdownEditor: VFC<Props> = ({ markdown, setMarkdown }) => {
     setMarkdown(value);
   };
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const aceEditor = editorRef.current;
     if (aceEditor != null) {
       const defaultHeight = 300;
@@ -41,7 +41,7 @@ export const MarkdownEditor: VFC<Props> = ({ markdown, setMarkdown }) => {
       aceEditor.editor.resize();
     }
 
-  }, [markdown]);
+  }, [markdown, editorRef]);
 
   return (
       <Box __css={noteStyle}>
