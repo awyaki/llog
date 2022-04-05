@@ -15,10 +15,14 @@ export const MarkdownPreview: VFC<Props> = ({ markdown }) => {
   const [html, setHtml] = useState('');
 
   useEffect(() => {
+    let ignore = false;
     (async () => {
       const _html = await markdownToHTML(markdown);
-      setHtml(_html);
+      if (!ignore) setHtml(_html);
     })();
+    return () => {
+      ignore = true;
+    };
   }, [markdown]);
 
   return (
