@@ -2,7 +2,15 @@ import { useState, useCallback, useContext, ChangeEventHandler } from 'react';
 
 import { useForm, Validate } from 'react-hook-form';
 
-import { SelectedTagsContext, NotifierContext, ContentsContext } from '~/components';
+import {
+  SelectedTagsContext, 
+  NotifierContext, 
+  ContentsContext,
+} from '~/components';
+
+import type {
+  AddContentFormProps
+} from '~/components';
 
 import { getAllContent, createContent } from '~/api';
 
@@ -12,7 +20,9 @@ type Inputs = {
   numberOfBlocks: string;
 };
 
-export const useAddContentForm = () => {
+
+
+export const useAddContentForm = (onSubmit: AddContentFormProps['onSubmit']) => {
   const [searchQuery, setSearchQuery] = useState('');
   
   const [isOpenSelectTags, setIsOpenSelectTags] = useState(false);
@@ -37,7 +47,7 @@ export const useAddContentForm = () => {
     defaultValues: { 'contentName': '', 'numberOfBlocks': '' }
   });
   
-  const onSubmit = useCallback(async(data: Inputs) => {
+  const _onSubmit = useCallback(async(data: Inputs) => {
     const { contentName, numberOfBlocks } = data;
 
     // 外部ソースのcontentsの更新と更新後contentsデータの取得
@@ -53,6 +63,10 @@ export const useAddContentForm = () => {
     setValue('contentName', '');
 
     setMessage('Create');
+    
+    // AddContentFormを使用するコンポーネントが指定する振る舞いの実行
+    if (onSubmit !== undefined) onSubmit();
+
   }, [setSelectedTags, setSearchQuery, setValue, selectedTags]);
 
   const isAlreadyNameExist = useCallback<Validate<string>>((contentName) => {
@@ -80,7 +94,7 @@ export const useAddContentForm = () => {
     register,
     errors,
     searchQuery,
-    handleSubmit: handleSubmit(onSubmit),
+    handleSubmit: handleSubmit(_onSubmit),
     isAlreadyNameExist,
     handleClearAllInput,
     handleChangeSearchQuery,

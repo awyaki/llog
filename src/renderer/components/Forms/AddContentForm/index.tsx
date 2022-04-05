@@ -17,7 +17,13 @@ const error: CSSObject = {
 };
 
 
-export const AddContentForm: VFC = () => {
+export type AddContentFormProps = {
+  onSubmit?: () => void;
+};
+
+export const AddContentForm: VFC<AddContentFormProps> = ({
+  onSubmit
+}) => {
   const {
     errors,
     register,
@@ -32,7 +38,7 @@ export const AddContentForm: VFC = () => {
     setSelectedTags,
     selectedTags,
     setSearchQuery,
-  } = useAddContentForm();
+  } = useAddContentForm(onSubmit);
 
 
   return (
