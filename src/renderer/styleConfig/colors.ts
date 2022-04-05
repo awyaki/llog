@@ -10,7 +10,7 @@ const colors = {
     FIRST: '#06A9C4',
     SECOND: '#CFF8FF',
     THIRD: '#CFF8FF',
-    LEVEL: ['#F2FDFF', '#66DDF2', '#5BC6D9', '#50AFBF', '#4697A6', '#3B808C'],
+    LEVEL: ['#F2FDFF', '#66DDF2', '#50AFBF', '#3B808C', '#255159', '#102326'],
   },
   red: {
     DEFAULT: '#F76874'
