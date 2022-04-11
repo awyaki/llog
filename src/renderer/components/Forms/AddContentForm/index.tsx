@@ -42,12 +42,7 @@ export const AddContentForm: VFC<AddContentFormProps> = ({
 
 
   return (
-      <div css={{
-        padding: '16px',
-        border: `1px solid ${colors.cyan.DEFAULT}`,
-        borderRadius: '4px',
-        marginBottom: '16px',
-      }}>
+      <div>
       <form 
         id="content-create" 
         onSubmit={handleSubmit}>
