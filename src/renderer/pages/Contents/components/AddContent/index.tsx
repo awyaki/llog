@@ -16,15 +16,23 @@ export const AddContent: VFC<AddContentProps> = ({
   }) => {
   return (
     <div css={{
-      width: isOpen ? '300px' : '0px',
+      position: 'relative',
+      width: isOpen ? '250px' : '0px',
       height: '100%',
       zIndex: 1,
       transitionProperty: 'width',
-      transitionDuration: '1s',
+      transitionDuration: '.5s',
       transitionTimingFunction: 'ease',
-      borderLeft: `1px solid ${colors.cyan.DEFAULT}`,
-      paddingLeft: '32px', 
     }}>
+      <div css={{ 
+          display: isOpen ? 'block' : 'none',
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          paddingLeft: '24px',
+          borderLeft: `1px solid ${colors.cyan.DEFAULT}`,
+          height: '100%',
+        }}>
       <button 
         css={{
           width: '100%',
@@ -33,7 +41,8 @@ export const AddContent: VFC<AddContentProps> = ({
           marginBottom: '16px',
         }}
         onClick={onClose}>X</button>
-      <AddContentForm />
+        <AddContentForm />
+      </div>
     </div>
   );
 };
