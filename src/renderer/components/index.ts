@@ -28,3 +28,4 @@ export * from './ModalToUpdateLogTitle';
 export * from './ControlTagSelectionWithSearch';
 export * from './ControlSelectionOfBlockLevels';
 export * from './ControlSelectionOfContentNameWithSearch';
+export * from './SideMenu';
