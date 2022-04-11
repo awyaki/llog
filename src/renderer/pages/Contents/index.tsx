@@ -28,6 +28,8 @@ export const Contents: VFC = () => {
     filtered,
     searchQuery,
     onChangeSearchQuery,
+    isOpenAddContentForm,
+    handleCloseAddContentForm,
   } = useContents();
   return (
       <PageMotion css={container}>
@@ -61,8 +63,8 @@ export const Contents: VFC = () => {
           <ContentsList contents={filtered} />
         </div>
         <AddContent 
-          onClose={() => {}}
-          isOpen={true} />
+          onClose={handleCloseAddContentForm}
+          isOpen={isOpenAddContentForm} />
       </PageMotion>
   );
 };
