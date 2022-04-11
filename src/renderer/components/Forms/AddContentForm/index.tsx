@@ -74,13 +74,17 @@ export const AddContentForm: VFC<AddContentFormProps> = ({
             pattern: { value: /^[0-9]+$/i, message: 'You should fill in this field with a number.' }})} />
           <div css={error}>{errors.numberOfBlocks?.message}</div>
         </form>
-        <SelectTags 
-          selectedTags={selectedTags}
-          setSelectedTags={setSelectedTags}
-          onToggleSelectedTags={onToggleSelectedTags}
-          searchQuery={searchQuery}
-          setSearchQuery={setSearchQuery}
-          onChangeSearchQuery={handleChangeSearchQuery} />
+        <div css={{
+          marginBottom: '16px',
+        }}>
+          <SelectTags 
+            selectedTags={selectedTags}
+            setSelectedTags={setSelectedTags}
+            onToggleSelectedTags={onToggleSelectedTags}
+            searchQuery={searchQuery}
+            setSearchQuery={setSearchQuery}
+            onChangeSearchQuery={handleChangeSearchQuery} />
+        </div>
         <NormalButton 
           css={{ width: '84px', marginRight: '8px' }}
           form="content-create"
