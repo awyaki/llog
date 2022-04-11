@@ -164,15 +164,12 @@ export const AccordionToUpdateContent: VFC<Props> = ({ content }) => {
             <div css={error}>{errors.numberOfBlocks?.message}</div>
           </form>
           <SelectTags 
-            isOpen={isOpenSelectTgs}
-            toggleIsOpen={toggleIsOpenSelectTags} 
             selectedTags={selectedTags}
             setSelectedTags={setSelectedTags}
             onToggleSelectedTags={onToggleSelectedTags}
             setSearchQuery={setSearchQuery}
             onChangeSearchQuery={onChangeSearchQuery}
-            searchQuery={searchQuery}
-            isUpdate />
+            searchQuery={searchQuery} />
 
           <div css={{ marginBottom: '16px', paddingBottom: '16px', borderBottom: `1px solid ${colors.red.DEFAULT}` }}>
             <NormalButton 

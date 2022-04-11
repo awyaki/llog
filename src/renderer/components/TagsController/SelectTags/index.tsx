@@ -8,61 +8,43 @@ import {
 import { Tag } from '@prisma/client';
 
 import { 
-  SelectedTagsList,
-  AccordionButtonWithText,
+  SearchAndCreateInput,
+  TagListToSelect,
   } from '~/components';
-
-import {
-  CollapseToSelectTags,
-} from './components';
-
 
 export * from './components';
 
 export * from './hooks';
 
 type Props = {
-  isOpen: boolean,
-  toggleIsOpen: () => void;
   searchQuery: string;
   setSearchQuery: Dispatch<SetStateAction<string>>;
   onChangeSearchQuery: ChangeEventHandler<HTMLInputElement>;
   selectedTags: Tag[];
   onToggleSelectedTags: (tag: Tag) => void;
   setSelectedTags: Dispatch<SetStateAction<Tag[]>>;
-  isUpdate?: boolean;
 };
 
 export const SelectTags: VFC<Props> = ({ 
-  isOpen,
-  toggleIsOpen,
   searchQuery, 
   setSearchQuery,
   onChangeSearchQuery,
   selectedTags,
   onToggleSelectedTags,
   setSelectedTags,
-  isUpdate
   }) => {
   
   return (
     <>
-      <AccordionButtonWithText
-        isOpen={isOpen}
-        text={isUpdate ? "Update tags" : "Add tags"}
-        onClick={toggleIsOpen}
-        css={{ marginBottom: '16px' }}
-      />
-      <SelectedTagsList 
-        selectedTags={selectedTags}
-        css={{ marginBottom: '8px' }} />
-      <CollapseToSelectTags 
-        isOpen={isOpen}
+      <h2 css={{ marginBottom: '8px' }}>Search or Create tags</h2>
+      <SearchAndCreateInput 
+        setSelectedTags={setSelectedTags}
+        setSearchQuery={setSearchQuery}
+        onChangeSearchQuery={onChangeSearchQuery} />
+      <TagListToSelect 
+        onToggleSelectedTags={onToggleSelectedTags}
         selectedTags={selectedTags}
         setSelectedTags={setSelectedTags}
-        onToggleSelectedTags={onToggleSelectedTags}
-        setSearchQuery={setSearchQuery}
-        onChangeSearchQuery={onChangeSearchQuery}
         searchQuery={searchQuery} />
     </>
   );

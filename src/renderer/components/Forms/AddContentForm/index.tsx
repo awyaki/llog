@@ -75,8 +75,6 @@ export const AddContentForm: VFC<AddContentFormProps> = ({
           <div css={error}>{errors.numberOfBlocks?.message}</div>
         </form>
         <SelectTags 
-          isOpen={isOpenSelectTags}
-          toggleIsOpen={toggleIsOpenSelectTags}
           selectedTags={selectedTags}
           setSelectedTags={setSelectedTags}
           onToggleSelectedTags={onToggleSelectedTags}
