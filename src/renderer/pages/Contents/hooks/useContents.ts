@@ -3,6 +3,7 @@ import {
   useCallback,
   ChangeEventHandler,
   useContext,
+  useState,
 } from 'react';
 
 import { useDisclosure } from '@chakra-ui/react';
@@ -19,8 +20,8 @@ import {
 
 export const useContents = () => {
   const { contents, filtered, searchQuery, contentsActionDispatch: dispatch } = useContext(ContentsContext);
+  const [isOpenAddContentForm, setIsOpenAddContentForm] = useState(false);
   const { searchedTags } = useContext(SelectedTagsContext); 
-  
   const {
     isOpen: isOpenDrawerToCreateContent,
     onOpen: onOpenDrawerToCreateContent,
@@ -43,6 +44,14 @@ export const useContents = () => {
     dispatch({ type: 'CONTENTS/SET_SEARCH_QUERY', searchQuery: e.target.value });
   }, []);
   
+  
+  const handleCloseAddContentForm = useCallback(() => {
+    setIsOpenAddContentForm(false);
+  }, [setIsOpenAddContentForm]);
+  
+  const handleToggleIsOpenAddContentForm = useCallback(() => {
+    setIsOpenAddContentForm((p) => !p);
+  }, [setIsOpenAddContentForm]);
 
   return {
     contents,
@@ -50,6 +59,9 @@ export const useContents = () => {
     searchQuery,
     dispatch,
     onChangeSearchQuery,
+    isOpenAddContentForm,
+    handleCloseAddContentForm,
+    handleToggleIsOpenAddContentForm,
     isOpenDrawerToCreateContent,
     onOpenDrawerToCreateContent,
     onCloseDrawerToCreateContent
