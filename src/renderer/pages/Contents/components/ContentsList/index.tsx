@@ -14,7 +14,6 @@ type Props = {
 export const ContentsList: VFC<Props> = ({ contents }) => {
   return (
     <ul css={{
-      width: '45%',
       minWidth: '400px',
       '> li': {
         marginBottom: '16px',
