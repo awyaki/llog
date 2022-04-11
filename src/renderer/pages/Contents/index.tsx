@@ -14,7 +14,7 @@ import {
 
 import {
   ContentsList,
-  AccordionToCreateContent,
+  AddContent,
 } from './components';
 
 import { 
@@ -31,16 +31,16 @@ export const Contents: VFC = () => {
   } = useContents();
   return (
       <PageMotion css={container}>
-        <div>
+        <div css={{
+          flexGrow: 1,
+        }}>
             <div css={{
               top: 0,
               position: 'sticky',
               backgroundColor: colors.white,
-              paddingTop: '24px',
               paddingBottom: '32px',
               zIndex: 1,
             }}>
-            <AccordionToCreateContent /> 
             <div css={{
               padding: '16px',
               border: `1px solid ${colors.cyan.DEFAULT}`,
@@ -58,9 +58,11 @@ export const Contents: VFC = () => {
               <AccordionToSearchContentsByTags />
             </div>
           </div>
-
           <ContentsList contents={filtered} />
         </div>
+        <AddContent 
+          onClose={() => {}}
+          isOpen={true} />
       </PageMotion>
   );
 };
