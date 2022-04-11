@@ -5,7 +5,7 @@ import { colors } from '~/styleConfig';
 type SideMenuProps = {
   isOpen: boolean;
   onClose: () => void;
-  children: () => JSX.Element;
+  children: JSX.Element;
 };
 
 export const SideMenu: VFC<SideMenuProps> = ({ 
