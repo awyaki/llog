@@ -10,6 +10,7 @@ import {
   SearchIcon,
   PageMotion,
   AccordionToSearchContentsByTags,
+  NormalButton,
 } from '~/components';
 
 import {
@@ -30,12 +31,16 @@ export const Contents: VFC = () => {
     onChangeSearchQuery,
     isOpenAddContentForm,
     handleCloseAddContentForm,
+    handleToggleIsOpenAddContentForm,
   } = useContents();
   return (
       <PageMotion css={container}>
         <div css={{
           flexGrow: 1,
         }}>
+            <NormalButton onClick={handleToggleIsOpenAddContentForm}>
+              Add Content
+            </NormalButton>
             <div css={{
               top: 0,
               position: 'sticky',
