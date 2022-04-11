@@ -38,8 +38,10 @@ export const Contents: VFC = () => {
         <div css={{
           flexGrow: 1,
         }}>
-            <NormalButton onClick={handleToggleIsOpenAddContentForm}>
-              Add Content
+            <NormalButton 
+              css={{ marginBottom: '8px', width: '80px' }}
+              onClick={handleToggleIsOpenAddContentForm}>
+              Add
             </NormalButton>
             <div css={{
               top: 0,
