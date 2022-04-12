@@ -17,9 +17,10 @@ export const SideMenu: VFC<SideMenuProps> = ({
     <aside css={{
       position: 'relative',
       width: isOpen ? '250px' : '0px',
+      minWidth: isOpen ? '250px' : '0px',
       height: '100%',
       zIndex: 1,
-      transitionProperty: 'width',
+      transitionProperty: 'width minWidth',
       transitionDuration: '.5s',
       transitionTimingFunction: 'ease',
     }}>
