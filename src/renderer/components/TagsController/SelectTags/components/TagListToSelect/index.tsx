@@ -74,6 +74,8 @@ export const TagListToSelect: VFC<Props> = ({
   return (
     <ul css={{
       width: '100%',
+      maxHeight: '400px',
+      overflowY: 'scroll',
       display: 'flex',
       flexWrap: 'wrap',
       '> li': {
