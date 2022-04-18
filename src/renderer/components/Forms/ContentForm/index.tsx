@@ -20,7 +20,7 @@ const error: CSSObject = {
 
 
 export type ContentFormProps = {
-  onClearAllInput: () => void;
+  id: string;
   onChangeSearchQuery: ChangeEventHandler<HTMLInputElement>;
   isAlreadyNameExist: Validate<string>;
   onToggleSelectedTags: (tag: Tag) => void;
@@ -34,11 +34,11 @@ export type ContentFormProps = {
 }
 
 export const ContentForm: VFC<ContentFormProps> = ({
+    id,
     errors,
     register,
     searchQuery,
     onSubmit,
-    onClearAllInput,
     onChangeSearchQuery,
     isAlreadyNameExist,
     onToggleSelectedTags,
@@ -48,62 +48,50 @@ export const ContentForm: VFC<ContentFormProps> = ({
 }) => {
   
   return (
-      <div>
-      <form 
-        id="content-create" 
-        onSubmit={onSubmit}>
+      <>
+        <form 
+          id={id}
+          onSubmit={onSubmit}>
+            <label 
+              css={{
+                display: 'block',
+              }}
+              htmlFor="contentName">
+                Name</label>
+            <input 
+              css={inputBox}
+              {...register('contentName', 
+                { required: { value: true, message: 'You should fill in this field.' }, 
+                  maxLength: 100, 
+                  validate: { isAlreadyNameExist: isAlreadyNameExist } })} />
+          <div css={error}>{errors.contentName?.message}</div>
+
           <label 
             css={{
               display: 'block',
-            }}
-            htmlFor="contentName">
-              Name</label>
+            }} 
+            htmlFor="numberOfBlocks">Blocks</label>
           <input 
             css={inputBox}
-            {...register('contentName', 
+            {...register('numberOfBlocks', 
               { required: { value: true, message: 'You should fill in this field.' }, 
-                maxLength: 100, 
-                validate: { isAlreadyNameExist: isAlreadyNameExist } })} />
-        <div css={error}>{errors.contentName?.message}</div>
-
-        <label 
-          css={{
-            display: 'block',
-          }} 
-          htmlFor="numberOfBlocks">Blocks</label>
-        <input 
-          css={inputBox}
-          {...register('numberOfBlocks', 
-            { required: { value: true, message: 'You should fill in this field.' }, 
-            min: { value: 1, message: 'You should fill in this field with a number which is more than 0.' }, 
-            max: { value: 1500, message: 'You should fill in this field with a number which is equal to or less than 1500.' },  // TODO: The number 1500 is not considered number. We should consider that how many blocks a content will have.
-            pattern: { value: /^[0-9]+$/i, message: 'You should fill in this field with a number.' }})} />
-          <div css={error}>{errors.numberOfBlocks?.message}</div>
-        </form>
-        <div css={{
-          marginBottom: '16px',
-        }}>
-          <SelectTags 
-            selectedTags={selectedTags}
-            setSelectedTags={setSelectedTags}
-            onToggleSelectedTags={onToggleSelectedTags}
-            searchQuery={searchQuery}
-            setSearchQuery={setSearchQuery}
-            onChangeSearchQuery={onChangeSearchQuery} />
-        </div>
-        <NormalButton 
-          css={{ width: '84px', marginRight: '8px' }}
-          form="content-create"
-          type="submit">
-          Create
-        </NormalButton>
-        <WarningButton 
-          css={{ width: '84px' }}
-          onClick={onClearAllInput}
-          type="button">
-          Clear
-        </WarningButton>
-      </div>
+              min: { value: 1, message: 'You should fill in this field with a number which is more than 0.' }, 
+              max: { value: 1500, message: 'You should fill in this field with a number which is equal to or less than 1500.' },  // TODO: The number 1500 is not considered number. We should consider that how many blocks a content will have.
+              pattern: { value: /^[0-9]+$/i, message: 'You should fill in this field with a number.' }})} />
+            <div css={error}>{errors.numberOfBlocks?.message}</div>
+          </form>
+          <div css={{
+            marginBottom: '16px',
+          }}>
+            <SelectTags 
+              selectedTags={selectedTags}
+              setSelectedTags={setSelectedTags}
+              onToggleSelectedTags={onToggleSelectedTags}
+              searchQuery={searchQuery}
+              setSearchQuery={setSearchQuery}
+              onChangeSearchQuery={onChangeSearchQuery} />
+          </div>
+      </>
   );
 };
 
