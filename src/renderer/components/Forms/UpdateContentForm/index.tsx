@@ -132,7 +132,11 @@ export const UpdateContentForm: VFC<UpdateContentFormProps> = ({
         setSelectedTags={setSelectedTags}
         onToggleSelectedTags={handleToggleSelectedTags}
       />
-      <div css={{ marginBottom: '16px' }}>
+      <div css={{ 
+            marginBottom: '16px',
+            paddingBottom: '16px',
+            borderBottom: `1px solid ${colors.cyan.DEFAULT}`,
+            }}>
         <UpdateButton
           css={{ marginRight: '8px' }}
           form={formName} />
