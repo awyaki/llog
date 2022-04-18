@@ -81,6 +81,8 @@ export const useUpdateContentForm = ({ content, onSubmit }: Props) => {
     } = useContext(SelectedTagsContext);
 
   useEffect(() => {
+    setValue('numberOfBlocks', String(content.blocks.length));
+    setValue('contentName', content.name);
     setSelectedTags(content.tags);
   }, [content]);
  
@@ -106,9 +108,9 @@ export const useUpdateContentForm = ({ content, onSubmit }: Props) => {
     const updatedContent = await getContent(content.id);
     if (onSubmit !== undefined) onSubmit();
     setContent(updatedContent);
-    setSelectedTags([]);
-    setValue('numberOfBlocks', '');
-    setValue('contentName', '');
+    setSelectedTags(selectedTags);
+    setValue('numberOfBlocks', numberOfBlocks);
+    setValue('contentName', contentName);
     setMessage('Update');
     setIsDisable(true);
   }, [selectedTags, content]);  
@@ -124,15 +126,14 @@ export const useUpdateContentForm = ({ content, onSubmit }: Props) => {
     return Number(numberOfBlocks) >= content.blocks.length || `You should update the number to more than the previous one, ${content.blocks.length} or remain.`
   }, [content]);
 
-  const handleCancelUpdate = useCallback(() => {
-    setIsDisable(true);
-    setSelectedTags([]);
-    setValue('numberOfBlocks', '');
-    setValue('contentName', '');
-  }, []);
 
-  
   const handleSubmitUpdate = handleSubmit(_onSubmit);
+
+  const handleResetForm = useCallback(() => {
+    setValue('numberOfBlocks', String(content.blocks.length));
+    setValue('contentName', content.name);
+    setSelectedTags(content.tags);
+  }, [content]);
 
   const handleToggleIsDisable = useCallback(() => {
     setIsDisable((p) => !p);
@@ -148,7 +149,6 @@ export const useUpdateContentForm = ({ content, onSubmit }: Props) => {
     register,
     errors,
     handleSubmitUpdate,
-    handleCancelUpdate,
     isAlreadyNameExist,
     isMoreThanEqaulToPreviousNumber,
     isDisable,
@@ -159,6 +159,7 @@ export const useUpdateContentForm = ({ content, onSubmit }: Props) => {
     selectedTags,
     setSelectedTags,
     handleToggleSelectedTags,
-    handleChangeSearchQuery
+    handleChangeSearchQuery,
+    handleResetForm
   };
 };

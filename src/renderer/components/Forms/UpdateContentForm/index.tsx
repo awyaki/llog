@@ -41,12 +41,12 @@ type CancelButtonProps = {
   onCancel: () => void;
 };
 
-const CancelButton: VFC<CancelButtonProps> = ({
+const ResetButton: VFC<CancelButtonProps> = ({
   onCancel
 }) => {
   return (
     <WarningButton onClick={onCancel}>
-      Cancel
+      Reset
     </WarningButton>
   );
 };
@@ -103,7 +103,6 @@ export const UpdateContentForm: VFC<UpdateContentFormProps> = ({
     handleSubmitUpdate,
     handleDeleteContent,
     handleToggleIsDisable,
-    handleCancelUpdate,
     isDisable,
     isAlreadyNameExist,
     isMoreThanEqaulToPreviousNumber,
@@ -112,7 +111,8 @@ export const UpdateContentForm: VFC<UpdateContentFormProps> = ({
     handleChangeSearchQuery,
     selectedTags,
     setSelectedTags,
-    handleToggleSelectedTags
+    handleToggleSelectedTags,
+    handleResetForm
   } = useUpdateContentForm({ content, onSubmit });
 
   const formName = 'update-content';
@@ -140,8 +140,8 @@ export const UpdateContentForm: VFC<UpdateContentFormProps> = ({
         <UpdateButton
           css={{ marginRight: '8px' }}
           form={formName} />
-        <CancelButton 
-          onCancel={handleCancelUpdate}
+        <ResetButton 
+          onCancel={handleResetForm}
         / >
       </div>
       <DeleteButton 
