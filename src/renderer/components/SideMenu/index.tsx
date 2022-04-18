@@ -23,6 +23,7 @@ export const SideMenu: VFC<SideMenuProps> = ({
       transitionProperty: 'width minWidth',
       transitionDuration: '.5s',
       transitionTimingFunction: 'ease',
+      marginLeft: '16px',
     }}>
       <div css={{ 
           display: isOpen ? 'block' : 'none',
