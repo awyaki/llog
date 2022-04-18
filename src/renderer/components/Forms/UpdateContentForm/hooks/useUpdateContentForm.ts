@@ -158,7 +158,7 @@ export const useUpdateContentForm = ({ content, onSubmit }: Props) => {
     setSearchQuery,
     selectedTags,
     setSelectedTags,
-    handleToggleSelectedTags
+    handleToggleSelectedTags,
     handleChangeSearchQuery
   };
 };
