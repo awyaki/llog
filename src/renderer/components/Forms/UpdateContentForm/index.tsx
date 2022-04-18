@@ -121,6 +121,7 @@ export const UpdateContentForm: VFC<UpdateContentFormProps> = ({
         errors={errors}
         onSubmit={handleSubmitUpdate}
         isAlreadyNameExist={isAlreadyNameExist}
+        blockNumberValidate={isMoreThanEqaulToPreviousNumber}
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
         onChangeSearchQuery={handleChangeSearchQuery}

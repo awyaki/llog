@@ -23,6 +23,7 @@ export type ContentFormProps = {
   id: string;
   onChangeSearchQuery: ChangeEventHandler<HTMLInputElement>;
   isAlreadyNameExist: Validate<string>;
+  blockNumberValidate?: Validate<string>;
   onToggleSelectedTags: (tag: Tag) => void;
   searchQuery: string;
   setSearchQuery: Dispatch<SetStateAction<string>>;
@@ -41,12 +42,26 @@ export const ContentForm: VFC<ContentFormProps> = ({
     onSubmit,
     onChangeSearchQuery,
     isAlreadyNameExist,
+    blockNumberValidate,
     onToggleSelectedTags,
     setSelectedTags,
     selectedTags,
     setSearchQuery,
 }) => {
   
+  const numberOfBlocksOption = blockNumberValidate ? { 
+      required: { value: true, message: 'You should fill in this field.' }, 
+      min: { value: 1, message: 'You should fill in this field with a number which is more than 0.' }, 
+      max: { value: 1500, message: 'You should fill in this field with a number which is equal to or less than 1500.' },  // TODO: The number 1500 is not considered number. We should consider that how many blocks a content will have.
+      pattern: { value: /^[0-9]+$/i, message: 'You should fill in this field with a number.' },
+      validate: { blockNumberValidate: blockNumberValidate }
+  } : {
+      required: { value: true, message: 'You should fill in this field.' }, 
+      min: { value: 1, message: 'You should fill in this field with a number which is more than 0.' }, 
+      max: { value: 1500, message: 'You should fill in this field with a number which is equal to or less than 1500.' },  // TODO: The number 1500 is not considered number. We should consider that how many blocks a content will have.
+      pattern: { value: /^[0-9]+$/i, message: 'You should fill in this field with a number.' },
+  };
+
   return (
       <>
         <form 
@@ -73,11 +88,7 @@ export const ContentForm: VFC<ContentFormProps> = ({
             htmlFor="numberOfBlocks">Blocks</label>
           <input 
             css={inputBox}
-            {...register('numberOfBlocks', 
-              { required: { value: true, message: 'You should fill in this field.' }, 
-              min: { value: 1, message: 'You should fill in this field with a number which is more than 0.' }, 
-              max: { value: 1500, message: 'You should fill in this field with a number which is equal to or less than 1500.' },  // TODO: The number 1500 is not considered number. We should consider that how many blocks a content will have.
-              pattern: { value: /^[0-9]+$/i, message: 'You should fill in this field with a number.' }})} />
+            {...register('numberOfBlocks', numberOfBlocksOption )} />
             <div css={error}>{errors.numberOfBlocks?.message}</div>
           </form>
           <div css={{
