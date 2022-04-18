@@ -19,14 +19,17 @@ import {
 import { useUpdateContentForm } from './hooks';
 
 type UpdateButtonProps = {
+  css?: CSSObject;
   form: string;
 };
 
 const UpdateButton: VFC<UpdateButtonProps> = ({
-  form
+  form,
+  ...rest
 }) => {
   return (
     <NormalButton 
+      {...rest}
       form={form}>
       Update
     </NormalButton>
@@ -129,8 +132,9 @@ export const UpdateContentForm: VFC<UpdateContentFormProps> = ({
         setSelectedTags={setSelectedTags}
         onToggleSelectedTags={handleToggleSelectedTags}
       />
-      <div>
+      <div css={{ marginBottom: '16px' }}>
         <UpdateButton
+          css={{ marginRight: '8px' }}
           form={formName} />
         <CancelButton 
           onCancel={handleCancelUpdate}
