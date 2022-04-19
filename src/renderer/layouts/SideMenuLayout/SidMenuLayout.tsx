@@ -51,7 +51,7 @@ const SideMenu: VFC<SideMenuProps> = ({
 
 
 type SideMenuLayoutProps = {
-  isOpen: true;
+  isOpen: boolean;
   onClose: () => void;
   main: JSX.Element;
   side: JSX.Element;
