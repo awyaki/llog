@@ -23,7 +23,9 @@ export const UpdateContent: VFC<UpdateContentProps> = ({
     <SideMenu 
       isOpen={isOpen} 
       onClose={onClose}>
-    <UpdateContentForm content={content} />
+    <UpdateContentForm 
+      key={isOpen ? 'open' : 'close'}
+      content={content} />
     </SideMenu>
   );
 };
