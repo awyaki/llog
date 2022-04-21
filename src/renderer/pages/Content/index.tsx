@@ -7,7 +7,9 @@ import {
 
 import { CSSObject } from '@emotion/react';
 
-import { Switch, NormalButton } from '~/components';
+import { Switch, NormalButton, UpdateContentForm } from '~/components';
+
+import { SideMenuLayout } from '~/layouts/SideMenuLayout';
 
 
 import { calculateNumberArrayOfEachLevel } from '~/functions';
@@ -33,7 +35,6 @@ import {
 import { 
   BasicInfo,
   ContentBlocks,
-  UpdateContent
 } from './components';
 
 
@@ -79,10 +80,9 @@ export const Content: VFC<ContentProps> = ({ content }) => {
     setIsOpenUpdateContentForm((p) => !p);
   }, [setIsOpenUpdateContentForm]);
 
-  return (
-    <>
-      <div css={{ display: 'flex', height: '100%' }}>
-        <div css={{ flexGrow: 1 }}>
+
+  const main: JSX.Element = (
+        <>
           <ToggleButton 
             css={{ marginBottom: '8px' }}
             onToggleOpen={handleToggleIsOpenUpdateContentForm} />
@@ -112,12 +112,17 @@ export const Content: VFC<ContentProps> = ({ content }) => {
               </TabPanel>
             </TabPanels>
           </Tabs>
-        </div>
-        <UpdateContent 
-          isOpen={isOpenUpdateContentForm}
-          onClose={handleCloseUpdateContentForm}
-          content={content} />
-      </div>
-    </>
+        </>
+  );
+
+  return (
+    <SideMenuLayout 
+      isOpen={isOpenUpdateContentForm}
+      onClose={handleCloseUpdateContentForm}
+      main={main}
+      side={<UpdateContentForm 
+              key={isOpenUpdateContentForm ? 'open' : 'close'} 
+              content={content} />}
+      />
   );
 }; 
