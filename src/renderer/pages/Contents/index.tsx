@@ -2,20 +2,20 @@ import { VFC } from 'react';
 
 import { colors } from '~/styleConfig';
 
-
 import { useContents } from './hooks';
-
 
 import {
   SearchIcon,
   PageMotion,
   AccordionToSearchContentsByTags,
+  AddContentForm,
   NormalButton,
 } from '~/components';
 
+import { SideMenuLayout } from '~/layouts/SideMenuLayout';
+
 import {
   ContentsList,
-  AddContent,
 } from './components';
 
 import { 
@@ -33,45 +33,50 @@ export const Contents: VFC = () => {
     handleCloseAddContentForm,
     handleToggleIsOpenAddContentForm,
   } = useContents();
+
+  
+  const mainOfContents: JSX.Element = (
+      <>
+        <NormalButton 
+          css={{ marginBottom: '8px' }}
+          onClick={handleToggleIsOpenAddContentForm}>
+          Add New
+        </NormalButton>
+        <div css={{
+          top: 0,
+          position: 'sticky',
+          backgroundColor: colors.white,
+          paddingBottom: '32px',
+          zIndex: 1,
+        }}>
+        <div css={{
+          padding: '16px',
+          border: `1px solid ${colors.cyan.DEFAULT}`,
+          borderRadius: '4px',
+        }}>
+          <h2 css={{ ...searchTitle, marginBottom: '8px' }}>Search by name</h2>
+          <div css={{ display: 'flex', alignItems: 'flex-end', marginBottom: '16px' }}>
+            <input 
+              css={{ ...inputBox, marginRight: '4px' }}
+              type="text" 
+              value={searchQuery}
+              onChange={onChangeSearchQuery} />
+            <SearchIcon />
+          </div>
+          <AccordionToSearchContentsByTags />
+        </div>
+      </div>
+      <ContentsList contents={filtered} />
+    </>
+  );
+
   return (
       <PageMotion css={container}>
-        <div css={{
-          flexGrow: 1,
-        }}>
-            <NormalButton 
-              css={{ marginBottom: '8px' }}
-              onClick={handleToggleIsOpenAddContentForm}>
-              Add New
-            </NormalButton>
-            <div css={{
-              top: 0,
-              position: 'sticky',
-              backgroundColor: colors.white,
-              paddingBottom: '32px',
-              zIndex: 1,
-            }}>
-            <div css={{
-              padding: '16px',
-              border: `1px solid ${colors.cyan.DEFAULT}`,
-              borderRadius: '4px',
-            }}>
-              <h2 css={{ ...searchTitle, marginBottom: '8px' }}>Search by name</h2>
-              <div css={{ display: 'flex', alignItems: 'flex-end', marginBottom: '16px' }}>
-                <input 
-                  css={{ ...inputBox, marginRight: '4px' }}
-                  type="text" 
-                  value={searchQuery}
-                  onChange={onChangeSearchQuery} />
-                <SearchIcon />
-              </div>
-              <AccordionToSearchContentsByTags />
-            </div>
-          </div>
-          <ContentsList contents={filtered} />
-        </div>
-        <AddContent 
+        <SideMenuLayout 
+          isOpen={isOpenAddContentForm}
           onClose={handleCloseAddContentForm}
-          isOpen={isOpenAddContentForm} />
+          main={mainOfContents} 
+          side={<AddContentForm />} />
       </PageMotion>
   );
 };
