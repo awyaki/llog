@@ -64,7 +64,7 @@ export const SideMenuLayout: VFC<SideMenuLayoutProps> = ({
   onClose
 }) => {
   return (
-    <div css={{ display: 'flex', height: '100%' }}>
+    <div css={{ display: 'flex', height: '100%', width: '100%' }}>
       <div css={{ flexGrow: 1 }}>
         {main}
       </div>
