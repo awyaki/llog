@@ -77,7 +77,7 @@
     "extraResources": [
       {
         "from": "dist/dev.db",
-        "to": "dist/dev.db" 
+        "to": "dist/dev.db"
       }
     ],
     "asar": true,
