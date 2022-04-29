@@ -27,9 +27,7 @@ const SideMenu: VFC<SideMenuProps> = ({
     }}>
       <div css={{ 
           display: isOpen ? 'block' : 'none',
-          position: 'absolute',
-          top: 0,
-          left: 0,
+          position: 'fixed',
           paddingLeft: '24px',
           borderLeft: `1px solid ${colors.cyan.DEFAULT}`,
           height: '100%',
