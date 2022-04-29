@@ -37,11 +37,6 @@ export const Contents: VFC = () => {
   
   const mainOfContents: JSX.Element = (
       <>
-        <NormalButton 
-          css={{ marginBottom: '8px' }}
-          onClick={handleToggleIsOpenAddContentForm}>
-          Add New
-        </NormalButton>
         <div css={{
           top: 0,
           position: 'sticky',
@@ -49,6 +44,11 @@ export const Contents: VFC = () => {
           paddingBottom: '32px',
           zIndex: 1,
         }}>
+        <NormalButton 
+          css={{ marginBottom: '8px' }}
+          onClick={handleToggleIsOpenAddContentForm}>
+          Add New
+        </NormalButton>
         <div css={{
           padding: '16px',
           border: `1px solid ${colors.cyan.DEFAULT}`,
