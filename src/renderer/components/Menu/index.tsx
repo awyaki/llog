@@ -12,6 +12,7 @@ import {
   BackButton,
   HomeButton,
   LogsButton,
+  SettingsButton,
 } from './components';
 
 
@@ -63,6 +64,7 @@ export const Menu: VFC = () => {
         }}>
         <LogsButton onClick={onClickLogs} />
         <HomeButton onClick={onClickHome} /> 
+        <SettingsButton onClick={() => {}} />
       </div>
     </motion.div>
   );
