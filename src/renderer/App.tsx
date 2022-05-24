@@ -12,6 +12,7 @@ import {
   Contents,
   Logs,
   ContentHub,
+  Settings
 } from './pages';
 
 import { 
@@ -57,6 +58,9 @@ export const App: VFC = () => {
               </LogContextProvider>
             </ModalToSubmitLogContextProvider>
           </ModalToUpdateLogTitleContextProvider>
+        </Route>
+        <Route path="/settings">
+          <Settings />
         </Route>
         <Route path="/">
           <SelectedTagsContextProvider>

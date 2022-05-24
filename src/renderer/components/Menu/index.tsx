@@ -22,6 +22,7 @@ export const Menu: VFC = () => {
     onClickForward,
     onClickHome,
     onClickLogs,
+    onClickSettings
   } = useMenu();
 
   return (
@@ -64,7 +65,7 @@ export const Menu: VFC = () => {
         }}>
         <LogsButton onClick={onClickLogs} />
         <HomeButton onClick={onClickHome} /> 
-        <SettingsButton onClick={() => {}} />
+        <SettingsButton onClick={onClickSettings} />
       </div>
     </motion.div>
   );
