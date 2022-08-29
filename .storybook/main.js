@@ -20,6 +20,18 @@ module.exports = {
           "~": path.resolve(__dirname, "../src/renderer"),
         },
       },
+      module: {
+        ...config.module,
+        rules: [
+          ...config.module.rules,
+          { test: /\.(png|svg|jpg|jpeg|gif)$/i, type: "asset/resource" },
+          {
+            test: /\.tsx?$/,
+            exclude: /(node_modules|bower_components)/,
+            use: "babel-loader",
+          },
+        ],
+      },
     };
   },
 };
