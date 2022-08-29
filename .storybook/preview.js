@@ -1,3 +1,6 @@
+import "../src/renderer/index.css";
+import "destyle.css";
+
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
   controls: {
@@ -6,4 +9,4 @@ export const parameters = {
       date: /Date$/,
     },
   },
-}
+};
