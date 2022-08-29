@@ -6,7 +6,9 @@
   "scripts": {
     "start": "npx webpack --config webpack.dev.js && npx electron ./dist/main.js",
     "watch": "npx webpack --config webpack.dev.js --watch",
-    "build": "npx webpack --config webpack.prod.js"
+    "build": "npx webpack --config webpack.prod.js",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "keywords": [],
   "author": "awyaki",
@@ -42,6 +44,14 @@
     "@babel/preset-typescript": "^7.15.0",
     "@babel/runtime": "^7.15.4",
     "@emotion/babel-plugin": "^11.3.0",
+    "@storybook/addon-actions": "^6.5.10",
+    "@storybook/addon-essentials": "^6.5.10",
+    "@storybook/addon-interactions": "^6.5.10",
+    "@storybook/addon-links": "^6.5.10",
+    "@storybook/builder-webpack5": "^6.5.10",
+    "@storybook/manager-webpack5": "^6.5.10",
+    "@storybook/react": "^6.5.10",
+    "@storybook/testing-library": "^0.0.13",
     "@types/node": "^14.17.27",
     "@types/react": "^17.0.30",
     "@types/react-dom": "^17.0.9",
