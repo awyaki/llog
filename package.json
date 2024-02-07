@@ -34,6 +34,7 @@
     "recharts": "^2.1.9",
     "sqlite3": "^5.1.7",
     "zenn-content-css": "^0.1.99",
+    "zenn-embed-elements": "^0.1.153",
     "zenn-markdown-html": "^0.1.99"
   },
   "devDependencies": {
