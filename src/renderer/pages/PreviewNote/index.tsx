@@ -20,6 +20,8 @@ import { Switch, DisabableNormalButton } from "~/components";
 
 import "zenn-content-css";
 
+import "zenn-embed-elements";
+
 type DeleteNoteButtonWithLimitationProps = {
   css?: CSSObject;
   onDeleteNote: () => void;
