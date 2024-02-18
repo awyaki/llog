@@ -2,7 +2,8 @@ In the current version, I have only implemented some basic features of the appli
 
 ## What is LLog?
 
-![LLog's icon](images/llog_icon_512x512.png)
+<img src="images/llog_icon_512x512.png" width="256px" height="256px">
+
 "LLog" is abbreviated for "learning logs" and is an application for managing your learning progress by logging.
 
 You can manage "what and when you learn" and know "when you should review what you learned" by this application.
