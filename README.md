@@ -10,7 +10,7 @@ You can manage "what and when you learn" and know "when you should review what y
 
 <img src="images/ex_log1.png" width="1024px">
 
-<img src="images/ex_note1.png.png" width="1024px">
+<img src="images/ex_note1.png" width="1024px">
 
 <img src="images/ex_note2.png" width="1024px">
 
