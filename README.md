@@ -8,6 +8,14 @@ In the current version, I have only implemented some basic features of the appli
 
 You can manage "what and when you learn" and know "when you should review what you learned" by this application.
 
+<img src="images/ex_log1.png" width="1024px">
+
+<img src="images/ex_note1.png.png" width="1024px">
+
+<img src="images/ex_note2.png" width="1024px">
+
+<img src="images/ex_blocks.png" width="1024px">
+
 ## Features
 
 - You can manage the progress of what you learned.
