@@ -1,1 +1,1 @@
-export * from './CreateNewTagIcon';
+export * from "./CreateNewTagIcon";

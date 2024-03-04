@@ -1,13 +1,8 @@
-import { 
-    useReducer,
-    Reducer,
-} from 'react';
+import { useReducer, Reducer } from "react";
 
+import { createNGramTokenMap } from "~/utils";
 
-import { createNGramTokenMap } from '~/utils';
-
-import { Tag } from '@prisma/client';
-
+import { Tag } from "@prisma/client";
 
 export type State = {
   tags: Tag[];
@@ -16,80 +11,87 @@ export type State = {
   tagNameTokenMap: Map<string, Set<number>>;
 };
 
-export type Action = {
-  type: 'FILTERED_TAGS/CALCULATE_WITH_NEW_TAGS';
-  tags: Tag[];
-} | {
-  type: 'FILTERED_TAGS/CALCULATE_WITH_NEW_TAG_NAME_QUERY'
-  tagNameQuery: string;
-};
+export type Action =
+  | {
+      type: "FILTERED_TAGS/CALCULATE_WITH_NEW_TAGS";
+      tags: Tag[];
+    }
+  | {
+      type: "FILTERED_TAGS/CALCULATE_WITH_NEW_TAG_NAME_QUERY";
+      tagNameQuery: string;
+    };
 
 export const filteredTagsReducer: Reducer<State, Action> = (state, action) => {
   switch (action.type) {
-    case 'FILTERED_TAGS/CALCULATE_WITH_NEW_TAGS': {
+    case "FILTERED_TAGS/CALCULATE_WITH_NEW_TAGS": {
       const nextState = { ...state };
-      const nextTagNameToken = createNGramTokenMap(action.tags.map(({ id, name }) => ({ id, text: name })));
+      const nextTagNameToken = createNGramTokenMap(
+        action.tags.map(({ id, name }) => ({ id, text: name })),
+      );
 
       const tagIdsSet = nextTagNameToken.get(state.tagNameQuery) ?? new Set();
-      const nextFilteredTags = action.tags
-                                  .filter(({ id }) => tagIdsSet.has(id));
+      const nextFilteredTags = action.tags.filter(({ id }) =>
+        tagIdsSet.has(id),
+      );
 
       nextState.filteredTags = nextFilteredTags;
       nextState.tagNameTokenMap = nextTagNameToken;
 
       return nextState;
     }
-    case 'FILTERED_TAGS/CALCULATE_WITH_NEW_TAG_NAME_QUERY': {
+    case "FILTERED_TAGS/CALCULATE_WITH_NEW_TAG_NAME_QUERY": {
       const nextState = { ...state };
-      const tagIdSet = state.tagNameTokenMap.get(action.tagNameQuery) ?? new Set();
+      const tagIdSet =
+        state.tagNameTokenMap.get(action.tagNameQuery) ?? new Set();
 
-      const nextFilteredTags = action.tagNameQuery === ''
-                                ? state.tags
-                                : state.tags
-                                  .filter(({ id }) => tagIdSet.has(id));
+      const nextFilteredTags =
+        action.tagNameQuery === ""
+          ? state.tags
+          : state.tags.filter(({ id }) => tagIdSet.has(id));
 
       nextState.filteredTags = nextFilteredTags;
       nextState.tagNameQuery = action.tagNameQuery;
       return nextState;
     }
 
-    default: 
+    default:
       return state;
   }
 };
-
-
 
 type UseSearchTagsByNameArgument = {
   tags: Tag[];
 };
 
-
 const init = (tags: Tag[]): State => {
-  const tagNameTokenMap = createNGramTokenMap((tags.map(({ id, name }) => ({ id, text: name }))));
+  const tagNameTokenMap = createNGramTokenMap(
+    tags.map(({ id, name }) => ({ id, text: name })),
+  );
 
   return {
     tags: [...tags],
     filteredTags: [...tags],
-    tagNameQuery: '',
-    tagNameTokenMap: tagNameTokenMap
+    tagNameQuery: "",
+    tagNameTokenMap: tagNameTokenMap,
   };
 };
 
-
-export const useSearchTagsByName = ({ tags }: UseSearchTagsByNameArgument ) => {
-  const [{ filteredTags, tagNameQuery }, dispatch] = useReducer<Reducer<State, Action>, Tag[]>(filteredTagsReducer, tags, init);
-  
+export const useSearchTagsByName = ({ tags }: UseSearchTagsByNameArgument) => {
+  const [{ filteredTags, tagNameQuery }, dispatch] = useReducer<
+    Reducer<State, Action>,
+    Tag[]
+  >(filteredTagsReducer, tags, init);
 
   const setTagNameQuery = (tagNameQuery: string) => {
-    dispatch({ type: 'FILTERED_TAGS/CALCULATE_WITH_NEW_TAG_NAME_QUERY', tagNameQuery: tagNameQuery });
+    dispatch({
+      type: "FILTERED_TAGS/CALCULATE_WITH_NEW_TAG_NAME_QUERY",
+      tagNameQuery: tagNameQuery,
+    });
   };
-  
-  
 
   return {
     filteredTags,
     tagNameQuery,
-    setTagNameQuery, 
+    setTagNameQuery,
   };
 };

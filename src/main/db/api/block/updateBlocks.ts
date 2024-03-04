@@ -1,6 +1,6 @@
-import { Block } from '@prisma/client';
+import { Block } from "@prisma/client";
 
-import { update as updateBlock } from './update';
+import { update as updateBlock } from "./update";
 
 /*
  * updateBlocks
@@ -9,15 +9,18 @@ import { update as updateBlock } from './update';
  **/
 
 const asyncForeach = async <T>(
-  array: T[], 
-  fn: (arg: T) => Promise<unknown>) => {
+  array: T[],
+  fn: (arg: T) => Promise<unknown>,
+) => {
   array.reduce(async (acc, cur) => {
     return acc.then(() => {
-      fn(cur)
+      fn(cur);
     });
   }, Promise.resolve());
 };
 
-export const updateBlocks = async (blocks: (Pick<Block, 'id' | 'iteration' | 'commitedAt' | 'level'>)[]) => {
+export const updateBlocks = async (
+  blocks: Pick<Block, "id" | "iteration" | "commitedAt" | "level">[],
+) => {
   await asyncForeach(blocks, updateBlock);
 };

@@ -1,12 +1,12 @@
-import { CSSObject } from '@emotion/react';
-import { colors } from '~/styleConfig/colors';
-import { font } from '~/styleConfig/font';
+import { CSSObject } from "@emotion/react";
+import { colors } from "~/styleConfig/colors";
+import { font } from "~/styleConfig/font";
 
 export const buttonStyle: CSSObject = {
-  minWidth: '80px',
-  padding: '3px 10px',
-  borderRadius: '100px',
+  minWidth: "80px",
+  padding: "3px 10px",
+  borderRadius: "100px",
   border: `1px solid ${colors.cyan.DEFAULT}`,
-  textAlign: 'center',
+  textAlign: "center",
   fontSize: font.size.SS,
 };

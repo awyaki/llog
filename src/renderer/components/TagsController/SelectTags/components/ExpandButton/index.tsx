@@ -1,35 +1,20 @@
-import { 
-  VFC,
-  useContext
-  } from 'react';
+import { VFC, useContext } from "react";
 
-import { CSSObject } from '@emotion/react';
+import { CSSObject } from "@emotion/react";
 
-import {
-  colors,
-  font
-} from '~/styleConfig';
+import { colors, font } from "~/styleConfig";
 
-import { 
-  EditIcon,
-  ArrowUpIcon,
-  } from '~/components';
+import { EditIcon, ArrowUpIcon } from "~/components";
 
-import { 
-  motion, 
-  Variants
-  } from 'framer-motion';
+import { motion, Variants } from "framer-motion";
 
-import {
-  SelectTagsContext
-} from '~/components';
+import { SelectTagsContext } from "~/components";
 
 type Props = {
   css?: CSSObject;
   isOpen: boolean;
   toggleIsOpen: () => void;
 };
-
 
 const editIcon: Variants = {
   open: {
@@ -47,49 +32,46 @@ const arrowIcon: Variants = {
   close: { rotate: 180 },
 };
 
-export const ExpandButton: VFC<Props> = ({ 
-  isOpen,
-  toggleIsOpen,
-  ...rest }) => {
-
+export const ExpandButton: VFC<Props> = ({ isOpen, toggleIsOpen, ...rest }) => {
   return (
-    <motion.button 
-      type="button"
-      onClick={toggleIsOpen} 
-      {...rest}>
-      <div css={{
-        display: 'flex',
-      }}>
-        <motion.div 
-            variants={editIcon}
-            animate={isOpen ? "open" : "close"}
-            style={{
-              display: 'flex',
-              minWidth: '80px',
-              justifyContent: 'center',
-              alignItems: 'center',
-              textAlign: 'center',
-              fontSize: font.size.SS,
-              borderRadius: '4px',
-              borderWidth: '1px',
-              borderStyle: 'solid',
-              borderColor: colors.cyan.DEFAULT,
-              padding: '2px 4px',
-              marginRight: '8px',
-            }}
-            css={{ display: 'flex' }}>
-          <EditIcon/>
+    <motion.button type="button" onClick={toggleIsOpen} {...rest}>
+      <div
+        css={{
+          display: "flex",
+        }}
+      >
+        <motion.div
+          variants={editIcon}
+          animate={isOpen ? "open" : "close"}
+          style={{
+            display: "flex",
+            minWidth: "80px",
+            justifyContent: "center",
+            alignItems: "center",
+            textAlign: "center",
+            fontSize: font.size.SS,
+            borderRadius: "4px",
+            borderWidth: "1px",
+            borderStyle: "solid",
+            borderColor: colors.cyan.DEFAULT,
+            padding: "2px 4px",
+            marginRight: "8px",
+          }}
+          css={{ display: "flex" }}
+        >
+          <EditIcon />
         </motion.div>
 
         <motion.div
           variants={arrowIcon}
-          style={{ 
-            display: 'flex',
-            alignItems: 'center',
-            color: colors.cyan.DEFAULT
-            }}
-          animate={isOpen ? "open" : "close"}>
-          <ArrowUpIcon css={{ fontSize: '20px' }}/>
+          style={{
+            display: "flex",
+            alignItems: "center",
+            color: colors.cyan.DEFAULT,
+          }}
+          animate={isOpen ? "open" : "close"}
+        >
+          <ArrowUpIcon css={{ fontSize: "20px" }} />
         </motion.div>
       </div>
     </motion.button>

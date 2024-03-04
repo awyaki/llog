@@ -1,4 +1,3 @@
-import { CSSObject } from '@emotion/react';
+import { CSSObject } from "@emotion/react";
 
-export const buttons: CSSObject = {
-};
+export const buttons: CSSObject = {};

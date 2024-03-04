@@ -1,5 +1,11 @@
-import { FC, createContext, useState, Dispatch, SetStateAction, useMemo } from 'react';
-
+import {
+  FC,
+  createContext,
+  useState,
+  Dispatch,
+  SetStateAction,
+  useMemo,
+} from "react";
 
 type NotifierContextType = {
   isShow: boolean;
@@ -9,10 +15,9 @@ type NotifierContextType = {
 
 export const NotifierContext = createContext<NotifierContextType>({
   isShow: false,
-  message: '',
+  message: "",
   setMessage: () => {},
 });
-
 
 export const NotifierContextProvider: FC = ({ children }) => {
   const [message, setMessage] = useState<string | undefined>(undefined);
@@ -26,4 +31,3 @@ export const NotifierContextProvider: FC = ({ children }) => {
     </NotifierContext.Provider>
   );
 };
-

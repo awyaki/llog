@@ -1,1 +1,1 @@
-export * from './useContentHub';
+export * from "./useContentHub";

@@ -1,8 +1,8 @@
-import { VFC, MouseEventHandler } from 'react';
+import { VFC, MouseEventHandler } from "react";
 
-import { CloseButtonIcon } from './components/CloseButtonIcon';
+import { CloseButtonIcon } from "./components/CloseButtonIcon";
 
-type Props = { 
+type Props = {
   onClick: MouseEventHandler<HTMLButtonElement>;
 };
 

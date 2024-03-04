@@ -1,8 +1,8 @@
-import { VFC } from 'react';
+import { VFC } from "react";
 
-import { CSSObject } from '@emotion/react';
+import { CSSObject } from "@emotion/react";
 
-import { makeContainer } from './style';
+import { makeContainer } from "./style";
 
 type Props = {
   onClick: () => void;
@@ -12,10 +12,12 @@ type Props = {
 
 export const DeleteButton: VFC<Props> = ({ onClick, disabled, ...rest }) => {
   return (
-    <button 
+    <button
       css={makeContainer(disabled)}
-      onClick={onClick} 
-      disabled={disabled} {...rest}>
+      onClick={onClick}
+      disabled={disabled}
+      {...rest}
+    >
       Delete
     </button>
   );

@@ -1,11 +1,8 @@
-import { VFC, MouseEventHandler } from 'react';
+import { VFC, MouseEventHandler } from "react";
 
-import { CSSObject } from '@emotion/react';
+import { CSSObject } from "@emotion/react";
 
-import { 
-  CommitIcon,
-  NormalButtonAnimationWrapper
-  } from '~/components';
+import { CommitIcon, NormalButtonAnimationWrapper } from "~/components";
 
 type Props = {
   css?: CSSObject;

@@ -1,4 +1,4 @@
-import { Tag, Block, Content } from '@prisma/client';
+import { Tag, Block, Content } from "@prisma/client";
 
 export const createTag = async (name: string) => {
   return await window.electronAPI.createTag(name);
@@ -16,11 +16,18 @@ export const getAllContent = async () => {
   return await window.electronAPI.getAllContent();
 };
 
-export const createContent = async (name: string, tags: Tag[], numberOfBlock: number) => {
+export const createContent = async (
+  name: string,
+  tags: Tag[],
+  numberOfBlock: number,
+) => {
   return await window.electronAPI.createContent(name, tags, numberOfBlock);
 };
 
-export const updateContentName = async ({ id, name }: Pick<Content, 'id' | 'name'>) => {
+export const updateContentName = async ({
+  id,
+  name,
+}: Pick<Content, "id" | "name">) => {
   return await window.electronAPI.updateContentName({ id, name });
 };
 
@@ -33,9 +40,15 @@ export const createNote = async (
   html: string,
   tags: Tag[],
   blocks: Block[],
-  contentId: number
+  contentId: number,
 ) => {
-  return await window.electronAPI.createNote(markdown, html, tags, blocks, contentId);
+  return await window.electronAPI.createNote(
+    markdown,
+    html,
+    tags,
+    blocks,
+    contentId,
+  );
 };
 
 export const updateNote = async (
@@ -46,9 +59,18 @@ export const updateNote = async (
   blocks: Block[],
   contentId: number,
   commitedAt: Date | null,
-  updatedAt: Date
+  updatedAt: Date,
 ) => {
-  return await window.electronAPI.updateNote(id, markdown, html, tags, blocks, contentId, commitedAt, updatedAt);
+  return await window.electronAPI.updateNote(
+    id,
+    markdown,
+    html,
+    tags,
+    blocks,
+    contentId,
+    commitedAt,
+    updatedAt,
+  );
 };
 
 export const getNoteWithContentId = async (contentId: number) => {
@@ -63,9 +85,18 @@ export const createLog = async (
   contentName: string,
   title: string,
   noteId: number,
-  contentId: number
+  contentId: number,
 ) => {
-  return await window.electronAPI.createLog(markdown, html, blocks, tags, contentName, title, noteId, contentId);
+  return await window.electronAPI.createLog(
+    markdown,
+    html,
+    blocks,
+    tags,
+    contentName,
+    title,
+    noteId,
+    contentId,
+  );
 };
 
 export const deleteNote = async (id: number) => {
@@ -80,15 +111,25 @@ export const getAllLog = async () => {
   return await window.electronAPI.getAllLog();
 };
 
-export const updateBlock = async (block: Pick<Block, 'id' | 'iteration' | 'commitedAt' | 'level'>) => {
+export const updateBlock = async (
+  block: Pick<Block, "id" | "iteration" | "commitedAt" | "level">,
+) => {
   return await window.electronAPI.updateBlock(block);
 };
 export const getAllBlock = async () => {
   return await window.electronAPI.getAllBlock();
 };
 
-export const upsertContentBlocks = async (id: number, blockMaxUnitNumber: number, howManyBlocks: number) => {
-  return await window.electronAPI.upsertContentBlocks(id, blockMaxUnitNumber, howManyBlocks);
+export const upsertContentBlocks = async (
+  id: number,
+  blockMaxUnitNumber: number,
+  howManyBlocks: number,
+) => {
+  return await window.electronAPI.upsertContentBlocks(
+    id,
+    blockMaxUnitNumber,
+    howManyBlocks,
+  );
 };
 
 export const updateContentTags = async (id: number, tags: Tag[]) => {

@@ -1,32 +1,21 @@
-import { useState, useEffect, useCallback, useContext } from 'react';
+import { useState, useEffect, useCallback, useContext } from "react";
 
-import { asyncForEach } from '~/utils';
+import { asyncForEach } from "~/utils";
 
-import { LogWithRelation } from '~/pages/type';
+import { LogWithRelation } from "~/pages/type";
 
-import { 
-  getAllLog, 
-  createLog, 
-  updateBlock,
-  updateLogTitle,
-} from '~/api';
+import { getAllLog, createLog, updateBlock, updateLogTitle } from "~/api";
 
-
-import { 
-    NotifierContext,
-    LogContext
-} from '~/components';
-
+import { NotifierContext, LogContext } from "~/components";
 
 export const useLogs = () => {
   const [logs, setLogs] = useState<LogWithRelation[] | null>(null);
-  
+
   const [filteredLogs, _setFilteredLogs] = useState<LogWithRelation[]>([]);
-  
+
   const { setMessage } = useContext(NotifierContext);
 
   const { log } = useContext(LogContext);
-
 
   useEffect(() => {
     (async () => {
@@ -35,54 +24,61 @@ export const useLogs = () => {
     })();
   }, []);
 
-
-  const onSubmitLog= useCallback(async (title: string) => {
-    if (log === null) return;
-    const {
-      markdown,
-      html,
-      blocks,
-      tags,
-      contentName,
-      noteId,
-      contentId,
-    } = log;
-    // ASSERTION: When a log is created, noteId isn't null and contentId isn't also null.
-    if (noteId === null || contentId === null) return ; 
-    await createLog(markdown, html, blocks, tags, contentName, title, noteId, contentId);
-    await asyncForEach(blocks, async (block) => {
-      const { id, iteration  } = block;
-      await updateBlock({
-        id: id,
-        iteration: iteration + 1,
-        level: 5,
-        commitedAt: new Date(),
+  const onSubmitLog = useCallback(
+    async (title: string) => {
+      if (log === null) return;
+      const { markdown, html, blocks, tags, contentName, noteId, contentId } =
+        log;
+      // ASSERTION: When a log is created, noteId isn't null and contentId isn't also null.
+      if (noteId === null || contentId === null) return;
+      await createLog(
+        markdown,
+        html,
+        blocks,
+        tags,
+        contentName,
+        title,
+        noteId,
+        contentId,
+      );
+      await asyncForEach(blocks, async (block) => {
+        const { id, iteration } = block;
+        await updateBlock({
+          id: id,
+          iteration: iteration + 1,
+          level: 5,
+          commitedAt: new Date(),
+        });
       });
-    });
 
-    const newLogs = await getAllLog();
-    setLogs(newLogs);
-    setMessage('Submit');
-  }, [log]);
+      const newLogs = await getAllLog();
+      setLogs(newLogs);
+      setMessage("Submit");
+    },
+    [log],
+  );
 
-  const onUpdateLogTitle = useCallback(async (title: string)=> {
-    if (log === null) return;
-    const { id } = log;
-    await updateLogTitle(id, title);
-    const newLogs = await getAllLog();
-    setLogs(newLogs);
-    setMessage('Update');
-  }, [log]);
-  
+  const onUpdateLogTitle = useCallback(
+    async (title: string) => {
+      if (log === null) return;
+      const { id } = log;
+      await updateLogTitle(id, title);
+      const newLogs = await getAllLog();
+      setLogs(newLogs);
+      setMessage("Update");
+    },
+    [log],
+  );
+
   const setFilteredLogs = useCallback((logs: LogWithRelation[]) => {
     _setFilteredLogs(logs);
-  }, []); 
+  }, []);
 
-  return { 
-    logs, 
+  return {
+    logs,
     onSubmitLog,
     onUpdateLogTitle,
     filteredLogs,
-    setFilteredLogs
+    setFilteredLogs,
   };
 };

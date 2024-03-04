@@ -1,8 +1,8 @@
-import { CSSObject } from '@emotion/react';
+import { CSSObject } from "@emotion/react";
 
 export const listStyle: CSSObject = {
-  width: '70%',
-  '> li': {
-    marginBottom: '32px',
+  width: "70%",
+  "> li": {
+    marginBottom: "32px",
   },
 };

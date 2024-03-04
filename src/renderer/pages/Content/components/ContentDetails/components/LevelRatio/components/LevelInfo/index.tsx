@@ -1,7 +1,7 @@
-import { VFC } from 'react';
+import { VFC } from "react";
 
-import { Block } from './components/Block';
-import { container } from './style/container';
+import { Block } from "./components/Block";
+import { container } from "./style/container";
 
 type Props = {
   level: number;

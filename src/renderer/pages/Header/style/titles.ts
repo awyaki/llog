@@ -1,8 +1,8 @@
-import { CSSObject } from '@emotion/react';
+import { CSSObject } from "@emotion/react";
 
 export const titles: CSSObject = {
-  display: 'flex',
-  width: '250px',
-  marginTop: '32px',
-  justifyContent: 'space-between',
+  display: "flex",
+  width: "250px",
+  marginTop: "32px",
+  justifyContent: "space-between",
 };

@@ -1,12 +1,6 @@
-import { 
-  FC,
-  createContext,
-  useState,
-  Dispatch,
-  SetStateAction
-  } from 'react';
+import { FC, createContext, useState, Dispatch, SetStateAction } from "react";
 
-import { LogWithRelation } from '~/components/type'
+import { LogWithRelation } from "~/components/type";
 
 type ProvidedLogContext = {
   log: LogWithRelation | null;
@@ -24,6 +18,5 @@ export const LogContextProvider: FC = ({ children }) => {
     <LogContext.Provider value={{ log, setLog }}>
       {children}
     </LogContext.Provider>
-  ); 
+  );
 };
-

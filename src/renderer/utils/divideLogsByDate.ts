@@ -1,4 +1,4 @@
-import { LogWithRelation as Log } from '~/pages/type';
+import { LogWithRelation as Log } from "~/pages/type";
 
 const isSameDate = (d1: Date, d2: Date) => {
   const isSameYear = d1.getFullYear() === d2.getFullYear();
@@ -10,13 +10,12 @@ const isSameDate = (d1: Date, d2: Date) => {
 
 export const divideLogsByDate = (logs: Log[]): Log[][] => {
   if (logs.length === 0) return [];
-  const result: Log[][] = []; 
+  const result: Log[][] = [];
 
   let nowDate: Date = logs[0].createdAt;
   let tmp: Log[] = [];
 
   for (let i = 0; i < logs.length; i++) {
-
     if (isSameDate(nowDate, logs[i].createdAt)) {
       tmp.push({ ...logs[i] });
       if (logs.length - 1 === i) result.push([...tmp]);
@@ -26,8 +25,7 @@ export const divideLogsByDate = (logs: Log[]): Log[][] => {
       tmp = [{ ...logs[i] }];
       if (logs.length - 1 === i) result.push([...tmp]);
     }
-    
   }
-  
+
   return result;
 };

@@ -1,14 +1,14 @@
-import { VFC } from 'react';
+import { VFC } from "react";
 
-import { Box } from '@chakra-ui/react';
+import { Box } from "@chakra-ui/react";
 
-import 'zenn-content-css';
+import "zenn-content-css";
 
-type Props = { 
+type Props = {
   html: string;
 };
 
-export const BodyOfNote: VFC<Props> = ({ html }) => { 
+export const BodyOfNote: VFC<Props> = ({ html }) => {
   return (
     <Box h="400px" overflowY="hidden">
       <div className="znc" dangerouslySetInnerHTML={{ __html: html }}></div>

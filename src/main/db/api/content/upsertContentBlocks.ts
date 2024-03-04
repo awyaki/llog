@@ -1,6 +1,6 @@
-import { prisma } from '../../db';
+import { prisma } from "../../db";
 
-import { range } from '../../../utils';
+import { range } from "../../../utils";
 
 export const upsertContentBlocks = async (
   id: number,
@@ -14,9 +14,9 @@ export const upsertContentBlocks = async (
         create: [...range(0, howManyBlocks)].map((_, i) => ({
           iteration: 0,
           level: 0,
-          unitNumber: blockMaxUnitNumber + 1 + i
+          unitNumber: blockMaxUnitNumber + 1 + i,
         })),
-      }
+      },
     },
   });
 

@@ -1,1 +1,1 @@
-export * from './CommitIcon';
+export * from "./CommitIcon";

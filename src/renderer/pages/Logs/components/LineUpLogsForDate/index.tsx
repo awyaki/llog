@@ -1,11 +1,10 @@
-import { VFC } from 'react';
+import { VFC } from "react";
 
-import { LogWithRelation } from '~/pages/type';
+import { LogWithRelation } from "~/pages/type";
 
-import { divideLogsByDate } from '~/utils';
+import { divideLogsByDate } from "~/utils";
 
-import { LogsForDate } from './components';
-
+import { LogsForDate } from "./components";
 
 type Props = {
   logs: LogWithRelation[];
@@ -15,9 +14,9 @@ export const LineUpLogsForDate: VFC<Props> = ({ logs }) => {
   const dividedLogs = divideLogsByDate(logs);
   return (
     <>
-      {dividedLogs.map((logs) => <LogsForDate 
-                                    key={logs[0].id} 
-                                    logs={logs} />)}
+      {dividedLogs.map((logs) => (
+        <LogsForDate key={logs[0].id} logs={logs} />
+      ))}
     </>
   );
 };

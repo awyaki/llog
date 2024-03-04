@@ -1,1 +1,1 @@
-export * from './useContentListWithFiltering';
+export * from "./useContentListWithFiltering";

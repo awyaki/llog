@@ -1,10 +1,10 @@
-import { VFC } from 'react';
+import { VFC } from "react";
 
-import { CSSObject } from '@emotion/react';
+import { CSSObject } from "@emotion/react";
 
-import { makeMiniBlockStyle } from '~/style';
+import { makeMiniBlockStyle } from "~/style";
 
-import { Block } from '@prisma/client';
+import { Block } from "@prisma/client";
 
 type Props = {
   css?: CSSObject;
@@ -13,16 +13,21 @@ type Props = {
 
 export const MiniBlockList: VFC<Props> = ({ blocks, ...rest }) => {
   return (
-    <ul css={{
-      display: 'flex',
-      flexWrap: 'wrap',
-      justifyContent: 'flex-end',
-      '> li': {
-        marginRight: '2px',
-        marginBottom: '2px',
-      },
-    }} {...rest}>
-      {blocks.map(({ id, level }) => <li key={id} css={makeMiniBlockStyle(level)}></li>)}
+    <ul
+      css={{
+        display: "flex",
+        flexWrap: "wrap",
+        justifyContent: "flex-end",
+        "> li": {
+          marginRight: "2px",
+          marginBottom: "2px",
+        },
+      }}
+      {...rest}
+    >
+      {blocks.map(({ id, level }) => (
+        <li key={id} css={makeMiniBlockStyle(level)}></li>
+      ))}
     </ul>
   );
 };

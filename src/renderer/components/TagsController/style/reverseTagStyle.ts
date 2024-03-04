@@ -1,8 +1,8 @@
-import { CSSObject } from '@emotion/react';
+import { CSSObject } from "@emotion/react";
 
-import { tagStyle } from './tagStyle';
+import { tagStyle } from "./tagStyle";
 
-import { colors } from '~/styleConfig';
+import { colors } from "~/styleConfig";
 
 export const reverseTagStyle: CSSObject = {
   ...tagStyle,

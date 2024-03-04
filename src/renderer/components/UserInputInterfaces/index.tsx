@@ -1,2 +1,2 @@
-export * from './TitleInput';
-export * from './DateInputs';
+export * from "./TitleInput";
+export * from "./DateInputs";

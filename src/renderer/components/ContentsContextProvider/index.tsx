@@ -1,12 +1,8 @@
-import { 
-  FC, 
-  Dispatch, 
-  createContext,
-} from 'react';
+import { FC, Dispatch, createContext } from "react";
 
-import { useContentListWithFiltering, Action } from './hooks';
+import { useContentListWithFiltering, Action } from "./hooks";
 
-import { ContentWithRelation } from '~/components/type';
+import { ContentWithRelation } from "~/components/type";
 
 type ContentContextType = {
   contents: ContentWithRelation[];
@@ -18,16 +14,18 @@ type ContentContextType = {
 export const ContentsContext = createContext<ContentContextType>({
   contents: [],
   filtered: [],
-  searchQuery: '',
+  searchQuery: "",
   contentsActionDispatch: () => {},
-});;
+});
 
 export const ContentsContextProvider: FC = ({ children }) => {
-  const [{ contents, filtered, searchQuery }, contentsActionDispatch] = useContentListWithFiltering(); 
-  
+  const [{ contents, filtered, searchQuery }, contentsActionDispatch] =
+    useContentListWithFiltering();
 
   return (
-    <ContentsContext.Provider value={{ contents, filtered, searchQuery, contentsActionDispatch }}>
+    <ContentsContext.Provider
+      value={{ contents, filtered, searchQuery, contentsActionDispatch }}
+    >
       {children}
     </ContentsContext.Provider>
   );

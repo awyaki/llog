@@ -1,5 +1,5 @@
-import { CSSObject } from '@emotion/react';
+import { CSSObject } from "@emotion/react";
 
 export const main: CSSObject = {
-  width: '70%',
+  width: "70%",
 };

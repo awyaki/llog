@@ -1,28 +1,20 @@
-import { 
-  VFC,
-  useCallback,
-  } from 'react';
+import { VFC, useCallback } from "react";
 
-import { CSSObject } from '@emotion/react';
+import { CSSObject } from "@emotion/react";
 
-import { SearchIcon } from '~/components';
+import { SearchIcon } from "~/components";
 
-import { colors, font } from '~/styleConfig';
+import { colors, font } from "~/styleConfig";
 
-import {
-  motion,
-  Variants,
-} from 'framer-motion';
+import { motion, Variants } from "framer-motion";
 
+import { ContentNameWithId, useSearchByContentName } from "./hooks";
 
-
-import { ContentNameWithId, useSearchByContentName } from './hooks';
-
-export type { ContentNameWithId } from './hooks';
+export type { ContentNameWithId } from "./hooks";
 
 type ControlSelectionOfContentNameWithSearchProps = {
-  css?: CSSObject; 
-  contentNames: ContentNameWithId[]; 
+  css?: CSSObject;
+  contentNames: ContentNameWithId[];
   selectedContentNames: ContentNameWithId[];
   setSelectedContentNames: (contentNames: ContentNameWithId[]) => void;
   toggleSelectedContentNames: (contentName: ContentNameWithId) => void;
@@ -36,16 +28,15 @@ type ContentNameItemProps = {
 };
 
 type ContentNameItemListProps = Pick<
-  ControlSelectionOfContentNameWithSearchProps, 
-  'css' | 'toggleSelectedContentNames' | 'contentNames' | 'selectedContentNames'
-  >;
+  ControlSelectionOfContentNameWithSearchProps,
+  "css" | "toggleSelectedContentNames" | "contentNames" | "selectedContentNames"
+>;
 
 type SearchQueryInputBoxProps = {
   css?: CSSObject;
   searchContentNameQuery: string;
   setSearchContentNameQuery: (query: string) => void;
 };
-
 
 type ClearSelectionButtonProps = {
   css?: CSSObject;
@@ -58,9 +49,8 @@ const contentNameItemVariants: Variants = {
   },
   nonSelected: {
     borderLeftColor: colors.cyan.BACKGROUND,
-  }
+  },
 };
-
 
 const ContentNameItem: VFC<ContentNameItemProps> = ({
   isSelected,
@@ -69,17 +59,17 @@ const ContentNameItem: VFC<ContentNameItemProps> = ({
   ...rest
 }) => {
   return (
-    <motion.button 
+    <motion.button
       variants={contentNameItemVariants}
-      initial={isSelected ? 'selected' : 'nonSelected'}
-      animate={isSelected ? 'selected' : 'nonSelected'}
+      initial={isSelected ? "selected" : "nonSelected"}
+      animate={isSelected ? "selected" : "nonSelected"}
       style={{
-        minWidth: '120px',
-        borderLeftWidth: '8px',
-        borderRightWidth: '8px',
+        minWidth: "120px",
+        borderLeftWidth: "8px",
+        borderRightWidth: "8px",
         borderRightColor: colors.cyan.BACKGROUND,
-        borderStyle: 'solid',
-        padding: '8px',
+        borderStyle: "solid",
+        padding: "8px",
         backgroundColor: colors.cyan.BACKGROUND,
         fontSize: font.size.S,
         color: colors.text,
@@ -99,19 +89,26 @@ const ContentNameItemList: VFC<ContentNameItemListProps> = ({
   ...rest
 }) => {
   return (
-    <div css={{
-      display: 'flex',
-      flexWrap: 'wrap',
-    }} {...rest}>
+    <div
+      css={{
+        display: "flex",
+        flexWrap: "wrap",
+      }}
+      {...rest}
+    >
       {contentNames.map((contentName) => {
-        const isSelected = selectedContentNames.some(({ id }) => contentName.id === id);
+        const isSelected = selectedContentNames.some(
+          ({ id }) => contentName.id === id,
+        );
         return (
-          <ContentNameItem 
+          <ContentNameItem
             key={contentName.id}
-            css={{ marginBottom: '8px', marginRight: '8px' }}
+            css={{ marginBottom: "8px", marginRight: "8px" }}
             isSelected={isSelected}
             contentName={contentName}
-            onToggleSelectedContentNames={() => toggleSelectedContentNames(contentName)}
+            onToggleSelectedContentNames={() =>
+              toggleSelectedContentNames(contentName)
+            }
           />
         );
       })}
@@ -125,74 +122,83 @@ const SearchQueryInputBox: VFC<SearchQueryInputBoxProps> = ({
   ...rest
 }) => {
   return (
-    <div css={{
-      display: 'flex', 
-      alignItems: 'flex-end', 
-      marginBottom: '16px'
-    }} {...rest}>
-      <input 
+    <div
+      css={{
+        display: "flex",
+        alignItems: "flex-end",
+        marginBottom: "16px",
+      }}
+      {...rest}
+    >
+      <input
         css={{
-          width: '200px',
+          width: "200px",
           borderBottom: `2px solid ${colors.cyan.DEFAULT}`,
-          marginRight: '4px',
+          marginRight: "4px",
         }}
         value={searchContentNameQuery}
         onChange={(e) => setSearchContentNameQuery(e.target.value)}
-        type="text" />
+        type="text"
+      />
       <SearchIcon />
     </div>
   );
 };
 
-
-const ClearSelectionButton: VFC<ClearSelectionButtonProps> = ({ clearSelection, ...rest }) => {
+const ClearSelectionButton: VFC<ClearSelectionButtonProps> = ({
+  clearSelection,
+  ...rest
+}) => {
   return (
-    <button 
+    <button
       css={{
-          minWidth: '80px',
-          textAlign: 'center',
-          fontSize: font.size.SS,
-          borderRadius: '4px',
-          borderWidth: '1px',
-          borderStyle: 'solid',
-          borderColor: colors.red.DEFAULT,
-          backgroundColor: colors.red.DEFAULT,
-          color: colors.white,
-          padding: '2px 4px',
+        minWidth: "80px",
+        textAlign: "center",
+        fontSize: font.size.SS,
+        borderRadius: "4px",
+        borderWidth: "1px",
+        borderStyle: "solid",
+        borderColor: colors.red.DEFAULT,
+        backgroundColor: colors.red.DEFAULT,
+        color: colors.white,
+        padding: "2px 4px",
       }}
-      onClick={clearSelection} {...rest}>
-      Clear 
+      onClick={clearSelection}
+      {...rest}
+    >
+      Clear
     </button>
   );
 };
 
-export const ControlSelectionOfContentNameWithSearch: VFC<ControlSelectionOfContentNameWithSearchProps> = ({
+export const ControlSelectionOfContentNameWithSearch: VFC<
+  ControlSelectionOfContentNameWithSearchProps
+> = ({
   contentNames,
   selectedContentNames,
   setSelectedContentNames,
   toggleSelectedContentNames,
   ...rest
 }) => {
-
-  const { 
-    filteredContentNames, 
+  const {
+    filteredContentNames,
     searchContentNameQuery,
-    setSearchContentNameQuery
-    } = useSearchByContentName({ contentNames });
-  
+    setSearchContentNameQuery,
+  } = useSearchByContentName({ contentNames });
+
   const clearSelection = useCallback(() => {
     setSelectedContentNames([]);
-  }, []); 
+  }, []);
 
   return (
     <div {...rest}>
-      <h2 css={{ marginBottom: '8px' }}>Contents</h2>
-      <ClearSelectionButton 
-        css={{ marginBottom: '8px' }}
+      <h2 css={{ marginBottom: "8px" }}>Contents</h2>
+      <ClearSelectionButton
+        css={{ marginBottom: "8px" }}
         clearSelection={clearSelection}
       />
-      <SearchQueryInputBox 
-        css={{ marginBottom: '16px' }}
+      <SearchQueryInputBox
+        css={{ marginBottom: "16px" }}
         searchContentNameQuery={searchContentNameQuery}
         setSearchContentNameQuery={setSearchContentNameQuery}
       />

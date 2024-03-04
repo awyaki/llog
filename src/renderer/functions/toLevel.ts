@@ -1,7 +1,6 @@
-
 /*
  * return level Of block baseed on iteration and commitedAt.
- * iteration 
+ * iteration
  * 0 : no level change at level 0.
  * 1 : 1 day (for channing level 5 to 1)
  * 2 : 3 day
@@ -22,8 +21,9 @@ type Level = 0 | 1 | 2 | 3 | 4 | 5;
 // array for duration of changing level 5 to 1, depending on iteration. (days -> milliseconds)
 
 const toMilliseconds = (day: number) => day * 24 * 60 * 60 * 1000;
-const days = [1, 3, 7, 14, 30, 60, 90, 120, 150]
-                .map((day) => toMilliseconds(day));
+const days = [1, 3, 7, 14, 30, 60, 90, 120, 150].map((day) =>
+  toMilliseconds(day),
+);
 
 const toLevel = (iteration: number, commitedAt: Date): Level => {
   if (iteration === 0) return 0;
@@ -31,9 +31,9 @@ const toLevel = (iteration: number, commitedAt: Date): Level => {
 
   const nowTime = Date.now();
   const commitedTime = commitedAt.getTime();
-  
+
   const passed = nowTime - commitedTime;
-  const duration = days[iteration]
+  const duration = days[iteration];
   const breakTimes = [...range(0, 5)].map((i) => Math.floor(duration / 5) * i);
 
   const isInnerRange = (s: number, n: number, e: number) => s <= n && n < e;
@@ -44,9 +44,6 @@ const toLevel = (iteration: number, commitedAt: Date): Level => {
   if (isInnerRange(breakTimes[3], passed, breakTimes[4])) return 2;
   return 1;
 };
-
-
-
 
 function* range(s: number, e: number) {
   for (let i = s; i < e; i++) {

@@ -41,14 +41,14 @@ export const ContentBlocksForm: VFC<Props> = ({
       await upsertContentBlocks(
         id,
         maxUnitNumber,
-        Number(newMaxUnitNumber) - maxUnitNumber
+        Number(newMaxUnitNumber) - maxUnitNumber,
       );
       if (onSubmit) {
         onSubmit();
       }
       setMessage("Update");
     },
-    [setMessage]
+    [setMessage],
   );
 
   const isLarger = useCallback<Validate<string>>((newMaxUnitNumber) => {

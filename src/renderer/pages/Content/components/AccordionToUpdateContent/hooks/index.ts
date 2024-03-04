@@ -1,2 +1,1 @@
-export * from './useUpdateContent';
-
+export * from "./useUpdateContent";

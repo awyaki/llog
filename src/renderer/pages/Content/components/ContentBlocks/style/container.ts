@@ -1,6 +1,6 @@
-import { CSSObject } from '@emotion/react';
+import { CSSObject } from "@emotion/react";
 
 export const container: CSSObject = {
-  width: '50%',
-  minWidth: '648px',
+  width: "50%",
+  minWidth: "648px",
 };

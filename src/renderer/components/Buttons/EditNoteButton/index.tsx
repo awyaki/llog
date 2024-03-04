@@ -1,25 +1,19 @@
-import { VFC, ButtonHTMLAttributes } from 'react';
+import { VFC, ButtonHTMLAttributes } from "react";
 
-import { CSSObject } from '@emotion/react';
+import { CSSObject } from "@emotion/react";
 
-import { EditNoteIcon } from '~/components';
+import { EditNoteIcon } from "~/components";
 
-import { 
-  menuButton,
-  secondaryStyle,
-} from '../style';
-
+import { menuButton, secondaryStyle } from "../style";
 
 type Props = {
   css?: CSSObject;
   secondary?: boolean;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
-
-export const EditNoteButton: VFC<Props> = ({ secondary,  ...rest }) => {
+export const EditNoteButton: VFC<Props> = ({ secondary, ...rest }) => {
   return (
-    <button 
-      css={secondary ? secondaryStyle : menuButton } {...rest}>
+    <button css={secondary ? secondaryStyle : menuButton} {...rest}>
       <EditNoteIcon />
     </button>
   );

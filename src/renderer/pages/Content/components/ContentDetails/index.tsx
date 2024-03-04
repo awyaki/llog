@@ -1,43 +1,38 @@
-import { VFC, useCallback, useContext, useState } from 'react';
+import { VFC, useCallback, useContext, useState } from "react";
 
-import { CSSObject } from '@emotion/react';
+import { CSSObject } from "@emotion/react";
 
-import { Switch } from '@chakra-ui/react';
+import { Switch } from "@chakra-ui/react";
 
-import { useHistory } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 
-import { getContent, deleteContent } from '~/api';
+import { getContent, deleteContent } from "~/api";
 
-import { 
+import {
   ContentContext,
   ContentNameForm,
   EditIcon,
   DeleteButton,
   NotifierContext,
-} from '~/components';
+} from "~/components";
 
-import { makeFormalTimeString } from '~/utils';
+import { makeFormalTimeString } from "~/utils";
 
-import {
-  BasicInfo,
-  LevelRatio
-} from './components';
+import { BasicInfo, LevelRatio } from "./components";
 
-
-import { title } from './style/title';
+import { title } from "./style/title";
 
 type Props = {
   css?: CSSObject;
 };
 
-
-export const ContentDetails: VFC<Props> = ({  ...rest }) => {
+export const ContentDetails: VFC<Props> = ({ ...rest }) => {
   const [isUpdateNameMode, setIsUpdateNameMode] = useState(false);
   const [isAllowDelete, setIsAllowDelete] = useState(false);
   const { content, setContent } = useContext(ContentContext);
   const history = useHistory();
   const { setMessage } = useContext(NotifierContext);
-  
+
   const onChangeToNameUpdate = useCallback(() => {
     setIsUpdateNameMode(true);
   }, [setIsUpdateNameMode]);
@@ -59,37 +54,47 @@ export const ContentDetails: VFC<Props> = ({  ...rest }) => {
 
   const onDeleteContent = useCallback(async () => {
     if (content === null) return;
-    setMessage('Deleted');
-    history.push('/');
+    setMessage("Deleted");
+    history.push("/");
     await deleteContent(content.id);
-  }, [content]); 
+  }, [content]);
 
   if (content === null) return <></>;
   return (
     <div {...rest}>
-        {isUpdateNameMode
-          ?   <ContentNameForm 
-                  id={content.id}
-                  defaultName={content.name}
-                  onSubmit={onSubmitContentName}
-                  onClose={onChangeToNormal}
-                  />
-          : <div css={{ display: 'flex', alignItems: 'flex-start', marginBottom: '8px' }}>
-              <h2 css={{ ...title, marginRight: '8px' }}>{content.name}</h2>
-              <button css={{ marginTop: '3px' }} onClick={onChangeToNameUpdate}><EditIcon /></button>
-            </div>}
-      <BasicInfo 
+      {isUpdateNameMode ? (
+        <ContentNameForm
+          id={content.id}
+          defaultName={content.name}
+          onSubmit={onSubmitContentName}
+          onClose={onChangeToNormal}
+        />
+      ) : (
+        <div
+          css={{
+            display: "flex",
+            alignItems: "flex-start",
+            marginBottom: "8px",
+          }}
+        >
+          <h2 css={{ ...title, marginRight: "8px" }}>{content.name}</h2>
+          <button css={{ marginTop: "3px" }} onClick={onChangeToNameUpdate}>
+            <EditIcon />
+          </button>
+        </div>
+      )}
+      <BasicInfo
         id={content.id}
         created={makeFormalTimeString(content.createdAt)}
-        blocks={content.blocks.length} />
+        blocks={content.blocks.length}
+      />
       <LevelRatio blocks={content.blocks} />
-      <DeleteButton 
-        css={{ marginRight: '16px' }}
-        onClick={onDeleteContent} 
-        disabled={!isAllowDelete} />
-      <Switch 
-        isChecked={isAllowDelete}
-        onChange={onToggleToAllowDelete} />
+      <DeleteButton
+        css={{ marginRight: "16px" }}
+        onClick={onDeleteContent}
+        disabled={!isAllowDelete}
+      />
+      <Switch isChecked={isAllowDelete} onChange={onToggleToAllowDelete} />
     </div>
   );
 };

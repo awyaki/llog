@@ -1,18 +1,18 @@
-import { VFC, useEffect, useState } from 'react';
+import { VFC, useEffect, useState } from "react";
 
-import { Box } from '@chakra-ui/react';
+import { Box } from "@chakra-ui/react";
 
-import { noteStyle } from '~/style';
+import { noteStyle } from "~/style";
 
-import { markdownToHTML } from '~/api';
-import 'zenn-content-css';
+import { markdownToHTML } from "~/api";
+import "zenn-content-css";
 
 type Props = {
   markdown: string;
 };
 
 export const MarkdownPreview: VFC<Props> = ({ markdown }) => {
-  const [html, setHtml] = useState('');
+  const [html, setHtml] = useState("");
 
   useEffect(() => {
     let ignore = false;

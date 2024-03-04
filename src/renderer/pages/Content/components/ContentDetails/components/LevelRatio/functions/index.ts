@@ -1,1 +1,1 @@
-export { makeStringForShowRatio } from './makeStrigForShowRatio';
+export { makeStringForShowRatio } from "./makeStrigForShowRatio";

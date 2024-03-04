@@ -1,15 +1,10 @@
-import { FC } from 'react';
+import { FC } from "react";
 
-import { CSSObject } from '@emotion/react';
+import { CSSObject } from "@emotion/react";
 
-import { colors } from '~/styleConfig';
+import { colors } from "~/styleConfig";
 
-import {
-  motion,
-  HTMLMotionProps,
-  Variants
-} from 'framer-motion';
-
+import { motion, HTMLMotionProps, Variants } from "framer-motion";
 
 const containerMotions: Variants = {
   initial: {
@@ -47,17 +42,19 @@ export const DisabableButtonAnimationWrapper: FC<Props> = ({
       animate={disabled ? "disableInitail" : "initial"}
       whileHover={disabled ? "disableHover" : "hover"}
       style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: '40px',
-        height: '40px',
-        borderRadius: '4px',
-        padding: '5px',
-        borderWidth: '1px',
-        borderStyle: 'solid',
-        textAlign: 'center',
-      }} {...rest}>
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        width: "40px",
+        height: "40px",
+        borderRadius: "4px",
+        padding: "5px",
+        borderWidth: "1px",
+        borderStyle: "solid",
+        textAlign: "center",
+      }}
+      {...rest}
+    >
       {children}
     </motion.button>
   );

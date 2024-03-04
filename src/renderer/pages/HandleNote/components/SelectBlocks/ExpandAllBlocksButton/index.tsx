@@ -1,23 +1,14 @@
-import { 
-  VFC, 
-  useContext
-  } from 'react';
+import { VFC, useContext } from "react";
 
-import { 
-  EditIcon,
-  ArrowUpIcon 
-  } from '~/components';
+import { EditIcon, ArrowUpIcon } from "~/components";
 
-import { CSSObject } from '@emotion/react';
+import { CSSObject } from "@emotion/react";
 
-import { colors } from '~/styleConfig';
+import { colors } from "~/styleConfig";
 
-import { 
-  motion,
-  Variants
-  } from 'framer-motion';
+import { motion, Variants } from "framer-motion";
 
-import { CollapseToSelectBlocksIsOpenContext } from '../CollapseToSelectBlocksIsOpenContextProvider';
+import { CollapseToSelectBlocksIsOpenContext } from "../CollapseToSelectBlocksIsOpenContextProvider";
 
 type Props = {
   css?: CSSObject;
@@ -41,39 +32,43 @@ const arrowIcon: Variants = {
   close: { rotate: 180 },
 };
 
-
 export const ExpandAllBlocksButton: VFC<Props> = ({ ...rest }) => {
-  const { isOpen, toggleIsOpen } = useContext(CollapseToSelectBlocksIsOpenContext);
+  const { isOpen, toggleIsOpen } = useContext(
+    CollapseToSelectBlocksIsOpenContext,
+  );
 
   return (
     <motion.button
       onClick={toggleIsOpen}
-      style={{ display: 'flex', alignItems: 'center' }} {...rest}>
+      style={{ display: "flex", alignItems: "center" }}
+      {...rest}
+    >
       <motion.div
         variants={editIcon}
-        animate={isOpen ? 'open' : 'close'}
+        animate={isOpen ? "open" : "close"}
         style={{
-          width: '36px', 
-          height: '36px', 
-          borderWidth: '1px',
-          borderStyle: 'solid',
-          borderRadius: '4px',
-          display: 'flex', 
-          justifyContent: 'center', 
-          alignItems: 'center',
-        }}>
+          width: "36px",
+          height: "36px",
+          borderWidth: "1px",
+          borderStyle: "solid",
+          borderRadius: "4px",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
         <EditIcon />
       </motion.div>
       <motion.div
         variants={arrowIcon}
-        style={{ 
-          display: 'flex',
+        style={{
+          display: "flex",
           color: colors.cyan.DEFAULT,
-          alignItems: 'center',
-          }}
-        animate={isOpen ? 'open' : 'close'}
+          alignItems: "center",
+        }}
+        animate={isOpen ? "open" : "close"}
       >
-        <ArrowUpIcon css={{ fontSize: '20px' }}/>
+        <ArrowUpIcon css={{ fontSize: "20px" }} />
       </motion.div>
     </motion.button>
   );

@@ -1,6 +1,6 @@
-import { CSSObject } from '@emotion/react';
+import { CSSObject } from "@emotion/react";
 
-import { font, colors } from '~/styleConfig';
+import { font, colors } from "~/styleConfig";
 
 export const contentName: CSSObject = {
   fontSize: font.size.M,

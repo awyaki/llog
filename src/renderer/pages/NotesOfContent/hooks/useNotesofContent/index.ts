@@ -1,13 +1,8 @@
-import { 
-    useState, 
-    useEffect,
-    useCallback
-} from 'react';
+import { useState, useEffect, useCallback } from "react";
 
-import { getNoteWithContentId } from '~/api'
+import { getNoteWithContentId } from "~/api";
 
-import { NoteWithRelation } from '~/pages/type';
-
+import { NoteWithRelation } from "~/pages/type";
 
 export const useNotesOfContent = (contentId: number) => {
   const [notes, setNotes] = useState<NoteWithRelation[] | null>(null);
@@ -19,15 +14,15 @@ export const useNotesOfContent = (contentId: number) => {
       const fetchedNotes = await getNoteWithContentId(contentId);
       setNotes(fetchedNotes);
     })();
-  }, [contentId])
+  }, [contentId]);
 
   const setFilteredNotes = useCallback((notes: NoteWithRelation[]) => {
     _setFilteredNotes(notes);
   }, []);
-  
-  return { 
+
+  return {
     notes,
     filteredNotes,
-    setFilteredNotes
+    setFilteredNotes,
   };
 };

@@ -1,14 +1,10 @@
-import { VFC, useContext } from 'react';
+import { VFC, useContext } from "react";
 
-import { CSSObject } from '@emotion/react';
+import { CSSObject } from "@emotion/react";
 
-import {
-  tagsContainer,
-  tagStyle
-} from '../style';
+import { tagsContainer, tagStyle } from "../style";
 
-import { Tag } from '@prisma/client';
-
+import { Tag } from "@prisma/client";
 
 type Props = {
   selectedTags: Tag[];
@@ -18,7 +14,11 @@ type Props = {
 export const SelectedTagsList: VFC<Props> = ({ selectedTags, ...rest }) => {
   return (
     <ul css={tagsContainer} {...rest}>
-      {selectedTags.map(({ id, name }) => <li key={id}><div css={tagStyle}>{name}</div></li>)}
+      {selectedTags.map(({ id, name }) => (
+        <li key={id}>
+          <div css={tagStyle}>{name}</div>
+        </li>
+      ))}
     </ul>
   );
 };

@@ -1,20 +1,16 @@
-import { 
-  VFC, 
-  useContext
-  } from 'react';
+import { VFC, useContext } from "react";
 
-import { Block } from '@prisma/client';
+import { Block } from "@prisma/client";
 
-import { colors } from '~/styleConfig';
+import { colors } from "~/styleConfig";
 
-import { CSSObject } from '@emotion/react';
+import { CSSObject } from "@emotion/react";
 
-import { Collapse } from '@chakra-ui/transition';
+import { Collapse } from "@chakra-ui/transition";
 
-import { SelectBlocksList } from '../SelectBlocksList';
+import { SelectBlocksList } from "../SelectBlocksList";
 
-
-import { CollapseToSelectBlocksIsOpenContext } from '../CollapseToSelectBlocksIsOpenContextProvider';
+import { CollapseToSelectBlocksIsOpenContext } from "../CollapseToSelectBlocksIsOpenContextProvider";
 
 type Props = {
   css?: CSSObject;
@@ -26,13 +22,15 @@ export const CollapseToSelectBlocks: VFC<Props> = ({ blocks, ...rest }) => {
 
   return (
     <Collapse in={isOpen} {...rest}>
-      <div css={{
-        padding: '16px',
-        border: `1px solid ${colors.cyan.DEFAULT}`,
-        borderRadius: '4px',
-        marginBottom: '16px',
-      }}>
-        <h2 css={{ marginBottom: '8px' }}>Select blocks</h2>
+      <div
+        css={{
+          padding: "16px",
+          border: `1px solid ${colors.cyan.DEFAULT}`,
+          borderRadius: "4px",
+          marginBottom: "16px",
+        }}
+      >
+        <h2 css={{ marginBottom: "8px" }}>Select blocks</h2>
         <SelectBlocksList blocks={blocks} />
       </div>
     </Collapse>

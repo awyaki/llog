@@ -1,2 +1,1 @@
-export type Mode = 'edit' | 'preview';
-
+export type Mode = "edit" | "preview";

@@ -1,18 +1,17 @@
-import { CSSObject } from '@emotion/react';
+import { CSSObject } from "@emotion/react";
 
-import { colors } from '~/styleConfig/colors';
-import { font } from '~/styleConfig/font';
+import { colors } from "~/styleConfig/colors";
+import { font } from "~/styleConfig/font";
 
-export const makeContainer = (isOn: boolean) : CSSObject => {
+export const makeContainer = (isOn: boolean): CSSObject => {
   const base: CSSObject = {
-    width: '50px',
-    minWidth: '50px',
-    textAlign: 'center',
-    padding: '2px 0',
-    borderRadius: '25px',
+    width: "50px",
+    minWidth: "50px",
+    textAlign: "center",
+    padding: "2px 0",
+    borderRadius: "25px",
     fontSize: font.size.SS,
   };
-  
 
   const onStyle: CSSObject = {
     ...base,

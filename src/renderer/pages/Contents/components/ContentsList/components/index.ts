@@ -1,1 +1,1 @@
-export * from './ContentCard';
+export * from "./ContentCard";

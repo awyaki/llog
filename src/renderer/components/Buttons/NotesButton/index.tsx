@@ -1,10 +1,10 @@
-import { VFC, ButtonHTMLAttributes } from 'react';
+import { VFC, ButtonHTMLAttributes } from "react";
 
-import { CSSObject } from '@emotion/react';
+import { CSSObject } from "@emotion/react";
 
-import { NotesIcon } from '~/components/Icons';
+import { NotesIcon } from "~/components/Icons";
 
-import { menuButton } from '../style';
+import { menuButton } from "../style";
 
 type Props = {
   css?: CSSObject;
@@ -12,8 +12,7 @@ type Props = {
 
 export const NotesButton: VFC<Props> = ({ ...rest }) => {
   return (
-    <button 
-      css={menuButton} {...rest}>
+    <button css={menuButton} {...rest}>
       <NotesIcon />
     </button>
   );

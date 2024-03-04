@@ -1,4 +1,4 @@
-import { prisma } from '../../db';
+import { prisma } from "../../db";
 
 export const getWithContentId = async (contentId: number) => {
   const notes = await prisma.note.findMany({

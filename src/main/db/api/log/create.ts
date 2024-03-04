@@ -1,5 +1,5 @@
-import { CreateLog } from '../../../../../custom';
-import { prisma } from '../../db';
+import { CreateLog } from "../../../../../custom";
+import { prisma } from "../../db";
 
 export const create: CreateLog = (
   markdown,
@@ -9,7 +9,7 @@ export const create: CreateLog = (
   title,
   contentName,
   noteId,
-  contentId
+  contentId,
 ) => {
   const result = prisma.log.create({
     data: {
@@ -23,7 +23,7 @@ export const create: CreateLog = (
         connect: [...blocks.map(({ id }) => ({ id: id }))],
       },
       note: {
-        connect: { id: noteId }
+        connect: { id: noteId },
       },
       contentName: contentName,
       content: {

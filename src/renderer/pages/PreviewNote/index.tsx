@@ -29,35 +29,36 @@ type DeleteNoteButtonWithLimitationProps = {
   onToggleIsDisable: () => void;
 };
 
-const DeleteNoteButtonWithLimitation: VFC<DeleteNoteButtonWithLimitationProps> =
-  ({ onDeleteNote, isDisable, onToggleIsDisable, ...rest }) => {
-    return (
-      <div
-        css={{
-          display: "flex",
-          justifyContent: "flex-start",
-          alignItems: "center",
+const DeleteNoteButtonWithLimitation: VFC<
+  DeleteNoteButtonWithLimitationProps
+> = ({ onDeleteNote, isDisable, onToggleIsDisable, ...rest }) => {
+  return (
+    <div
+      css={{
+        display: "flex",
+        justifyContent: "flex-start",
+        alignItems: "center",
+      }}
+      {...rest}
+    >
+      <DisabableNormalButton
+        css={{ marginRight: "8px" }}
+        colorOptions={{
+          primary: colors.red.DEFAULT,
+          secondary: colors.white,
         }}
-        {...rest}
-      >
-        <DisabableNormalButton
-          css={{ marginRight: "8px" }}
-          colorOptions={{
-            primary: colors.red.DEFAULT,
-            secondary: colors.white,
-          }}
-          text="Delete"
-          isDisable={isDisable}
-          onClick={onDeleteNote}
-        />
-        <Switch
-          color={colors.red.DEFAULT}
-          isOn={!isDisable}
-          onClick={onToggleIsDisable}
-        />
-      </div>
-    );
-  };
+        text="Delete"
+        isDisable={isDisable}
+        onClick={onDeleteNote}
+      />
+      <Switch
+        color={colors.red.DEFAULT}
+        isOn={!isDisable}
+        onClick={onToggleIsDisable}
+      />
+    </div>
+  );
+};
 
 export const PreviewNote: VFC = () => {
   const {

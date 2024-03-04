@@ -1,4 +1,4 @@
-import { Prisma } from '@prisma/client';
+import { Prisma } from "@prisma/client";
 
 const contentWithRelation = Prisma.validator<Prisma.ContentArgs>()({
   include: {
@@ -22,6 +22,8 @@ const logWithRelation = Prisma.validator<Prisma.LogArgs>()({
   },
 });
 
-export type ContentWithRelation = Prisma.ContentGetPayload<typeof contentWithRelation>;
+export type ContentWithRelation = Prisma.ContentGetPayload<
+  typeof contentWithRelation
+>;
 export type NoteWithRelation = Prisma.NoteGetPayload<typeof noteWithRelation>;
 export type LogWithRelation = Prisma.LogGetPayload<typeof logWithRelation>;

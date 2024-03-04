@@ -1,72 +1,64 @@
-import { 
-  VFC,
-  useState,
-  useContext,
-  } from 'react';
+import { VFC, useState, useContext } from "react";
 
-import { pageTitle } from '~/pages/style';
+import { pageTitle } from "~/pages/style";
 
-import { container } from './style';
+import { container } from "./style";
 
-
-import { 
+import {
   ModalToSubmitLogContext,
   ModalToSubmitLog,
   ModalToUpdateLogTitle,
   ModalToUpdateLogTitleContext,
   AccordionButtonWithText,
-  } from '~/components';
+} from "~/components";
 
-import { 
-  LineUpLogsForDate,
-  SearchLogs,
-  } from './components';
+import { LineUpLogsForDate, SearchLogs } from "./components";
 
-import { useLogs } from './hooks';
+import { useLogs } from "./hooks";
 
 export const Logs: VFC = () => {
-  const { 
-    logs, 
-    filteredLogs, 
-    setFilteredLogs,
-    onSubmitLog, 
-    onUpdateLogTitle,
-    } = useLogs()
- 
-  const [isOpenSearchLogs, setIsOpenSearchLogs] = useState(false); 
-  const { isOpen: isOpenSubmit, onClose: onCloseSubmit } = useContext(ModalToSubmitLogContext);
-  const { isOpen: isOpenUpdate, onClose: onCloseUpdate } = useContext(ModalToUpdateLogTitleContext);
+  const { logs, filteredLogs, setFilteredLogs, onSubmitLog, onUpdateLogTitle } =
+    useLogs();
+
+  const [isOpenSearchLogs, setIsOpenSearchLogs] = useState(false);
+  const { isOpen: isOpenSubmit, onClose: onCloseSubmit } = useContext(
+    ModalToSubmitLogContext,
+  );
+  const { isOpen: isOpenUpdate, onClose: onCloseUpdate } = useContext(
+    ModalToUpdateLogTitleContext,
+  );
 
   return (
     <>
-      <ModalToSubmitLog 
+      <ModalToSubmitLog
         isOpen={isOpenSubmit}
         onClose={onCloseSubmit}
-        onSubmitLog={onSubmitLog}/>
-        <ModalToUpdateLogTitle 
-          isOpen={isOpenUpdate}
-          onClose={onCloseUpdate}
-          onUpdateLogTilte={onUpdateLogTitle}
+        onSubmitLog={onSubmitLog}
+      />
+      <ModalToUpdateLogTitle
+        isOpen={isOpenUpdate}
+        onClose={onCloseUpdate}
+        onUpdateLogTilte={onUpdateLogTitle}
+      />
+      <div css={container}>
+        <h2 css={{ ...pageTitle, marginBottom: "16px" }}>Logs</h2>
+        <AccordionButtonWithText
+          css={{ marginBottom: "32px" }}
+          text="Search"
+          isOpen={isOpenSearchLogs}
+          onClick={() => setIsOpenSearchLogs((p) => !p)}
         />
-        <div css={container}>
-          <h2 css={{ ...pageTitle, marginBottom: '16px' }}>Logs</h2>
-          <AccordionButtonWithText
-            css={{ marginBottom: '32px' }}
-            text="Search"
+        {logs !== null ? (
+          <SearchLogs
             isOpen={isOpenSearchLogs}
-            onClick={() => setIsOpenSearchLogs((p) => !p)}
+            logs={logs}
+            setFilteredLogs={setFilteredLogs}
           />
-          {logs !== null 
-            ? <SearchLogs  
-                isOpen={isOpenSearchLogs}
-                logs={logs}
-                setFilteredLogs={setFilteredLogs} />
-            : undefined}
-          {logs === null ? <></> : undefined}
-          {filteredLogs.length === 0 ? <p>No logs</p> : undefined}
-          <LineUpLogsForDate 
-            logs={filteredLogs} />
-        </div>
+        ) : undefined}
+        {logs === null ? <></> : undefined}
+        {filteredLogs.length === 0 ? <p>No logs</p> : undefined}
+        <LineUpLogsForDate logs={filteredLogs} />
+      </div>
     </>
   );
 };

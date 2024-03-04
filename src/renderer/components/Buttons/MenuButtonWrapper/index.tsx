@@ -1,17 +1,13 @@
-import { FC } from 'react';
+import { FC } from "react";
 
-import { CSSObject } from '@emotion/react';
+import { CSSObject } from "@emotion/react";
 
-import { colors } from '~/styleConfig';
+import { colors } from "~/styleConfig";
 
-import {
-  motion,
-  HTMLMotionProps,
-  Variants
-} from 'framer-motion';
+import { motion, HTMLMotionProps, Variants } from "framer-motion";
 
 type Props = {
-  css?: CSSObject; 
+  css?: CSSObject;
   secondary?: boolean;
 } & HTMLMotionProps<"button">;
 
@@ -29,7 +25,7 @@ const makeButtonMotions = (secondary?: boolean): Variants => {
       backgroundColor: colors.white,
       color: secondary ? colors.cyan.SECOND : colors.cyan.DEFAULT,
     },
-  }
+  };
 };
 
 export const MenuButtonWrapper: FC<Props> = ({
@@ -44,17 +40,19 @@ export const MenuButtonWrapper: FC<Props> = ({
       whileHover="delta"
       whileFocus="delta"
       style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: '40px',
-        height: '40px',
-        borderRadius: '4px',
-        padding: '5px',
-        borderWidth: '1px',
-        borderStyle: 'solid',
-        textAlign: 'center',
-      }} {...rest}>
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        width: "40px",
+        height: "40px",
+        borderRadius: "4px",
+        padding: "5px",
+        borderWidth: "1px",
+        borderStyle: "solid",
+        textAlign: "center",
+      }}
+      {...rest}
+    >
       {children}
     </motion.button>
   );

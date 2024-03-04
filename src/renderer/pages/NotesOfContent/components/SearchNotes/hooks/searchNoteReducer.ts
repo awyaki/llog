@@ -1,12 +1,8 @@
-import {
-  Reducer
-} from 'react';
+import { Reducer } from "react";
 
+import { Tag } from "@prisma/client";
 
-import { Tag } from '@prisma/client';
-
-
-import { NoteWithRelation } from '~/pages/type';
+import { NoteWithRelation } from "~/pages/type";
 
 export type SearchNotesState = {
   tagsQuery: Tag[];
@@ -17,29 +13,35 @@ export type SearchNotesState = {
   filteredNotes: NoteWithRelation[];
 };
 
-export type SearchNotesAction = {
-  type: 'SEARCH_NOTES/SET_NOTES';
-  notes: NoteWithRelation[];
-} | {
-  type: 'SEARCH_NOTES/SET_SINCE';
-  sinceQuery: Date | null;
-} | {
-  type: 'SEARCH_NOTES/SET_UNTIL';
-  untilQuery: Date | null;
-} | {
-  type: 'SEARCH_NOTES/TOGGLE_TAGS_QUERY';
-  tag: Tag;
-} | {
-  type: 'SEARCH_NOTES/SET_TAGS_QUERY';
-  tagsQuery: Tag[];
-} | {
-  type: 'SEARCH_NOTES/SET_LEVELS_QUERY';
-  levelsQuery: Set<number>;
-} | {
-  type: 'SEARCH_NOTES/TOGGLE_LEVELS_QUERY';
-  level: number;
-};
-
+export type SearchNotesAction =
+  | {
+      type: "SEARCH_NOTES/SET_NOTES";
+      notes: NoteWithRelation[];
+    }
+  | {
+      type: "SEARCH_NOTES/SET_SINCE";
+      sinceQuery: Date | null;
+    }
+  | {
+      type: "SEARCH_NOTES/SET_UNTIL";
+      untilQuery: Date | null;
+    }
+  | {
+      type: "SEARCH_NOTES/TOGGLE_TAGS_QUERY";
+      tag: Tag;
+    }
+  | {
+      type: "SEARCH_NOTES/SET_TAGS_QUERY";
+      tagsQuery: Tag[];
+    }
+  | {
+      type: "SEARCH_NOTES/SET_LEVELS_QUERY";
+      levelsQuery: Set<number>;
+    }
+  | {
+      type: "SEARCH_NOTES/TOGGLE_LEVELS_QUERY";
+      level: number;
+    };
 
 const sinceFilter = (base: Date, compered: Date) => {
   return base.getTime() <= compered.getTime();
@@ -55,42 +57,33 @@ type DateFilterArguments = {
   filter: (base: Date, compered: Date) => boolean;
 };
 
-const dateFilter = ({
-  notes,
-  dateQuery,
-  filter
-}: DateFilterArguments) => {
+const dateFilter = ({ notes, dateQuery, filter }: DateFilterArguments) => {
   return dateQuery === null
-          ? notes
-          : notes.filter(({ createdAt }) => filter(dateQuery, createdAt));
+    ? notes
+    : notes.filter(({ createdAt }) => filter(dateQuery, createdAt));
 };
 
+type TagsFilterArguments = Pick<SearchNotesState, "notes" | "tagsQuery">;
 
-type TagsFilterArguments = Pick<SearchNotesState, 'notes' | 'tagsQuery'>;
-
-const tagsFilter = ({
-  notes,
-  tagsQuery,
-}: TagsFilterArguments) => {
+const tagsFilter = ({ notes, tagsQuery }: TagsFilterArguments) => {
   const tagsQueryIdSet = new Set(tagsQuery.map(({ id }) => id));
 
   return tagsQuery.length === 0
-          ? notes 
-          : notes.filter(({ tags }) => tags.some(({ id }) => tagsQueryIdSet.has(id)));
+    ? notes
+    : notes.filter(({ tags }) => tags.some(({ id }) => tagsQueryIdSet.has(id)));
 };
 
-type LevelsFilterArguments = Pick<SearchNotesState, 'notes' | 'levelsQuery'>;
+type LevelsFilterArguments = Pick<SearchNotesState, "notes" | "levelsQuery">;
 
-const levelsFilter = ({
-  notes,
-  levelsQuery
-}: LevelsFilterArguments) => {
+const levelsFilter = ({ notes, levelsQuery }: LevelsFilterArguments) => {
   return levelsQuery.size === 0
-          ? notes
-          : notes.filter(({ blocks }) => blocks.some(({ level }) => levelsQuery.has(level)));
+    ? notes
+    : notes.filter(({ blocks }) =>
+        blocks.some(({ level }) => levelsQuery.has(level)),
+      );
 };
 
-type FilterByAllQueriesArguments = Omit<SearchNotesState, 'filteredNotes'>;
+type FilterByAllQueriesArguments = Omit<SearchNotesState, "filteredNotes">;
 
 const filterByAllQueries = ({
   notes,
@@ -99,50 +92,47 @@ const filterByAllQueries = ({
   tagsQuery,
   levelsQuery,
 }: FilterByAllQueriesArguments) => {
+  const filteredBySince = dateFilter({
+    notes,
+    dateQuery: sinceQuery,
+    filter: sinceFilter,
+  });
 
-      
-    const filteredBySince = dateFilter({ 
-                              notes, 
-                              dateQuery: sinceQuery,
-                              filter: sinceFilter });
+  const filteredBySinceAndUntil = dateFilter({
+    notes: filteredBySince,
+    dateQuery: untilQuery,
+    filter: untilFilter,
+  });
 
-    const filteredBySinceAndUntil = dateFilter({ 
-                                      notes: filteredBySince, 
-                                      dateQuery: untilQuery, 
-                                      filter: untilFilter });
+  const filteredBySinceAndUntilAndTags = tagsFilter({
+    notes: filteredBySinceAndUntil,
+    tagsQuery: tagsQuery,
+  });
 
+  const filteredBySinceAndUntilAndTagsAndLevels = levelsFilter({
+    notes: filteredBySinceAndUntilAndTags,
+    levelsQuery: levelsQuery,
+  });
 
-    const filteredBySinceAndUntilAndTags = tagsFilter({
-      notes: filteredBySinceAndUntil,
-      tagsQuery: tagsQuery,
-    });
-
-    const filteredBySinceAndUntilAndTagsAndLevels = levelsFilter({
-      notes: filteredBySinceAndUntilAndTags,
-      levelsQuery: levelsQuery,
-    });
-    
-
-    return filteredBySinceAndUntilAndTagsAndLevels;
+  return filteredBySinceAndUntilAndTagsAndLevels;
 };
 
-
-
-
-export const searchNotesReducer: Reducer<SearchNotesState, SearchNotesAction> = (state, action) => {
-  switch(action.type) {
-    case 'SEARCH_NOTES/SET_NOTES': {
+export const searchNotesReducer: Reducer<
+  SearchNotesState,
+  SearchNotesAction
+> = (state, action) => {
+  switch (action.type) {
+    case "SEARCH_NOTES/SET_NOTES": {
       const nextState = { ...state };
       nextState.notes = [...action.notes];
       nextState.filteredNotes = [...action.notes];
       return nextState;
     }
-    case 'SEARCH_NOTES/SET_SINCE': {
+    case "SEARCH_NOTES/SET_SINCE": {
       const nextState = { ...state };
 
       const { sinceQuery: nextSinceQuery } = action;
       const { sinceQuery, filteredNotes, ...rest } = state;
-      
 
       nextState.filteredNotes = filterByAllQueries({
         sinceQuery: nextSinceQuery,
@@ -151,13 +141,13 @@ export const searchNotesReducer: Reducer<SearchNotesState, SearchNotesAction> = 
 
       nextState.sinceQuery = nextSinceQuery;
 
-      return nextState; 
+      return nextState;
     }
-  
-    case 'SEARCH_NOTES/SET_UNTIL': {
+
+    case "SEARCH_NOTES/SET_UNTIL": {
       const nextState = { ...state };
       const { untilQuery: nextUntilQuery } = action;
-      const { untilQuery, filteredNotes, ...rest } = state; 
+      const { untilQuery, filteredNotes, ...rest } = state;
 
       nextState.filteredNotes = filterByAllQueries({
         untilQuery: nextUntilQuery,
@@ -166,35 +156,33 @@ export const searchNotesReducer: Reducer<SearchNotesState, SearchNotesAction> = 
 
       nextState.untilQuery = nextUntilQuery;
 
-      return nextState; 
+      return nextState;
     }
 
-    
-    case 'SEARCH_NOTES/SET_TAGS_QUERY': {
+    case "SEARCH_NOTES/SET_TAGS_QUERY": {
       const nextState = { ...state };
-      const { tagsQuery: nextTagsQuery} = action;
-      
+      const { tagsQuery: nextTagsQuery } = action;
+
       const { tagsQuery, filteredNotes, ...rest } = state;
       nextState.filteredNotes = filterByAllQueries({
         tagsQuery: nextTagsQuery,
-        ...rest
+        ...rest,
       });
       nextState.tagsQuery = nextTagsQuery;
 
       return nextState;
     }
 
-    case 'SEARCH_NOTES/TOGGLE_TAGS_QUERY': {
+    case "SEARCH_NOTES/TOGGLE_TAGS_QUERY": {
       const nextState = { ...state };
       const { tag } = action;
-      const { tagsQuery, filteredNotes, ...rest } = state; 
+      const { tagsQuery, filteredNotes, ...rest } = state;
 
       const nextTagsQuery = (() => {
         const index = tagsQuery.findIndex(({ id }) => id === tag.id);
         return index === -1
-                ? tagsQuery.concat({ ...tag })
-                : tagsQuery.slice(0, index)
-                            .concat(tagsQuery.slice(index + 1));
+          ? tagsQuery.concat({ ...tag })
+          : tagsQuery.slice(0, index).concat(tagsQuery.slice(index + 1));
       })();
 
       nextState.filteredNotes = filterByAllQueries({
@@ -206,26 +194,26 @@ export const searchNotesReducer: Reducer<SearchNotesState, SearchNotesAction> = 
 
       return nextState;
     }
-    
-    case 'SEARCH_NOTES/SET_LEVELS_QUERY': {
+
+    case "SEARCH_NOTES/SET_LEVELS_QUERY": {
       const nextState = { ...state };
       const { levelsQuery, filteredNotes, ...rest } = state;
-      
+
       const nextLevelsQuery = new Set(action.levelsQuery);
 
       nextState.levelsQuery = nextLevelsQuery;
       nextState.filteredNotes = filterByAllQueries({
         levelsQuery: nextLevelsQuery,
-        ...rest
+        ...rest,
       });
 
       return nextState;
     }
-    
-    case 'SEARCH_NOTES/TOGGLE_LEVELS_QUERY': {
+
+    case "SEARCH_NOTES/TOGGLE_LEVELS_QUERY": {
       const nextState = { ...state };
       const { levelsQuery, filteredNotes, ...rest } = state;
-      
+
       const nextLevelsQuery = (() => {
         if (state.levelsQuery.has(action.level)) {
           const nextLevelsQuery = new Set(state.levelsQuery);
@@ -241,16 +229,13 @@ export const searchNotesReducer: Reducer<SearchNotesState, SearchNotesAction> = 
       nextState.levelsQuery = nextLevelsQuery;
       nextState.filteredNotes = filterByAllQueries({
         levelsQuery: nextLevelsQuery,
-        ...rest
+        ...rest,
       });
 
       return nextState;
     }
 
-    
     default:
       return state;
   }
 };
-
-

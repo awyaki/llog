@@ -1,13 +1,10 @@
-import { VFC, useContext } from 'react';
+import { VFC, useContext } from "react";
 
-import { CSSObject } from '@emotion/react';
+import { CSSObject } from "@emotion/react";
 
-import {
-  AddIcon,
-  TagAnimationButtonWrapper,
-} from '~/components';
+import { AddIcon, TagAnimationButtonWrapper } from "~/components";
 
-import { SelectedTagsContext } from '../SelectedTagsContextProvider';
+import { SelectedTagsContext } from "../SelectedTagsContextProvider";
 
 type Props = {
   css?: CSSObject;
@@ -19,7 +16,9 @@ export const CreateTagButton: VFC<Props> = ({ ...rest }) => {
   return (
     <TagAnimationButtonWrapper
       type="button"
-      onClick={onOpenModalToCreateTag} {...rest}>
+      onClick={onOpenModalToCreateTag}
+      {...rest}
+    >
       <AddIcon />
     </TagAnimationButtonWrapper>
   );

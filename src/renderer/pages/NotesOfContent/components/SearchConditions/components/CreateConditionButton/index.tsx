@@ -1,15 +1,15 @@
-import { VFC, MouseEventHandler } from 'react';
+import { VFC, MouseEventHandler } from "react";
 
-import { container } from './style/container';
+import { container } from "./style/container";
 
-import { CreateConditionButtonIcon } from './components/CreateConditionButtonIcon';
+import { CreateConditionButtonIcon } from "./components/CreateConditionButtonIcon";
 
 type Props = {
-  onClick?: MouseEventHandler<HTMLButtonElement>; 
+  onClick?: MouseEventHandler<HTMLButtonElement>;
 };
 
 export const CreateConditionButton: VFC<Props> = ({ onClick }) => {
-  return ( 
+  return (
     <button css={container} onClick={onClick}>
       <CreateConditionButtonIcon />
     </button>

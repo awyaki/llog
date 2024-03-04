@@ -1,12 +1,4 @@
-import { 
-  Prisma,
-  Tag, 
-  Content, 
-  Note, 
-  Block,
-  Log
-} from '@prisma/client';
-
+import { Prisma, Tag, Content, Note, Block, Log } from "@prisma/client";
 
 type CreateLog = (
   markdown: string,
@@ -17,11 +9,15 @@ type CreateLog = (
   contentName: string,
   noteId: number,
   contentId: number,
-) => Prisma.Prisma__LogClient<Log>; 
+) => Prisma.Prisma__LogClient<Log>;
 
-type GetLog = (id: number) => Prisma.Prisma__LogClient<Prisma.LogGetPayload<typeof logWithRelation>>;
+type GetLog = (
+  id: number,
+) => Prisma.Prisma__LogClient<Prisma.LogGetPayload<typeof logWithRelation>>;
 
-type GetAllLog = () => Prisma.Prisma__LogClient<Prisma.LogGetPayload<typeof logWithRelation>[]>;
+type GetAllLog = () => Prisma.Prisma__LogClient<
+  Prisma.LogGetPayload<typeof logWithRelation>[]
+>;
 
 const contentWithRelation = Prisma.validator<Prisma.ContentArgs>()({
   include: {
@@ -45,16 +41,37 @@ const logWithRelation = Prisma.validator<Prisma.LogArgs>()({
   },
 });
 
-
 interface IElectronAPI {
   createTag: (name: string) => Prisma.Prisma__TagClient<Tag>;
   getAllTag: () => Prisma.Prisma__TagClient<Tag[]>;
-  createContent: (name: string, tags: Tag[], blockNumber: number) => Prisma.Prisma__ContentClient<Content>;
-  getAllContent: () => Prisma.Prisma__ContentClient<Prisma.ContentGetPayload<typeof contentWithRelation>[]>;
-  getContent: (id: number) => Prisma.Prisma__ContentClient<Prisma.ContentGetPayload<typeof contentWithRelation> | null>;
-  getAllContentName: () => Prisma.Prisma__ContentClient<{ id: number, contentName: string}[]>;
-  createNote: (mkd: string, transformed: string, tags: Tag[], blocks: Block[], contentId: number) => Prisma.Prisma__NoteClient<Note>;
-  getNote: (id: number) => Prisma.Prisma__NoteClient<Prisma.NoteGetPayload<typeof noteWithRelation> | null>;
+  createContent: (
+    name: string,
+    tags: Tag[],
+    blockNumber: number,
+  ) => Prisma.Prisma__ContentClient<Content>;
+  getAllContent: () => Prisma.Prisma__ContentClient<
+    Prisma.ContentGetPayload<typeof contentWithRelation>[]
+  >;
+  getContent: (
+    id: number,
+  ) => Prisma.Prisma__ContentClient<Prisma.ContentGetPayload<
+    typeof contentWithRelation
+  > | null>;
+  getAllContentName: () => Prisma.Prisma__ContentClient<
+    { id: number; contentName: string }[]
+  >;
+  createNote: (
+    mkd: string,
+    transformed: string,
+    tags: Tag[],
+    blocks: Block[],
+    contentId: number,
+  ) => Prisma.Prisma__NoteClient<Note>;
+  getNote: (
+    id: number,
+  ) => Prisma.Prisma__NoteClient<Prisma.NoteGetPayload<
+    typeof noteWithRelation
+  > | null>;
   updateNote: (
     id: number,
     markdown: string,
@@ -63,20 +80,38 @@ interface IElectronAPI {
     blocks: Block[],
     contentId: number,
     commitedAt: Date | null,
-    updatedAt: Date
+    updatedAt: Date,
   ) => Prisma.Prisma__NoteClient<Note>;
-  updateContentName: ({ id, name }: Pick<Content, 'id' | 'name'>) => Prisma.Prisma__ContentClient<Content>;
-  getNoteWithContentId: (contentId: number) => Prisma.Prisma__NoteClient<Prisma.NoteGetPayload<typeof noteWithRelation>[]>;
+  updateContentName: ({
+    id,
+    name,
+  }: Pick<Content, "id" | "name">) => Prisma.Prisma__ContentClient<Content>;
+  getNoteWithContentId: (
+    contentId: number,
+  ) => Prisma.Prisma__NoteClient<
+    Prisma.NoteGetPayload<typeof noteWithRelation>[]
+  >;
   deleteNote: (id: number) => Prisma.Prisma__NoteClient<Note>;
   createLog: CreateLog;
   updateLogTitle: (id: number, title: string) => Prisma.Prisma__LogClient<Log>;
   getLog: GetLog;
   getAllLog: GetAllLog;
-  updateBlock: (block: Pick<Block, 'id' | 'iteration' | 'commitedAt' | 'level'>) => Prisma.Prisma__BlockClient<Block>;
+  updateBlock: (
+    block: Pick<Block, "id" | "iteration" | "commitedAt" | "level">,
+  ) => Prisma.Prisma__BlockClient<Block>;
   getAllBlock: () => Prisma.Prisma__BlockClient<Block[]>;
-  upsertContentBlocks: (id: number, blockMaxUnitNumber: number, howManyBlocks: number) => Prisma.Prisma__ContentClient<Content>; 
-  updateContentTags: (id: number, tags: Tag[]) => Prisma.Prisma__ContentClient<Content>;
-  deleteConnectContentTags: (id: number) => Prisma.Prisma__ContentClient<Content>;
+  upsertContentBlocks: (
+    id: number,
+    blockMaxUnitNumber: number,
+    howManyBlocks: number,
+  ) => Prisma.Prisma__ContentClient<Content>;
+  updateContentTags: (
+    id: number,
+    tags: Tag[],
+  ) => Prisma.Prisma__ContentClient<Content>;
+  deleteConnectContentTags: (
+    id: number,
+  ) => Prisma.Prisma__ContentClient<Content>;
   deleteContent: (id: number) => Prisma.Prisma__ContentClient<Content>;
   deleteTag: (id: number) => Prisma.Prisma__TagClient<Tag>;
   markdownToHTML: (markdown: string) => Promise<string>;
@@ -87,4 +122,3 @@ declare global {
     electronAPI: IElectronAPI;
   }
 }
-

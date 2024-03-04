@@ -1,7 +1,7 @@
-import { CSSObject } from '@emotion/react';
-import { inputBox as base } from '~/pages/style';
+import { CSSObject } from "@emotion/react";
+import { inputBox as base } from "~/pages/style";
 
 export const inputBox: CSSObject = {
   ...base,
-  marginBottom: '8px',
+  marginBottom: "8px",
 };

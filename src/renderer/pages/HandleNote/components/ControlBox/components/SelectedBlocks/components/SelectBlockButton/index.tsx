@@ -1,15 +1,12 @@
-import { VFC, MouseEventHandler } from 'react';
+import { VFC, MouseEventHandler } from "react";
 
-import { CSSObject } from '@emotion/react';
+import { CSSObject } from "@emotion/react";
 
-import { colors } from '~/styleConfig/colors';
+import { colors } from "~/styleConfig/colors";
 
-import { EditIcon } from '~/components';
+import { EditIcon } from "~/components";
 
-import { 
-  motion,
-  Variants,
-  } from 'framer-motion';
+import { motion, Variants } from "framer-motion";
 
 type Props = {
   css?: CSSObject;
@@ -25,26 +22,29 @@ const containerMotions: Variants = {
   delta: {
     scale: 1.1,
     backgroundColor: colors.cyan.DEFAULT,
-    color: colors.white
+    color: colors.white,
   },
 };
 
 export const SelectBlockButton: VFC<Props> = ({ onClick, ...rest }) => {
   return (
-    <motion.button 
+    <motion.button
       variants={containerMotions}
       initial="initial"
       whileHover="delta"
       whileFocus="delta"
-      onClick={onClick} 
-      style={{ 
-        width: '36px', 
-        height: '36px', 
-        borderWidth: '1px',
-        borderStyle: 'solid',
-        display: 'flex', 
-        justifyContent: 'center', 
-        alignItems: 'center' }} {...rest}>
+      onClick={onClick}
+      style={{
+        width: "36px",
+        height: "36px",
+        borderWidth: "1px",
+        borderStyle: "solid",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+      {...rest}
+    >
       <EditIcon />
     </motion.button>
   );

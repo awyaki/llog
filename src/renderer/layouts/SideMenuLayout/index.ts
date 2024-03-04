@@ -1,1 +1,1 @@
-export * from './SidMenuLayout';
+export * from "./SidMenuLayout";

@@ -1,9 +1,6 @@
-import { VFC, MouseEventHandler } from 'react';
+import { VFC, MouseEventHandler } from "react";
 
-import {
-  NoteAddIcon,
-  DisabableButtonAnimationWrapper
-} from '~/components';
+import { NoteAddIcon, DisabableButtonAnimationWrapper } from "~/components";
 
 type Props = {
   disabled: boolean;
@@ -12,9 +9,7 @@ type Props = {
 
 export const OneMoreNoteButton: VFC<Props> = ({ disabled, onClick }) => {
   return (
-    <DisabableButtonAnimationWrapper
-      disabled={disabled}
-      onClick={onClick}>
+    <DisabableButtonAnimationWrapper disabled={disabled} onClick={onClick}>
       <NoteAddIcon />
     </DisabableButtonAnimationWrapper>
   );

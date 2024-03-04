@@ -1,6 +1,6 @@
-import { VFC, MouseEventHandler } from 'react';
+import { VFC, MouseEventHandler } from "react";
 
-import { CommitIcon } from './components';
+import { CommitIcon } from "./components";
 
 type Props = {
   onClick?: MouseEventHandler<HTMLButtonElement>;

@@ -1,4 +1,3 @@
-
 /*
  * @param {number} iteration - iteration of a block
  * @param {number} commitedAt - commitedAt of a block
@@ -8,14 +7,13 @@
  *
  **/
 
-
 export const calculateLevel = (
   iteration: number,
   committedAt: Date,
 ): number => {
   type Iteration = number;
   type Day = number;
-  
+
   if (iteration === 0) return 0;
   if (iteration >= 8) return 5;
 
@@ -37,9 +35,9 @@ export const calculateLevel = (
 
   const now = new Date();
   const timePassed = now.getMilliseconds() - committedAt.getMilliseconds();
-  
-  const interval = (dayToms(spanMap.get(iteration) ?? 0)) / 5; 
-  
+
+  const interval = dayToms(spanMap.get(iteration) ?? 0) / 5;
+
   if (0 <= timePassed && timePassed < interval) return 5;
   if (interval <= timePassed && timePassed < 2 * interval) return 4;
   if (2 * interval <= timePassed && timePassed < 3 * interval) return 3;

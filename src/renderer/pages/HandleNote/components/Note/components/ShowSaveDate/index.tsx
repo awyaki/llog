@@ -1,11 +1,11 @@
-import { VFC } from 'react';
+import { VFC } from "react";
 
-import { colors } from '~/styleConfig/colors';
-import { font } from '~/styleConfig/font';
+import { colors } from "~/styleConfig/colors";
+import { font } from "~/styleConfig/font";
 
-import { Box } from '@chakra-ui/react';
+import { Box } from "@chakra-ui/react";
 
-import { makeFormalTimeString } from '~/utils';
+import { makeFormalTimeString } from "~/utils";
 
 type Props = {
   notSaved: boolean;
@@ -13,11 +13,19 @@ type Props = {
 };
 
 export const ShowSaveDate: VFC<Props> = ({ notSaved, date }) => {
-  const dateString = date !== undefined ? makeFormalTimeString(date) : '';
+  const dateString = date !== undefined ? makeFormalTimeString(date) : "";
 
   if (notSaved) {
-    return <Box color={colors.red.DEFAULT} fontSize={font.size.SS}>This version is not saved.</Box>;
+    return (
+      <Box color={colors.red.DEFAULT} fontSize={font.size.SS}>
+        This version is not saved.
+      </Box>
+    );
   } else {
-    return <Box color={colors.text} fontSize={font.size.SS}>{dateString ?? ''}</Box>;
-  };
+    return (
+      <Box color={colors.text} fontSize={font.size.SS}>
+        {dateString ?? ""}
+      </Box>
+    );
+  }
 };

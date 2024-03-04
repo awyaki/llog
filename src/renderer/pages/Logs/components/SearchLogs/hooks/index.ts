@@ -1,1 +1,1 @@
-export * from './useSearchLogs';
+export * from "./useSearchLogs";

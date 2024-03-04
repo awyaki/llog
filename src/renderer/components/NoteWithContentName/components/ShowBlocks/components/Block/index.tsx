@@ -1,5 +1,5 @@
-import { VFC } from 'react';
-import { makeContainer } from './style';
+import { VFC } from "react";
+import { makeContainer } from "./style";
 
 type Props = {
   unitNumber: number;
@@ -7,7 +7,5 @@ type Props = {
 };
 
 export const Block: VFC<Props> = ({ unitNumber, level }) => {
-  return (
-    <div css={makeContainer(level)}>{unitNumber}</div>
-  );
+  return <div css={makeContainer(level)}>{unitNumber}</div>;
 };

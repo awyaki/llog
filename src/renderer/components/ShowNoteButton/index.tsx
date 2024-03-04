@@ -1,6 +1,6 @@
-import { VFC, MouseEventHandler } from 'react';
+import { VFC, MouseEventHandler } from "react";
 
-import { ShowNoteIcon } from './components';
+import { ShowNoteIcon } from "./components";
 
 type Props = {
   onClick?: MouseEventHandler<HTMLButtonElement>;

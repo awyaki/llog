@@ -1,11 +1,11 @@
-import { Tag } from '@prisma/client';
-import { range } from '../../../utils';
-import { prisma } from '../../db';
+import { Tag } from "@prisma/client";
+import { range } from "../../../utils";
+import { prisma } from "../../db";
 
 export const create = async (
   name: string,
-  tags: Tag[], 
-  blocksNumber: number
+  tags: Tag[],
+  blocksNumber: number,
 ) => {
   const result = await prisma.content.create({
     data: {
@@ -14,7 +14,11 @@ export const create = async (
         connect: [...tags.map(({ id }) => ({ id: id }))],
       },
       blocks: {
-        create: [...range(0, blocksNumber)].map((n) => ({ unitNumber: n+1, level: 0, iteration: 0 })), 
+        create: [...range(0, blocksNumber)].map((n) => ({
+          unitNumber: n + 1,
+          level: 0,
+          iteration: 0,
+        })),
       },
     },
   });

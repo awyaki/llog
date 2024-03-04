@@ -1,5 +1,5 @@
-import { VFC, MouseEventHandler } from 'react';
-import { CreateContentIcon } from './components/CreateContentIcon';
+import { VFC, MouseEventHandler } from "react";
+import { CreateContentIcon } from "./components/CreateContentIcon";
 
 type Props = {
   active: boolean;

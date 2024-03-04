@@ -1,16 +1,16 @@
-import { CSSObject } from '@emotion/react';
-import { colors } from '~/styleConfig/colors';
+import { CSSObject } from "@emotion/react";
+import { colors } from "~/styleConfig/colors";
 
 export const container: CSSObject = {
-  minWidth: '150px',
+  minWidth: "150px",
   backgroundColor: colors.cyan.DEFAULT,
   color: colors.white,
-  boxShadow: '0 0 80px -10px rgba(0,0,0,0.50)',
-  borderRadius: '4px',
-  position: 'fixed',
-  top: '85vh',
-  left: '80vw',
-  padding: '20px',
+  boxShadow: "0 0 80px -10px rgba(0,0,0,0.50)",
+  borderRadius: "4px",
+  position: "fixed",
+  top: "85vh",
+  left: "80vw",
+  padding: "20px",
   zIndex: 3,
-  textAlign: 'center',
+  textAlign: "center",
 };

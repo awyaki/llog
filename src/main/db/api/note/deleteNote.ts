@@ -1,4 +1,4 @@
-import { prisma } from '../../db';
+import { prisma } from "../../db";
 
 export const deleteNote = (id: number) => {
   const result = prisma.note.delete({

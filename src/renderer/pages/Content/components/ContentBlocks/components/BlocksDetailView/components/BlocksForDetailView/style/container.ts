@@ -1,1 +1,1 @@
-export { makeContainer } from '~/pages/style/block';
+export { makeContainer } from "~/pages/style/block";

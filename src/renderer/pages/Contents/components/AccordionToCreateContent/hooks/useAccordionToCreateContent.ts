@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback } from "react";
 
 export const useAccordionToCreateContent = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -6,11 +6,11 @@ export const useAccordionToCreateContent = () => {
   const handleToggleOpen = useCallback(() => {
     setIsOpen((prev) => !prev);
   }, [setIsOpen]);
-  
+
   const handleClose = useCallback(() => {
     setIsOpen(false);
   }, [setIsOpen]);
-  
+
   return {
     isOpen,
     handleToggleOpen,

@@ -1,13 +1,10 @@
-import { VFC } from 'react';
+import { VFC } from "react";
 
-import { CSSObject } from '@emotion/react';
+import { CSSObject } from "@emotion/react";
 
-import { colors } from '~/styleConfig';
+import { colors } from "~/styleConfig";
 
-import { 
-  EditIcon, 
-  PreviewNoteIcon,
-  } from '~/components';
+import { EditIcon, PreviewNoteIcon } from "~/components";
 
 type Props = {
   css?: CSSObject;
@@ -15,24 +12,18 @@ type Props = {
   onClick: () => void;
 };
 
-import { 
-  motion,
-  MotionStyle,
-  Variants
-  } from 'framer-motion';
-
+import { motion, MotionStyle, Variants } from "framer-motion";
 
 const buttonStyle: MotionStyle = {
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  width: '40px',
-  height: '40px',
-  padding: '5px',
-  textAlign: 'center',
-  zIndex: 1
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  width: "40px",
+  height: "40px",
+  padding: "5px",
+  textAlign: "center",
+  zIndex: 1,
 };
-
 
 const editButtonMotions: Variants = {
   edit: { color: colors.white },
@@ -46,28 +37,26 @@ const previewButtonMotions: Variants = {
 
 const circleMotion: Variants = {
   edit: { x: 0 },
-  preview: { x: 48 }
+  preview: { x: 48 },
 };
 
-export const SwitchEdit: VFC<Props> = ({ 
-  isEdit,
-  onClick,
-  ...rest
-}) => {
+export const SwitchEdit: VFC<Props> = ({ isEdit, onClick, ...rest }) => {
   return (
     <motion.button
       onClick={onClick}
       style={{
-        display: 'flex',
-        padding: '8px',
+        display: "flex",
+        padding: "8px",
         backgroundColor: colors.white,
-        borderRadius: '4px',
+        borderRadius: "4px",
         border: `1px solid ${colors.cyan.DEFAULT}`,
-      }} {...rest}>
+      }}
+      {...rest}
+    >
       <motion.div
         variants={editButtonMotions}
         animate={isEdit ? "edit" : "preview"}
-        style={{ ...buttonStyle, marginRight: '8px' }}
+        style={{ ...buttonStyle, marginRight: "8px" }}
       >
         <EditIcon />
       </motion.div>
@@ -82,18 +71,18 @@ export const SwitchEdit: VFC<Props> = ({
         variants={circleMotion}
         animate={isEdit ? "eidit" : "preview"}
         style={{
-          position: 'absolute',
-          width: '40px',
-          height: '40px',
-          borderRadius: '20px',
-          padding: '5px',
-          borderWidth: '1px',
-          borderStyle: 'solid',
+          position: "absolute",
+          width: "40px",
+          height: "40px",
+          borderRadius: "20px",
+          padding: "5px",
+          borderWidth: "1px",
+          borderStyle: "solid",
           borderColor: colors.cyan.DEFAULT,
           backgroundColor: colors.cyan.DEFAULT,
-          textAlign: 'center',
-        }}>
-      </motion.span>
+          textAlign: "center",
+        }}
+      ></motion.span>
     </motion.button>
-    );
+  );
 };

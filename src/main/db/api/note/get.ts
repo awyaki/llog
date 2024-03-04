@@ -1,4 +1,4 @@
-import { prisma } from '../../db';
+import { prisma } from "../../db";
 
 export const get = async (id: number) => {
   const note = await prisma.note.findUnique({

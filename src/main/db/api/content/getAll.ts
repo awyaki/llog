@@ -1,8 +1,8 @@
-import { prisma } from '../../db';
+import { prisma } from "../../db";
 
 export const getAll = async () => {
   const result = await prisma.content.findMany({
-    include: { 
+    include: {
       tags: true,
       notes: true,
       blocks: true,

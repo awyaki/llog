@@ -1,4 +1,3 @@
-
 /*
  * @param {number} iteration - iteration of a block
  * @param {number} commitedAt - commitedAt of a block
@@ -8,15 +7,14 @@
  *
  **/
 
-
 export const testCalculateLevel = (
   iteration: number,
   committedAt: Date,
 ): number => {
   type Iteration = number;
   type Minutes = number;
-  
-  console.log('testCalculateLevel iteration', iteration);
+
+  console.log("testCalculateLevel iteration", iteration);
 
   if (iteration === 0) return 0;
   if (iteration >= 8) return 5;
@@ -39,14 +37,29 @@ export const testCalculateLevel = (
 
   const now = new Date();
   const timePassed = now.getTime() - committedAt.getTime();
-  
-  const interval = (MinutesToms(spanMap.get(iteration) ?? 0)) / 5; 
-  if (0 <= timePassed && timePassed < interval) { console.log('1');return 5; }
-  if (interval <= timePassed && timePassed < 2 * interval) { console.log('2'); return 4; }
-  if (2 * interval <= timePassed && timePassed < 3 * interval) { console.log('3'); return 3; }
-  if (3 * interval <= timePassed && timePassed < 4 * interval) { console.log('4'); return 2; }
-  if (4 * interval <= timePassed && timePassed < 5 * interval) { console.log('5'); return 1; }
-  
-  console.log('6');
+
+  const interval = MinutesToms(spanMap.get(iteration) ?? 0) / 5;
+  if (0 <= timePassed && timePassed < interval) {
+    console.log("1");
+    return 5;
+  }
+  if (interval <= timePassed && timePassed < 2 * interval) {
+    console.log("2");
+    return 4;
+  }
+  if (2 * interval <= timePassed && timePassed < 3 * interval) {
+    console.log("3");
+    return 3;
+  }
+  if (3 * interval <= timePassed && timePassed < 4 * interval) {
+    console.log("4");
+    return 2;
+  }
+  if (4 * interval <= timePassed && timePassed < 5 * interval) {
+    console.log("5");
+    return 1;
+  }
+
+  console.log("6");
   return 1;
 };

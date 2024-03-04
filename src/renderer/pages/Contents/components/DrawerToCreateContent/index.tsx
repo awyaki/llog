@@ -55,7 +55,7 @@ export const DrawerToCreateContent: VFC<Omit<DrawerProps, "children">> = ({
       await onCreateNewContent(
         contentName,
         selectedTags,
-        Number(numberOfBlocks)
+        Number(numberOfBlocks),
       );
       setSelectedTags([]);
       setValue("numberOfBlocks", "");
@@ -63,7 +63,7 @@ export const DrawerToCreateContent: VFC<Omit<DrawerProps, "children">> = ({
       setMessage("Create");
       onClose();
     },
-    [selectedTags]
+    [selectedTags],
   );
 
   const isAlreadyNameExist = useCallback<Validate<string>>(
@@ -71,7 +71,7 @@ export const DrawerToCreateContent: VFC<Omit<DrawerProps, "children">> = ({
       const isOk = !contents.some((content) => content.name === contentName);
       return isOk || "This name have already been existed.";
     },
-    [contents]
+    [contents],
   );
 
   const onCloseWithReset = useCallback(() => {

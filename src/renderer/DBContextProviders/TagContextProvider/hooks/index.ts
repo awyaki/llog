@@ -1,16 +1,15 @@
-import { useReducer, Reducer } from 'react';
-import { State } from './types';
-import { CreateTagAction, tagCreateReducer } from './tagCreateReducer';
-import { SetTagAction, tagSetReducer } from './tagSetReducer';
-
+import { useReducer, Reducer } from "react";
+import { State } from "./types";
+import { CreateTagAction, tagCreateReducer } from "./tagCreateReducer";
+import { SetTagAction, tagSetReducer } from "./tagSetReducer";
 
 export type Action = CreateTagAction | SetTagAction;
 
 const reducer: Reducer<State, Action> = (state, action) => {
-  switch(action.type) {
-    case 'APP/CREATE_TAG':
+  switch (action.type) {
+    case "APP/CREATE_TAG":
       return tagCreateReducer(state, action);
-    case 'APP/SET_TAG':
+    case "APP/SET_TAG":
       return tagSetReducer(action.tags);
   }
 };

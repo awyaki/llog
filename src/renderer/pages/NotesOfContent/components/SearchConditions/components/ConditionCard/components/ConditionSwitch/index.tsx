@@ -1,6 +1,6 @@
-import { VFC, MouseEventHandler } from 'react';
+import { VFC, MouseEventHandler } from "react";
 
-import { makeContainer } from './style/container';
+import { makeContainer } from "./style/container";
 
 type Props = {
   isOn: boolean;
@@ -8,8 +8,5 @@ type Props = {
 };
 
 export const ConditionSwitch: VFC<Props> = ({ isOn, onClick }) => {
-  return (
-    <button css={makeContainer(isOn)} onClick={onClick}>
-    </button>
-  );
+  return <button css={makeContainer(isOn)} onClick={onClick}></button>;
 };

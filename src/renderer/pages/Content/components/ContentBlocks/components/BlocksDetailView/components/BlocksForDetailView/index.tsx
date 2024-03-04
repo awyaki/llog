@@ -1,7 +1,6 @@
-import { VFC } from 'react';
+import { VFC } from "react";
 
-import { makeContainer } from './style/container';
-
+import { makeContainer } from "./style/container";
 
 type Props = {
   level: number;
@@ -10,8 +9,8 @@ type Props = {
 
 export const BlocksForDetailView: VFC<Props> = ({ level, unitNumber }) => {
   return (
-    <div css={makeContainer(level)}><span>{unitNumber}</span></div>
+    <div css={makeContainer(level)}>
+      <span>{unitNumber}</span>
+    </div>
   );
 };
-
-

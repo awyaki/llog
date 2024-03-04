@@ -1,27 +1,33 @@
-import { VFC, useContext, useCallback, memo } from 'react';
+import { VFC, useContext, useCallback, memo } from "react";
 
-import { Block as BlockType } from '@prisma/client';
+import { Block as BlockType } from "@prisma/client";
 
-import { SelectedBlocksForHandleNoteContext } from '~/components';
+import { SelectedBlocksForHandleNoteContext } from "~/components";
 
-import { makeContainer } from '~/pages/style/block';
+import { makeContainer } from "~/pages/style/block";
 
-type Props = { 
-  block: BlockType
+type Props = {
+  block: BlockType;
 };
 
 export const Block: VFC<Props> = memo(({ block }) => {
-  const { selectedBlocks, dispatch } = useContext(SelectedBlocksForHandleNoteContext);
-  const { level, unitNumber } = block; 
+  const { selectedBlocks, dispatch } = useContext(
+    SelectedBlocksForHandleNoteContext,
+  );
+  const { level, unitNumber } = block;
 
-  const isSlected = selectedBlocks.findIndex(({ id }) => id === block.id) !== -1;
+  const isSlected =
+    selectedBlocks.findIndex(({ id }) => id === block.id) !== -1;
 
   const handleToggleSelectBlock = useCallback(() => {
-    dispatch({ type: 'SELECTED_BLOCKS/TOGGLE', block: block });
+    dispatch({ type: "SELECTED_BLOCKS/TOGGLE", block: block });
   }, [block]);
 
   return (
-    <button css={makeContainer(level, isSlected)} onClick={handleToggleSelectBlock}>
+    <button
+      css={makeContainer(level, isSlected)}
+      onClick={handleToggleSelectBlock}
+    >
       {unitNumber}
     </button>
   );

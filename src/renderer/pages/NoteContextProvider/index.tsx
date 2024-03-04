@@ -1,13 +1,16 @@
-import { FC, createContext, useState, Dispatch, SetStateAction } from 'react';
+import { FC, createContext, useState, Dispatch, SetStateAction } from "react";
 
-import { NoteWithRelation } from '../type';
+import { NoteWithRelation } from "../type";
 
 type NoteContextType = {
-  note: NoteWithRelation | null,
+  note: NoteWithRelation | null;
   setNote: Dispatch<SetStateAction<NoteWithRelation | null>>;
 };
 
-export const NoteContext = createContext<NoteContextType>({ note: null, setNote: () => {} });
+export const NoteContext = createContext<NoteContextType>({
+  note: null,
+  setNote: () => {},
+});
 
 export const NoteContextProvider: FC = ({ children }) => {
   const [note, setNote] = useState<NoteWithRelation | null>(null);

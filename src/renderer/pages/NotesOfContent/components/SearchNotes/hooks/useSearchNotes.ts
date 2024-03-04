@@ -1,25 +1,17 @@
-import { 
-  useReducer,
-  useCallback,
-  useEffect,
-  useState,
-} from 'react';
+import { useReducer, useCallback, useEffect, useState } from "react";
 
-import { NoteWithRelation } from '~/pages/type';
+import { NoteWithRelation } from "~/pages/type";
 
-import { Tag } from '@prisma/client';
+import { Tag } from "@prisma/client";
 
-import { 
-  searchNotesReducer,
-} from './searchNoteReducer';
+import { searchNotesReducer } from "./searchNoteReducer";
 
-import { getAllTag } from '~/api';
-
+import { getAllTag } from "~/api";
 
 export const useSearchNotes = (initialNotes: NoteWithRelation[]) => {
   const [
     { filteredNotes, sinceQuery, untilQuery, tagsQuery, levelsQuery },
-    dispatch
+    dispatch,
   ] = useReducer(searchNotesReducer, {
     notes: [...initialNotes],
     filteredNotes: [...initialNotes],
@@ -32,29 +24,30 @@ export const useSearchNotes = (initialNotes: NoteWithRelation[]) => {
   const [tags, setAllTagsOnSearchNotes] = useState<Tag[] | null>(null);
 
   const setSinceQuery = useCallback((sinceQuery: Date | null) => {
-    dispatch({ type: 'SEARCH_NOTES/SET_SINCE', sinceQuery: sinceQuery });
+    dispatch({ type: "SEARCH_NOTES/SET_SINCE", sinceQuery: sinceQuery });
   }, []);
 
   const setUntilQuery = useCallback((untilQuery: Date | null) => {
-    dispatch({ type: 'SEARCH_NOTES/SET_UNTIL', untilQuery: untilQuery });
+    dispatch({ type: "SEARCH_NOTES/SET_UNTIL", untilQuery: untilQuery });
   }, []);
 
-  
   const setTagsQuery = useCallback((tags: Tag[]) => {
-    dispatch({ type: 'SEARCH_NOTES/SET_TAGS_QUERY', tagsQuery: tags });
+    dispatch({ type: "SEARCH_NOTES/SET_TAGS_QUERY", tagsQuery: tags });
   }, []);
 
   const toggleTagsQuery = useCallback((tag: Tag) => {
-    dispatch({ type: 'SEARCH_NOTES/TOGGLE_TAGS_QUERY', tag: tag });
+    dispatch({ type: "SEARCH_NOTES/TOGGLE_TAGS_QUERY", tag: tag });
   }, []);
-
 
   const setLevelsQuery = useCallback((levelsQuery: Set<number>) => {
-    dispatch({ type: 'SEARCH_NOTES/SET_LEVELS_QUERY', levelsQuery: levelsQuery });
+    dispatch({
+      type: "SEARCH_NOTES/SET_LEVELS_QUERY",
+      levelsQuery: levelsQuery,
+    });
   }, []);
-  
+
   const toggleLevelsQuery = useCallback((level: number) => {
-    dispatch({ type: 'SEARCH_NOTES/TOGGLE_LEVELS_QUERY', level: level });
+    dispatch({ type: "SEARCH_NOTES/TOGGLE_LEVELS_QUERY", level: level });
   }, []);
 
   useEffect(() => {
@@ -70,7 +63,6 @@ export const useSearchNotes = (initialNotes: NoteWithRelation[]) => {
     setTagsQuery([]);
     setLevelsQuery(new Set());
   }, []);
-
 
   return {
     tags,

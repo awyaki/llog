@@ -1,1 +1,1 @@
-export * from './useAccordionToCreateContent';
+export * from "./useAccordionToCreateContent";

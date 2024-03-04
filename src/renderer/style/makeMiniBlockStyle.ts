@@ -1,25 +1,25 @@
-import { CSSObject } from '@emotion/react';
-import { colors } from '~/styleConfig/colors';
+import { CSSObject } from "@emotion/react";
+import { colors } from "~/styleConfig/colors";
 
 export const makeMiniBlockStyle = (level: number): CSSObject => {
   const color = colors.cyan.LEVEL[level];
 
   const base: CSSObject = {
-    width: '18px',
-    height: '18px',
-    borderWidth: '1px',
+    width: "18px",
+    height: "18px",
+    borderWidth: "1px",
   };
 
   const zero: CSSObject = {
     ...base,
-    borderWidth: '1px',
+    borderWidth: "1px",
     backgroundColor: color,
-    borderStyle: 'solid',
+    borderStyle: "solid",
   };
 
   const others: CSSObject = {
     ...base,
-    borderStyle: 'solid',
+    borderStyle: "solid",
     borderColor: color,
     backgroundColor: color,
   };

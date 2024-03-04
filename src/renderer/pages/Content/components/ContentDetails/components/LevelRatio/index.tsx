@@ -1,13 +1,13 @@
-import { VFC } from 'react';
+import { VFC } from "react";
 
-import { zip } from '~/utils';
+import { zip } from "~/utils";
 
-import { Block } from '@prisma/client';
+import { Block } from "@prisma/client";
 
-import { makeStringForShowRatio } from './functions';
+import { makeStringForShowRatio } from "./functions";
 
-import { LevelInfo } from './components/LevelInfo';
-import { container } from './style/container';
+import { LevelInfo } from "./components/LevelInfo";
+import { container } from "./style/container";
 
 type Props = {
   blocks: Block[];
@@ -19,7 +19,11 @@ export const LevelRatio: VFC<Props> = ({ blocks }) => {
 
   return (
     <ul css={container}>
-      {zip(levels, strs).map(([level, str]) => <li key={level}><LevelInfo level={level} ratio={str}/></li>)}
+      {zip(levels, strs).map(([level, str]) => (
+        <li key={level}>
+          <LevelInfo level={level} ratio={str} />
+        </li>
+      ))}
     </ul>
   );
 };

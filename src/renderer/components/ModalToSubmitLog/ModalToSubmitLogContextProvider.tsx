@@ -1,22 +1,19 @@
-import {
-  FC,
-  createContext
-  } from 'react';
+import { FC, createContext } from "react";
 
-import { useDisclosure } from '@chakra-ui/react';
+import { useDisclosure } from "@chakra-ui/react";
 
 type ProvidedModalToSubmitLogContext = {
-  isOpen: boolean,
+  isOpen: boolean;
   onOpen: () => void;
   onClose: () => void;
 };
 
-
-export const ModalToSubmitLogContext = createContext<ProvidedModalToSubmitLogContext>({
-  isOpen: false,
-  onOpen: () => {},
-  onClose: () => {},
-});
+export const ModalToSubmitLogContext =
+  createContext<ProvidedModalToSubmitLogContext>({
+    isOpen: false,
+    onOpen: () => {},
+    onClose: () => {},
+  });
 
 export const ModalToSubmitLogContextProvider: FC = ({ children }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();

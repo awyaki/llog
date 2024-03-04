@@ -1,13 +1,13 @@
-import { VFC, MouseEventHandler } from 'react';
+import { VFC, MouseEventHandler } from "react";
 
-import { 
-  CommitButton, 
+import {
+  CommitButton,
   ShowNoteButton,
   EditNoteButton,
   CancelButton,
-  } from '~/components';
+} from "~/components";
 
-import { HStack } from '@chakra-ui/react';
+import { HStack } from "@chakra-ui/react";
 
 type Props = {
   onClickCommit?: MouseEventHandler<HTMLButtonElement>;
@@ -20,13 +20,17 @@ export const ControlButtons: VFC<Props> = ({
   onClickDelete,
   onClickEditNote,
   onClickShowNote,
-  onClickCommit
+  onClickCommit,
 }) => {
   return (
     <HStack>
       {onClickCommit ? <CommitButton onClick={onClickCommit} /> : undefined}
-      {onClickShowNote ? <ShowNoteButton onClick={onClickShowNote} /> : undefined}
-      {onClickEditNote ? <EditNoteButton onClick={onClickEditNote} /> : undefined}
+      {onClickShowNote ? (
+        <ShowNoteButton onClick={onClickShowNote} />
+      ) : undefined}
+      {onClickEditNote ? (
+        <EditNoteButton onClick={onClickEditNote} />
+      ) : undefined}
       {onClickDelete ? <CancelButton onClick={onClickDelete} /> : undefined}
     </HStack>
   );

@@ -1,10 +1,7 @@
-import { Tag } from '@prisma/client';
-import { prisma } from '../../db';
+import { Tag } from "@prisma/client";
+import { prisma } from "../../db";
 
-export const updateContentTags = async (
-  id: number,
-  tags: Tag[],
-) => {
+export const updateContentTags = async (id: number, tags: Tag[]) => {
   const result = await prisma.content.update({
     where: { id: id },
     data: {

@@ -1,7 +1,7 @@
-import { CSSObject } from '@emotion/react';
+import { CSSObject } from "@emotion/react";
 
 export const subContainer: CSSObject = {
-  display: 'flex',
-  alignItems: 'center',
-  paddingBottom: '10px',
+  display: "flex",
+  alignItems: "center",
+  paddingBottom: "10px",
 };

@@ -1,12 +1,8 @@
-import { VFC } from 'react';
+import { VFC } from "react";
 
-import { ContentWithRelation } from '~/pages/type';
+import { ContentWithRelation } from "~/pages/type";
 
-import { 
-  SideMenu,
-  UpdateContentForm
-  } from '~/components';
-
+import { SideMenu, UpdateContentForm } from "~/components";
 
 type UpdateContentProps = {
   isOpen: boolean;
@@ -17,15 +13,11 @@ type UpdateContentProps = {
 export const UpdateContent: VFC<UpdateContentProps> = ({
   isOpen,
   onClose,
-  content
+  content,
 }) => {
   return (
-    <SideMenu 
-      isOpen={isOpen} 
-      onClose={onClose}>
-    <UpdateContentForm 
-      key={isOpen ? 'open' : 'close'}
-      content={content} />
+    <SideMenu isOpen={isOpen} onClose={onClose}>
+      <UpdateContentForm key={isOpen ? "open" : "close"} content={content} />
     </SideMenu>
   );
 };

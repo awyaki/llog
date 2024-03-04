@@ -1,19 +1,23 @@
-import { VFC } from 'react';
+import { VFC } from "react";
 
-import { Tag as TagType } from '@prisma/client';
+import { Tag as TagType } from "@prisma/client";
 
-import { Tag } from './components';
+import { Tag } from "./components";
 
-import { container } from './style';
+import { container } from "./style";
 
 type Props = {
-  tags: Pick<TagType, 'id' | 'name'>[];
+  tags: Pick<TagType, "id" | "name">[];
 };
 
 export const ShowTags: VFC<Props> = ({ tags }) => {
   return (
     <ul css={container}>
-      {tags.map(({ id, name }) => <li key={id}><Tag name={name} /></li>)}
+      {tags.map(({ id, name }) => (
+        <li key={id}>
+          <Tag name={name} />
+        </li>
+      ))}
     </ul>
   );
 };

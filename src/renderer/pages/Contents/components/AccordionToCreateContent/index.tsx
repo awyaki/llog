@@ -1,28 +1,23 @@
-import { VFC } from 'react';
+import { VFC } from "react";
 
+import { AccordionButtonWithText, AddContentForm } from "~/components";
 
-import {
-  AccordionButtonWithText,
-  AddContentForm
-} from '~/components';
+import { Collapse } from "@chakra-ui/transition";
 
-import { Collapse } from '@chakra-ui/transition';
-
-import { useAccordionToCreateContent } from './hooks';
+import { useAccordionToCreateContent } from "./hooks";
 
 export const AccordionToCreateContent: VFC = () => {
-  const { 
-    isOpen, 
-    handleToggleOpen, 
-    handleClose } = useAccordionToCreateContent();
+  const { isOpen, handleToggleOpen, handleClose } =
+    useAccordionToCreateContent();
 
   return (
     <>
-      <AccordionButtonWithText 
-        css={{ marginBottom: '16px' }}
+      <AccordionButtonWithText
+        css={{ marginBottom: "16px" }}
         isOpen={isOpen}
         text="Add new"
-        onClick={handleToggleOpen}/>
+        onClick={handleToggleOpen}
+      />
       <Collapse in={isOpen}>
         <AddContentForm onSubmit={handleClose} />
       </Collapse>

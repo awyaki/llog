@@ -1,1 +1,1 @@
-export * from './useUpdateContentForm';
+export * from "./useUpdateContentForm";

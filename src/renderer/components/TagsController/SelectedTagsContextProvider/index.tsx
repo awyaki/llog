@@ -1,29 +1,28 @@
-import { 
-  FC, 
-  useState, 
-  useCallback, 
-  createContext, 
-  Dispatch, 
+import {
+  FC,
+  useState,
+  useCallback,
+  createContext,
+  Dispatch,
   SetStateAction,
   useEffect,
-  } from 'react';
+} from "react";
 
-import { getAllTag } from '~/api';
+import { getAllTag } from "~/api";
 
-import { useFilterTags } from './hooks';
+import { useFilterTags } from "./hooks";
 
-import { Tag } from '@prisma/client';
+import { Tag } from "@prisma/client";
 
-import { useDisclosure } from '@chakra-ui/react';
-
+import { useDisclosure } from "@chakra-ui/react";
 
 type SelectedTagsContextType = {
-  tags: Tag[],
+  tags: Tag[];
   filterTagsbyUserInput: (userInput: string) => Tag[];
   setTagsAction: (tags: Tag[]) => void;
   selectedTags: Tag[];
   setSelectedTags: Dispatch<SetStateAction<Tag[]>>;
-  searchedTags: Tag[],
+  searchedTags: Tag[];
   setSearchedTags: Dispatch<SetStateAction<Tag[]>>;
   isOpenModalToSelectTags: boolean;
   onOpenModalToSelectTags: () => void;
@@ -67,22 +66,22 @@ export const SelectedTagsContext = createContext<SelectedTagsContextType>({
   onToggleSearchedTags: () => () => {},
 });
 
-
 export const SelectedTagsContextProvider: FC = ({ children }) => {
   const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
   const [searchedTags, setSearchedTags] = useState<Tag[]>([]);
 
-  const [{ tags, filterTagsbyUserInput }, dispatchTagsWithFilterFunction] = useFilterTags();
+  const [{ tags, filterTagsbyUserInput }, dispatchTagsWithFilterFunction] =
+    useFilterTags();
 
-  const { 
+  const {
     isOpen: isOpenModalToSelectTags,
-    onOpen: onOpenModalToSelectTags, 
+    onOpen: onOpenModalToSelectTags,
     onClose: onCloseModalToSelectTags,
   } = useDisclosure();
 
-  const { 
+  const {
     isOpen: isOpenModalToCreateTag,
-    onOpen: onOpenModalToCreateTag, 
+    onOpen: onOpenModalToCreateTag,
     onClose: onCloseModalToCreateTag,
   } = useDisclosure();
 
@@ -95,13 +94,16 @@ export const SelectedTagsContextProvider: FC = ({ children }) => {
   const {
     isOpen: isOpenModalToUpdateContentTags,
     onOpen: onOpenModalToUpdateContentTags,
-    onClose: onCloseModalToUpdateContentTags
+    onClose: onCloseModalToUpdateContentTags,
   } = useDisclosure();
-  
+
   useEffect(() => {
     (async () => {
       const allTags = await getAllTag();
-      dispatchTagsWithFilterFunction({ type: 'TAGS_CONTROLLER/SET_TAGS', tags: allTags });
+      dispatchTagsWithFilterFunction({
+        type: "TAGS_CONTROLLER/SET_TAGS",
+        tags: allTags,
+      });
     })();
   }, [dispatchTagsWithFilterFunction]);
 
@@ -109,31 +111,42 @@ export const SelectedTagsContextProvider: FC = ({ children }) => {
     setSearchedTags([]);
   }, []);
 
-  const onToggleSelectedTags = useCallback((tag: Tag) => {
+  const onToggleSelectedTags = useCallback(
+    (tag: Tag) => {
       setSelectedTags((prev) => {
         const index = prev.findIndex(({ id }) => tag.id === id);
-        return index === -1 
-                  ? prev.concat({ ...tag })
-                  : prev.slice(0, index).concat(prev.slice(index+1));
+        return index === -1
+          ? prev.concat({ ...tag })
+          : prev.slice(0, index).concat(prev.slice(index + 1));
       });
-  }, [setSelectedTags]);
+    },
+    [setSelectedTags],
+  );
 
-  const onToggleSearchedTags = useCallback((tag: Tag) => {
-    return () => {
-      setSearchedTags((prev) => {
-        const index = prev.findIndex(({ id }) => tag.id === id);
-        return index === -1 
-                  ? prev.concat({ ...tag })
-                  : prev.slice(0, index).concat(prev.slice(index+1));
+  const onToggleSearchedTags = useCallback(
+    (tag: Tag) => {
+      return () => {
+        setSearchedTags((prev) => {
+          const index = prev.findIndex(({ id }) => tag.id === id);
+          return index === -1
+            ? prev.concat({ ...tag })
+            : prev.slice(0, index).concat(prev.slice(index + 1));
+        });
+      };
+    },
+    [setSearchedTags],
+  );
+
+  const setTagsAction = useCallback(
+    (tags: Tag[]) => {
+      dispatchTagsWithFilterFunction({
+        type: "TAGS_CONTROLLER/SET_TAGS",
+        tags: tags,
       });
-    };
-  }, [setSearchedTags]);
-  
-  const setTagsAction = useCallback((tags: Tag[]) => {
-    dispatchTagsWithFilterFunction({ type: 'TAGS_CONTROLLER/SET_TAGS', tags: tags });
-  }, [dispatchTagsWithFilterFunction]);
+    },
+    [dispatchTagsWithFilterFunction],
+  );
 
-  
   const onCloseModalToSearchTagsWithResetQuery = useCallback(() => {
     onCloseModalToSearchTags();
   }, [onCloseModalToSearchTags]);
@@ -142,36 +155,38 @@ export const SelectedTagsContextProvider: FC = ({ children }) => {
     onCloseModalToSelectTags();
   }, [onCloseModalToSelectTags]);
 
-
   const onCloseModalToUpdateContentTagsWithResetQuery = useCallback(() => {
     onCloseModalToUpdateContentTags();
   }, [onCloseModalToUpdateContentTags]);
 
   return (
-    <SelectedTagsContext.Provider value={{
-      tags,
-      filterTagsbyUserInput,
-      setTagsAction,
-      selectedTags,
-      setSelectedTags,
-      searchedTags,
-      setSearchedTags,
-      isOpenModalToSelectTags,
-      onOpenModalToSelectTags,
-      onCloseModalToSelectTags: onCloseModalToSelectTagsWithResetQuery,
-      isOpenModalToCreateTag,
-      onOpenModalToCreateTag,
-      onCloseModalToCreateTag,
-      isOpenModalToSearchTags,
-      onOpenModalToSearchTags,
-      onCloseModalToSearchTags: onCloseModalToSearchTagsWithResetQuery,
-      isOpenModalToUpdateContentTags,
-      onOpenModalToUpdateContentTags,
-      onCloseModalToUpdateContentTags: onCloseModalToUpdateContentTagsWithResetQuery,
-      onReleaseSearchedTags,
-      onToggleSelectedTags,
-      onToggleSearchedTags,
-    }}>
+    <SelectedTagsContext.Provider
+      value={{
+        tags,
+        filterTagsbyUserInput,
+        setTagsAction,
+        selectedTags,
+        setSelectedTags,
+        searchedTags,
+        setSearchedTags,
+        isOpenModalToSelectTags,
+        onOpenModalToSelectTags,
+        onCloseModalToSelectTags: onCloseModalToSelectTagsWithResetQuery,
+        isOpenModalToCreateTag,
+        onOpenModalToCreateTag,
+        onCloseModalToCreateTag,
+        isOpenModalToSearchTags,
+        onOpenModalToSearchTags,
+        onCloseModalToSearchTags: onCloseModalToSearchTagsWithResetQuery,
+        isOpenModalToUpdateContentTags,
+        onOpenModalToUpdateContentTags,
+        onCloseModalToUpdateContentTags:
+          onCloseModalToUpdateContentTagsWithResetQuery,
+        onReleaseSearchedTags,
+        onToggleSelectedTags,
+        onToggleSearchedTags,
+      }}
+    >
       {children}
     </SelectedTagsContext.Provider>
   );

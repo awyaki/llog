@@ -1,8 +1,8 @@
-import { FC } from 'react';
+import { FC } from "react";
 
-import { CSSObject } from '@emotion/react';
+import { CSSObject } from "@emotion/react";
 
-import { motion, Variants } from 'framer-motion';
+import { motion, Variants } from "framer-motion";
 
 const container: Variants = {
   show: { opacity: 1, y: 0 },

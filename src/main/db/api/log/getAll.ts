@@ -1,4 +1,4 @@
-import { prisma } from '../../db';
+import { prisma } from "../../db";
 
 export const getAll = async () => {
   const result = await prisma.log.findMany({
@@ -7,7 +7,7 @@ export const getAll = async () => {
       blocks: true,
     },
     orderBy: {
-      createdAt: 'desc',
+      createdAt: "desc",
     },
   });
   return result;

@@ -1,3 +1,3 @@
-export * from './noteStyle';
-export * from './dateStyle';
-export * from './buttonsStyle';
+export * from "./noteStyle";
+export * from "./dateStyle";
+export * from "./buttonsStyle";

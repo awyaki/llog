@@ -1,6 +1,6 @@
-import { prisma } from '../../db';
+import { prisma } from "../../db";
 
-import { Tag, Block } from '@prisma/client';
+import { Tag, Block } from "@prisma/client";
 
 export const update = async (
   id: number,
@@ -10,7 +10,7 @@ export const update = async (
   blocks: Block[],
   contentId: number,
   commitedAt: Date | null,
-  updatedAt: Date
+  updatedAt: Date,
 ) => {
   const note = await prisma.note.update({
     where: { id: id },

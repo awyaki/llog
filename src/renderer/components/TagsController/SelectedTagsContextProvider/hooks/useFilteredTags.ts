@@ -1,8 +1,8 @@
-import { useReducer, Reducer } from 'react';
+import { useReducer, Reducer } from "react";
 
-import { createNGramTokenMap } from '~/utils';
+import { createNGramTokenMap } from "~/utils";
 
-import { Tag } from '@prisma/client';
+import { Tag } from "@prisma/client";
 
 type State = {
   tags: Tag[];
@@ -11,35 +11,35 @@ type State = {
 };
 
 type Action = {
-  type: 'TAGS_CONTROLLER/SET_TAGS',
+  type: "TAGS_CONTROLLER/SET_TAGS";
   tags: Tag[];
 };
 
 const reducer: Reducer<State, Action> = (state, action) => {
   switch (action.type) {
-    case 'TAGS_CONTROLLER/SET_TAGS': {
-      const newTokenMap = createNGramTokenMap(action.tags.map(({ id, name }) => ({ id, text: name })));
+    case "TAGS_CONTROLLER/SET_TAGS": {
+      const newTokenMap = createNGramTokenMap(
+        action.tags.map(({ id, name }) => ({ id, text: name })),
+      );
 
       const newFilterTagsByUserInput = (userInput: string): Tag[] => {
-
         const setOfIds = newTokenMap.get(userInput) ?? new Set();
 
-        const isUserInputEmpty = userInput === '';
-        
-        const filteredTags = isUserInputEmpty 
-                                ? [...action.tags]
-                                : action.tags.filter(({ id }) => setOfIds.has(id));
+        const isUserInputEmpty = userInput === "";
+
+        const filteredTags = isUserInputEmpty
+          ? [...action.tags]
+          : action.tags.filter(({ id }) => setOfIds.has(id));
         return filteredTags;
       };
 
       return {
         tags: [...action.tags],
         filterTagsbyUserInput: newFilterTagsByUserInput,
-        searchQuery: '',
+        searchQuery: "",
         tokenMap: newTokenMap,
       };
     }
-
 
     default: {
       return state;
@@ -54,4 +54,3 @@ const initialState: State = {
 };
 
 export const useFilterTags = () => useReducer(reducer, initialState);
-

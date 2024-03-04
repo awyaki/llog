@@ -1,6 +1,6 @@
-import { CSSObject } from '@emotion/react';
+import { CSSObject } from "@emotion/react";
 
-import { inputBox as base } from '~/pages/style';
+import { inputBox as base } from "~/pages/style";
 
 export const inputBox: CSSObject = {
   ...base,

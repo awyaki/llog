@@ -1,10 +1,14 @@
-const { merge } = require('webpack-merge');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { mainConfig, preloadConfig, rendererConfig } = require('./webpack.common.js');
+const { merge } = require("webpack-merge");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const {
+  mainConfig,
+  preloadConfig,
+  rendererConfig,
+} = require("./webpack.common.js");
 
 const prodConfig = {
-  mode: 'production',
-  devtool: 'source-map',
+  mode: "production",
+  devtool: "source-map",
 };
 
 const mainProdConfig = merge(mainConfig, prodConfig);

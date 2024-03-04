@@ -1,1 +1,1 @@
-export * from './ShowNoteIcon';
+export * from "./ShowNoteIcon";

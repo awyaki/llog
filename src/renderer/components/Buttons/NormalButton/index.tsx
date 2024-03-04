@@ -1,17 +1,16 @@
-import { FC, ButtonHTMLAttributes } from 'react';
+import { FC, ButtonHTMLAttributes } from "react";
 
-import { CSSObject } from '@emotion/react';
+import { CSSObject } from "@emotion/react";
 
-import { colors } from '~/styleConfig';
-
+import { colors } from "~/styleConfig";
 
 const baseStyle: CSSObject = {
-  padding: '5px 16px',
-  transition: '.25s',
-  borderWidth: '1px',
-  borderStyle: 'solid',
-  borderRadius: '4px',
-  textAlign: 'center',
+  padding: "5px 16px",
+  transition: ".25s",
+  borderWidth: "1px",
+  borderStyle: "solid",
+  borderRadius: "4px",
+  textAlign: "center",
 };
 
 const normalStyle: CSSObject = {
@@ -19,10 +18,10 @@ const normalStyle: CSSObject = {
   color: colors.white,
   backgroundColor: colors.cyan.DEFAULT,
   borderColor: colors.cyan.DEFAULT,
-  '&:hover, &:focus': {
+  "&:hover, &:focus": {
     backgroundColor: colors.white,
     color: colors.cyan.DEFAULT,
-  }
+  },
 };
 
 const reverseStyle: CSSObject = {
@@ -30,10 +29,10 @@ const reverseStyle: CSSObject = {
   color: colors.cyan.DEFAULT,
   backgroundColor: colors.white,
   borderColor: colors.cyan.DEFAULT,
-  '&:hover, &:focus': {
+  "&:hover, &:focus": {
     backgroundColor: colors.cyan.DEFAULT,
     color: colors.white,
-  }
+  },
 };
 
 type Props = {
@@ -41,10 +40,13 @@ type Props = {
   isReverseStyle?: boolean;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
-export const NormalButton: FC<Props> = ({ children, isReverseStyle, ...rest }) => {
+export const NormalButton: FC<Props> = ({
+  children,
+  isReverseStyle,
+  ...rest
+}) => {
   return (
-    <button css={isReverseStyle ? reverseStyle : normalStyle}
-    {...rest}>
+    <button css={isReverseStyle ? reverseStyle : normalStyle} {...rest}>
       {children}
     </button>
   );

@@ -1,9 +1,6 @@
-import { prisma } from '../../db';
+import { prisma } from "../../db";
 
-export const deleteContent = async (
-  id: number,
-) => {
-  
+export const deleteContent = async (id: number) => {
   await prisma.log.deleteMany({
     where: { contentId: id },
   });
@@ -11,13 +8,13 @@ export const deleteContent = async (
   await prisma.note.deleteMany({
     where: { contentId: id },
   });
-  
+
   await prisma.block.deleteMany({
     where: { contentId: id },
   });
 
   const deletedContent = await prisma.content.delete({
-    where: { id: id }
+    where: { id: id },
   });
 
   return deletedContent;

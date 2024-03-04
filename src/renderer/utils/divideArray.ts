@@ -3,7 +3,7 @@
  * まとまりを要素として持つ配列を返す。
  * divdeArray([1, 2, 3, 4, 5, 6, 7], 2) -> [[1, 2], [3, 4], [5, 6], [7]]
  *
-*/
+ */
 
 export const divideArray = <T>(a: T[], n: number): T[][] => {
   const helper = (a: T[], acc: T[][]): T[][] => {

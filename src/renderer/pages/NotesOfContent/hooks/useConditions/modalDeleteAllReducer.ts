@@ -1,4 +1,4 @@
-import { State } from './useConditions';
+import { State } from "./useConditions";
 
 export const modalDeleteAllReducer = (state: State): State => {
   const { currentConditions } = state;

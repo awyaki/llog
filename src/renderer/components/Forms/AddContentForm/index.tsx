@@ -1,17 +1,15 @@
-import { VFC } from 'react';
-import { CSSObject } from '@emotion/react';
+import { VFC } from "react";
+import { CSSObject } from "@emotion/react";
 
-import { NormalButton, WarningButton } from '~/components';
+import { NormalButton, WarningButton } from "~/components";
 
 export type AddContentFormProps = {
   onSubmit?: () => void;
 };
 
-import { ContentForm } from '~/components';
+import { ContentForm } from "~/components";
 
-import { useAddContentForm } from './hooks';
-
-
+import { useAddContentForm } from "./hooks";
 
 type AddButtonProps = {
   form: string;
@@ -20,15 +18,11 @@ type AddButtonProps = {
 
 const AddButton: VFC<AddButtonProps> = ({ form, ...rest }) => {
   return (
-   <NormalButton 
-      css={{ width: '84px' }}
-      form={form}
-      type="submit" {...rest}>
+    <NormalButton css={{ width: "84px" }} form={form} type="submit" {...rest}>
       Add
     </NormalButton>
   );
 };
-
 
 type ClearButtonProps = {
   onClear: () => void;
@@ -36,18 +30,13 @@ type ClearButtonProps = {
 
 const ClearButton: VFC<ClearButtonProps> = ({ onClear }) => {
   return (
-    <WarningButton 
-      css={{ width: '84px' }}
-      onClick={onClear}
-      type="button">
+    <WarningButton css={{ width: "84px" }} onClick={onClear} type="button">
       Clear
     </WarningButton>
   );
 };
 
-export const AddContentForm: VFC<AddContentFormProps> = ({
-  onSubmit
-}) => {
+export const AddContentForm: VFC<AddContentFormProps> = ({ onSubmit }) => {
   const {
     errors,
     register,
@@ -62,11 +51,11 @@ export const AddContentForm: VFC<AddContentFormProps> = ({
     setSearchQuery,
   } = useAddContentForm(onSubmit);
 
-  const formName = 'add-content-form';
+  const formName = "add-content-form";
 
   return (
     <>
-      <ContentForm 
+      <ContentForm
         id={formName}
         errors={errors}
         register={register}
@@ -79,11 +68,8 @@ export const AddContentForm: VFC<AddContentFormProps> = ({
         selectedTags={selectedTags}
         setSearchQuery={setSearchQuery}
       />
-      <AddButton 
-        css={{ marginRight: '8px' }}
-        form={formName} />
+      <AddButton css={{ marginRight: "8px" }} form={formName} />
       <ClearButton onClear={handleClearAllInput} />
     </>
   );
 };
-

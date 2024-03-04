@@ -1,22 +1,16 @@
-import {
-  VFC, 
-  Dispatch,
-  SetStateAction,
-  ChangeEventHandler
-  } from 'react';
+import { VFC, Dispatch, SetStateAction, ChangeEventHandler } from "react";
 
-import { Tag } from '@prisma/client';
+import { Tag } from "@prisma/client";
 
-import { colors } from '~/styleConfig';
+import { colors } from "~/styleConfig";
 
-import { CSSObject } from '@emotion/react';
+import { CSSObject } from "@emotion/react";
 
-import { Collapse } from '@chakra-ui/transition';
+import { Collapse } from "@chakra-ui/transition";
 
-import { SearchAndCreateInput } from '../SearchAndCreateInput';
+import { SearchAndCreateInput } from "../SearchAndCreateInput";
 
-import { TagListToSelect } from '../TagListToSelect';
-
+import { TagListToSelect } from "../TagListToSelect";
 
 type Props = {
   css?: CSSObject;
@@ -29,7 +23,7 @@ type Props = {
   onToggleSelectedTags: (tag: Tag) => void;
 };
 
-export const CollapseToSelectTags: VFC<Props> = ({ 
+export const CollapseToSelectTags: VFC<Props> = ({
   isOpen,
   searchQuery,
   setSearchQuery,
@@ -37,26 +31,30 @@ export const CollapseToSelectTags: VFC<Props> = ({
   selectedTags,
   setSelectedTags,
   onToggleSelectedTags,
-  ...rest }) => {
-
+  ...rest
+}) => {
   return (
     <Collapse in={isOpen} {...rest}>
-      <div css={{
-        padding: '16px',
-        border: `1px solid ${colors.cyan.DEFAULT}`,
-        borderRadius: '4px',
-        marginBottom: '16px',
-      }}>
-        <h2 css={{ marginBottom: '8px' }}>Search or Create tags</h2>
-        <SearchAndCreateInput 
+      <div
+        css={{
+          padding: "16px",
+          border: `1px solid ${colors.cyan.DEFAULT}`,
+          borderRadius: "4px",
+          marginBottom: "16px",
+        }}
+      >
+        <h2 css={{ marginBottom: "8px" }}>Search or Create tags</h2>
+        <SearchAndCreateInput
           setSelectedTags={setSelectedTags}
           setSearchQuery={setSearchQuery}
-          onChangeSearchQuery={onChangeSearchQuery} />
-        <TagListToSelect 
+          onChangeSearchQuery={onChangeSearchQuery}
+        />
+        <TagListToSelect
           onToggleSelectedTags={onToggleSelectedTags}
           selectedTags={selectedTags}
           setSelectedTags={setSelectedTags}
-          searchQuery={searchQuery} />
+          searchQuery={searchQuery}
+        />
       </div>
     </Collapse>
   );

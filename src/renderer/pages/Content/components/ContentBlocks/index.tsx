@@ -1,10 +1,10 @@
-import { VFC } from 'react';
+import { VFC } from "react";
 
-import { CSSObject } from '@emotion/react';
+import { CSSObject } from "@emotion/react";
 
-import { Block } from '@prisma/client';
+import { Block } from "@prisma/client";
 
-import { BlocksOverview, BlocksDetailView} from './components';
+import { BlocksOverview, BlocksDetailView } from "./components";
 
 type Props = {
   blocks: Block[];
@@ -12,13 +12,14 @@ type Props = {
   isOverView: boolean;
 };
 
-export const ContentBlocks: VFC<Props> = ({ 
-  blocks, 
-  isOverView,
-  ...rest }) => {
+export const ContentBlocks: VFC<Props> = ({ blocks, isOverView, ...rest }) => {
   return (
     <div {...rest}>
-      {isOverView ? <BlocksOverview blocks={blocks} /> : <BlocksDetailView blocks={blocks} />}
+      {isOverView ? (
+        <BlocksOverview blocks={blocks} />
+      ) : (
+        <BlocksDetailView blocks={blocks} />
+      )}
     </div>
   );
 };

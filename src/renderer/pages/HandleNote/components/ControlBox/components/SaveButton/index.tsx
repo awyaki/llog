@@ -1,27 +1,22 @@
-import { VFC, MouseEventHandler } from 'react';
+import { VFC, MouseEventHandler } from "react";
 
-import { CSSObject } from '@emotion/react';
+import { CSSObject } from "@emotion/react";
 
-import { 
-  DisabableButtonAnimationWrapper,
-  SaveIcon,
-  } from '~/components';
+import { DisabableButtonAnimationWrapper, SaveIcon } from "~/components";
 
 type Props = {
   css?: CSSObject;
   disabled: boolean;
-  onClick?: MouseEventHandler<HTMLButtonElement>; 
+  onClick?: MouseEventHandler<HTMLButtonElement>;
 };
 
-export const SaveButton: VFC<Props> = ({ 
-  onClick, 
-  disabled,
-  ...rest
-}) => {
+export const SaveButton: VFC<Props> = ({ onClick, disabled, ...rest }) => {
   return (
-    <DisabableButtonAnimationWrapper 
+    <DisabableButtonAnimationWrapper
       disabled={disabled}
-      onClick={onClick} {...rest}> 
+      onClick={onClick}
+      {...rest}
+    >
       <SaveIcon />
     </DisabableButtonAnimationWrapper>
   );

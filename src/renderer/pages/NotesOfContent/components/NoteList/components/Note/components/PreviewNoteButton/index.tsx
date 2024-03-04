@@ -1,8 +1,8 @@
-import { VFC } from 'react';
+import { VFC } from "react";
 
-import { PreviewNoteIcon } from '~/components';
+import { PreviewNoteIcon } from "~/components";
 
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 type Props = {
   contentId: number;

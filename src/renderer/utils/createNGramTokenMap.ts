@@ -1,34 +1,32 @@
-
-
 const diviedStringIntoNGram = (s: string, n: number) => {
   const arrayOfStr = Array.from(s);
-  const limit = arrayOfStr.length - n;  
+  const limit = arrayOfStr.length - n;
 
   const tokenArray = [];
 
   for (let i = 0; i <= limit; i++) {
-    let token = '';
+    let token = "";
 
     for (let j = i; j < i + n; j++) {
       token += arrayOfStr[j];
     }
 
     tokenArray.push(token);
-  } 
+  }
 
   return tokenArray;
-}; 
+};
 
 /*
  * @param {String} str - strings that is trasformed into array of string with n-gram.
  * @return {Set} - set of string with n-gram
- * 
+ *
  * produce set of n-gram
- * 
+ *
  * ex.
  * input: 'hello'
  *
- * output: Set(14) { 
+ * output: Set(14) {
  *                'h', 'e', 'l', 'o',
  *                'he', 'el', 'll', 'lo',
  *                'hel', 'ell', 'llo',
@@ -53,15 +51,16 @@ const diviedStringIntoUniToNGram = (s: string) => {
 
 /*
  * produce Map of token to id which of the obj has the token.
-**/
+ **/
 
-type CreateNGramTokenMap = (arg: { id: number, text: string }[]) => Map<string, Set<number>>;
+type CreateNGramTokenMap = (
+  arg: { id: number; text: string }[],
+) => Map<string, Set<number>>;
 
 export const createNGramTokenMap: CreateNGramTokenMap = (objs) => {
   const tokenMap = new Map<string, Set<number>>();
 
   const createBiGramTokenMapWithId = (id: number, s: string) => {
-
     const tokens = diviedStringIntoUniToNGram(s);
 
     for (const token of tokens) {
@@ -69,18 +68,16 @@ export const createNGramTokenMap: CreateNGramTokenMap = (objs) => {
         const ids = tokenMap.get(token) ?? new Set();
         tokenMap.set(token, ids.add(id));
       } else {
-        const ids = new Set<number>()
+        const ids = new Set<number>();
         tokenMap.set(token, ids.add(id));
       }
     }
-    
   };
- 
+
   for (const o of objs) {
     const { id, text } = o;
     createBiGramTokenMapWithId(id, text);
   }
 
-  return tokenMap; 
+  return tokenMap;
 };
-

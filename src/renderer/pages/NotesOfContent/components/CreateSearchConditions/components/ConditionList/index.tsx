@@ -1,11 +1,11 @@
-import { VFC, Dispatch } from 'react';
+import { VFC, Dispatch } from "react";
 
-import { VStack } from '@chakra-ui/react';
+import { VStack } from "@chakra-ui/react";
 
-import { Condition } from '~/pages/NotesOfContent/types';
-import { Action } from '~/pages/NotesOfContent/hooks/useConditions'
+import { Condition } from "~/pages/NotesOfContent/types";
+import { Action } from "~/pages/NotesOfContent/hooks/useConditions";
 
-import { ConditionItem } from './components/ConditionItem';
+import { ConditionItem } from "./components/ConditionItem";
 
 type Props = {
   conditionList: Condition[];
@@ -15,11 +15,13 @@ type Props = {
 export const ConditionList: VFC<Props> = ({ conditionList, dispatch }) => {
   return (
     <VStack>
-      {conditionList.map((condition) => <ConditionItem 
-                                          key={condition.id} 
-                                          condition={condition}
-                                          dispatch={dispatch}
-                                          />)}
+      {conditionList.map((condition) => (
+        <ConditionItem
+          key={condition.id}
+          condition={condition}
+          dispatch={dispatch}
+        />
+      ))}
     </VStack>
   );
 };

@@ -1,5 +1,5 @@
-import { VFC, MouseEventHandler } from 'react';
-import { SearchContentsIcon } from './components/SearchContentsIcon';
+import { VFC, MouseEventHandler } from "react";
+import { SearchContentsIcon } from "./components/SearchContentsIcon";
 type Props = {
   active: boolean;
   onClick: MouseEventHandler<HTMLButtonElement>;
@@ -11,4 +11,3 @@ export const SearchContentsButton: VFC<Props> = ({ active, onClick }) => {
     </button>
   );
 };
-

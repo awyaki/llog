@@ -1,10 +1,7 @@
 {
   "compilerOptions": {
     "target": "esnext",
-    "lib": [
-      "dom",
-      "dom.iterable"
-    ],
+    "lib": ["dom", "dom.iterable"],
     "outDir": "./dist",
     "allowJs": true,
     "noEmit": true,
@@ -26,8 +23,5 @@
       "~/*": ["./*"]
     }
   },
-  "include": [
-    "src",
-    "custom.d.ts"
-  ]
+  "include": ["src", "custom.d.ts"]
 }

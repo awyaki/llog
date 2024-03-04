@@ -1,33 +1,31 @@
-import { VFC, useContext } from 'react';
+import { VFC, useContext } from "react";
 
-import { CSSObject } from '@emotion/react';
+import { CSSObject } from "@emotion/react";
 
-
-import { Mode } from '../../types';
+import { Mode } from "../../types";
 
 import {
   SelectedTagsList,
   ExpandButton as ExpandAddTagsButton,
   TagsList,
   SelectedTagsForHandleNoteContext,
-} from '~/components';
+} from "~/components";
 
-import { 
+import {
   SaveButton,
   CommitButton,
   OneMoreNoteButton,
   SelectedBlocks,
   SwitchEdit,
   NoteStateIndicator,
-  } from './components';
+} from "./components";
 
-import { ExpandAllBlocksButton } from '../SelectBlocks';
-
+import { ExpandAllBlocksButton } from "../SelectBlocks";
 
 type Props = {
   css?: CSSObject;
   mode: Mode;
-  updatedAt: Date | undefined; 
+  updatedAt: Date | undefined;
   toggleEditBeteewnPreview: () => void;
   onOpenSelectBlocks: () => void;
   isNoteChange: boolean;
@@ -40,8 +38,8 @@ type Props = {
   toggleIsOpenSelectTagsCollapse: () => void;
 };
 
-export const ControlBox: VFC<Props> = ({ 
-  mode, 
+export const ControlBox: VFC<Props> = ({
+  mode,
   updatedAt,
   toggleEditBeteewnPreview,
   onOpenSelectBlocks,
@@ -54,48 +52,60 @@ export const ControlBox: VFC<Props> = ({
   isOpenSelectTgsCollapse,
   toggleIsOpenSelectTagsCollapse,
   ...rest
-  }) => {
-
-  const { selectedTagsForHandleNote } = useContext(SelectedTagsForHandleNoteContext);
+}) => {
+  const { selectedTagsForHandleNote } = useContext(
+    SelectedTagsForHandleNoteContext,
+  );
 
   return (
-      <div css={{ 
-        minWidth: '200px',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'space-between',
-        alignItems: 'flex-start',
-        }} {...rest}>
-        <NoteStateIndicator 
-          css={{ marginBottom: '16px' }}
-          isNoteExist={isNoteExist}
-          isNoteChange={isNoteChange}
-          updatedAt={updatedAt} />
-        <ExpandAddTagsButton 
-          isOpen={isOpenSelectTgsCollapse}
-          toggleIsOpen={toggleIsOpenSelectTagsCollapse}
-          css={{ marginBottom: '8px' }} />
-        <TagsList 
-          css={{ marginBottom: '16px' }}
-          tags={selectedTagsForHandleNote} />
-        <ExpandAllBlocksButton css={{ marginBottom: '8px' }}/>
-        <SelectedBlocks 
-          css={{ marginBottom: '16px' }}
-          onOpenSelectBlocks={onOpenSelectBlocks} />
-        <SwitchEdit
-          css={{ marginBottom: '16px' }}
-          isEdit={mode === 'edit'}
-          onClick={toggleEditBeteewnPreview}/>
-        <CommitButton 
-          css={{ marginBottom: '8px' }}
-          onClick={onOpenModalToSubmitLog}/>
-        <SaveButton 
-          css={{ marginBottom: '8px' }}
-          onClick={isNoteExist ? onUpdateNote : onCreateNote} 
-          disabled={!isNoteChange} />
-        <OneMoreNoteButton
-          disabled={isNoteChange || !isNoteExist}
-          onClick={onMoveToOtherNoteEdit} />
-      </div>
+    <div
+      css={{
+        minWidth: "200px",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+        alignItems: "flex-start",
+      }}
+      {...rest}
+    >
+      <NoteStateIndicator
+        css={{ marginBottom: "16px" }}
+        isNoteExist={isNoteExist}
+        isNoteChange={isNoteChange}
+        updatedAt={updatedAt}
+      />
+      <ExpandAddTagsButton
+        isOpen={isOpenSelectTgsCollapse}
+        toggleIsOpen={toggleIsOpenSelectTagsCollapse}
+        css={{ marginBottom: "8px" }}
+      />
+      <TagsList
+        css={{ marginBottom: "16px" }}
+        tags={selectedTagsForHandleNote}
+      />
+      <ExpandAllBlocksButton css={{ marginBottom: "8px" }} />
+      <SelectedBlocks
+        css={{ marginBottom: "16px" }}
+        onOpenSelectBlocks={onOpenSelectBlocks}
+      />
+      <SwitchEdit
+        css={{ marginBottom: "16px" }}
+        isEdit={mode === "edit"}
+        onClick={toggleEditBeteewnPreview}
+      />
+      <CommitButton
+        css={{ marginBottom: "8px" }}
+        onClick={onOpenModalToSubmitLog}
+      />
+      <SaveButton
+        css={{ marginBottom: "8px" }}
+        onClick={isNoteExist ? onUpdateNote : onCreateNote}
+        disabled={!isNoteChange}
+      />
+      <OneMoreNoteButton
+        disabled={isNoteChange || !isNoteExist}
+        onClick={onMoveToOtherNoteEdit}
+      />
+    </div>
   );
 };

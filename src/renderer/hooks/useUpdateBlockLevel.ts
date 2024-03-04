@@ -1,14 +1,10 @@
-import { useEffect } from 'react';
+import { useEffect } from "react";
 
-import { asyncForEach } from '~/utils';
+import { asyncForEach } from "~/utils";
 
-import { calculateLevel } from '~/functions';
+import { calculateLevel } from "~/functions";
 
-import { 
-  getAllBlock,
-  updateBlock,
-} from '~/api';
-
+import { getAllBlock, updateBlock } from "~/api";
 
 export const useUpdateBlockLevel = () => {
   useEffect(() => {
@@ -19,12 +15,15 @@ export const useUpdateBlockLevel = () => {
         const { id, iteration, commitedAt } = block;
 
         if (commitedAt === null) return;
-        await updateBlock({ id, iteration, commitedAt, level: calculateLevel(iteration, commitedAt)});
+        await updateBlock({
+          id,
+          iteration,
+          commitedAt,
+          level: calculateLevel(iteration, commitedAt),
+        });
       });
-
     }, 300000);
 
-    return () => clearInterval(intervalId); 
+    return () => clearInterval(intervalId);
   }, []);
 };
-

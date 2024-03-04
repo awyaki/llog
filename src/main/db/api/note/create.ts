@@ -1,30 +1,29 @@
-import { prisma } from '../../db';
+import { prisma } from "../../db";
 
-import { Tag, Block } from '@prisma/client';
-
+import { Tag, Block } from "@prisma/client";
 
 export const create = async (
-  mkd: string, 
+  mkd: string,
   transformed: string,
-  tags: Tag[], 
+  tags: Tag[],
   blocks: Block[],
-  contentId: number
+  contentId: number,
 ) => {
-    const note = await prisma.note.create({
-      data: {
-        origin: mkd,
-        transformed: transformed,
-        tags: {
-          connect: [...tags.map(({ id }) => ({ id: id }))],
-        },
-        blocks: {
-          connect: [...blocks.map(({ id }) => ({ id: id }))],
-        },
-        content: {
-          connect: { id: contentId },
-        },
+  const note = await prisma.note.create({
+    data: {
+      origin: mkd,
+      transformed: transformed,
+      tags: {
+        connect: [...tags.map(({ id }) => ({ id: id }))],
       },
-    });
+      blocks: {
+        connect: [...blocks.map(({ id }) => ({ id: id }))],
+      },
+      content: {
+        connect: { id: contentId },
+      },
+    },
+  });
 
-    return note;
+  return note;
 };

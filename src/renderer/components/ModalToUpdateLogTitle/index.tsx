@@ -1,90 +1,96 @@
-import { 
-  VFC,
-  useState,
-  useContext
-  } from 'react';
+import { VFC, useState, useContext } from "react";
 
-import { 
+import {
   NormalButton,
   WarningButton,
-  ModalToUpdateLogTitleContext
-  } from '~/components';
+  ModalToUpdateLogTitleContext,
+} from "~/components";
 
-import { colors, font } from '~/styleConfig';
+import { colors, font } from "~/styleConfig";
 
-import { 
+import {
   Modal,
   ModalProps,
   ModalContent,
   ModalOverlay,
-  } from '@chakra-ui/react';
+} from "@chakra-ui/react";
 
-export * from './ModalToUpdateLogTitleContextProvider';
+export * from "./ModalToUpdateLogTitleContextProvider";
 
 type Props = {
   onUpdateLogTilte: (title: string) => void;
-} & Omit<ModalProps, 'children'>;
+} & Omit<ModalProps, "children">;
 
-export const ModalToUpdateLogTitle: VFC<Props> = ({ 
+export const ModalToUpdateLogTitle: VFC<Props> = ({
   onUpdateLogTilte,
   onClose,
   ...rest
-  }) => {
+}) => {
   const { title, setTitle } = useContext(ModalToUpdateLogTitleContext);
 
   const onCloseModal = () => {
-    setTitle('');
+    setTitle("");
     onClose();
   };
 
   const onUpdateLogTilteWithResetModal = () => {
-    onUpdateLogTilte(title === '' ? 'No title' : title);
-    setTitle('');
+    onUpdateLogTilte(title === "" ? "No title" : title);
+    setTitle("");
     onClose();
   };
 
   return (
     <Modal onClose={onCloseModal} {...rest}>
       <ModalOverlay />
-      <ModalContent css={{
-        color: colors.text,
-        padding: '16px',
-      }}>
-          <h2 css={{ 
-            marginBottom: '24px', 
+      <ModalContent
+        css={{
+          color: colors.text,
+          padding: "16px",
+        }}
+      >
+        <h2
+          css={{
+            marginBottom: "24px",
             fontSize: font.size.M,
-            }}>Log title</h2>
-          <form onSubmit={(e) => { 
+          }}
+        >
+          Log title
+        </h2>
+        <form
+          onSubmit={(e) => {
             e.preventDefault();
             onUpdateLogTilteWithResetModal();
-            }}>
-          <input 
+          }}
+        >
+          <input
             css={{
-              width: '400px',
+              width: "400px",
               borderBottom: `2px solid ${colors.cyan.DEFAULT}`,
-              marginBottom: '24px',
+              marginBottom: "24px",
             }}
             type="text"
             value={title}
-            onChange={(e) => setTitle(e.target.value)} />
-          <div css={{
-            display: 'flex',
-          }}>
-            <NormalButton 
+            onChange={(e) => setTitle(e.target.value)}
+          />
+          <div
+            css={{
+              display: "flex",
+            }}
+          >
+            <NormalButton
               type="submit"
               css={{
-                marginRight: '8px',
-              }}>
+                marginRight: "8px",
+              }}
+            >
               Update
             </NormalButton>
-            <WarningButton 
-              type="button"
-              onClick={onCloseModal}>
+            <WarningButton type="button" onClick={onCloseModal}>
               Cancel
             </WarningButton>
           </div>
-          </form>
+        </form>
       </ModalContent>
     </Modal>
-  )
+  );
 };

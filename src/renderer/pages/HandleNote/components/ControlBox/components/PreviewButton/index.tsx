@@ -1,8 +1,8 @@
-import { VFC, MouseEventHandler } from 'react';
+import { VFC, MouseEventHandler } from "react";
 
-import { Mode } from '../../../../types';
+import { Mode } from "../../../../types";
 
-import { PreviewButtonIcon } from './components/PreviewButtonIcon';
+import { PreviewButtonIcon } from "./components/PreviewButtonIcon";
 
 type Props = {
   mode: Mode;
@@ -11,11 +11,8 @@ type Props = {
 
 export const PreviewButton: VFC<Props> = ({ mode, onClick }) => {
   return (
-    <button 
-      onClick={onClick} 
-      disabled={mode === 'preview'}>
-      <PreviewButtonIcon isActive={mode !== 'preview'} />
+    <button onClick={onClick} disabled={mode === "preview"}>
+      <PreviewButtonIcon isActive={mode !== "preview"} />
     </button>
-
   );
 };
