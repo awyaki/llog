@@ -181,11 +181,17 @@ export const searchLogsReducer: Reducer<State, Action> = (state, action) => {
   switch (action.type) {
     case "SEARCH_LOGS/SET_LOGS": {
       const nextState = { ...state };
+      const { logs, titlesTokenMap, ...rest } = state;
       nextState.logs = action.logs;
-      nextState.filteredLogs = action.logs;
       nextState.titlesTokenMap = createNGramTokenMap(
         action.logs.map(({ id, title }) => ({ id, text: title })),
       );
+
+      nextState.filteredLogs = filterByAllQueries({
+        logs: nextState.logs,
+        titlesTokenMap: nextState.titlesTokenMap,
+        ...rest,
+      });
       return nextState;
     }
     case "SEARCH_LOGS/SET_SINCE": {
