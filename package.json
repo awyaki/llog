@@ -2,7 +2,7 @@
   "name": "llog",
   "version": "1.0.0",
   "description": "",
-  "main": "./out/main.js",
+  "main": "./out/main/main.js",
   "scripts": {
     "start": "npx webpack --config webpack.dev.js && npx electron ./dist/main.js",
     "watch": "npx webpack --config webpack.dev.js --watch",

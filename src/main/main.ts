@@ -18,7 +18,7 @@ function createWindow() {
     width: 1200,
     height: 600,
     webPreferences: {
-      preload: path.resolve(__dirname, "preload.js"),
+      preload: path.resolve(__dirname, "../preload/preload.js"),
       sandbox: true,
     },
   });
