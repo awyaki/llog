@@ -23,7 +23,7 @@ function createWindow() {
     },
   });
 
-  win.loadFile(path.resolve(__dirname, "index.html"));
+  win.loadFile(path.resolve(__dirname, "../renderer/index.html"));
   // win.webContents.openDevTools();
 
   win.webContents.on("will-navigate", handleURLOpen);
