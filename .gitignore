@@ -6,3 +6,4 @@ build
 log.txt
 prisma/migrations
 prisma/dev.db-journal
+out
