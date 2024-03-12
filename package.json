@@ -86,26 +86,17 @@
   "build": {
     "npmRebuild": false,
     "files": [
-      "dist/**/*",
-      "node_modules/**/*",
-      "package.json",
-      "!dist/dev.db",
+      "out/**/*",
       {
         "from": "node_modules/.prisma",
         "to": "node_modules/.prisma"
-      }
-    ],
-    "extraResources": [
-      {
-        "from": "dist/dev.db",
-        "to": "dist/dev.db"
       }
     ],
     "asar": true,
     "directories": {
       "output": "build"
     },
-    "icon": "dist/Icon-Llog.icns"
+    "icon": "icons/Icon-Llog.icns"
   },
   "prisma": {
     "seed": "ts-node --project tsconfig-seed.json prisma/seed.ts"
