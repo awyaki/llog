@@ -1,11 +1,15 @@
-import path from "path";
+import path from "node:path";
+import { app } from "electron";
 import { PrismaClient } from "@prisma/client";
 
-const dbPath = path.resolve(__dirname, "dev.db").replace("/app.asar", "");
+const dbUrl = app.isPackaged
+  ? `file:${path.join(app.getPath("userData"), "llog.db")}`
+  : "file:./dev.db";
+
 export const prisma = new PrismaClient({
   datasources: {
     db: {
-      url: "file:".concat(dbPath),
+      url: dbUrl,
     },
   },
 });
