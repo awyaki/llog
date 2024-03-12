@@ -19,7 +19,11 @@ function* range(start: number, end: number) {
 }
 
 const makeBlocks = (n: number) => {
-  return [...range(0, n)].map((n) => ({ unitNumber: n + 1, level: n % 6 }));
+  return [...range(0, n)].map((n) => ({
+    unitNumber: n + 1,
+    level: n % 6,
+    iteration: 0,
+  }));
 };
 
 const contentData: Prisma.ContentCreateInput[] = [
@@ -75,6 +79,7 @@ const noteData: Prisma.NoteCreateInput[] = [
 
 const logData: Prisma.LogCreateInput[] = [
   {
+    title: "コンパイラの構造",
     contentName: "コンパイラ原理と構造",
     markdown: markdown,
     html: html,
