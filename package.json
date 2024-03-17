@@ -87,6 +87,8 @@
     "appId": "com.llog.app",
     "files": [
       "out/**/*",
+      "prisma/**/*",
+      "!prisma/dev.db",
       {
         "from": "node_modules/.prisma",
         "to": "node_modules/.prisma"
