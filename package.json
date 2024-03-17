@@ -33,7 +33,7 @@
     "react-router": "^5.2.1",
     "react-router-dom": "^5.3.0",
     "recharts": "^2.1.9",
-    "sqlite3": "^5.1.7",
+    "sqlite3": "5.1.6",
     "zenn-content-css": "^0.1.99",
     "zenn-embed-elements": "^0.1.153",
     "zenn-markdown-html": "^0.1.99"
