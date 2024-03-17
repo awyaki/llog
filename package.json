@@ -84,6 +84,7 @@
     "webpack-node-externals": "^3.0.0"
   },
   "build": {
+    "appId": "com.llog.app",
     "npmRebuild": false,
     "files": [
       "out/**/*",
