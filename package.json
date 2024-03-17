@@ -88,13 +88,32 @@
     "files": [
       "out/**/*",
       "prisma/**/*",
-      "!prisma/dev.db",
-      {
-        "from": "node_modules/.prisma",
-        "to": "node_modules/.prisma"
-      }
+      "!prisma/dev.db"
     ],
-    "asar": true,
+    "extraResources": [
+      "node_modules/@prisma/engines/migration-engine*",
+      "node_modules/@prisma/engines/query*",
+      "node_modules/@prisma/engines/libquery*"
+    ],
+    "mac": {
+      "category": "public.app-category.productivity",
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "x64",
+            "arm64"
+          ]
+        },
+        {
+          "target": "zip",
+          "arch": [
+            "x64",
+            "arm64"
+          ]
+        }
+      ]
+    },
     "directories": {
       "output": "build"
     },
