@@ -5,7 +5,7 @@ export const isDev = !app.isPackaged;
 export const dbPath = path.join(app.getPath("userData"), "llog.db");
 // TODO: process.env.DTABASE_URLが存在することを検証するコードをあとで書く。
 // zodやvildbotを使うと良さそう
-export const dbUrl = isDev ? process.env.DATABASE_URL! : "file:" + dbPath;
+export const dbUrl = isDev ? "file:dev.db" : "file:" + dbPath;
 
 process.env.DTABASE_URL = dbUrl;
 
