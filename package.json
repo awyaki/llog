@@ -85,7 +85,6 @@
   },
   "build": {
     "appId": "com.llog.app",
-    "npmRebuild": false,
     "files": [
       "out/**/*",
       {
