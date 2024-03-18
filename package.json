@@ -89,7 +89,15 @@
     "files": [
       "out/**/*",
       "prisma/**/*",
-      "!prisma/dev.db"
+      "!prisma/dev.db",
+      {
+        "from": "node_modules/.prisma/client/",
+        "to": "node_modules/.prisma/client/"
+      },
+      {
+        "from": "node_modules/prisma",
+        "to": "node_modules/prisma"
+      }
     ],
     "extraResources": [
       "node_modules/@prisma/engines/migration-engine*",
@@ -113,7 +121,8 @@
             "arm64"
           ]
         }
-      ]
+      ],
+      "asarUnpack": "prisma"
     },
     "directories": {
       "output": "build"
