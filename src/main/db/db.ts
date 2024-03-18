@@ -8,6 +8,7 @@ log.info("DB URL", dbUrl);
 log.info("Qery Engine Path", queryEnginePath);
 
 export const prisma = new PrismaClient({
+  log: ["info", "warn", "error"],
   datasources: {
     db: {
       url: dbUrl,
