@@ -93,16 +93,14 @@
       {
         "from": "node_modules/.prisma/client/",
         "to": "node_modules/.prisma/client/"
-      },
-      {
-        "from": "node_modules/prisma",
-        "to": "node_modules/prisma"
       }
     ],
     "extraResources": [
       "node_modules/@prisma/engines/migration-engine*",
       "node_modules/@prisma/engines/query*",
-      "node_modules/@prisma/engines/libquery*"
+      "node_modules/@prisma/engines/libquery*",
+      "node_modules/prisma/build/index.js",
+      "node_modules/prisma/package.json"
     ],
     "mac": {
       "category": "public.app-category.productivity",
