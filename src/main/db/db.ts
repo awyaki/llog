@@ -59,6 +59,10 @@ export const runPrismaCommand = async ({
         resolve(code);
       });
 
+      child.stdout?.on("data", (data) => {
+        log.info(`stdout: ${data}`);
+      });
+
       child.stderr?.on("data", (data) => {
         log.error("prisma: ", data.toString());
       });
