@@ -58,6 +58,10 @@ export const runPrismaCommand = async ({
         log.info(msg);
       });
 
+      child.on("error", (err) => {
+        log.error("Child process got error:", err);
+      });
+
       child.on("close", (code) => {
         resolve(code);
       });
