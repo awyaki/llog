@@ -20,30 +20,28 @@ const electronPlatFormName = {
 type ElectronPlatFormName = keyof typeof electronPlatFormName;
 type PlatFormNameToExecutables = {
   [k in ElectronPlatFormName]: {
-    migrationEngine: string;
+    schemaEngine: string;
     queryEngine: string;
   };
 };
 export const platformToExecutables: PlatFormNameToExecutables = {
   win32: {
-    migrationEngine:
-      "node_modules/@prisma/engines/migration-engine-windows.exe",
+    schemaEngine: "node_modules/@prisma/engines/schema-engine-windows.exe",
     queryEngine: "node_modules/@prisma/engines/query_engine-windows.dll.node",
   },
   linux: {
-    migrationEngine:
-      "node_modules/@prisma/engines/migration-engine-debian-openssl-1.1.x",
+    schemaEngine:
+      "node_modules/@prisma/engines/schema-engine-debian-openssl-1.1.x",
     queryEngine:
       "node_modules/@prisma/engines/libquery_engine-debian-openssl-1.1.x.so.node",
   },
   darwin: {
-    migrationEngine: "node_modules/@prisma/engines/migration-engine-darwin",
+    schemaEngine: "node_modules/@prisma/engines/schema-engine-darwin",
     queryEngine:
       "node_modules/@prisma/engines/libquery_engine-darwin.dylib.node",
   },
   darwinArm64: {
-    migrationEngine:
-      "node_modules/@prisma/engines/migration-engine-darwin-arm64",
+    schemaEngine: "node_modules/@prisma/engines/schema-engine-darwin-arm64",
     queryEngine:
       "node_modules/@prisma/engines/libquery_engine-darwin-arm64.dylib.node",
   },
@@ -68,9 +66,9 @@ const getPlatformName = (): ElectronPlatFormName => {
 
 const platformName = getPlatformName();
 
-export const migrationEnginePath = path.join(
+export const schemaEnginePath = path.join(
   extraResourcePath,
-  platformToExecutables[platformName].migrationEngine,
+  platformToExecutables[platformName].schemaEngine,
 );
 export const queryEnginePath = path.join(
   extraResourcePath,

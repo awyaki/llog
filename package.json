@@ -96,7 +96,7 @@
       }
     ],
     "extraResources": [
-      "node_modules/@prisma/engines/migration-engine*",
+      "node_modules/@prisma/engines/schema-engine*",
       "node_modules/@prisma/engines/query*",
       "node_modules/@prisma/engines/libquery*",
       "node_modules/prisma/build/index.js",
