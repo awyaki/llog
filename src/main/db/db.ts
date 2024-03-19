@@ -5,7 +5,7 @@ import { PrismaClient } from "@prisma/client";
 import { fork } from "node:child_process";
 
 log.info("DB URL", dbUrl);
-log.info("Qery Engine Path", queryEnginePath);
+log.info("Query Engine Path", queryEnginePath);
 
 export const prisma = new PrismaClient({
   log: ["info", "warn", "error"],
