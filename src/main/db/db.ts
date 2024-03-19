@@ -9,11 +9,7 @@ log.info("Query Engine Path", queryEnginePath);
 
 export const prisma = new PrismaClient({
   log: ["info", "warn", "error"],
-  datasources: {
-    db: {
-      url: dbUrl,
-    },
-  },
+  datasourceUrl: dbUrl,
   // see https://github.com/prisma/prisma/discussions/5200
   // @ts-expect-error internal prop
   __internal: {
