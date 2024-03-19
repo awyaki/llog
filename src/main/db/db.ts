@@ -33,12 +33,9 @@ export const runPrismaCommand = async ({
 
   try {
     const exitCode = await new Promise((resolve) => {
-      const prismaPath = path.resolve(
-        __dirname,
-        "..",
-        "..",
-        "node_modules/prisma/build/index.js",
-      );
+      const prismaPath = path
+        .resolve(__dirname, "..", "..", "node_modules/prisma/build/index.js")
+        .replace("/app.asar", "");
       log.info("Prisma path", prismaPath);
 
       const child = fork(prismaPath, command, {
