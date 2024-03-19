@@ -42,7 +42,7 @@ const createWindow = async () => {
         "prisma",
         "schema.prisma",
       );
-
+      log.info("Schema path", schemaPath);
       await runPrismaCommand({
         command: ["migrate", "deploy", "--schema", schemaPath],
         dbUrl,
