@@ -4,9 +4,9 @@
   "description": "",
   "main": "./out/main/main.js",
   "scripts": {
-    "start": "npx webpack --config webpack.dev.js && npx electron ./dist/main.js",
-    "watch": "npx webpack --config webpack.dev.js --watch",
-    "build": "npx webpack --config webpack.prod.js",
+    "dev": "npx electron-vite preview",
+    "build": "npx electron-vite build",
+    "pack": "npx electron-vite build && npx electron-builder build",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
