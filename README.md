@@ -50,10 +50,10 @@ npx prisma generate
 4. Preview or Build the application.
 
 ```
-// This command to preview the application.
+// To preview the application
 npm run dev
 
-// This command to build the electron app in the build directory.
+// To build the electron app in the build directory
 npm run pack
 ```
 
