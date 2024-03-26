@@ -53,7 +53,7 @@ npx prisma generate
 // This command to preview the application.
 npm run dev
 
-// This command to build the electron app.
+// This command to build the electron app in the build directory.
 npm run pack
 ```
 
