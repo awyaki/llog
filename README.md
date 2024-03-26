@@ -47,10 +47,14 @@ cd llog && npm install
 npx prisma generate
 ```
 
-4. Run the application.
+4. Preview or Build the application.
 
 ```
-npm start
+// This command to preview the application.
+npm run dev
+
+// This command to build the electron app.
+npm run pack
 ```
 
 ## How to use
